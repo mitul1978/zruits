@@ -1,0 +1,113 @@
+.page-overview .section-room .homepod-container .image-iphone-hand {
+    background-image: url("/in/homepod/images/overview/handoff_iphone__gjjh0782li62_large.png");
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 1.5dppx),
+(-webkit-min-device-pixel-ratio: 1.5),
+(min-resolution: 144dpi) {
+    .page-overview .section-room .homepod-container .image-iphone-hand {
+        background-image: url("/in/homepod/images/overview/handoff_iphone__gjjh0782li62_large_2x.png")
+    }
+}
+@media only screen and (max-width: 1068px) {
+    .page-overview .section-room .homepod-container .image-iphone-hand {
+        background-image: url("/in/homepod/images/overview/handoff_iphone__gjjh0782li62_medium.png")
+    }
+}
+@media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (max-width: 1068px) and (min-resolution: 1.5dppx),
+only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+    .page-overview .section-room .homepod-container .image-iphone-hand {
+        background-image: url("/in/homepod/images/overview/handoff_iphone__gjjh0782li62_medium_2x.png")
+    }
+}
+@media only screen and (max-width: 735px) {
+    .page-overview .section-room .homepod-container .image-iphone-hand {
+        background-image: url("/in/homepod/images/overview/handoff_iphone__gjjh0782li62_small.png")
+    }
+}
+@media only screen and (max-width: 735px) and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (max-width: 735px) and (min-resolution: 1.5dppx),
+only screen and (max-width: 735px) and (min-resolution: 144dpi) {
+    .page-overview .section-room .homepod-container .image-iphone-hand {
+        background-image: url("/in/homepod/images/overview/handoff_iphone__gjjh0782li62_small_2x.png")
+    }
+}
+/*album art styles*/
+.page-overview .section-music .albums .artwork-image,
+.page-overview .section-music .albums .artwork-image-alt {
+    background-image: url("/in/homepod/images/overview/music_sprite__gfpgovb799me_large.jpg")
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 1.5dppx),
+(-webkit-min-device-pixel-ratio: 1.5),
+(min-resolution: 144dpi) {
+    .page-overview .section-music .albums .artwork-image,
+    .page-overview .section-music .albums .artwork-image-alt {
+        background-image: url("/in/homepod/images/overview/music_sprite__gfpgovb799me_large_2x.jpg")
+    }
+}
+@media only screen and (max-width: 1068px) {
+    .page-overview .section-music .albums .artwork-image,
+    .page-overview .section-music .albums .artwork-image-alt {
+        background-repeat: no-repeat;
+        background-image: url("/in/homepod/images/overview/music_sprite__gfpgovb799me_medium.jpg")
+    }
+}
+@media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (max-width: 1068px) and (min-resolution: 1.5dppx),
+only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+    .page-overview .section-music .albums .artwork-image,
+    .page-overview .section-music .albums .artwork-image-alt {
+        background-image: url("/in/homepod/images/overview/music_sprite__gfpgovb799me_medium_2x.jpg")
+    }
+}
+.page-overview .section-music .image-mlb {
+    background-image: url("/in/homepod/images/overview/blinklist_icon__cx1if02uvck2_large.jpg")
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 1.5dppx),
+(-webkit-min-device-pixel-ratio: 1.5),
+(min-resolution: 144dpi) {
+    .page-overview .section-music .image-mlb {
+        background-image: url("/in/homepod/images/overview/blinklist_icon__cx1if02uvck2_large_2x.jpg")
+    }
+}
+@media only screen and (max-width: 1068px) {
+    .page-overview .section-music .image-mlb {
+        background-image: url("/in/homepod/images/overview/blinklist_icon__cx1if02uvck2_medium.jpg")
+    }
+}
+@media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (max-width: 1068px) and (min-resolution: 1.5dppx),
+only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+    .page-overview .section-music .image-mlb {
+        background-image: url("/in/homepod/images/overview/blinklist_icon__cx1if02uvck2_medium_2x.jpg")
+    }
+}
+.page-overview .section-music .image-books {
+    background-image: url("/in/homepod/images/overview/calm_icon__gfqk4u491ueu_large.jpg")
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 1.5dppx),
+(-webkit-min-device-pixel-ratio: 1.5),
+(min-resolution: 144dpi) {
+    .page-overview .section-music .image-books {
+        background-image: url("/in/homepod/images/overview/calm_icon__gfqk4u491ueu_large_2x.jpg")
+    }
+}
+@media only screen and (max-width: 1068px) {
+    .page-overview .section-music .image-books {
+        background-image: url("/in/homepod/images/overview/calm_icon__gfqk4u491ueu_medium.jpg")
+    }
+}
+@media only screen and (max-width: 1068px) and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (max-width: 1068px) and (min-resolution: 1.5dppx),
+only screen and (max-width: 1068px) and (min-resolution: 144dpi) {
+    .page-overview .section-music .image-books {
+        background-image: url("/in/homepod/images/overview/calm_icon__gfqk4u491ueu_medium_2x.jpg")
+    }
+}
+.page-overview .section-hero .hero-intro.strong {
+    font-weight: 600;
+}

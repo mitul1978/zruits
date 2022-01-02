@@ -1,0 +1,97 @@
+/*custom checkbox*/
+.custom-checkbox input[type='radio'] {
+    display: none;
+}
+.custom-checkbox input[type='radio']:checked+label .block-add {
+    color: #313131;
+    background: rgb(0 98 110 / 4%);
+    border-color: #00626e!important;
+    background-repeat: no-repeat;
+   
+}
+.custom-checkbox .block-add {
+    position: relative;    
+    border: 1px solid #ccc;
+    border-radius: 5px;  
+    padding: 10px 15px;
+    overflow: hidden;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.custom-checkbox .checkmark {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    opacity: 0;
+}
+.custom-checkbox input[type='radio']:checked+label .block-add .checkmark {
+    opacity: 1;
+}
+
+
+
+
+
+
+
+.custom-checkbox label{
+   display: block;
+
+}
+.v-address{
+  font-weight: 400;
+}
+.v-edit-add-block {
+    position: absolute;
+    right: 1px;
+    top: 0px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 4px;  
+}
+.v-edit-add-block button {
+    display: inline-block;  
+    padding: 3px;  
+    margin: 2px 0px;  
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #dcdcdc;
+}
+.v-edit-add-block i {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #909090;
+    font-size: 12px;
+}
+.v-edit-add-block button:last-child {
+    border-bottom: 0px;
+}
+.custom-checkbox .checkmark i{
+  color: #00626e;
+}
+
+#edit-user-address .form-control {
+    color: #4D4D4D !important;
+}
+
+.address-edit-submit-btn{
+        background: #22636f;
+    border-color: #22626e; 
+     border-radius: 20px;
+     min-width: 120px;
+}
+
+.address-edit-submit-btn:hover{
+    background:#22636f;
+}
+#edit-user-address .close{
+    width: 25px;
+    height: 25px;
+    background: #22626e;
+    color: #fff;
+    opacity: 1;
+}
+/*custom checkbox end*/

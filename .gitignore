@@ -5,8 +5,17 @@
 
 # Node artifact files
 node_modules/
-dist/
-
+/storage/*.key
+/vendor
+.env
+public/images
+public/frontend/fonts
+public/frontend/icons
+public/frontend/achievements
+public/frontend/images
+public/frontend/uploads
+public/frontend_old
+resources/views/frontend_old
 # Compiled Java class files
 *.class
 

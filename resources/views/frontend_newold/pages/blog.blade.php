@@ -1,0 +1,128 @@
+@extends('layouts.app')
+@section('content')
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<style type="text/css">
+
+body.blog_page{
+	  background: #00091B;
+  color: #fff;
+}
+
+@keyframes fadeIn {
+  from {top: 20%; opacity: 0;}
+  to {top: 100; opacity: 1;}
+  
+}
+
+@-webkit-keyframes fadeIn {
+  from {top: 20%; opacity: 0;}
+  to {top: 100; opacity: 1;}
+  
+}
+.blog_page .page-wrapper{
+
+    height: auto;
+}
+.blog_page footer#footer {
+    bottom: 0 !important;
+    position: fixed;
+}
+.blog_page .wrapper {
+  /*position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  animation: fadeIn 1000ms ease;
+  -webkit-animation: fadeIn 1000ms ease;*/
+  padding: 0px;
+    text-align: center;
+    position: relative !important;
+    top: initial;
+    transform: initial;
+    left: 0;
+    padding:15% 0px;
+}
+
+h1 {
+  font-size: 50px;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 0;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.dot {
+  color: #4FEBFE;
+}
+
+p {
+  text-align: center;
+  margin: 18px;
+  font-family: 'Muli', sans-serif;
+  font-weight: normal;
+  
+}
+
+.icons {
+  text-align: center;
+  
+}
+
+.icons i {
+  color: #00091B;
+  background: #fff;
+  height: 15px;
+  width: 15px;
+  padding: 13px;
+  margin: 0 10px;
+  border-radius: 50px;
+  border: 2px solid #fff;
+  transition: all 200ms ease;
+  text-decoration: none;
+  position: relative;
+}
+
+.icons i:hover, .icons i:active {
+  color: #fff;
+  background: none;
+  cursor: pointer !important;
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  text-decoration: none;
+  
+}
+
+.wrapper {
+  animation: 10s fadeIn;
+  animation-fill-mode: forwards;  
+  visibility: hidden;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+</style>
+
+
+		<div class="wrapper" >
+		  <h1>coming soon<!-- <span class="dot">.</span> --></h1>
+		  <p>descriprive text goes here.</p>
+		  <!-- <div class="icons">
+		    <a href=""><i class="fa fa-twitter"></i></a>
+		    <a href=""><i class="fa fa-youtube-play"></i></a>
+		    <a href=""><i class="fa fa-paper-plane"></i></a>
+		  </div> -->
+		 </div>
+
+
+<script type="text/javascript"></script>
+@endsection
