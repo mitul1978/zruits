@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{URL::asset('assets/css/plugins/magnific-popup/magnific-popup.css')}}">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{URL::asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('assets/css/demos/demo-2.css')}}">
 
     @livewireStyles
 </head>
@@ -55,7 +56,9 @@
     <script src="{{URL::asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
     <!-- Main JS File -->
     <script src="{{URL::asset('assets/js/main.js')}}"></script>
-
+    <script src="{{URL::asset('assets/js/demos/demo-2.js')}}"></script>
     @livewireScripts
 
 </body>
+
+</html>
