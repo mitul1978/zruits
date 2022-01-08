@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 use Str;
 use Auth;
 use App\Models\City;
+use App\Models\Category;
 use App\Models\State;
 use App\Models\Pincode;
 use App\Models\Texture;
@@ -21,7 +22,20 @@ use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Console\Input\Input;
 
 class HomeController extends Controller
-{
+{   
+    // public function __construct()
+    // {
+    //     $categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
+    // }
+
+    // protected $categoriesHeader;
+
+    // public function __construct() 
+    // {
+    //     // Fetch the Site Settings object
+    //     $this->categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
+    //     View::share('categoriesHeader', $this->categoriesHeader);
+    // }
 
     public function index(Request $request)
     {
@@ -35,6 +49,7 @@ class HomeController extends Controller
         // else
         // {
             // return view('frontend.pages.home_desktop');
+            $categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
             return view('frontend.index');
         // }
     }
@@ -212,13 +227,11 @@ class HomeController extends Controller
 
     public function careers()
     {
-
         if(Auth::check()){
             $cities = City::where('status',1)->orderBy('name')->pluck('name');
             return view('frontend.pages.careers',compact('cities'));
         }else{
-            return redirect()->route('login.form');
-
+            return redirect('user/login');
         }
 
     }

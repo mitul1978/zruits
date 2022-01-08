@@ -8,7 +8,8 @@ use App\Models\Order;
 use App\Models\ProductReview;
 use App\Models\PostComment;
 use App\Rules\MatchOldPassword;
-use Hash,Str;
+use App\Models\Category;
+use Hash,Str,View;
 
 class HomeController extends Controller
 {
@@ -17,9 +18,13 @@ class HomeController extends Controller
      *
      * @return void
      */
+    protected $categoriesHeader;
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
+        View::share('categoriesHeader', $this->categoriesHeader);
     }
 
     /**
@@ -29,11 +34,13 @@ class HomeController extends Controller
      */
 
 
-    public function index(){
-        return view('user.order.index');
+    public function index()
+    {
+        return view('user.pages.dashboard');
     }
 
-    public function profile(){
+    public function profile()
+    {
         $profile=Auth()->user();
         // return $profile;
         return view('user.users.profile')->with('profile',$profile);

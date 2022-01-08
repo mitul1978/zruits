@@ -1,17 +1,25 @@
 <?php
+
 namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Category;
 use Session;
 use Alert;
+use View;
 class CartController extends Controller
 {
     protected $product=null;
+    protected $categoriesHeader;
+
     public function __construct(Product $product){
         $this->product=$product;
+
+        $this->categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
+        View::share('categoriesHeader', $this->categoriesHeader);
     }
 
 
@@ -19,6 +27,10 @@ class CartController extends Controller
     public function cart(){
 
         
+    }
+
+    public function viewCart(){
+        return view('user.pages.cart');
     }
 
     public function addToCart($slug){

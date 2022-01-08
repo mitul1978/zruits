@@ -19599,25 +19599,3 @@ demo 2 css start here
 }
 
 
-
-
-.atc-container .btn-cart {
-    font-size: 13px;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: #333;
-    border: .1rem solid #333;
-    padding: 0.7rem 1.4rem;
-}
-.atc-container .btn-cart:hover {
-    color: #fff;
-    border: .1rem solid #cb3d8d;
-    padding: 0.7rem 1.4rem;
-    background: #cb3d8d;
-}
-.atc-container .btn-cart:before {
-	display:none;
-}
-.f-wrap {
-    flex-wrap: nowrap;
-}

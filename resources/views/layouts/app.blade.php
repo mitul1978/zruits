@@ -42,7 +42,7 @@
 
     <!-- Footer -->
    
-       @include('layouts.footer2')
+    @include('layouts.footer2')
     
    
 

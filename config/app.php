@@ -244,4 +244,6 @@ return [
 
     ],
 
+    // 'catoriesHeader' => App\Models\Category::where('status',1)->where('show_on_header',1)->get(),
+
 ];

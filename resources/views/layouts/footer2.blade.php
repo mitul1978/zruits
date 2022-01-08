@@ -312,15 +312,17 @@
                     </ul>
                     <div class="tab-content" id="tab-content-5">
                         <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                            <form action="#">
+                            <form method="post" action="{{route('login.submit')}}" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" class="form-control" id="popup" name="popup" value="1">
                                 <div class="form-group">
-                                    <label for="singin-email">Username or email address *</label>
-                                    <input type="text" class="form-control" id="singin-email" name="singin-email" required>
+                                    <label for="singin-email">Email address *</label>
+                                    <input type="text" class="form-control" id="email" name="email" required>
                                 </div><!-- End .form-group -->
 
                                 <div class="form-group">
                                     <label for="singin-password">Password *</label>
-                                    <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                    <input type="password" class="form-control" id="password" name="password" required>
                                 </div><!-- End .form-group -->
 
                                 <div class="form-footer">
