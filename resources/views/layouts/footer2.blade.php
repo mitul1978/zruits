@@ -1,10 +1,10 @@
 <footer class="footer footer-light footer-zehna">
-    <div class="footer-top p-5 my-5">
+    <div class="footer-top p-5">
         <div class="container p-0">
             <div class="row">
-                <div class="col-sm-8 d-flex align-items-center justify-content-sm-start justify-content-center mb-0 mb-sm-5">
+                <div class="col-sm-7 d-flex align-items-center justify-content-sm-start justify-content-center mb-0 mb-sm-5">
                     <div class="row f-wrap">
-                        <div class="col-sm-6 align-self-center">
+                        <div class="col-sm-8 col-md-6 align-self-center">
                             <h6 class="mb-2 mb-sm-0" style="/* width: 360px */">Sign Up for Our Newsletter</h6>
                         </div>
                         <div class="col-sm-8">
@@ -19,13 +19,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4 d-flex align-items-center justify-content-sm-end justify-content-center">
+                <div class="col-sm-5 d-flex align-items-center justify-content-sm-end justify-content-center">
                     <div class="social-icons ">
                         <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                        <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
-                        <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                        <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
-                        <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
+<!--                     <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a> -->
+                        <a href="https://www.instagram.com/Zehna_in/" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+<!--                      <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a> -->
                     </div>
                 </div>
             </div>
@@ -59,7 +58,7 @@
 
                 <div class="col-sm-6 col-lg-4">
                     <div class="widget">
-                        <h4 class="widget-title">Account</h4><!-- End .widget-title -->
+                        <h4 class="widget-title" style="border: none;">Account</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
                             <li><a href="#">My Account</a></li>
@@ -95,17 +94,23 @@
         </form>
 
         <div class="tab-content">
-            <div class="tab-pane" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
+            <div class="tab-pane active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
                 <nav class="mobile-nav">
-                    <ul class="mobile-menu">
+                    <ul class="mobile-menu">    
                         <li class="active">
-                            <a href="index.html">Home</a>
+                            <a href="#" class="">Anarkali</a>
                         </li>
                         <li>
-                            <a href="#" class="">Salwar</a>
+                            <a href="#" class="">Plazo</a>
                         </li>
                         <li>
-                            <a href="#" class="">Kurtis</a>
+                            <a href="#" class="">Ghaghra Choli</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">Crop Top</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">Gown</a>
                         </li>
                         <li>
                             <a href="#" class="">New Arrrivals</a>
@@ -211,7 +216,7 @@
 
 <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
     <div class="row justify-content-center">
-        <div class="col-10">
+        <div class="col-12 col-sm-10">
             <div class="row no-gutters bg-white newsletter-popup-content">
                 <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
                     <div class="banner-content text-center">

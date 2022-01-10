@@ -22,20 +22,20 @@
                 <div class="header-center">
                     <nav class="main-nav">
                         <ul class="menu sf-arrows">
-
                             <li>
-                                <a href="#" class="">Salwar</a>
-<!--                                     <ul>
-                                    <li>
-                                        <a href="#" class="sf-with-ul">Kurta</a>
-                                        <ul>
-                                            <li><a href="#">Offer</a></li>
-                                        </ul>
-                                    </li>
-                                </ul> -->
+                                <a href="#" class="">Anarkali</a>
                             </li>
                             <li>
-                                <a href="#" class="">Kurtis</a>
+                                <a href="#" class="">Plazo</a>
+                            </li>
+                            <li>
+                                <a href="#" class="">Ghaghra Choli</a>
+                            </li>
+                            <li>
+                                <a href="#" class="">Crop Top</a>
+                            </li>
+                            <li>
+                                <a href="#" class="">Gown</a>
                             </li>
                             <li>
                                 <a href="#" class="">New Arrrivals</a>

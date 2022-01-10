@@ -66,7 +66,7 @@
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    $60.00
+                                                    ₹60 <small>(MRP incl Taxes)</small>
                                                 </div><!-- End .product-price -->
                                                 <div class="atc-container">
                                                     
@@ -81,6 +81,7 @@
                                     <div class="col-6 col-md-4 col-lg-4">
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
+                                                <span class="product-label label-sale">Sale</span>
                                                 <a href="product.html">
                                                     <img src="assets/images/products/product-5.jpg" alt="Product image" class="product-image">
                                                 </a>
@@ -97,7 +98,7 @@
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="product.html">Dark yellow lace cut out swing dress</a></h3><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    $84.00
+                                                    ₹84 <small>(MRP incl Taxes)</small>
                                                 </div><!-- End .product-price -->
                                                 <div class="atc-container">
                                                     
@@ -129,7 +130,7 @@
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="product.html">Khaki utility boiler jumpsuit</a></h3><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    <span class="out-price">$120.00</span>
+                                                    <span class="out-price">₹120 <small>(MRP incl Taxes)</small></span>
                                                 </div><!-- End .product-price -->
                                                 <div class="atc-container">
                                                     
@@ -160,7 +161,7 @@
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    $76.00
+                                                    ₹76 <small>(MRP incl Taxes)</small>
                                                 </div><!-- End .product-price -->
                                                 <div class="atc-container">
                                                     
@@ -191,7 +192,7 @@
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="product.html">Beige knitted elastic runner shoes</a></h3><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    $84.00
+                                                    ₹84 <small>(MRP incl Taxes)</small>
                                                 </div><!-- End .product-price -->
                                                 <div class="atc-container">
                                                     
@@ -222,7 +223,7 @@
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="product.html">Orange saddle lock front chain cross body bag</a></h3><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    $84.00
+                                                    ₹84 <small>(MRP incl Taxes)</small>
                                                 </div><!-- End .product-price -->
                                                 <div class="atc-container">
                                                     
@@ -254,7 +255,7 @@
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="product.html">Light brown studded Wide fit wedges</a></h3><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    $110.00
+                                                    ₹110 <small>(MRP incl Taxes)</small>
                                                 </div><!-- End .product-price -->
                                                 <div class="atc-container">
                                                     
@@ -285,7 +286,7 @@
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="product.html">Yellow button front tea top</a></h3><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    $56.00
+                                                    ₹56 <small>(MRP incl Taxes)</small>
                                                 </div><!-- End .product-price -->
                                                 <div class="atc-container">
                                                     
@@ -315,7 +316,7 @@
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title"><a href="product.html">Black soft RI weekend travel bag</a></h3><!-- End .product-title -->
                                                 <div class="product-price">
-                                                    $68.00
+                                                    ₹68 <small>(MRP incl Taxes)</small>
                                                 </div><!-- End .product-price -->
                                                 <div class="atc-container">
                                                     

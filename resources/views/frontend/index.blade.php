@@ -120,11 +120,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $60.00
+                                    ₹60 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
 
@@ -149,11 +149,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Dark yellow lace cut out swing dress</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $84.00
+                                    ₹84 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
 
@@ -178,11 +178,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $76.00
+                                    ₹76 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
                             </div><!-- End .product-body -->
@@ -207,11 +207,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Beige knitted elastic runner shoes</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $84.00
+                                    ₹84 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
 
@@ -236,11 +236,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $76.00
+                                    ₹76 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
                             </div><!-- End .product-body -->
@@ -265,11 +265,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $60.00
+                                    ₹60 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
 
@@ -286,7 +286,7 @@
 
     <div class="container">
         <div class="heading mb-2">
-            <h2 class="title">Best Sellars</h2><!-- End .title -->
+            <h2 class="title">Best Sellers</h2><!-- End .title -->
         </div><!-- End .heading -->
     </div><!-- End .container -->
     <div class="container">
@@ -339,11 +339,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $60.00
+                                    ₹60 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
 
@@ -368,11 +368,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Dark yellow lace cut out swing dress</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $84.00
+                                    ₹84 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
 
@@ -397,11 +397,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $76.00
+                                    ₹76.00 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
                             </div><!-- End .product-body -->
@@ -426,11 +426,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Beige knitted elastic runner shoes</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $84.00
+                                    ₹84 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
 
@@ -455,11 +455,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $76.00
+                                    ₹76 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
                             </div><!-- End .product-body -->
@@ -484,11 +484,11 @@
                                 </div><!-- End .product-cat -->
                                 <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    $60.00
+                                    ₹60 <small>(MRP incl Taxes)</small>
                                 </div><!-- End .product-price -->
                                 <div class="atc-container">
                                     
-                                <div class="mb-2">
+                                <div class="mb-0">
                                     <a href="#" class="btn-cart"><span>Add to cart</span></a>
                                 </div></div>
 
@@ -508,7 +508,7 @@
             <div class="row">
                 <div class="col-sm-10 offset-sm-1">
                     <div class="row">
-                        <div class="col-sm-6 col-lg-3">
+                        <div class="col-3">
                             <div class="icon-box text-center">
                                 <span class="icon-box-icon text-dark mb-0">
                                     <i class="icon-truck"></i>
@@ -518,7 +518,7 @@
                                 </div><!-- End .icon-box-content -->
                             </div><!-- End .icon-box -->
                         </div><!-- End .col-sm-6 col-lg-3 -->
-                        <div class="col-sm-6 col-lg-3">
+                        <div class="col-3">
                             <div class="icon-box text-center">
                                 <span class="icon-box-icon text-dark mb-0">
                                     <i class="icon-random"></i>
@@ -528,7 +528,7 @@
                                 </div><!-- End .icon-box-content -->
                             </div><!-- End .icon-box -->
                         </div><!-- End .col-sm-6 col-lg-3 -->
-                        <div class="col-sm-6 col-lg-3">
+                        <div class="col-3">
                             <div class="icon-box text-center">
                                 <span class="icon-box-icon text-dark mb-0">
                                     <i class="icon-check-circle-o"></i>
@@ -538,7 +538,7 @@
                                 </div><!-- End .icon-box-content -->
                             </div><!-- End .icon-box -->
                         </div><!-- End .col-sm-6 col-lg-3 -->
-                        <div class="col-sm-6 col-lg-3">
+                        <div class="col-3">
                             <div class="icon-box text-center">
                                 <span class="icon-box-icon text-dark mb-0">
                                     <i class="icon-heart"></i>
