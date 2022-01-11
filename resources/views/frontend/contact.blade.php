@@ -2,7 +2,12 @@
 @section('content')
 
         <main class="main">
-            <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        		<div class="container">
+        			<h1 class="page-title">Contact us<span>Pages</span></h1>
+        		</div><!-- End .container -->
+        	</div>
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -11,11 +16,6 @@
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
-            <div class="container">
-	        	<div class="page-header page-header-big text-center" style="background-image: url('assets/images/contact-header-bg.jpg')">
-        			<h1 class="page-title text-white">Contact us<span class="text-white">keep in touch with us</span></h1>
-	        	</div><!-- End .page-header -->
-            </div><!-- End .container -->
 
             <div class="page-content pb-0">
                 <div class="container">
@@ -163,7 +163,7 @@
 	                	</div><!-- End .row -->
                 	</div><!-- End .stores -->
                 </div><!-- End .container -->
-            	<div id="map"></div><!-- End #map -->
+            	<!-- <div id="map"></div> --><!-- End #map -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
 
