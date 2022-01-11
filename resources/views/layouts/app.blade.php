@@ -59,6 +59,14 @@
     <script src="{{URL::asset('assets/js/demos/demo-2.js')}}"></script>
     @livewireScripts
 
+
+    <script>
+    $('.footer-middle .widget-title').click(function(e){
+        $(this).parent().find('.widget-list').slideToggle();
+        $(this).toggleClass('active');
+    })
+    </script>
+
 </body>
 
 </html>

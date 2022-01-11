@@ -19621,3 +19621,84 @@ demo 2 css start here
 .f-wrap {
     flex-wrap: nowrap;
 }
+
+@media (max-width: 991px) {
+
+	.zehna-header .header-right {
+		    margin-left: auto;
+	}
+	.mobile-menu-toggler {
+    color: #fff;
+}
+.cart-dropdown {
+    padding-left: 1rem;
+    padding-right: 10px;
+}
+}
+
+
+@media (max-width: 767px) {
+
+.logo img {
+    height: 45px;
+    width: 100%;
+}
+
+	.f-wrap {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.footer .widget-title.active:after {
+    -webkit-transform: rotate(
+180deg);
+    transform: rotate(
+180deg);
+}
+.footer .widget-title:after {
+    content: '';
+    width: 12px;
+    height: 7px;
+    background: url(https://www.sehatyoga.com/img/arrow-black-down.svg) no-repeat right center;
+    position: absolute;
+    right: 10px;
+    top: 43%;
+}
+.footer .widget-title {
+    font-weight: 600;
+    border-bottom: 1px solid #ebebeb;
+    position: relative;
+    font-size: 16px;
+    padding: 15px;
+    margin: 0px;
+}
+.footer .widget-title:last-child {
+border:none;
+}
+.footer-middle .col-sm-6, .footer-middle .col-lg-4 {
+    padding: 0px;
+}
+.footer-middle {
+    padding: 0rem 0 0rem;
+}
+.footer .widget {
+    margin-bottom: 0rem;
+}
+.widget-list li {
+    padding: 8px 15px !important;
+    margin-bottom: 0px;
+}
+.widget-list {
+display: none;
+}
+}
+
+.form-tab .form-footer {
+	border: none;
+}
+
+@media (min-width: 768px) {
+.footer .widget-title {
+    pointer-events: none;
+}
+}

@@ -29,7 +29,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 mb-1 mb-sm-0">
+            <div class="col-sm-6 mb-1 mb-sm-0"">
                 <img src="https://frugalonline.in/wp-content/uploads/2021/11/royaloffer-horizontal-600x200.jpg" alt="">
             </div>
             <div class="col-sm-6">
@@ -100,189 +100,182 @@
                             }
                         }
                     }'>
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-1-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
-                        </figure><!-- End .product-media -->
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-new">New</span>
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Butler Stool Ladder</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $251,00
-                            </div><!-- End .product-price -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-2-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-2-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                            </figure><!-- End .product-media -->
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
-                        </figure><!-- End .product-media -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Women</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $60.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Octo 4240</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $746,00
-                            </div><!-- End .product-price -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
 
-                            <div class="product-nav product-nav-dots">
-                                <a href="#" class="active" style="background: #1f1e18;"><span class="sr-only">Color name</span></a>
-                                <a href="#" style="background: #e8e8e8;"><span class="sr-only">Color name</span></a>
-                            </div><!-- End .product-nav -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-5.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <span class="product-label label-circle label-new">New</span>
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-3-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-3-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
+                            </figure><!-- End .product-media -->
 
-                        </figure><!-- End .product-media -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Dresses</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Dark yellow lace cut out swing dress</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $84.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Flow Slim Armchair</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $970,00
-                            </div><!-- End .product-price -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <span class="product-label label-circle label-sale">Sale</span>
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-4-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-4-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                        </figure><!-- End .product-media -->
+                            </figure><!-- End .product-media -->
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Roots Sofa Bed</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                <span class="new-price">$337,00</span>
-                                <span class="old-price">Was $449,00</span>
-                            </div><!-- End .product-price -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Jeans</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $76.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
 
-                            <div class="product-nav product-nav-dots">
-                                <a href="#" class="active" style="background: #878883;"><span class="sr-only">Color name</span></a>
-                                <a href="#" style="background: #dfd5c2;"><span class="sr-only">Color name</span></a>
-                            </div><!-- End .product-nav -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-new">New</span>
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-8.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-5-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-5-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
+                            </figure><!-- End .product-media -->
 
-                        </figure><!-- End .product-media -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Shoes</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Beige knitted elastic runner shoes</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $84.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Petite Table Lamp</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $675,00
-                            </div><!-- End .product-price -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
 
-                            <div class="product-nav product-nav-dots">
-                                <a href="#" class="active" style="background: #74543e;"><span class="sr-only">Color name</span></a>
-                                <a href="#" style="background: #e8e8e8;"><span class="sr-only">Color name</span></a>
-                            </div><!-- End .product-nav -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-6-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-6-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
+                            </figure><!-- End .product-media -->
 
-                        </figure><!-- End .product-media -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Jeans</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $76.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Elephant Armchair</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $457,00
-                            </div><!-- End .product-price -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-new">New</span>
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-1-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
+                            </figure><!-- End .product-media -->
 
-                        </figure><!-- End .product-media -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Women</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $60.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Butler Stool Ladder</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $251,00
-                            </div><!-- End .product-price -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+
                 </div><!-- End .owl-carousel -->
             </div><!-- .End .tab-pane -->
         </div><!-- End .tab-content -->
@@ -327,189 +320,181 @@
                             }
                         }
                     }'>
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-1-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-new">New</span>
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
-                        </figure><!-- End .product-media -->
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Butler Stool Ladder</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $251,00
-                            </div><!-- End .product-price -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                            </figure><!-- End .product-media -->
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-2-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-2-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Women</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $60.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
-                        </figure><!-- End .product-media -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Octo 4240</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $746,00
-                            </div><!-- End .product-price -->
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-5.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                            <div class="product-nav product-nav-dots">
-                                <a href="#" class="active" style="background: #1f1e18;"><span class="sr-only">Color name</span></a>
-                                <a href="#" style="background: #e8e8e8;"><span class="sr-only">Color name</span></a>
-                            </div><!-- End .product-nav -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <span class="product-label label-circle label-new">New</span>
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-3-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-3-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                            </figure><!-- End .product-media -->
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Dresses</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Dark yellow lace cut out swing dress</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $84.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
 
-                        </figure><!-- End .product-media -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Flow Slim Armchair</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $970,00
-                            </div><!-- End .product-price -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <span class="product-label label-circle label-sale">Sale</span>
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-4-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-4-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
+                            </figure><!-- End .product-media -->
 
-                        </figure><!-- End .product-media -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Jeans</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $76.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Roots Sofa Bed</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                <span class="new-price">$337,00</span>
-                                <span class="old-price">Was $449,00</span>
-                            </div><!-- End .product-price -->
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-new">New</span>
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-8.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                            <div class="product-nav product-nav-dots">
-                                <a href="#" class="active" style="background: #878883;"><span class="sr-only">Color name</span></a>
-                                <a href="#" style="background: #dfd5c2;"><span class="sr-only">Color name</span></a>
-                            </div><!-- End .product-nav -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-5-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-5-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                            </figure><!-- End .product-media -->
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Shoes</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Beige knitted elastic runner shoes</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $84.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
 
-                        </figure><!-- End .product-media -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Petite Table Lamp</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $675,00
-                            </div><!-- End .product-price -->
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                            <div class="product-nav product-nav-dots">
-                                <a href="#" class="active" style="background: #74543e;"><span class="sr-only">Color name</span></a>
-                                <a href="#" style="background: #e8e8e8;"><span class="sr-only">Color name</span></a>
-                            </div><!-- End .product-nav -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-6-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-6-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                            </figure><!-- End .product-media -->
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Jeans</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $76.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
 
-                        </figure><!-- End .product-media -->
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-new">New</span>
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
+                                </a>
 
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Elephant Armchair</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $457,00
-                            </div><!-- End .product-price -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
 
-                    <div class="product product-11 text-center">
-                        <figure class="product-media">
-                            <a href="product.html">
-                                <img src="assets/images/demos/demo-2/products/product-1-1.jpg" alt="Product image" class="product-image">
-                                <img src="assets/images/demos/demo-2/products/product-1-2.jpg" alt="Product image" class="product-image-hover">
-                            </a>
+                            </figure><!-- End .product-media -->
 
-                            <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-wishlist"><span>add to wishlist</span></a>
-                            </div><!-- End .product-action-vertical -->
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Women</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $60.00
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-2">
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
 
-                        </figure><!-- End .product-media -->
-
-                        <div class="product-body">
-                            <h3 class="product-title"><a href="product.html">Butler Stool Ladder</a></h3><!-- End .product-title -->
-                            <div class="product-price">
-                                $251,00
-                            </div><!-- End .product-price -->
-                        </div><!-- End .product-body -->
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                        </div><!-- End .product-action -->
-                    </div><!-- End .product -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+                    
                 </div><!-- End .owl-carousel -->
             </div><!-- .End .tab-pane -->
         </div><!-- End .tab-content -->
