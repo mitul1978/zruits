@@ -72,7 +72,7 @@
                         <a href="{{route('user')}}#wishlist" title="Wishlist">
                             <div class="icon">
                                 <i class="icon-heart-o"></i>
-                                @if(count(Helper::getAllProductFromWishlist()))
+                                @if(@Helper::getAllProductFromWishlist() && count(Helper::getAllProductFromWishlist()))
                                  <span class="wishlist-count badge">{{count(Helper::getAllProductFromWishlist())}}</span>
                                 @endif 
                             </div>
@@ -82,7 +82,7 @@
                     <div class="dropdown cart-dropdown">
                         <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                             <i class="icon-shopping-cart"></i>
-                            @if(count(Helper::getAllProductFromCart()))
+                            @if(@Helper::getAllProductFromCart() && count(Helper::getAllProductFromCart()))
                               <span class="cart-count">{{count(Helper::getAllProductFromCart())}}</span>
                             @endif
                         </a>
@@ -122,7 +122,7 @@
 
                             <div class="dropdown-cart-action">
                                 <a href="{{route('user-cart')}}" class="btn btn-primary">View Cart</a>
-                                <a href="{{route('checkout  ')}}" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                <a href="{{route('checkout')}}" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
                             </div><!-- End .dropdown-cart-total -->
                         </div><!-- End .dropdown-menu -->
                     </div><!-- End .cart-dropdown -->

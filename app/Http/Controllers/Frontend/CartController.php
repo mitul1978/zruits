@@ -33,6 +33,11 @@ class CartController extends Controller
         return view('user.pages.cart');
     }
 
+    public function collabration()
+    {
+        return view('frontend.collabration');
+    }
+
     public function addToCart($slug){
 
         if (empty( $slug)) {
