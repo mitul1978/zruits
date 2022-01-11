@@ -31,6 +31,10 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('products', 'ProductController@products')->name('products');
     Route::get('product/{slug}', 'ProductController@product')->name('product');
 
+    //collaboration
+    Route::get('/collabration',function(){
+        return view('frontend.collabration');
+    })->name('collabration');
 
     // Wishlist
     Route::get('/wishlist',function(){

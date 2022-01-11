@@ -47,7 +47,7 @@
                                 <a href="#" class="">Gift Card</a>
                             </li>
                             <li>
-                                <a href="#" class="">Collaborations</a>
+                                <a href="{{url('/collaboration')}}" class="">Collaborations</a>
                             </li>
 
                         </ul><!-- End .menu -->
