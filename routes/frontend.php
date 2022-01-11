@@ -7,7 +7,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/','HomeController@index')->name('home');
     Route::get('/404','HomeController@notFound  ');
 
-    Route::get('user/login','LoginController@login');
+    Route::get('/user/login','LoginController@login')->name('user.login')    ;
     Route::post('user/login','LoginController@loginSubmit')->name('login.submit');
     Route::any('user/logout','LoginController@logout')->name('user.logout');
     Route::get('user/register','LoginController@register')->name('register.form');
@@ -74,7 +74,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     //     return view('frontend.login');
     // });
 
-    // Route::get('/wishlist/{slug}','WishlistController@wishlist')->name('add-to-wishlist')->middleware('user');
+    Route::get('/wishlist/{slug}','WishlistController@wishlist')->name('add-to-wishlist')->middleware('user');
     Route::post('/wishlist','WishlistController@wishlist')->name('add-to-wishlist')->middleware('user');
     Route::get('wishlist-delete/{id}','WishlistController@wishlistDelete')->name('wishlist-delete');
 
@@ -101,9 +101,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('cart-delete/{id}','CartController@cartDelete')->name('cart-delete');
     Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
 
-    Route::get('/user/cart',function(){
-        return view('user.pages.cart');
-    })->name('user-cart')->middleware('user');
+    Route::get('/user/cart','CartController@viewCart')->name('user-cart')->middleware('user');
 
     Route::post('remove-user-address/{id}','UserAddressController@removeUserAddress')->name('remove-user-address')->middleware('user');
     Route::post('edit-user-address/{id}','UserAddressController@editUserAddress')->name('edit-user-address')->middleware('user');

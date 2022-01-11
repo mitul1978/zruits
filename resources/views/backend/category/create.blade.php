@@ -24,6 +24,11 @@
         </div>
 
         <div class="form-group">
+          <label for="show_on_header">Show On Header</label><br>
+          <input type="checkbox" name='show_on_header' id='show_on_header' value='1' checked> Yes
+        </div>
+
+        <div class="form-group">
           <label for="is_parent">Is Parent</label><br>
           <input type="checkbox" name='is_parent' id='is_parent' value='1' checked> Yes
         </div>

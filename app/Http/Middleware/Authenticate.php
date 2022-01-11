@@ -14,15 +14,13 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-
-
         if (! $request->expectsJson()) {
 
             if(Str::contains($request->getRequestUri(), 'user'))
-            return route('login.form');
+            //return redirect('/user/login');//route('login.form');
 
 
-            return route('login');
+            return route('user.login');
         }
     }
 }

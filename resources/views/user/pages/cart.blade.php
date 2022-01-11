@@ -1,304 +1,228 @@
-@extends('user.layouts.master')
+@extends('layouts.app')
 @section('title','Cart Page')
-@section('main-content')
-<style>
-    .product_img {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: 100px;
-        }
+@section('content')
+	<style>
+		.product_img {
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				width: 100px;
+		}
+		.product_img:hover {
+		box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+		}
+	</style>
 
-.product_img:hover {
-box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-}
+	<main class="main">
+				<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+					<div class="container">
+						<h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+					</div><!-- End .container -->
+				</div><!-- End .page-header -->
+				<nav aria-label="breadcrumb" class="breadcrumb-nav">
+					<div class="container">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="">Home</a></li>
+							<li class="breadcrumb-item active" aria-current="page">My Cart</li>
+						</ol>
+					</div><!-- End .container -->
+				</nav><!-- End .breadcrumb-nav -->
 
-</style>
+				<div class="page-content">
+					<div class="cart">
+						<div class="container">
+							<div class="row">
+								@if(count(Helper::getAllProductFromCart()) > 0)
+									<div class="col-lg-9">										
+											<table class="table table-cart table-mobile">
+												<thead>
+													<tr>
+														<th>Product</th>
+														<th>Price</th>
+														<th>Quantity</th>
+														<th>Total</th>
+														<th></th>
+													</tr>
+												</thead>
 
-	<!-- Shopping Cart -->
-	<div class="shopping-cart section">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-                    <h3>Cart <i class="fa fa-shopping-cart"></i></h3>
-                </div>
-				<div class="col-12">
-					<!-- Shopping Summery -->
-					<table class="table shopping-summery">
-						<thead>
-							<tr class="main-hading">
-								<th>PRODUCT</th>
-								<th>NAME</th>
-								<th class="text-center">UNIT PRICE</th>
-								<th class="text-center">QUANTITY</th>
-								<th class="text-center">TOTAL</th>
-								<th class="text-center">REMOVE</th>
-							</tr>
-						</thead>
-						<tbody id="cart_item_list">
-							<form action="{{route('cart.update')}}" method="POST">
-								@csrf
-								@if(Helper::getAllProductFromCart())
-									@foreach(Helper::getAllProductFromCart() as $key=>$cart)
+												<tbody id="cart_item_list">
+													<form action="{{route('cart.update')}}" method="POST">
+														@csrf
+															@foreach(Helper::getAllProductFromCart() as $key=>$cart)
+						
+																@if($cart->product)
+																	<tr>
+																		<td class="product-col">
+																			<div class="product">
+																				<figure class="product-media">
+																					<a href="#">
+																						<img src="assets/images/products/table/product-1.jpg" alt="Product image">
+																					</a>
+																				</figure>
 
-                                    @if($cart->product)
-								
-										<tr>
-                                            <td class="image" data-title="No"><img  class="product_img" src="{{@$cart->product->a4sheet_view}}"  alt="{{@$cart->product->a4sheet_view}}"></td>
-
-											<td class="product-des" data-title="Description">
-												<p class="product-name"><a href="{{route('product',$cart->product->slug)}}" target="_blank">{{$cart->product->name}}</a></p>
-											</td>
-											<td class="price" data-title="Price"><span>Rs {{number_format($cart->price,2)}}</span></td>
-											<td class="qty" data-title="Qty"><!-- Input Order -->
-												<div class="input-group">
-													<div class="button minus">
-														<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[{{$key}}]">
-															<i class="ti-minus"></i>
-														</button>
-													</div>
-													<input type="text" name="quant[{{$cart->product_id}}]" class="input-number"  data-min="1" data-max="100" value="{{$cart->quantity}}">
-													<div class="button plus">
-														<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[{{$key}}]">
-															<i class="ti-plus"></i>
-														</button>
-													</div>
-												</div>
-												<!--/ End Input Order -->
-											</td>
-											<td class="total-amount cart_single_price" data-title="Total"><span class="money">Rs {{$cart->amount}}</span></td>
-
-											<td class="action text-center" data-title="Remove"> <form method="POST" action="{{route('cart-delete',$cart->product_id)}}">
-												@csrf
-													<button class="btn btn-danger btn-sm dltBtn" data-id={{$cart->product_id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-												  </form></td>
-										</tr>
-                                    @endif
-
-									@endforeach
-									<track>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td class="float-right">
-											<button class="btn float-right" type="submit">Update</button>
-										</td>
-									</track>
-								@else
-										<tr>
-											<td class="text-center">
-												There are no any carts available. <a href="{{route('products')}}" style="color:blue;">Continue shopping</a>
-
-											</td>
-										</tr>
-								@endif
-
-							</form>
-						</tbody>
-					</table>
-					<!--/ End Shopping Summery -->
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-12">
-					<!-- Total Amount -->
-					<div class="total-amount">
-						<div class="row">
-							<div class="col-lg-8 col-md-5 col-12">
-								<div class="left">
-									<div class="coupon">
-									<form action="{{route('coupon-store')}}" method="POST">
-											@csrf
-											<input name="code" placeholder="Enter Your Coupon" value="{{@Session::get('coupon')['code']}}">
-											<button class="btn">{{@Session::get('coupon')['code'] ? 'Remove' :'Apply'}}</button>
-										</form>
-									</div>
-									{{-- <div class="checkbox">`
-										@php
-											$shipping=DB::table('shippings')->where('status','active')->limit(1)->get();
-										@endphp
-										<label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox" onchange="showMe('shipping');"> Shipping</label>
-									</div> --}}
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-7 col-12">
-								<div class="right">
-									<ul>
-										<li class="order_subtotal" data-price="{{Helper::totalCartPrice()}}">Cart Subtotal<span> &#8377; {{number_format(Helper::totalCartPrice(),2)}}</span></li>
-										{{-- <div id="shipping" style="display:none;">
-											<li class="shipping">
-												Shipping {{session('shipping_price')}}
-												@if(count(Helper::shipping())>0 && Helper::cartCount()>0)
-													<div class="form-select">
-														<select name="shipping" class="nice-select">
-															<option value="">Select</option>
-															@foreach(Helper::shipping() as $shipping)
-															<option value="{{$shipping->id}}" class="shippingOption" data-price="{{$shipping->price}}">{{$shipping->type}}: ${{$shipping->price}}</option>
+																				<h3 class="product-title">
+																					<a href="#">Beige knitted elastic runner shoes</a>
+																				</h3><!-- End .product-title -->
+																			</div><!-- End .product -->
+																		</td>
+																		<td class="price-col">$84.00</td>
+																		<td class="quantity-col">
+																			<div class="cart-product-quantity">
+																				<input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+																			</div><!-- End .cart-product-quantity -->
+																		</td>
+																		<td class="total-col">$84.00</td>
+																		<td class="remove-col">														
+																			<form method="POST" action="{{route('cart-delete',$cart->product_id)}}">
+																				@csrf
+																				<button class="btn-remove" data-id={{$cart->product_id}} data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="icon-close"></i></button>															
+																			</form>
+																		</td>
+																	</tr>
+																@endif														
 															@endforeach
-														</select>
-													</div>
-												@else
-													<div class="form-select">
-														<span>Free</span>
-													</div>
-												@endif
-											</li>
-										</div>
-										 --}}
-										 {{-- {{dd(Session::get('coupon')['value'])}} --}}
-										@if(session()->has('coupon'))
-										<li class="coupon_price" data-price="{{@Session::get('coupon')['value']}}">Coupon Discount<span> &#8377; {{number_format(@Session::get('coupon')['value'],2)}}</span></li>
-										@endif
-										@php
-											$total_amount=Helper::totalCartPrice();
-											if(session()->has('coupon')){
-												$total_amount=$total_amount-Session::get('coupon')['value'];
-											}
-										@endphp
-										@if(session()->has('coupon'))
-											<li class="last" id="order_total_price">You Pay<span> &#8377; {{number_format($total_amount,2)}}</span></li>
-										@else
-											<li class="last" id="order_total_price">You Pay<span>Rs {{number_format($total_amount,2)}}</span></li>
-										@endif
-									</ul>
-									<div class="button5">
-										<a href="{{route('checkout')}}" class="btn">Checkout</a>
-										<a href="{{route('products')}}" class="btn">Continue shopping</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--/ End Total Amount -->
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--/ End Shopping Cart -->
+															<track>
+																<td></td>
+																<td></td>
+																<td></td>
+																<td></td>
+																<td class="float-right">
+																	<button class="btn float-right" type="submit">Update</button>
+																</td>
+															</track>
+															
+													</form>
+												</tbody>
+											</table><!-- End .table table-wishlist -->
+										
+											<div class="cart-bottom">
+												<div class="cart-discount">
+													<form action="#">
+														<div class="input-group">
+															<form action="{{route('coupon-store')}}" method="POST">
+																@csrf
+																<input type="text" name="code" class="form-control" placeholder="coupon code" value="{{@Session::get('coupon')['code']}}">
+																<div class="input-group-append">
+																<button class="btn btn-outline-primary-2">
+																	@if(@Session::get('coupon')['code'])
+																		Remove
+																	@else
+																		<i class="icon-long-arrow-right"></i>
+																	@endif
+																</button>
+																</div>
+															</form>
+														</div><!-- End .input-group -->
+													</form>
+												</div><!-- End .cart-discount -->
+												{{-- <a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></a> --}}
+											</div><!-- End .cart-bottom -->
+										
+									</div><!-- End .col-lg-9 -->
 
-	<!-- Start Shop Services Area  -->
+									<aside class="col-lg-3">
+										<div class="summary summary-cart">
+											<h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
 
-	<!-- End Shop Newsletter -->
+											<table class="table table-summary">
+												<tbody>
+													<tr class="summary-subtotal">
+														<td>Subtotal:</td>
+														<td class="order_subtotal" data-price="{{Helper::totalCartPrice()}}">&#8377; {{number_format(Helper::totalCartPrice(),2)}}</td>
+													</tr><!-- End .summary-subtotal -->
+													<tr class="summary-shipping">
+														<td>Shipping:</td>
+														<td>&nbsp;</td>
+													</tr>
 
-	<!-- Start Shop Newsletter  -->
+													<tr class="summary-shipping-row">
+														<td>
+															<div class="custom-control custom-radio">
+																<input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
+																<label class="custom-control-label" for="free-shipping">Free Shipping</label>
+															</div><!-- End .custom-control -->
+														</td>
+														<td>&#8377; 0.00</td>
+													</tr><!-- End .summary-shipping-row -->
 
-	<!-- End Shop Newsletter -->
+													<tr class="summary-shipping-row">
+														<td>
+															<div class="custom-control custom-radio">
+																<input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
+																<label class="custom-control-label" for="standart-shipping">Standart:</label>
+															</div><!-- End .custom-control -->
+														</td>
+														<td>&#8377; 10.00</td>
+													</tr><!-- End .summary-shipping-row -->
+
+													<tr class="summary-shipping-row">
+														<td>
+															<div class="custom-control custom-radio">
+																<input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
+																<label class="custom-control-label" for="express-shipping">Express:</label>
+															</div><!-- End .custom-control -->
+														</td>
+														<td>&#8377; 20.00</td>
+													</tr><!-- End .summary-shipping-row -->
+
+													<tr class="summary-coupon">
+														<td>Coupon Discount </td>
+														@if(session()->has('coupon'))
+														<td class="coupon_price" data-price="{{@Session::get('coupon')['value']}}">&#8377; {{number_format(Helper::totalCartPrice(),2)}}</td>
+														
+														@else
+														<td>&#8377; 0.00</td>
+														@endif
+													</tr><!-- End .summary-shipping-estimate -->									
+													@php
+														$total_amount=Helper::totalCartPrice();
+														if(session()->has('coupon'))
+														{
+															$total_amount=$total_amount-Session::get('coupon')['value'];
+														}
+													@endphp
+													<tr class="summary-total">
+														<td>Total:</td>
+														<td id="order_total_price">&#8377; {{number_format($total_amount,2)}}</td>
+													</tr><!-- End .summary-total -->
+												</tbody>
+											</table><!-- End .table table-summary -->
+
+											<a href="{{route('checkout')}}" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+										</div><!-- End .summary -->
+
+										<a href="" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+									</aside><!-- End .col-lg-3 -->
+								@else
+									<tr>
+										<td class="text-center">
+											Nothing in your cart.  <a href="" style="color:blue;"> Continue shopping</a>
+										</td>
+									</tr>
+								@endif	
+
+							</div><!-- End .row -->
+						</div><!-- End .container -->
+					</div><!-- End .cart -->
+				</div><!-- End .page-content -->
+	</main><!-- End .main -->
+
+				<!-- Shopping Cart -->
+				
+				<!--/ End Shopping Cart -->
+
+				<!-- Start Shop Services Area  -->
+
+				<!-- End Shop Newsletter -->
+
+				<!-- Start Shop Newsletter  -->
+
+				<!-- End Shop Newsletter -->
 
 
 
-	<!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row no-gutters">
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                                <!-- Product Slider -->
-									<div class="product-gallery">
-										<div class="quickview-slider-active">
-											<div class="single-slider">
-												<img src="images/modal1.jpg" alt="#">
-											</div>
-											<div class="single-slider">
-												<img src="images/modal2.jpg" alt="#">
-											</div>
-											<div class="single-slider">
-												<img src="images/modal3.jpg" alt="#">
-											</div>
-											<div class="single-slider">
-												<img src="images/modal4.jpg" alt="#">
-											</div>
-										</div>
-									</div>
-								<!-- End Product slider -->
-                            </div>
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                                <div class="quickview-content">
-                                    <h2>Flared Shift Dress</h2>
-                                    <div class="quickview-ratting-review">
-                                        <div class="quickview-ratting-wrap">
-                                            <div class="quickview-ratting">
-                                                <i class="yellow fa fa-star"></i>
-                                                <i class="yellow fa fa-star"></i>
-                                                <i class="yellow fa fa-star"></i>
-                                                <i class="yellow fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                            <a href="#"> (1 customer review)</a>
-                                        </div>
-                                        <div class="quickview-stock">
-                                            <span><i class="fa fa-check-circle-o"></i> in stock</span>
-                                        </div>
-                                    </div>
-                                    <h3>$29.00</h3>
-                                    <div class="quickview-peragraph">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui nemo ipsum numquam.</p>
-                                    </div>
-									<div class="size">
-										<div class="row">
-											<div class="col-lg-6 col-12">
-												<h5 class="title">Size</h5>
-												<select>
-													<option selected="selected">s</option>
-													<option>m</option>
-													<option>l</option>
-													<option>xl</option>
-												</select>
-											</div>
-											<div class="col-lg-6 col-12">
-												<h5 class="title">Color</h5>
-												<select>
-													<option selected="selected">orange</option>
-													<option>purple</option>
-													<option>black</option>
-													<option>pink</option>
-												</select>
-											</div>
-										</div>
-									</div>
-                                    <div class="quantity">
-										<!-- Input Order -->
-										<div class="input-group">
-											<div class="button minus">
-												<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-													<i class="ti-minus"></i>
-												</button>
-											</div>
-											<input type="text" name="quant[1]" class="input-number"  data-min="1" data-max="1000" value="1">
-											<div class="button plus">
-												<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
-													<i class="ti-plus"></i>
-												</button>
-											</div>
-										</div>
-										<!--/ End Input Order -->
-									</div>
-									<div class="add-to-cart">
-										<a href="#" class="btn">Add to cart</a>
-										<a href="#" class="btn min"><i class="ti-heart"></i></a>
-										<a href="#" class="btn min"><i class="fa fa-compress"></i></a>
-									</div>
-                                    <div class="default-social">
-										<h4 class="share-now">Share:</h4>
-                                        <ul>
-                                            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a class="youtube" href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                            <li><a class="dribbble" href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal end -->
+				<!-- Modal -->
+				
+					<!-- Modal end -->
 
 @endsection
 @push('styles')

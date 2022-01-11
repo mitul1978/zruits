@@ -6,7 +6,6 @@
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Login</li>
                     </ol>
                 </div><!-- End .container -->
@@ -26,15 +25,17 @@
 							</ul>
 							<div class="tab-content">
 							    <div class="tab-pane fade" id="signin-2" role="tabpanel" aria-labelledby="signin-tab-2">
-							    	<form action="#">
+							    	<form method="post" action="{{route('login.submit')}}" enctype="multipart/form-data">
+										@csrf
+										<input type="hidden" class="form-control" id="popup" name="popup" value="1">
 							    		<div class="form-group">
 							    			<label for="singin-email-2">Username or email address *</label>
-							    			<input type="text" class="form-control" id="singin-email-2" name="singin-email" required>
+							    			<input type="text" class="form-control" id="email" name="email" required>
 							    		</div><!-- End .form-group -->
 
 							    		<div class="form-group">
 							    			<label for="singin-password-2">Password *</label>
-							    			<input type="password" class="form-control" id="singin-password-2" name="singin-password" required>
+							    			<input type="password" class="form-control" id="password" name="password" required>
 							    		</div><!-- End .form-group -->
 
 							    		<div class="form-footer">

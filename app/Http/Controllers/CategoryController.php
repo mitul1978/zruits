@@ -111,33 +111,58 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // return $request->all();
-        $category=Category::findOrFail($id);
-        $this->validate($request,[
-            'title'=>'string|required',
-            'summary'=>'string|nullable',
-            'photo'=>'mimes:jpeg,jpg,png,gif|nullable',
-            'status'=>'required|in:active,inactive',
-            'is_parent'=>'sometimes|in:1',
-            'parent_id'=>'nullable|exists:categories,id',
-        ]);
-        $data= $request->all();
-        $data['is_parent']=$request->input('is_parent',0);
-        // return $data;
-        if(@$request->photo){
+        try{
+            // dd($request);
+            // return $request->all();
+            $category=Category::findOrFail($id);
+            $this->validate($request,[
+                'title'=>'string|required',
+                'summary'=>'string|nullable',
+                // 'photo'=>'mimes:jpeg,jpg,png,gif|nullable',
+                'status'=>'required|in:active,inactive',
+                'is_parent'=>'sometimes|in:1',
+                'parent_id'=>'nullable|exists:categories,id',
+            ]);
 
-            $fileName = 'images/category/'.rand().time().'.'.$request->photo->getClientOriginalExtension();
-            $request->photo->move(base_path('public/images/category/'), $fileName);
-            $data['photo']= $fileName;
-        }
+            $data= $request->all();
+            $data['is_parent']=$request->input('is_parent',0);
+            $data['show_on_header']=$request->input('show_on_header',0);
+            
+            // if($data['is_parent'] == 1)
+            // {
+            //     $data['parent_id'] = 0;
+            // }
+            
+            $slug=Str::slug($request->title);
+            $count=Category::where('slug',$slug)->count();
+            if($count>0){
+                $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
+            }
+            $data['slug']=$slug;
+            
+            if(@$request->photo)
+            {
+                $fileName = 'images/category/'.rand().time().'.'.$request->photo->getClientOriginalExtension();
+                $request->photo->move(base_path('public/images/category/'), $fileName);
+                $data['photo']= $fileName;
+            }
 
-        $status=$category->update($data);
-        if($status){
-            request()->session()->flash('success','Category successfully updated');
+            $status=$category->update($data);
+    
+            if($status)
+            {
+                request()->session()->flash('success','Category successfully updated');
+            }
+            else
+            {
+                request()->session()->flash('error','Error occurred, Please try again!');
+            }
         }
-        else{
-            request()->session()->flash('error','Error occurred, Please try again!');
-        }
+        catch(exception $e)
+        {
+            dd($e);
+        }    
+
         return redirect()->route('category.index');
     }
 

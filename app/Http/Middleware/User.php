@@ -17,8 +17,7 @@ class User
     {
         if(empty(session('user')))
         {
-            return redirect('/user/login');//->route('/');
-           // return redirect()->route('login.form');
+            return redirect('/user/login');//->route('/');           
         }
         else
         {

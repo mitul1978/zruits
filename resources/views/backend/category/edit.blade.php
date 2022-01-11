@@ -25,20 +25,24 @@
         </div>
 
         <div class="form-group">
+          <label for="show_on_header">Show On Header</label><br>
+          <input type="checkbox" name='show_on_header' id='show_on_header' value='1' {{(($category->show_on_header==1)? 'checked' : '')}}> Yes
+        </div>
+
+        <div class="form-group">
           <label for="is_parent">Is Parent</label><br>
-          <input type="checkbox" name='is_parent' id='is_parent' value='{{$category->is_parent}}' {{(($category->is_parent==1)? 'checked' : '')}}> Yes
+          <input type="checkbox" name='is_parent' id='is_parent' value='1' {{(($category->is_parent==1)? 'checked' : '')}}> Yes
         </div>
         {{-- {{$parent_cats}} --}}
         {{-- {{$category}} --}}
 
       <div class="form-group {{(($category->is_parent==1) ? 'd-none' : '')}}" id='parent_cat_div'>
           <label for="parent_id">Parent Category</label>
-          <select name="parent_id" class="form-control">
+          <select name="parent_id" ID="parent_id" class="form-control">
               <option value="">--Select any category--</option>
-              @foreach($parent_cats as $key=>$parent_cat)
-
-                  <option value='{{$parent_cat->id}}' {{(($parent_cat->id==$category->parent_id) ? 'selected' : '')}}>{{$parent_cat->title}}</option>
-              @endforeach
+                @foreach($parent_cats as $key=>$parent_cat)
+                    <option value='{{$parent_cat->id}}' {{(($parent_cat->id==$category->parent_id) ? 'selected' : '')}}>{{$parent_cat->title}}</option>
+                @endforeach
           </select>
         </div>
 
@@ -110,6 +114,7 @@
     }
     else{
       $('#parent_cat_div').removeClass('d-none');
+      $('#parent_id').val('');
     }
   })
 </script>
