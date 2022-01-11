@@ -58,7 +58,7 @@
 
                 <div class="col-sm-6 col-lg-4">
                     <div class="widget">
-                        <h4 class="widget-title" style="border: none;">Account</h4><!-- End .widget-title -->
+                        <h4 class="widget-title">Account</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
                             <li><a href="#">My Account</a></li>
