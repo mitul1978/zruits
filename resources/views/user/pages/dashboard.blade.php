@@ -222,10 +222,11 @@
 
 								    <div class="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
 								    	<form method="POST" action="{{route('user-profile-update',auth()->user()->id)}}"> 
+											@csrf
 			                				<div class="row">
 			                					<div class="col-sm-6">
 			                						<label>Full Name *</label>
-			                						<input type="text" class="form-control" value="{{auth()->user()->name}}" required>
+			                						<input type="text" class="form-control" name="name" value="{{auth()->user()->name}}"  required>
 			                					</div><!-- End .col-sm-6 -->
 
 			                					{{-- <div class="col-sm-6">

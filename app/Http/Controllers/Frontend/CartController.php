@@ -160,7 +160,7 @@ class CartController extends Controller
     }
 
     public function cartUpdate(Request $request){
-        if(count($request->quant)){
+        if(@count($request->quant)){
             foreach ($request->quant as $product_id=>$quant) {
      
                 if (is_user_logged_in()){

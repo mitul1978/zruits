@@ -64,9 +64,9 @@ Route::group(['namespace' => 'Frontend'], function () {
         return view('frontend.contact');
     });
 
-    Route::get('/product',function(){
-        return view('frontend.product');
-    });
+    // Route::get('/product',function(){
+    //     return view('frontend.product');
+    // });
 
     // Route::get('/login',function(){
     //     return view('frontend.login');

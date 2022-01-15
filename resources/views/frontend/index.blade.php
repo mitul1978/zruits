@@ -211,6 +211,42 @@
                         }
                     }'>
 
+
+                    @if(isset($products) && $products->isNotEmpty())
+                       @foreach ($products as $product)
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-new">New</span>
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="javascript:void(0);" class="btn-product-icon btn-wishlist btn-expandable add_to_wishlist" data-id="{{$product->id}}" id="wishlist{{$product->id}}"><span class="add_to_wishlist_msg{{$product->id}}">add to wishlist</span></a>
+                                   
+                                </div><!-- End .product-action-vertical -->
+
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Women</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">{{$product->name}}</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    ₹60 <small>(MRP incl Taxes)</small>
+                                </div><!-- End .product-price -->
+                                <div class="atc-container">
+                                    
+                                <div class="mb-0">
+                                    
+                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
+                                </div></div>
+
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+                       @endforeach
+                    @endif
                         <div class="product product-7 text-center">
                             <figure class="product-media">
                                 <span class="product-label label-new">New</span>

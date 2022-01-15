@@ -26,7 +26,8 @@ if (Request::is('distributor*'))
 
 Auth::routes(['register'=>false]);
 
-
+Route::get('login/google', 'Auth\GoogleController@redirectToGoogle');
+Route::get('login/google/callback', 'Auth\GoogleController@handleGoogleCallback');
 
 // Socialite
 Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
@@ -47,7 +48,7 @@ Route::post('fetch-latlng1','HomeController@fetchlatlng1');
 // Route::get('/about-us','FrontendController@aboutUs')->name('about-us');
 //Route::get('/contact','FrontendController@contact')->name('contact');
 //Route::post('/contact/message','MessageController@store')->name('contact.store');
-// Route::get('product-detail/{slug}','FrontendController@productDetail')->name('product-detail');
+ Route::get('product-detail/{slug}','FrontendController@productDetail')->name('product-detail');
 // Route::post('/product/search','FrontendController@productSearch')->name('product.search');
 // Route::get('/product-cat/{slug}','FrontendController@productCat')->name('product-cat');
 // Route::get('/product-sub-cat/{slug}/{sub_slug}','FrontendController@productSubCat')->name('product-sub-cat');
@@ -131,3 +132,7 @@ Route::post('get_cities_by_state_id','StateController@get_cities_by_state_id');
 
 
 Route::get('set-state', 'TestController@set_state')->name('set-state');
+
+Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

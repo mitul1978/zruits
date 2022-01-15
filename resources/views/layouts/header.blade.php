@@ -16,7 +16,7 @@
                     </button>
 
                     <a href="/" class="logo">
-                        <img src="assets/images/logo.png" alt="Molla Logo" width="105" height="25">
+                        <img src="{{URL::asset('assets/images/logo.png')}}" alt="Molla Logo" width="105" height="25">
                     </a>
                 </div>
                 <div class="header-center">
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="wishlist">
-                        <a href="{{route('user')}}#wishlist" title="Wishlist">
+                        <a href="{{route('user')}}?tab=wishlist" title="Wishlist">
                             <div class="icon">
                                 <i class="icon-heart-o"></i>
                                 @if(@Helper::getAllProductFromWishlist() && count(Helper::getAllProductFromWishlist()))
@@ -80,12 +80,13 @@
                     </div>
 
                     <div class="dropdown cart-dropdown">
-                        <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                            <i class="icon-shopping-cart"></i>
-                            @if(@Helper::getAllProductFromCart() && count(Helper::getAllProductFromCart()))
-                              <span class="cart-count">{{count(Helper::getAllProductFromCart())}}</span>
-                            @endif
-                        </a>
+
+                            <a href="javascript:void(0);" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                <i class="icon-shopping-cart"></i>
+                                @if(@Helper::getAllProductFromCart() && count(Helper::getAllProductFromCart()))
+                                <span class="cart-count">{{count(Helper::getAllProductFromCart())}}</span>
+                                @endif
+                            </a>
 
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-cart-products">
@@ -119,12 +120,18 @@
 
                                 <span class="cart-total-price">$160.00</span>
                             </div><!-- End .dropdown-cart-total --> --}}
-
-                            <div class="dropdown-cart-action">
-                                <a href="{{route('user-cart')}}" class="btn btn-primary">View Cart</a>
-                                <a href="{{route('checkout')}}" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
-                            </div><!-- End .dropdown-cart-total -->
+                            @if(@count(Helper::getAllProductFromCart()) > 0)
+                                <div class="dropdown-cart-action">
+                                    <a href="{{route('user-cart')}}" class="btn btn-primary">View Cart</a>
+                                    <a href="{{route('checkout')}}" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
+                                </div><!-- End .dropdown-cart-total -->
+                            @else
+                                <div class="dropdown-cart-action">
+                                    <p>Your Cart is Empty</p>
+                                </div><!-- End .dropdown-cart-total -->
+                            @endif    
                         </div><!-- End .dropdown-menu -->
+               
                     </div><!-- End .cart-dropdown -->
                 </div><!-- End .header-right -->
             </div><!-- End .container -->

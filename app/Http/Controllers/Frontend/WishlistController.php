@@ -31,12 +31,13 @@ class WishlistController extends Controller
         // return $already_wishlist;
 
         if($already_wishlist) {
-            $already_wishlist->delete();
-            return response(['wishlist_product'=>'Removed',
-            'msg'=> strtoupper($product->name. ' has been removed from wishlist')
-        ], 200);
-
-        }else{
+                $already_wishlist->delete();
+                return response(['wishlist_product'=>'Removed',
+                'msg'=> strtoupper($product->name. ' has been removed from wishlist')
+            ], 200);
+        }
+        else
+        {
 
             $wishlist = new Wishlist;
 

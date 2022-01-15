@@ -158,12 +158,12 @@
                                 <p class="text-center">or sign in with</p>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <a href="#" class="btn btn-login btn-g">
+                                        <a href="{{ url('login/google') }}" class="btn btn-login btn-g">
                                             <i class="icon-google"></i>
                                             Login With Google
                                         </a>
                                     </div><!-- End .col-6 -->
-                                    <div class="col-sm-6">
+                                    <!--<div class="col-sm-6">
                                         <a href="#" class="btn btn-login btn-f">
                                             <i class="icon-facebook-f"></i>
                                             Login With Facebook
@@ -198,14 +198,14 @@
                     <div class="form-tab">
                         <ul class="nav nav-pills nav-fill" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
+                                <a class="nav-link" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="false">Sign In</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                                <a class="nav-link active" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="true">Register</a>
                             </li>
                         </ul>
                         <div class="tab-content" id="tab-content-5">
-                            <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+                            <div class="tab-pane fade" id="signin" role="tabpanel" aria-labelledby="signin-tab">
                                 <form action="#">
                                     <div class="form-group">
                                         <label for="singin-email">Username or email address *</label>
@@ -233,7 +233,7 @@
                                 </form>
 
                             </div><!-- .End .tab-pane -->
-                            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                            <div class="tab-pane fade show active" id="register" role="tabpanel" aria-labelledby="register-tab">
                                 <form action="#">
                                     <div class="form-group">
                                         <label for="register-email">Your email address *</label>
@@ -257,8 +257,24 @@
                                         </div><!-- End .custom-checkbox -->
                                     </div><!-- End .form-footer -->
                                 </form>
-
                             </div><!-- .End .tab-pane -->
+                            <div class="form-choice">
+                                <p class="text-center">or sign in with</p>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a href="{{ url('login/google') }}" class="btn btn-login btn-g">
+                                            <i class="icon-google"></i>
+                                            Login With Google
+                                        </a>
+                                    </div><!-- End .col-6 -->
+                                    <!--<div class="col-sm-6">
+                                        <a href="#" class="btn btn-login btn-f">
+                                            <i class="icon-facebook-f"></i>
+                                            Login With Facebook
+                                        </a>
+                                    </div><!-- End .col-6 -->
+                                </div><!-- End .row -->
+                            </div><!-- End .form-choice -->
                         </div><!-- End .tab-content -->
                     </div><!-- End .form-tab -->
                 </div><!-- End .form-box -->
