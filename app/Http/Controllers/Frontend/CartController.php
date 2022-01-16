@@ -22,11 +22,12 @@ class CartController extends Controller
         View::share('categoriesHeader', $this->categoriesHeader);
     }
 
-
-
     public function cart(){
-
         
+    }
+
+    public function goToCart(){
+        return view('frontend_newold.pages.cart2');
     }
 
     public function viewCart(){
@@ -67,9 +68,12 @@ class CartController extends Controller
             return response(['error'=>'Something is going wrong'], 200);
         }
 
-        if (is_user_logged_in()){
+        if (is_user_logged_in())
+        {
             addToCart($product);
-        }else{
+        }
+        else
+        {
             addToCartForGuestInSession($product);
         }
 

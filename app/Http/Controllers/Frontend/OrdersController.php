@@ -6,6 +6,7 @@ use Alert;
 use Helper;
 use App\User;
 use App\Models\Cart;
+use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
@@ -21,32 +22,31 @@ class OrdersController extends Controller
 
  
 
-    function place_order(Request $request){
-
-  
-
+    function place_order(Request $request)
+    {
         $requestData = $request->all();
 
-
-        if(count(get_cart())){
-
-            if($request->address_id =='new' || $request->address_id == null){
+        if(count(get_cart()))
+        {
+            if($request->address_id =='new' || $request->address_id == null)
+            {
                 $this->validate($request,[
                     'mobile'=>'required',
-                    'last_name'=>'required',
+                    //'last_name'=>'required',
                     'email'=>'required|email',
                     'first_name'=>'required',
                     'address'=>'required',
                     'state_id'=>'required',
                     'city_id'=>'required',
-                    'pincode' => 'required|integer|regex:/\b\d{6}\b/|exists:pincodes,pincode',
+                    'pincode' => 'required|integer|regex:/\b\d{6}\b/',
                 ],[
                     'pincode.regex'=>'Please enter a valid 6 digit pincode',
                     'pincode.required' => 'The pincode field is required',
-                    'pincode.exists' => 'Pincode is not exists',
                 ]);
 
-            }else{
+            }
+            else
+            {
                $address =  UserAddress::find($request->address_id)->toArray();
                $request_address = new Request($address);
 
@@ -68,40 +68,44 @@ class OrdersController extends Controller
 
                 $requestData =$request_address->all() ;
                 $requestData['address_id'] = $request->address_id;
-            }
-
-
+            }            
 
             DB::beginTransaction();
-            try {
-
+            try 
+            {$requestData['state_id'] = 1;
+                $requestData['city_id'] = 1;
                 $total_amount = 0;
                 $order=new Order();
                 $order->order_number='O-'.auth()->user()->id.'-'.strtoupper(time());
                 $order->user_id=auth()->user()->id;
     
-                if(session('coupon')){
+                if(session('coupon'))
+                {
                     $order->coupon_value=session('coupon')['value'];
                     $order->coupon_code=session('coupon')['code'];
                     $total_amount-$order->coupon_value;
                 }
                     
-                if(session('order_note')){
+                if(session('order_note'))
+                {
                     $order->order_note=session('order_note');
                 }           
                 // return $order_data['total_amount'];
                 $order->status=0;
-                if(request('payment_method')=='razorpay'){
+                if(request('payment_method')=='razorpay')
+                {
                     $order->payment_method='razorpay';
                     $order->payment_status='process';
                 }
-                else{
+                else
+                {
                     $order->payment_method='cod';
                     $order->payment_status='Unpaid';
                 }
+
                 $order->state_id =(int)$requestData['state_id'];
                 $order->city_id = (int)$requestData['city_id'];
-                $order->freight_charge = Helper::getPincodeFreightCharge($requestData['pincode']);;
+                $order->freight_charge = 0;// Helper::getPincodeFreightCharge($requestData['pincode']);;
 
                 $total_amount+=$order->freight_charge;
 
@@ -120,8 +124,9 @@ class OrdersController extends Controller
                 $taxable_amount =0;
                 $sub_total = 0;
                 $quantity = 0;
-                foreach($cart_items as $item){
-
+                 
+                foreach($cart_items as $item)
+                {
                     $order_list=new OrderProductList();
                     $order_list->order_id = $order->id;
                     $order_list->user_id =  auth()->user()->id;
@@ -132,8 +137,19 @@ class OrdersController extends Controller
                     $order_list->taxable_amount = $order_list->price * $order_list->quantity;
                     $order_list->tax = ($order_list->tax_rate * $order_list->taxable_amount) / 100;
                     $order_list->sub_total = $order_list->taxable_amount +$order_list->tax ;
-
                     $order_list->save();
+                    
+                    if($item->product->is_giftcard == 1)
+                    {
+                        for($i=0; $i < $item->quantity; $i++)
+                        {
+                            $data['code'] = substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 16);
+                            $data['type'] = 'fixed';
+                            $data['value'] =  $order_list->price;
+                            $data['status'] = 'active';
+                            Coupon::create($data);
+                        }
+                    }
 
                     $quantity += $order_list->quantity;
                     $tax += $order_list->tax;
@@ -151,8 +167,8 @@ class OrdersController extends Controller
                 $order->save();
 
 
-                if($order){
-
+                if($order)
+                {
                     $users=User::where('role','admin')->first();
                     $details=[
                         'title'=>'New order created By '.@$order->address->first_name,
@@ -160,24 +176,18 @@ class OrdersController extends Controller
                         'fas'=>'fa-file-alt'
                     ];
                     
-                 Notification::send($users, new StatusNotification($details));
-
-
+                    Notification::send($users, new StatusNotification($details));
                 }
-             
-
 
                 session()->forget('cart');
                 session()->forget('coupon');
                 session()->forget('order_note');
                 session()->forget('freight_charge');
 
-               Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
+                Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
 
-
-                if(request('payment_method')=='razorpay'){
-
-
+                if(request('payment_method')=='razorpay')
+                {
                     $razorpay = new RazorpayPaymentController();
                     $response = $razorpay->create_razorpay_order($order);
                     $order->razerpay_order = json_encode($response );
@@ -192,32 +202,30 @@ class OrdersController extends Controller
                 Alert::success('Your product successfully placed in order');
 
                 return redirect()->route('user');
-            }catch (\Exception $e) {
+            }
+            catch (\Exception $e) 
+            {
                 DB::rollback();
-
                 dd($e);
                 Log::channel('order_error')->error($e->getMessage().' on line no '.$e->getLine());
                 // something went wrong
                 Alert::error('Something is went wrong..');
                 return redirect()->back();
-
             }
-        }else{
-
-
-            Alert::error('Something is went wrong..');
-    
-            Log::channel('order_error')->error('redirection blanck checkout');
-    
+        }
+        else
+        {
+            Alert::error('Something is went wrong..');    
+            Log::channel('order_error')->error('redirection blanck checkout');    
             return redirect()->route('user');
         }
     }
 
 
-    function addNewUserAddress($data){
-
-
-        if(@$data['is_primary']){
+    function addNewUserAddress($data)
+    {
+        if(@$data['is_primary'])
+        {
             UserAddress::where('user_id',auth()->user()->id)->update(['is_primary'=>0]);
         }
 
@@ -226,7 +234,7 @@ class OrdersController extends Controller
         $address->mobile = $data['mobile'];
         $address->email = $data['email'];
         $address->first_name = $data['first_name'];
-        $address->last_name = $data['last_name'];
+        $address->last_name = @$data['last_name'];
         $address->address = $data['address'];
         $address->state_id = $data['state_id'];
         $address->city_id = $data['city_id'];
@@ -236,12 +244,6 @@ class OrdersController extends Controller
         $address->pincode = (int)$data['pincode'];
         $address->user_id = auth()->user()->id;
         $address->save();
-
-
         return $address->id;
-        
-        
     }
-    
-
 }

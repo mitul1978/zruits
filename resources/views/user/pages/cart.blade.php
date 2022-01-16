@@ -48,8 +48,8 @@
 													<form action="{{route('cart.update')}}" method="POST">
 														@csrf
 															@foreach(Helper::getAllProductFromCart() as $key=>$cart)
-						
-																@if($cart->product)
+
+
 																	<tr>
 																		<td class="product-col">
 																			<div class="product">
@@ -60,17 +60,17 @@
 																				</figure>
 
 																				<h3 class="product-title">
-																					<a href="#">Beige knitted elastic runner shoes</a>
+																					<a href="#">{{$cart->product->name}}</a>
 																				</h3><!-- End .product-title -->
 																			</div><!-- End .product -->
 																		</td>
-																		<td class="price-col">$84.00</td>
+																		<td class="price-col">{{$cart->price}}</td>
 																		<td class="quantity-col">
 																			<div class="cart-product-quantity">
-																				<input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+																				<input type="number" class="form-control" value="{{$cart->quantity}}" min="1" max="10" step="1" data-decimals="0" required>
 																			</div><!-- End .cart-product-quantity -->
 																		</td>
-																		<td class="total-col">$84.00</td>
+																		<td class="total-col">{{$cart->amount}}</td>
 																		<td class="remove-col">														
 																			<form method="POST" action="{{route('cart-delete',$cart->product_id)}}">
 																				@csrf
@@ -78,7 +78,7 @@
 																			</form>
 																		</td>
 																	</tr>
-																@endif														
+																														
 															@endforeach
 															<track>
 																<td></td>

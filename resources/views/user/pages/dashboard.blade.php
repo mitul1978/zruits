@@ -114,7 +114,7 @@
 																	@endif
 																</td>
 																<td>
-																	<span class="badge {{$order->order_status->class}}">{{$order->order_status->name}}</span>															
+																	<span class="badge {{@$order->order_status->class}}">{{@$order->order_status->name}}</span>															
 																</td>
 																<td>
 																	<a href="{{route('invoice',$order->id)}}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>

@@ -431,7 +431,6 @@
     @endauth
 
     $('.place_order_btn').click(function(){
-
       $('.place_order').submit();
     })
 

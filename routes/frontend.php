@@ -15,7 +15,9 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('user/update','LoginController@update')->name('register.submit');
     
     // Reset password
-    Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset');   
+    Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset');  
+    
+    Route::get('/giftcard','HomeController@giftcard')->name('giftcard');
 
     // Route::get('about-us','HomeController@aboutus')->name('aboutus');
     // Route::get('guide/{type}','HomeController@guide')->name('guide');
@@ -38,10 +40,6 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/wishlist',function(){
         return view('user.pages.wishlist');
     })->name('wishlist')->middleware('user');
-
-    // Route::get('/wishlist',function(){
-    //     return view('frontend.wishlist');
-    // });
 
     Route::get('/single',function(){
         return view('frontend.single');
@@ -84,15 +82,15 @@ Route::group(['namespace' => 'Frontend'], function () {
 
     // Cart section
 
-    Route::get('/cart',function()
-    {
-        return view('frontend.cart');
-    })->name('cart');
+    // Route::get('/cart',function()
+    // {
+    //     return view('frontend.cart');
+    // })->name('cart');
 
     // Route::get('/cart',function(){
     //     return view('frontend.pages.cart2');
     // })->name('cart');
-
+    Route::get('/cart','CartController@goToCart')->name('cart');
 
     Route::get('/add-to-cart/{slug}','CartController@addToCart')->name('add-to-cart')->middleware('user');
     Route::post('/add-to-cart','CartController@singleAddToCart')->name('single-add-to-cart')->middleware('user');

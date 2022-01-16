@@ -28,80 +28,80 @@
             </div>
           </div>
           <div class="tableBody">
-        <!-- row start -->
+           <!-- row start -->
 
-        <form class="cart_update_form" action="{{route('cart.update')}}" method="POST">
-								@csrf
+            <form class="cart_update_form" action="{{route('cart.update')}}" method="POST">
+                @csrf
+                @php
+                  $sub_total = 0;
+                @endphp
+                @foreach(get_cart() as $cart)
+                    @php
+                      $total      =  $cart['product']['price'] *$cart['quantity'];
+                      $sub_total  += $total;
+                    @endphp
 
-            @php
-              $sub_total = 0;
-            @endphp
-            @foreach(get_cart() as $cart)
-            @php
-            $total      =  $cart['product']['price'] *$cart['quantity'];
-            $sub_total  += $total;
-          @endphp
-          @if($total>0)
- 
-            <div class="single-row delete_cart_item{{$cart['product']['id']}}">
-
-                <div class="e-product-intro">
-                  <div class="e-product-img">
-                  <a href="{{route('product',[$cart['product']['slug']])}}">
-                    <img src="{{$cart['product']['a4sheet_view']}}">
-                  </a>
-
-                  </div>
-                  <div class="e-pro-info">
-                    <h2 class="e-pro-name">{{$cart['product']['name']}}</h2>
-                    <h6 class="e-pro-color">{{$cart['product']['design']}}</h6>
-                  </div>
-                </div>
-
-              <div class="e-pro-price-block">
-                  <h2 class="e-pro-price"><span class="visible-xs-cart">Price :   </span> &#8377; {{$cart['product']['price']}}</h2>
-                  <input type="hidden" id="product_price{{$cart['product']['id']}}" data-price="{{$cart['product']['price']}}">
-              </div>
-
-              <div class="e-pro-qty-block">
-
-                
-
-                @if($cart['quantity']>1)
-                <span wire:click="removeToCart({{$cart['product']['id'] }})" class="input-number-increment">-</span>
-
-                @else
-                          
-                <span wire:click="alertConfirmDelete({{$cart['product']['id']}})" class="input-number-increment"><i class="fas fa-trash-alt"></i> </span>
-                @endif
-
-
-
-                <input name="quant[{{$cart['product']['id']}}]" class="input-number" data-product_id="{{$cart['product']['id']}}" id="cart_item_count{{$cart['product']['id']}}" type="number" value="{{$cart['quantity']}}" min="{{@$cart['product']['min_qty']}}" max="{{@$cart['product']['max_qty']}}" >
-                <span wire:click="addToCart({{$cart['product']['id'] }})" class="input-number-increment" >+</span>
-
-              
-              
-              </div>
-
-              <div class="e-pro-price-total-block">
-                  <h2 class="e-pro-price"><span class="visible-xs-cart">Total : </span> &#8377; <span class="product_total{{$cart['product']['id']}}">{{$total }}</span> </h2>
-              </div>
-
-              <div class="e-pro-remove-block trash_btn" id="">
-
-                {{-- <form  method="POST" action="{{route('cart-delete',$cart['product']['id'])}}"> --}}
-                      {{-- <button type="button" class="btn btn-danger btn-sm dltBtn" data-id={{$cart['product']['id']}} style="height:30px; border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button> --}}
-                      <button type="button" class="btn btn-danger btn-sm " wire:click="alertConfirmDelete({{$cart['product']['id']}})" style="height:30px; border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                    {{-- </form> --}}
-              </div>
-
-            </div>
-
-            @endif
-            @endforeach
+                    @if($total>0)
           
-          </form>
+                      <div class="single-row delete_cart_item{{$cart['product']['id']}}">
+
+                          <div class="e-product-intro">
+                            <div class="e-product-img">
+                            <a href="{{route('product',[$cart['product']['slug']])}}">
+                              <img src="{{@$cart['product']['a4sheet_view']}}">
+                            </a>
+
+                            </div>
+                            <div class="e-pro-info">
+                              <h2 class="e-pro-name">{{$cart['product']['name']}}</h2>
+                              <h6 class="e-pro-color">{{$cart['product']['design']}}</h6>
+                            </div>
+                          </div>
+
+                        <div class="e-pro-price-block">
+                            <h2 class="e-pro-price"><span class="visible-xs-cart">Price :   </span> &#8377; {{$cart['product']['price']}}</h2>
+                            <input type="hidden" id="product_price{{$cart['product']['id']}}" data-price="{{$cart['product']['price']}}">
+                        </div>
+
+                        <div class="e-pro-qty-block">
+
+                          
+
+                          @if($cart['quantity']>1)
+                          <span wire:click="removeToCart({{$cart['product']['id'] }})" class="input-number-increment">-</span>
+
+                          @else
+                                    
+                          <span wire:click="alertConfirmDelete({{$cart['product']['id']}})" class="input-number-increment"><i class="fas fa-trash-alt"></i> </span>
+                          @endif
+
+
+
+                          <input name="quant[{{$cart['product']['id']}}]" class="input-number" data-product_id="{{$cart['product']['id']}}" id="cart_item_count{{$cart['product']['id']}}" type="number" value="{{$cart['quantity']}}" min="{{@$cart['product']['min_qty']}}" max="{{@$cart['product']['max_qty']}}" >
+                          <span wire:click="addToCart({{$cart['product']['id'] }})" class="input-number-increment" >+</span>
+
+                        
+                        
+                        </div>
+
+                        <div class="e-pro-price-total-block">
+                            <h2 class="e-pro-price"><span class="visible-xs-cart">Total : </span> &#8377; <span class="product_total{{$cart['product']['id']}}">{{$total }}</span> </h2>
+                        </div>
+
+                        <div class="e-pro-remove-block trash_btn" id="">
+
+                          {{-- <form  method="POST" action="{{route('cart-delete',$cart['product']['id'])}}"> --}}
+                                {{-- <button type="button" class="btn btn-danger btn-sm dltBtn" data-id={{$cart['product']['id']}} style="height:30px; border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button> --}}
+                                <button type="button" class="btn btn-danger btn-sm " wire:click="alertConfirmDelete({{$cart['product']['id']}})" style="height:30px; border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                              {{-- </form> --}}
+                        </div>
+
+                      </div>
+
+                      @endif
+                @endforeach
+              
+            </form>
             
           </div>
           
@@ -111,8 +111,7 @@
         <div class="subtotal-block">
           @if($show_order_note)
             <div class="subtotal-left form-group">
-              <textarea style="color: black !important" class="form-control" wire:change="save_order_note"  wire:model="order_note"   cols="50" rows="4" placeholder="Enter your order not">{{Session::get('order_note')}}</textarea>
-            
+              <textarea style="color: black !important" class="form-control" wire:change="save_order_note"  wire:model="order_note"   cols="50" rows="4" placeholder="Enter your order not">{{Session::get('order_note')}}</textarea>            
             </div>
           @else
           <div class="subtotal-left">

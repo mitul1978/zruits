@@ -56,11 +56,16 @@ class HomeController extends Controller
         // }
     }
 
+    public function giftcard()
+    {   
+        $giftcards = Product::where('status','active')->where('is_giftcard',1)->get();
+        return view('frontend.giftcard',compact('giftcards'));
+    }
+
     public function notFound()
     {
         return view('frontend.404');
     }
-
 
     public function aboutus()
     {
