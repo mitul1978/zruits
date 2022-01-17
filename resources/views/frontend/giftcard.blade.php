@@ -68,7 +68,22 @@
                                             <input type="number" id="quantity" name="quantity" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
                                         </div><!-- End .product-details-quantity -->
                                     </div><!-- End .details-filter-row -->
-
+                                    <div class="details-filter-row details-row-size">
+                                        <label for="gift_card_to" >To</label>
+                                        <input type="text" id="gift_card_to" name="gift_card_to" class="form-control" placeholder="Enter an email address for each recipient" value="" required>
+                                        <div class="pwgc-subtitle">Separate multiple email addresses with a comma.</div>
+                                    </div>
+                                
+                                    <div class="details-filter-row details-row-size">
+                                        <label for="gift_card_from" >From</label>
+                                        <input type="text" id="gift_card_from" name="gift_card_from" class="form-control" placeholder="Your name" value="" required>
+                                    </div>
+                                
+                                    <div class="details-filter-row details-row-size">
+                                        <label for="giftcard_message" >Message (optional)</label>
+                                        <textarea class="form-control" id="giftcard_message" name="giftcard_message" placeholder="Add a message"></textarea>
+                                        <div class="pwgc-subtitle"><span id="pwgc-message-characters-remaining">500</span> characters remaining</div>
+                                    </div>
                                     <div class="product-details-action"> 
                                         @foreach ($giftcards as $product)
                                           <a href="javascript:void(0);" style="display:none;" class="btn-product btn-cart wishlist_rows add_to_cart" data-id="{{$product->id}}" id="product{{$product->id}}"><span class="product{{$product->id}}">add to cart</span></a>
