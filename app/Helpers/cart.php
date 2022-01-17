@@ -118,12 +118,15 @@ function add_to_cart_session_cart_item(){
  }
 
 
-  function get_cart_count(){
-    if(is_user_logged_in()){
+  function get_cart_count()
+  {
+    if(is_user_logged_in())
+    {
         $carts = Cart::where('user_id',auth()->user()->id)->where('order_id',null)->get();
         return  $carts->count();
     }
-    else{
+    else
+    {
         $carts = Session::get('carts');
         return $carts ? count($carts ) :0;
         //return Session::get('carts') ? Session::get('carts') :[];
@@ -149,9 +152,6 @@ function add_to_cart_session_cart_item(){
  
     return ($gst * $taxable_amount) / 100;
  }
- 
-
-
 
   function get_cart_product_qty(){
     $cart_product_qty = array_sum(array_column(get_cart(), 'quantity'));

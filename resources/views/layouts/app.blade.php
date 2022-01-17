@@ -57,14 +57,186 @@
     <!-- Main JS File -->
     <script src="{{URL::asset('assets/js/main.js')}}"></script>
     <script src="{{URL::asset('assets/js/demos/demo-2.js')}}"></script>
+    <script  src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
     @livewireScripts
 
 
     <script>
-    $('.footer-middle .widget-title').click(function(e){
-        $(this).parent().find('.widget-list').slideToggle();
-        $(this).toggleClass('active');
-    })
+        $('.footer-middle .widget-title').click(function(e){
+            $(this).parent().find('.widget-list').slideToggle();
+            $(this).toggleClass('active');
+        })
+
+        $("body").on('click','.add_to_wishlist',function()
+        {
+                var product_id = $(this).data('id');
+
+                $(".add_to_wishlist_img"+product_id).hide();
+                $(".add_to_wishlist_msg"+product_id).show();
+                $(".add_to_wishlist_msg"+product_id).text('Please Wait');
+
+                $.ajax({
+                    url: "{{route('add-to-wishlist')}}",
+                    type: 'post',
+                    data:{_token:"{{csrf_token()}}",product_id},
+                    success: function(response) {
+
+                        if(response.wishlist_product)
+                        {
+                            var res = response.msg;
+                            Swal.fire({
+                                icon: "success",
+                                text: res,
+                                toast: true,
+                                position: 'top-right',
+                                timer: 5000,
+                                showConfirmButton:false,
+                                title: response.wishlist_product+"!",
+
+                            })
+                            var image_name= response.wishlist_product=='Added' ? '/redwishlist.png' :'/wishlist.png';
+                            var imgs = "{{url('/frontend/images/')}}";
+                            $("#wishlist"+product_id).attr('src',imgs+image_name);
+                        }
+                        else
+                        {
+                            Swal.fire({
+                                icon: "error",
+                                text: res,
+                                toast: true,
+                                position: 'top-right',
+                                timer: 5000,
+                                showConfirmButton:false,
+                                title: response.error+"!",
+                            })
+                        }
+
+                        $(".add_to_wishlist_img"+product_id).show();
+                        $(".add_to_wishlist_msg"+product_id).hide();
+                    }
+                });
+        });
+
+
+        $("body").on('click','.add_to_cart',function()
+        {
+            var product_id = $(this).data('id');
+            var qty = $('#quantity').val();
+            
+             var loopTime = 0;
+            if(qty != undefined)
+            {
+                loopTime = qty;
+            }
+           
+           $('.product'+product_id).text('Please Wait...');
+
+           if(loopTime == 0){
+                         $.ajax({
+                            url: "{{route('ajax-add-to-cart')}}",
+                            type: 'post',
+                            data:{
+                                _token:"{{csrf_token()}}",
+                                product_id
+                            },
+                            success: function(response) {
+                                if(response.add_to_cart)
+                                {
+                                    var res = response.msg;
+                                    Swal.fire({
+                                        icon: "success",
+                                        text: res,
+                                        toast: true,
+                                        position: 'top-right',
+                                        timer: 5000,
+                                        showConfirmButton:false,
+                                        title: response.add_to_cart+"!",
+                                    })
+
+                                   $('.cart-count').text(response.cart_count);
+
+                                }
+                                else
+                                {
+                                    Swal.fire({
+                                    icon: "error",
+                                    text: res,
+                                    toast: true,
+                                    position: 'top-right',
+                                    timer: 5000,
+                                    showConfirmButton:false,
+                                    title: response.error+"!",
+                                    })
+                                }
+
+                                $('.product'+product_id).text('Added');
+                            }
+                        });
+           }
+           else
+           {
+                for(var i = 0; i < loopTime; i++)
+                {
+                    $.ajax({
+                            url: "{{route('ajax-add-to-cart')}}",
+                            type: 'post',
+                            data:{
+                                _token:"{{csrf_token()}}",
+                                product_id
+                            },
+                            success: function(response) 
+                            {
+                                if(response.add_to_cart)
+                                {
+                                    $('.cart-count').text(response.cart_count);
+                                }
+                                // else
+                                // {
+                                //     Swal.fire({
+                                //     icon: "error",
+                                //     text: res,
+                                //     toast: true,
+                                //     position: 'top-right',
+                                //     timer: 5000,
+                                //     showConfirmButton:false,
+                                //     title: response.error+"!",
+                                //     })
+                                // }
+                            }
+                        });
+                }
+
+                //var res = response.msg;
+                                    Swal.fire({
+                                        icon: "success",
+                                        text: "Gift Card successfully added to cart",
+                                        toast: true,
+                                        position: 'top-right',
+                                        timer: 5000,
+                                        showConfirmButton:false,
+                                        title: "Added!",
+                                    })
+                
+                $('.product'+product_id).text('Added');
+           }            
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#product').on('change', function() {
+               var prodId = $(this).val();
+               if(prodId != "")
+               {   
+                   $('.wishlist_rows').hide();
+                   $('#wishlist'+prodId).show();
+                   $('#product'+prodId).show();
+               }
+               else
+               {
+                  $('.wishlist_rows').hide();
+               }
+            });
+        });
     </script>
 
 </body>

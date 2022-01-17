@@ -79,6 +79,7 @@ class HomeController extends Controller
         $orders=Order::orderBy('id','DESC')->where('user_id',auth()->user()->id)->paginate(10);
         return view('user.order.index')->with('orders',$orders);
     }
+
     public function userOrderDelete($id)
     {
         $order=Order::find($id);
@@ -109,8 +110,10 @@ class HomeController extends Controller
         // return $order;
         return view('user.order.show')->with('order',$order);
     }
+
     // Product Review
-    public function productReviewIndex(){
+    public function productReviewIndex()
+    {
         $reviews=ProductReview::getAllUserReview();
         return view('user.review.index')->with('reviews',$reviews);
     }
@@ -173,6 +176,7 @@ class HomeController extends Controller
         $comments=PostComment::getAllUserComments();
         return view('user.comment.index')->with('comments',$comments);
     }
+
     public function userCommentDelete($id){
         $comment=PostComment::find($id);
         if($comment){
@@ -190,6 +194,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
+
     public function userCommentEdit($id)
     {
         $comments=PostComment::find($id);
@@ -234,6 +239,7 @@ class HomeController extends Controller
     public function changePassword(){
         return view('user.layouts.userPasswordChange');
     }
+
     public function changPasswordStore(Request $request)
     {
         $request->validate([
@@ -246,6 +252,4 @@ class HomeController extends Controller
 
         return redirect()->route('user')->with('success','Password successfully changed');
     }
-
-
 }

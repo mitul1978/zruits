@@ -114,7 +114,7 @@
 																	@endif
 																</td>
 																<td>
-																	<span class="badge {{$order->order_status->class}}">{{$order->order_status->name}}</span>															
+																	<span class="badge {{@$order->order_status->class}}">{{@$order->order_status->name}}</span>															
 																</td>
 																<td>
 																	<a href="{{route('invoice',$order->id)}}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
@@ -222,10 +222,11 @@
 
 								    <div class="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
 								    	<form method="POST" action="{{route('user-profile-update',auth()->user()->id)}}"> 
+											@csrf
 			                				<div class="row">
 			                					<div class="col-sm-6">
 			                						<label>Full Name *</label>
-			                						<input type="text" class="form-control" value="{{auth()->user()->name}}" required>
+			                						<input type="text" class="form-control" name="name" value="{{auth()->user()->name}}"  required>
 			                					</div><!-- End .col-sm-6 -->
 
 			                					{{-- <div class="col-sm-6">

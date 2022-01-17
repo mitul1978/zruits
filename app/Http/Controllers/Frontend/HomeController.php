@@ -9,6 +9,7 @@ use App\Models\State;
 use App\Models\Pincode;
 use App\Models\Texture;
 use App\Models\Laminate;
+use App\Models\Product;
 use App\Models\Catalogue;
 use App\Models\Application;
 use Illuminate\Http\Request;
@@ -49,16 +50,22 @@ class HomeController extends Controller
         // else
         // {
             // return view('frontend.pages.home_desktop');
-            $categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
-            return view('frontend.index');
+           // $categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
+            $products = Product::where('status','active')->get();
+            return view('frontend.index',compact('products'));
         // }
+    }
+
+    public function giftcard()
+    {   
+        $giftcards = Product::where('status','active')->where('is_giftcard',1)->get();
+        return view('frontend.giftcard',compact('giftcards'));
     }
 
     public function notFound()
     {
         return view('frontend.404');
     }
-
 
     public function aboutus()
     {

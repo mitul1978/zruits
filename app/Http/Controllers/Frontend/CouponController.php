@@ -14,19 +14,20 @@ class CouponController extends Controller
     public function couponStore(Request $request){
         
         $coupon=Coupon::where('code',$request->code)->first();
+
         if(!$coupon){
             Alert::error('The coupon code you entered is not valid.');
             return back();
         }
-        if($coupon){
-
-            if(@Session::get('coupon')['code']==$request->code){
+        if($coupon)
+        {
+            if(@Session::get('coupon')['code']==$request->code)
+            {
                 session()->pull('coupon');
-            Alert::success('Coupon successfully removed');
-
-
-            }else{
-
+                Alert::success('Coupon successfully removed');
+            }
+            else
+            {
                 $total_price=get_cart_taxable_amount();
                 $coupon_data=[
                     'id'=>$coupon->id,

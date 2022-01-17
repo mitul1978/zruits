@@ -152,10 +152,10 @@ class CouponController extends Controller
         }
     }
 
-    public function couponStore(Request $request){
-        // return $request->all();
+    public function couponStore(Request $request)
+    {
         $coupon=Coupon::where('code',$request->code)->first();
-        // dd($coupon);
+        dd($coupon);
         if(!$coupon){
             request()->session()->flash('error','Invalid coupon code, Please try again');
             return back();

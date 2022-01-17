@@ -1,47 +1,37 @@
-@extends('frontend.layouts.app')
-@section('content')
-<link rel="stylesheet" href="{{asset('backend/css/sweetalert.min.css')}}" />
-
-@include('frontend.layouts.svg-icons')
-    @livewire('cart')
-@endsection
-
+@extends('layouts.app')
+  @section('content')
+      <link rel="stylesheet" href="{{asset('backend/css/sweetalert.min.css')}}" />
+      @include('frontend_newold.layouts.svg-icons')
+      @livewire('cart')
+  @endsection
 @section('scripts')
 <script src="{{asset('backend/js/sweetalert.min.js')}}"></script>
-
 <script type="text/javascript">
 	// e-commerce js
-
   // We're sorry! Only 5 unit(s) allowed in each order
 
-  $( document ).ready(function() {
-
-    window.addEventListener('swal:confirm', event => { 
-
-      console.log(event.detail)
-    swal({
-        title: event.detail.message,
-        text: event.detail.text,
-        icon: event.detail.type,
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          window.livewire.emit('cartDelete',event.detail.product_id);
-        }
+  $( document ).ready(function() 
+  {
+      window.addEventListener('swal:confirm', event => { 
+        swal({
+            title: event.detail.message,
+            text: event.detail.text,
+            icon: event.detail.type,
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              window.livewire.emit('cartDelete',event.detail.product_id);
+            }
+          });
       });
-  });
-
     
       $('.input-number').on('input',function(){
-        var product_id = $(this).data('product_id');
-        var product_qty = parseInt($(this).val());
-
-        var product_price = $('#product_price'+product_id).data('price');
-
-        $('.product_total'+product_id).text(product_price*product_qty);
-      
+            var product_id = $(this).data('product_id');
+            var product_qty = parseInt($(this).val());
+            var product_price = $('#product_price'+product_id).data('price');
+            $('.product_total'+product_id).text(product_price*product_qty);      
       })
 
       $('.input-number').on('change',function(){
@@ -49,14 +39,10 @@
         // var product_qty = parseInt($(this).val());
         // var min = $('#cart_item_count'+product_id).attr('min');
         // var product_price = $('#product_price'+product_id).data('price');
-
-        
         // if(min <=product_qty){
-
         // }else{
         //   $('#cart_item_count'+product_id).val(min);
         //   $('.product_total'+product_id).text(product_price*min);
-
         //   swal({
         //           // title: "Are you sure?",
         //           text: "We're sorry! Minimum limit "+min+" unit(s) allowed in this product",
@@ -67,13 +53,12 @@
         // }
       })  
 
-
       $('.update_cart_btn').click(function(){
           $('.cart_update_form').submit();
       })
 
-
       $('.cart_product_qunity_change').click(function(e){
+
         var product_id = $(this).data('product_id');
         var action = $(this).attr('action_type');
 
@@ -103,7 +88,9 @@
                   buttons: false,  
                   // dangerMode: false,
               });
-        }else{
+        }
+        else
+        {
           var product_qty = $('#cart_item_count'+product_id).val();
           var product_price = $('#product_price'+product_id).data('price');
           ++product_qty

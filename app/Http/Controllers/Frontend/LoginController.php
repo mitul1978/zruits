@@ -40,9 +40,9 @@ class LoginController extends Controller
         $data= $request->all();
 
         $redirectTo = preg_match('(login|register)', session()->get('custome_intended')) == 1  ? '/user' : session()->get('custome_intended');
-
+        
         if(Auth::attempt(['email' => $data['email'], 'password' => $data['password'],'status'=>'active','role'=>'user']))
-        {           
+        {  
             Session::put('user',$data['email']);
 
             Alert::success('Hello '. Auth::user()->name, 'You have been logged in successfully');
