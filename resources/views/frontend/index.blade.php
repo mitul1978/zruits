@@ -30,10 +30,10 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 mb-1 mb-sm-0"">
-                <img src="https://frugalonline.in/wp-content/uploads/2021/11/royaloffer-horizontal-600x200.jpg" alt="">
+                <img src="assets/images/home/offer-2.jpeg" alt="">
             </div>
             <div class="col-sm-6">
-                <img src="https://frugalonline.in/wp-content/uploads/2021/11/royaloffer-horizontal-2-600x200.jpg" alt="">
+                <img src="assets/images/home/offer-1.jpeg" alt="">
             </div>
         </div>
     </div>
