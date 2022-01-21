@@ -9,7 +9,7 @@ use Session;
 
 class CartList extends Component
 {   
-    protected $listeners = ['listCartProducts' => 'listCartProducts','cartDelete','removeToCart']; // ['cartUpdated' => '$refresh'];
+    protected $listeners = ['listCartProducts' => 'listCartProducts','cartDelete','removeToCart','cartUpdated' => '$refresh'];
     public $cartItems = [];
 
     public $show_order_note = 0;
@@ -31,7 +31,7 @@ class CartList extends Component
         $this->show_order_note = Session::get('order_note') ? 1 :0;
         $this->order_note =  Session::get('order_note');
         $this->listCartProducts();
-        $this->emit('updateCartCount');       
+        //$this->emit('updateCartCount');       
     }
 
     public function alertConfirmDelete($product_id)

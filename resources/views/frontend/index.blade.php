@@ -211,7 +211,6 @@
                         }
                     }'>
 
-
                     @if(isset($products) && $products->isNotEmpty())
                        @foreach ($products as $product)
                            <div class="product product-7 text-center">
@@ -236,7 +235,7 @@
                                     </div><!-- End .product-cat -->
                                     <h3 class="product-title"><a href="product.html">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
-                                        ₹60 <small>(MRP incl Taxes)</small>
+                                        ₹{{$product->price }} <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
                                     <div class="atc-container">                                        
                                         <div class="mb-0">                                    

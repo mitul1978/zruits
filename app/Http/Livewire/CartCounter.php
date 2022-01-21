@@ -10,7 +10,7 @@ class CartCounter extends Component
 
     public $count = 0;
 
-    protected $listeners = ['updateCartCount' => 'updateCartCount'];
+    protected $listeners = ['updateCartCount' => 'updateCartCount',];
 
 
     public function updateCartCount()

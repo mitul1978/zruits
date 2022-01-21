@@ -51,7 +51,7 @@ class HomeController extends Controller
         // {
             // return view('frontend.pages.home_desktop');
            // $categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
-            $products = Product::where('status','active')->get();
+            $products = Product::where('status','active')->where('is_giftcard',0)->get();
             return view('frontend.index',compact('products'));
         // }
     }
@@ -60,6 +60,18 @@ class HomeController extends Controller
     {   
         $giftcards = Product::where('status','active')->where('is_giftcard',1)->get();
         return view('frontend.giftcard',compact('giftcards'));
+    }
+
+    public function comingSoon(){
+        return view('frontend.coming-soon');
+    }
+
+    public function dashboard(){
+        return view('frontend.dashboard');
+    }
+
+    public function contact(){
+        return view('frontend.contact');
     }
 
     public function notFound()
@@ -72,7 +84,13 @@ class HomeController extends Controller
         return view('frontend.pages.about-us');
     }
 
+    public function getProduct(){
+        return view('frontend.single');
+    }
 
+    public function getCategoriesProducts($id= null){
+        return view('frontend.category');
+    }
 
     public function catalogues()
     {
