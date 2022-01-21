@@ -24,14 +24,14 @@
 		                <div class="col-sm-6 mb-2">
 		                    <a href="category.html">
 		                        <div class="overflow-hidden rounded-lg">
-		                            <img src="https://frugalonline.in/wp-content/uploads/2021/08/RED-TAG.jpg" alt="Buy 3 Get 2"  class="scale-11">
+		                            <img src="assets/images/home/offer-2.jpeg" alt="Buy 3 Get 2"  class="scale-11">
 		                        </div>
 		                    </a>
 		                </div>
 		                <div class="col-sm-6">
 		                    <a href="category.html">
 		                        <div class="overflow-hidden rounded-lg">
-		                            <img src="https://frugalonline.in/wp-content/uploads/2021/08/ROYAL.jpg" alt="Buy 3 Get 2" class="scale-11">
+		                            <img src="assets/images/home/offer-1.jpeg" alt="Buy 3 Get 2" class="scale-11">
 		                        </div>
 		                    </a>
 		                </div>

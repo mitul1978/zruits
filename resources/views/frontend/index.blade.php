@@ -1,117 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <style type="text/css">
-        .home-menu-section {
-            width: 100%;
-            padding: 10px 0px 0px 10px;
-            display: inline-block;
-            overflow: hidden;
-        }
-        .home-menu-section ul {
-            white-space: nowrap;
-            overflow-x: scroll;
-            overflow-y: hidden;
-            padding-left: 0px;
-            scroll-behavior: smooth;
-            will-change: transform;
-            transform: translateZ(0px);
-            margin-bottom: 2px;
-        }
-        .home-menu-section li {
-            width: 20%;
-            display: inline-block;
-            vertical-align: top;
-            margin-right: 2%;
-            text-align: center;
-            margin-bottom: 0px;
-        }
-        .home-menu-section li img {
-            float: left;
-            margin-bottom: 5px;
-        }
-        .home-menu-section li .first-slider-title {
-            font-size: 10px;
-            width: 100%;
-            display: inline-block;
-            float: left;
-            color: #343333;
-            font-weight: 600;
-        }
-        @media (min-width: 768px) {
-            .home-menu-section {
-                display: none !important;
-            }
-        }
-    </style>
-
 <main class="main">
-
-    <div class="home-menu-section">
-        <ul>
-            <li>
-                <a href="/anarkali">
-                    <img src="https://www.globaldesi.in/media/homepage_content/2/0/20210916_gd_kurta_sets_women.jpg" alt="Anarkali">
-                    <span class="first-slider-title">Anarkali</span>
-                </a>
-            </li>
-            <li>
-                <a href="/plazo">
-                    <img src="https://www.globaldesi.in/media/homepage_content/2/0/20210916_gd_women_clothing.jpg" alt="Clothing for Women Online">
-                    <span class="first-slider-title">Plazo</span>
-                </a>
-            </li>
-            <li>
-                <a href="ghaghra-choli">
-                    <img src="https://www.globaldesi.in/media/homepage_content/2/0/20210916_gd_women_clothing.jpg" alt="Ghaghra Choli">
-                    <span class="first-slider-title">Ghaghra Choli</span>
-                </a>
-            </li>
-            <li>
-                <a href="/crop-top">
-                    <img src="https://www.globaldesi.in/media/homepage_content/2/1/211221-global-desi-eoss.jpg" alt="Crop Top">
-                    <span class="first-slider-title">Crop Top</span>
-                </a>
-            </li>
-            <li>
-                <a href="/gown">
-                    <img src="https://www.globaldesi.in/media/homepage_content/g/l/global-desi-casual-wear-kurta-21.jpg" alt="Gown">
-                    <span class="first-slider-title">Gown</span>
-                </a>
-            </li>
-            <li>
-                <a href="/anarkali">
-                    <img src="https://www.globaldesi.in/media/homepage_content/2/0/20210916_gd_kurta_sets_women.jpg" alt="Anarkali">
-                    <span class="first-slider-title">Anarkali</span>
-                </a>
-            </li>
-            <li>
-                <a href="/plazo">
-                    <img src="https://www.globaldesi.in/media/homepage_content/2/0/20210916_gd_women_clothing.jpg" alt="Clothing for Women Online">
-                    <span class="first-slider-title">Plazo</span>
-                </a>
-            </li>
-            <li>
-                <a href="ghaghra-choli">
-                    <img src="https://www.globaldesi.in/media/homepage_content/2/0/20210916_gd_women_clothing.jpg" alt="Ghaghra Choli">
-                    <span class="first-slider-title">Ghaghra Choli</span>
-                </a>
-            </li>
-            <li>
-                <a href="/crop-top">
-                    <img src="https://www.globaldesi.in/media/homepage_content/2/1/211221-global-desi-eoss.jpg" alt="Crop Top">
-                    <span class="first-slider-title">Crop Top</span>
-                </a>
-            </li>
-            <li>
-                <a href="/gown">
-                    <img src="https://www.globaldesi.in/media/homepage_content/g/l/global-desi-casual-wear-kurta-21.jpg" alt="Gown">
-                    <span class="first-slider-title">Gown</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-
     <div class="intro-slider-container">
         <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false}'>
             <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/2/1/211221-d-global-desi-eoss-women-clothing_1.jpg);">
@@ -140,10 +30,10 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 mb-1 mb-sm-0"">
-                <img src="https://frugalonline.in/wp-content/uploads/2021/11/royaloffer-horizontal-600x200.jpg" alt="">
+                <img src="assets/images/home/offer-2.jpeg" alt="">
             </div>
             <div class="col-sm-6">
-                <img src="https://frugalonline.in/wp-content/uploads/2021/11/royaloffer-horizontal-2-600x200.jpg" alt="">
+                <img src="assets/images/home/offer-1.jpeg" alt="">
             </div>
         </div>
     </div>

@@ -37,6 +37,11 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/contact','HomeController@contact');
 
     // Wishlist
+
+    Route::get('/offers',function(){
+        return view('user.pages.offers');
+    });
+
     Route::get('/wishlist',function(){
         return view('user.pages.wishlist');
     })->name('wishlist')->middleware('user');
