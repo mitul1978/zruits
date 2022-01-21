@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>ROYALE TOUCHE || Login Page</title>
+  <title>Zehna || Login Page</title>
   @include('backend.layouts.head')
 
 </head>

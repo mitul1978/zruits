@@ -85,15 +85,23 @@
                                         <div class="pwgc-subtitle"><span id="pwgc-message-characters-remaining">500</span> characters remaining</div>
                                     </div>
                                     <div class="product-details-action"> 
-                                        @foreach ($giftcards as $product)
+                                        @foreach ($giftcards as $key => $product)
+                                          @if($key == 0)
+                                            <a href="javascript:void(0);" class="btn-product btn-cart wishlist_rows add_to_cart" data-id="{{$product->id}}" id="product{{$product->id}}"><span class="product{{$product->id}}">add to cart</span></a>
+                                          @else
                                           <a href="javascript:void(0);" style="display:none;" class="btn-product btn-cart wishlist_rows add_to_cart" data-id="{{$product->id}}" id="product{{$product->id}}"><span class="product{{$product->id}}">add to cart</span></a>
+                                          @endif
                                         @endforeach  
 
                                         <div class="details-action-wrapper"> 
                                             @if(is_user_logged_in())                                            
-                                                @foreach ($giftcards as $product)
-                                                    <a href="javascript:void(0);" style="display:none;" class="btn-product btn-wishlist wishlist_rows add_to_wishlist" data-id="{{$product->id}}" title="Wishlist"  id="wishlist{{$product->id}}"><span class="add_to_wishlist_msg{{$product->id}}">Add to Wishlist</span></a>                                                   
-                                                @endforeach  
+                                                @foreach ($giftcards as $key => $product)
+                                                   @if($key == 0)
+                                                    <a href="javascript:void(0);" class="btn-product btn-wishlist wishlist_rows add_to_wishlist" data-id="{{$product->id}}" title="Wishlist"  id="wishlist{{$product->id}}"><span class="add_to_wishlist_msg{{$product->id}}">Add to Wishlist</span></a>                                                   
+                                                   @else
+                                                     <a href="javascript:void(0);" style="display:none;" class="btn-product btn-wishlist wishlist_rows add_to_wishlist" data-id="{{$product->id}}" title="Wishlist"  id="wishlist{{$product->id}}"><span class="add_to_wishlist_msg{{$product->id}}">Add to Wishlist</span></a>    
+                                                   @endif
+                                               @endforeach  
                                             @else
                                                 <a href="#signin-modal" data-toggle="modal" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
                                             @endif     
