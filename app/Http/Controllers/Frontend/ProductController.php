@@ -16,81 +16,62 @@ use DB;
 class ProductController extends Controller
 {
 
-    public function products(Request $request){
-
-
+    public function products(Request $request)
+    {
         $requestData = $request->all();
         $keyword  = $request->get('search') ;
 
-        $laminates=Laminate::where('status','1')->get();
-        $applications=Application::where('status','1')->get();
-        $textures=Texture::where('status','1')->get();
+        // $laminates=Laminate::where('status','1')->get();
+        // $applications=Application::where('status','1')->get();
+        // $textures=Texture::where('status','1')->get();
         $count = Product::where('status','1')->count();
-        $selected_lam=[];
-        $selected_apps=[];
-        $selected_text=[];
+        // $selected_lam=[];
+        // $selected_apps=[];
+        // $selected_text=[];
 
-        if(count( $requestData)){
-            $selected_lam = @$requestData['laminates'] ? explode(',',$requestData['laminates'] ) : [];
-            $selected_apps = @$requestData['applications'] ? explode(',',$requestData['applications'] ) : [];
-            $selected_text = @$requestData['textures'] ? explode(',',$requestData['textures'] ) : [];
-        }
+        // if(count( $requestData)){
+        //     $selected_lam = @$requestData['laminates'] ? explode(',',$requestData['laminates'] ) : [];
+        //     $selected_apps = @$requestData['applications'] ? explode(',',$requestData['applications'] ) : [];
+        //     $selected_text = @$requestData['textures'] ? explode(',',$requestData['textures'] ) : [];
+        // }
 
 
-            $products=Product::withCount('user_wishlist')->where(function($q) use( $selected_lam){
-                if(count($selected_lam))
-                $q->whereHas('laminates',function($laminate) use( $selected_lam){
-                    if(count($selected_lam))
-                    $laminate->whereIn('name', $selected_lam);
-                });
+            $products=Product::withCount('user_wishlist')
+            // ->where(function($r) use( $selected_apps){
+            //     if(count($selected_apps))
+            //     $r->whereHas('applications',function($application) use( $selected_apps){
+            //         if(count($selected_apps))
+            //         $application->whereIn('name', $selected_apps);
+            //     });
 
-            })
-            ->where(function($r) use( $selected_apps){
-                if(count($selected_apps))
-                $r->whereHas('applications',function($application) use( $selected_apps){
-                    if(count($selected_apps))
-                    $application->whereIn('name', $selected_apps);
-                });
-
-            })
-            ->where(function($s) use( $selected_text){
-                if(count($selected_text))
-                $s->whereHas('textures',function($texture) use( $selected_text){
-                    if(count($selected_text))
-                    $texture->whereIn('name', $selected_text);
-                });
-
-            })
+            // })            
             ->where(function($t) use( $keyword){
                 if(@$keyword)
                 $t->where('name', 'LIKE', "%$keyword%")
                 ->orWhere('slug', 'LIKE', "%$keyword%");
             })
 
-            ->where('status','1')->orderBy('sort_order','ASC')->paginate(9);
+            ->where('status','active')->where('is_giftcard',0)->latest()->paginate(9);
 
-
-
-        if ($request->ajax()) {
+        if ($request->ajax()) 
+        {
             return response()->json($products);
-        }else{
-
-          return view('frontend.pages.products',compact('products','laminates','applications','selected_apps','selected_lam','selected_text','textures'));
+        }
+        else
+        {
+          return view('frontend.products',compact('products'));
         }
     }
 
 
 
-public function product(Request $request){
+    public function product(Request $request)
+    {
+        $product = Product::withCount('user_wishlist')->with('available:product_texture,id,slug,fullsheet_view,a4sheet_view','color_palettes','thicknesses')->where('slug',$request->slug)->first();
+        $color_palette_products = Product::with('color_palettes')->whereHas('color_palettes',function($query) use($product){
+            $query->where('color_palette_id',$product->color_palettes->pluck('id')->toArray());
+        })->get();
 
-    $product = Product::withCount('user_wishlist')->with('available:product_texture,id,slug,fullsheet_view,a4sheet_view','color_palettes','thicknesses')->where('slug',$request->slug)->first();
-
-    $color_palette_products = Product::with('color_palettes')->whereHas('color_palettes',function($query) use($product){
-        $query->where('color_palette_id',$product->color_palettes->pluck('id')->toArray());
-    })->get();
-
-     return view('frontend.pages.product',compact('product','color_palette_products'));
-
+        return view('frontend.pages.product',compact('product','color_palette_products'));
     }
-
 }

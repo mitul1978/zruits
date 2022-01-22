@@ -4,21 +4,26 @@
 <main class="main">
     <div class="intro-slider-container">
         <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false}'>
-            <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/2/1/211221-d-global-desi-eoss-women-clothing_1.jpg);">
-                <div class="container intro-content">
-                </div><!-- End .container intro-content -->
-            </div><!-- End .intro-slide -->
-
-            <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/2/1/211221-d-global-desi-eoss-women-clothing_1.jpg);">
-                <div class="container intro-content">
-                </div><!-- End .container intro-content -->
-            </div><!-- End .intro-slide -->
-
-            <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/d/-/d-gd-ww.jpg);">
-                <div class="container intro-content">
-                        
-                </div><!-- End .container intro-content -->
-            </div><!-- End .intro-slide -->
+            <a href="/products">
+                <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/2/1/211221-d-global-desi-eoss-women-clothing_1.jpg);">
+                    <div class="container intro-content">
+                    </div><!-- End .container intro-content -->
+                </div><!-- End .intro-slide -->
+            </a> 
+            
+            <a href="/products">
+                <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/2/1/211221-d-global-desi-eoss-women-clothing_1.jpg);">
+                    <div class="container intro-content">
+                    </div><!-- End .container intro-content -->
+                </div><!-- End .intro-slide -->
+            </a>    
+ 
+            <a href="/products">
+                <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/d/-/d-gd-ww.jpg);">
+                    <div class="container intro-content">                        
+                    </div><!-- End .container intro-content -->
+                </div><!-- End .intro-slide -->
+            </a>    
         </div><!-- End .owl-carousel owl-simple -->
 
         <span class="slider-loader text-white"></span><!-- End .slider-loader -->
@@ -125,7 +130,7 @@
                                     </div><!-- End .product-cat -->
                                     <h3 class="product-title"><a href="product.html">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
-                                        ₹{{$product->price }} <small>(MRP incl Taxes)</small>
+                                        ₹ {{$product->price }} <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
                                     <div class="atc-container">                                        
                                         <div class="mb-0">                                    
