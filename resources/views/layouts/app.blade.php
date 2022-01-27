@@ -239,6 +239,20 @@
         });
     </script>
 
+    <script>
+        // $(".customFilterData").live("click", function () {
+        //     $("input:checkbox[class=customFilterData]:checked").each(function () {
+        //         alert("Id: " + $(this).attr("id") + " Value: " + $(this).val());
+        //     });
+        // });
+
+        $('.customFilterData').change(function() {
+            $("input:checkbox[class=customFilterData]:checked").each(function () {
+                alert("Id: " + $(this).attr("id") + " Value: " + $(this).val());
+            });
+        });
+    </script>
+
 </body>
 
 </html>

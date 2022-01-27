@@ -3,25 +3,33 @@
 @section('main-content')
 
 <div class="card">
-    <h5 class="card-header">Edit State</h5>
+    <h5 class="card-header">Edit Color</h5>
     <div class="card-body">
-      <form method="post" action="{{route('states.update',$state->id)}}">
+      <form method="post" action="{{route('colors.update',$color->id)}}">
         @csrf
         @method('PATCH')
 
         <div class="form-group">
-          <label for="name" class="col-form-label">Coupon Code <span class="text-danger">*</span></label>
-          <input id="name" type="text" name="name" placeholder="Enter State Name"  value="{{$state->name}}" class="form-control">
+          <label for="name" class="col-form-label">Color Name <span class="text-danger">*</span></label>
+          <input id="name" type="text" name="name" placeholder="Enter Color Name"  value="{{$color->name}}" class="form-control">
             @error('name')
               <span class="text-danger">{{$message}}</span>
             @enderror
-        </div>        
+        </div>  
+
+        <div class="form-group">
+          <label for="code" class="col-form-label">Color Code <span class="text-danger">*</span></label>
+          <input id="code" type="text" name="code" placeholder="Enter Color Code"  value="{{$color->code}}" class="form-control">
+            @error('code')
+              <span class="text-danger">{{$message}}</span>
+            @enderror
+        </div>  
 
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
-              <option value="1" {{$state->status == 1 ?? 'selected'}}>Active</option>
-              <option value="0" {{$state->status == 0 ?? 'selected'}}>Inactive</option>
+              <option value="1" {{$color->status == 1 ?? 'selected'}}>Active</option>
+              <option value="0" {{$color->status == 0 ?? 'selected'}}>Inactive</option>
           </select>
           @error('status')
              <span class="text-danger">{{$message}}</span>

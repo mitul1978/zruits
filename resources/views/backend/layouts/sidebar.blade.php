@@ -91,14 +91,16 @@
         <div id="ProductSettingCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Setting Options:</h6>
-            <a class="collapse-item" href="{{route('application.index')}}">Application</a>
+            {{-- <a class="collapse-item" href="{{route('application.index')}}">Application</a>
             <a class="collapse-item" href="{{route('attribute.index')}}">Attribute</a>
             <a class="collapse-item" href="{{route('characteristic.index')}}">Characteristic</a>
             <a class="collapse-item" href="{{route('color-palette.index')}}">Color Palette</a>
             <a class="collapse-item" href="{{route('feature.index')}}">Feature</a>
             <a class="collapse-item" href="{{route('laminate.index')}}">Laminate</a>
             <a class="collapse-item" href="{{route('texture.index')}}">Texture</a>
-            <a class="collapse-item" href="{{route('thickness.index')}}">Thickness</a>
+            <a class="collapse-item" href="{{route('thickness.index')}}">Thickness</a> --}}
+            <a class="collapse-item" href="{{route('colors.index')}}">Colors</a>
+            <a class="collapse-item" href="{{route('sizes.index')}}">Sizes</a>
 
           </div>
         </div>

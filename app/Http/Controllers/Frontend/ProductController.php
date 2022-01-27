@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Application;
 use App\Models\Laminate;
 use App\Models\Texture;
+use App\Models\Size;
+use App\Models\Color;
 use App\Models\ColorPalette;
 
 Use Alert;
@@ -19,7 +21,7 @@ class ProductController extends Controller
     public function products(Request $request)
     {
         $requestData = $request->all();
-        $keyword  = $request->get('search') ;
+        $keyword  = $request->get('search');
 
         // $laminates=Laminate::where('status','1')->get();
         // $applications=Application::where('status','1')->get();
@@ -52,14 +54,17 @@ class ProductController extends Controller
             })
 
             ->where('status','active')->where('is_giftcard',0)->latest()->paginate(9);
+        $sizes = Size::where('status',1)->get();
+        $colors = Color::where('status',1)->get();
 
         if ($request->ajax()) 
         {
             return response()->json($products);
         }
         else
-        {
-          return view('frontend.products',compact('products'));
+        {  
+          $pageType = 'Shop By Products';
+          return view('frontend.products',compact('products','pageType','sizes','colors'));
         }
     }
 

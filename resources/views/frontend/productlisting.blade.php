@@ -5,7 +5,7 @@
                                                     <figure class="product-media">
                                                         <span class="product-label label-new">New</span>
                                                         <a href="{{route('product',encrypt($product->id))}}">
-                                                            <img src="assets/images/products/product-4.jpg" alt="{{$product->name}}" class="product-image">
+                                                            <img src="{{url('assets/images/products/product-4.jpg')}}" alt="{{$product->name}}" class="product-image">
                                                         </a>
 
                                                         <div class="product-action-vertical">
@@ -36,7 +36,7 @@
                                             </div><!-- End .col-sm-6 col-lg-4 -->
                                         @endforeach  
 @endif      
-
+{{-- <br><br>
 <div id="pagination" class="paddingTopBottom-xxl pull-left widthFull">
     <!--$data->appends(@$urlParam)->render()-->
     <span class="pull-left pagination-count">Showing <b>{{$products->firstItem()}} - {{$products->perPage() * $products->currentPage()
@@ -46,4 +46,4 @@
     <input type="hidden" id="totalCount" value="{{$products->total()}}">
     <input type="hidden" id="sort_column" value= "{{@$column}}">
     <input type="hidden" id="sort_order" value= "{{@$order}}">
-</div>
+</div> --}}

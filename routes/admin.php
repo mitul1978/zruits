@@ -21,6 +21,12 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     //distributor
     Route::resource('distributor','DistributorController');
 
+    //color master
+    Route::resource('colors','ColorController');
+
+    //size master
+    Route::resource('sizes','SizeController');
+
     //States
     Route::resource('states','StateController');
     Route::post('get_cities_by_state_id','StateController@get_cities_by_state_id');

@@ -68,6 +68,26 @@
 
             <div class="col-md-3">
               <div class="form-group">
+                <label for="is_new">Is New</label><br>
+                <input type="checkbox" name='is_new' id='is_new' value='1' > Yes
+                @error('is_new')
+                  <span class="text-danger">{{$message}}</span>
+                @enderror
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="is_bestsellers">Is Bestseller</label><br>
+                <input type="checkbox" name='is_bestsellers' id='is_bestsellers' value='1' > Yes
+                @error('is_bestsellers')
+                  <span class="text-danger">{{$message}}</span>
+                @enderror
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
                   <label for="price" class="col-form-label">Price(INR) <span class="text-danger">*</span></label>
                   <input id="price" type="number" name="price" placeholder="Enter price" value="{{old('price')}}" class="form-control">
                   @error('price')

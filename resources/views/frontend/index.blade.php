@@ -35,10 +35,14 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 mb-1 mb-sm-0"">
-                <img src="assets/images/home/offer-2.jpeg" alt="">
+                <a href="/offers/xxxx">
+                   <img src="assets/images/home/offer-2.jpeg" alt="">
+                </a>
             </div>
             <div class="col-sm-6">
-                <img src="assets/images/home/offer-1.jpeg" alt="">
+                <a href="/offers/yyyy">
+                   <img src="assets/images/home/offer-1.jpeg" alt="">
+                </a>
             </div>
         </div>
     </div>
@@ -146,174 +150,6 @@
                             </div><!-- End .product -->
                        @endforeach
                     @endif
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <span class="product-label label-new">New</span>
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
-                                </a>
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Women</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹60 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">                                    
-                                    <div class="mb-0">
-                                        <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                    </div>
-                                </div>
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-5.jpg" alt="Product image" class="product-image">
-                                </a>
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Dresses</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Dark yellow lace cut out swing dress</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹84 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">                                    
-                                    <div class="mb-0">
-                                        <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                    </div>
-                                </div>
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Jeans</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹76 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-0">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <span class="product-label label-new">New</span>
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-8.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Shoes</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Beige knitted elastic runner shoes</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹84 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-0">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Jeans</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹76 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-0">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <span class="product-label label-new">New</span>
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Women</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹60 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-0">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
 
                 </div><!-- End .owl-carousel -->
             </div><!-- .End .tab-pane -->
@@ -359,180 +195,43 @@
                             }
                         }
                     }'>
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <span class="product-label label-new">New</span>
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
-                                </a>
 
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
+                    @if(isset($products) && $products->isNotEmpty())
+                       @foreach ($products as $product)
+                           <div class="product product-7 text-center">
+                                <figure class="product-media">
+                                    <span class="product-label label-new">New</span>
+                                    <a href="product.html">
+                                        <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
+                                    </a>
 
-                            </figure><!-- End .product-media -->
+                                    <div class="product-action-vertical">
+                                        @if(is_user_logged_in())
+                                          <a href="javascript:void(0);" class="btn-product-icon btn-wishlist btn-expandable add_to_wishlist" data-id="{{$product->id}}" id="wishlist{{$product->id}}"><span class="add_to_wishlist_msg{{$product->id}}">add to wishlist</span></a>
+                                        @else
+                                          <a href="#signin-modal" data-toggle="modal" class="btn-product-icon btn-wishlist btn-expandable" data-id="{{$product->id}}" id="wishlist{{$product->id}}"></a>
+                                        @endif
+                                    </div><!-- End .product-action-vertical -->
+                                </figure><!-- End .product-media -->
 
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Women</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹60 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-0">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-5.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Dresses</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Dark yellow lace cut out swing dress</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹84 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-0">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Jeans</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹76.00 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-0">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <span class="product-label label-new">New</span>
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-8.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Shoes</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Beige knitted elastic runner shoes</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹84 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-0">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Jeans</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹76 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-0">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <span class="product-label label-new">New</span>
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Women</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    ₹60 <small>(MRP incl Taxes)</small>
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-0">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Women</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="product.html">{{$product->name}}</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        ₹ {{$product->price }} <small>(MRP incl Taxes)</small>
+                                    </div><!-- End .product-price -->
+                                    <div class="atc-container">                                        
+                                        <div class="mb-0">                                    
+                                            <a href="javascript:void(0);" class="btn-cart add_to_cart" data-id="{{$product->id}}"><span class="product{{$product->id}}">Add to cart</span></a>
+                                        </div>
+                                    </div>
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                       @endforeach
+                    @endif
+                   
                     
                 </div><!-- End .owl-carousel -->
             </div><!-- .End .tab-pane -->

@@ -7,6 +7,8 @@ use App\Models\City;
 use App\Models\Category;
 use App\Models\State;
 use App\Models\Pincode;
+use App\Models\Size;
+use App\Models\Color;
 use App\Models\Texture;
 use App\Models\Laminate;
 use App\Models\Product;
@@ -89,11 +91,35 @@ class HomeController extends Controller
         return view('frontend.single');
     }
 
+    public function offers($slug = null)
+    {  
+        if($slug == 'xxxx')
+        {
+            $pageType = 'Buy 3 flat at Rs. 6500';
+        }
+        else if($slug == 'yyyy')
+        {
+            $pageType = 'Buy 2 and get the 3rd at 20% OFF';
+        }
+
+        $sizes = Size::where('status',1)->get();
+        $colors = Color::where('status',1)->get();        
+
+        $products = Product::withCount('user_wishlist')
+                    ->where('status','active')->where('is_giftcard',0)->latest()->paginate(9);
+
+        return view('frontend.products', compact('products','pageType','sizes','colors'));
+    }
+
     public function getCategoriesProducts(Request $request,$id= null)
     {        
         $requestData = $request->all();
         $keyword  = $request->get('search');
         $count = Product::where('status','active')->count();
+        $pageType = 'Shop By Categories';
+
+        $sizes = Size::where('status',1)->get();
+        $colors = Color::where('status',1)->get();
 
         if($id)
         {
@@ -104,8 +130,11 @@ class HomeController extends Controller
                           ->orWhere('slug', 'LIKE', "%$keyword%");
                         })
                         ->where('status','active')
-                        ->where('category_id',$id)
+                        ->where('category_id',decrypt($id))
                         ->where('is_giftcard',0)->latest()->paginate(9);
+
+            $category = Category::find(decrypt($id));
+            $pageType = 'Shop By Category ' . $category->title;            
         }
         else
         {
@@ -118,13 +147,11 @@ class HomeController extends Controller
                         ->where('status','active')->where('is_giftcard',0)->latest()->paginate(9);
         }
 
-        return view('frontend.products', compact('products'));
+        return view('frontend.products', compact('products','pageType','sizes','colors'));
     }
 
     public function catalogues()
     {
-
-
         $catalogues=Catalogue::where('status','1')->orderBy('sort_order','ASC')->get();
 
         // $catemail = CatalogueUserForm::where('userid',$userid)->first();

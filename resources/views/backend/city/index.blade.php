@@ -55,7 +55,7 @@
         </table>
         <span style="float:right">{{$cities->links()}}</span>
         @else
-          <h6 class="text-center">No cities found!!! Please create coupon</h6>
+          <h6 class="text-center">No cities found!!! Please create city</h6>
         @endif
       </div>
     </div>

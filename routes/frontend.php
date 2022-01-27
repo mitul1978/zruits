@@ -35,12 +35,12 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/coming-soon','HomeController@comingSoon');
     Route::get('/dashboard','HomeController@dashboard');
     Route::get('/contact','HomeController@contact');
-
+    Route::get('/offers/{slug}','HomeController@offers');
     // Wishlist
 
-    Route::get('/offers',function(){
-        return view('user.pages.offers');
-    });
+    // Route::get('/offers',function(){
+    //     return view('user.pages.offers');
+    // });
 
     Route::get('/wishlist',function(){
         return view('user.pages.wishlist');

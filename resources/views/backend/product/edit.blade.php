@@ -48,7 +48,6 @@
         </div>
 
         <div class="col-md-4">
-
           <div class="form-group">
             <label for="design" class="col-form-label">Design <span class="text-danger">*</span></label>
             <input id="design" type="text" name="design" placeholder="Enter Design"   value="{{old('design') ? old('design') : $product->design}}"class="form-control">
@@ -62,47 +61,64 @@
 
         <div class="row">
             <div class="col-md-4">
+                <div class="form-group">
+                  <label for="is_featured">Is Featured</label><br>
+                  <input type="checkbox" name='is_featured' {{$product->is_featured == 1 ? 'checked' :''}} id='is_featured' value='1' > Yes
+                  @error('is_featured')
+                    <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
+            </div>
 
-        <div class="form-group">
-          <label for="is_featured">Is Featured</label><br>
-          <input type="checkbox" name='is_featured' {{$product->is_featured == 1 ? 'checked' :''}} id='is_featured' value='1' > Yes
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="is_new">Is New</label><br>
+                <input type="checkbox" name='is_new' {{$product->is_new == 1 ? 'checked' :''}} id='is_new' value='1' > Yes
+                @error('is_new')
+                  <span class="text-danger">{{$message}}</span>
+                @enderror
+              </div>
+            </div>
 
-          @error('is_featured')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-    </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="is_bestsellers">Is Bestseller</label><br>
+                <input type="checkbox" name='is_bestsellers' {{$product->is_bestsellers == 1 ? 'checked' :''}} id='is_bestsellers' value='1' > Yes
+                @error('is_bestsellers')
+                  <span class="text-danger">{{$message}}</span>
+                @enderror
+              </div>
+            </div>
 
 
-        <div class="col-md-4">
 
-        <div class="form-group">
-            <label for="price" class="col-form-label">Price(INR) <span class="text-danger">*</span></label>
-            <input id="price" type="number" name="price" placeholder="Enter price" value="{{old('price') ? old('price') : $product->price}}" class="form-control">
-            @error('price')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-          </div>
-        </div>
-  {{--
-          <div class="form-group">
-            <label for="discount" class="col-form-label">Discount(%)</label>
-            <input id="discount" type="number" name="discount" min="0" max="100" placeholder="Enter discount"  value="{{old('discount')}}" class="form-control">
-            @error('discount')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-          </div> --}}
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="price" class="col-form-label">Price(INR) <span class="text-danger">*</span></label>
+                <input id="price" type="number" name="price" placeholder="Enter price" value="{{old('price') ? old('price') : $product->price}}" class="form-control">
+                @error('price')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
+              </div>
+            </div>
+            {{--
+            <div class="form-group">
+              <label for="discount" class="col-form-label">Discount(%)</label>
+              <input id="discount" type="number" name="discount" min="0" max="100" placeholder="Enter discount"  value="{{old('discount')}}" class="form-control">
+              @error('discount')
+              <span class="text-danger">{{$message}}</span>
+              @enderror
+            </div> --}}
 
 
           <div class="col-md-4">
-
-          <div class="form-group">
-            <label for="stock_quantity">Stock Quantity </label>
-            <input id="stock_quantity" type="number" name="stock_quantity" min="0" placeholder="Enter Stock quantity"  value="{{old('stock_quantity') ? old('stock_quantity') : $product->stock_quantity}}" class="form-control">
-            @error('stock_quantity')
-            <span class="text-danger">{{$message}}</span>
-            @enderror
-          </div>
+            <div class="form-group">
+              <label for="stock_quantity">Stock Quantity </label>
+              <input id="stock_quantity" type="number" name="stock_quantity" min="0" placeholder="Enter Stock quantity"  value="{{old('stock_quantity') ? old('stock_quantity') : $product->stock_quantity}}" class="form-control">
+              @error('stock_quantity')
+              <span class="text-danger">{{$message}}</span>
+              @enderror
+            </div>
           </div>
         </div>
 

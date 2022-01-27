@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\State;
-use App\Models\City;
+use App\Models\Color;
 use Illuminate\Http\Request;
 
-class StateController extends Controller
+class ColorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,8 @@ class StateController extends Controller
      */
     public function index()
     {
-        //
-       $states =  State::where('status',1)->orderBy('name')->paginate(50);
-       return view('backend.states.index')->with('states',$states);
-
+       $colors =  Color::where('status',1)->orderBy('name')->paginate(50);
+       return view('backend.colors.index')->with('colors',$colors);
     }
 
     /**
@@ -28,7 +25,7 @@ class StateController extends Controller
      */
     public function create()
     {
-        return view('backend.states.create');
+        return view('backend.colors.create');
     }
 
     /**
@@ -38,10 +35,11 @@ class StateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        State::create($request->all());
-        request()->session()->flash('success','State Successfully created');
-        return redirect()->route('states.index');
+    {   
+        $data = $request->all();       
+        Color::create($data);
+        request()->session()->flash('success','Color Successfully created');
+        return redirect()->route('colors.index');
     }
 
     /**
@@ -50,7 +48,7 @@ class StateController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function show(State $state)
+    public function show(Color $color)
     {
         //
     }
@@ -61,10 +59,10 @@ class StateController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function edit(State $state)
+    public function edit(Color $color)
     { 
-        $state = State::find($state->id);
-        return view('backend.states.edit',compact('state'));
+        $color = Color::find($color->id);
+        return view('backend.colors.edit',compact('color'));
     }
 
     /**
@@ -74,11 +72,13 @@ class StateController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, State $state)
+    public function update(Request $request, Color $color)
     {   
-        State::where('id',$state->id)->update(['name' =>  $state->name, 'status' => $state->status]);
-        request()->session()->flash('success','State Successfully updated');
-        return redirect()->route('states.index');
+        $data = $request->all();
+        $color=Color::findOrFail($color->id);        
+        $color->update($data);
+        request()->session()->flash('success','Color Successfully updated');
+        return redirect()->route('colors.index');
     }
 
     /**
@@ -87,16 +87,8 @@ class StateController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function destroy(State $state)
+    public function destroy(Color $color)
     {
         //
-    }
-
-    public function get_cities_by_state_id(Request $request){
-
-
-       $cities =  City::where('status',1)->where('state_id',$request->state_id)->orderBy('name')->pluck('name','id')->toArray();
-
-        return $cities;
     }
 }

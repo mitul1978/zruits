@@ -9,44 +9,42 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">State List</h6>
-      <a href="{{route('states.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add State"><i class="fas fa-plus"></i> Add State</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Colors List</h6>
+      <a href="{{route('colors.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add Color"><i class="fas fa-plus"></i> Add Color</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        @if(count($states)>0)
+        @if(count($colors)>0)
         <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
                 <th>S.N.</th>
-                <th>State Name</th>
-       
+                <th>Color Name</th>
+                <th>Code</th>
                 <th>Status</th>
-              <th>Action</th>
+                <th>Action</th>
             </tr>
           </thead>
          
           <tbody>
-            @foreach($states as $key => $state)
+            @foreach($colors as $key => $color)
                 <tr>
                     <td>{{++$key}}</td>
-                    <td>{{$state->name}}</td>
-           
-
-
+                    <td>{{$color->name}}</td>
+                    <td>{{$color->code}}</td>
                     <td>
-                        @if($state->status=='1')
+                        @if($color->status=='1')
                             <span class="badge badge-success">Active</span>
                         @else
                             <span class="badge badge-warning">Inactive</span>
                         @endif
                     </td>
                     <td>
-                        <a href="{{route('states.edit',$state->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <form method="POST" action="{{route('states.destroy',[$state->id])}}">
+                        <a href="{{route('colors.edit',$color->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <form method="POST" action="{{route('colors.destroy',[$color->id])}}">
                           @csrf
                           @method('delete')
-                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$state->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$color->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                     {{-- Delete Modal --}}
@@ -73,9 +71,9 @@
             @endforeach
           </tbody>
         </table>
-        <span style="float:right">{{$states->links()}}</span>
+        <span style="float:right">{{$colors->links()}}</span>
         @else
-          <h6 class="text-center">No states found!!! Please create States</h6>
+          <h6 class="text-center">No Colors found!!! Please create Color</h6>
         @endif
       </div>
     </div>

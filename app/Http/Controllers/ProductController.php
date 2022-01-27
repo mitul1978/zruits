@@ -82,6 +82,8 @@ class ProductController extends Controller
 
         $data['slug']=$slug;
         $data['is_featured']=$request->input('is_featured',0);
+        $data['is_new']=$request->input('is_new',0);
+        $data['is_bestsellers']=$request->input('is_bestsellers',0);
         $data['related_products']=@$request->related_products && count($request->related_products) ? serialize($request->related_products) :null;
 
         if($request->image1){
@@ -247,6 +249,9 @@ class ProductController extends Controller
         // }
 
         $data['is_featured']=$request->input('is_featured',0);
+        $data['is_new']=$request->input('is_new',0);
+        $data['is_bestsellers']=$request->input('is_bestsellers',0);
+        
         $size=$request->input('size');
         if($size)
         {

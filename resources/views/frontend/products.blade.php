@@ -3,8 +3,8 @@
 
         <main class="main">
             <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-                <div class="container">
-                    <h1 class="page-title">Grid 3 Columns<span>Shop</span></h1>
+                <div class="container"> 
+                    <h1 class="page-title">{{$pageType}}<span>Shop</span></h1>
                 </div><!-- End .container -->
             </div><!-- End .page-header -->
             <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
@@ -74,10 +74,8 @@
                             <div class="sidebar sidebar-shop">
                                 <div class="widget widget-clean">
                                     <label>Filters:</label>
-                                    <a class="sidebar-filter-clear" id="reset-filter">Clean All</a>
-                                </div><!-- End .widget widget-clean -->
-
-                                
+                                    <a class="sidebar-filter-clear" href="javascript:void(0);" onClick="window.location.reload(true);" id="reset-filter">Clean All</a>
+                                </div><!-- End .widget widget-clean -->                                
 
                                 <div class="widget widget-collapsible">
                                     <h3 class="widget-title">
@@ -89,47 +87,14 @@
                                     <div class="collapse show" id="widget-2">
                                         <div class="widget-body">
                                             <div class="filter-items">
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="size-1">
-                                                        <label class="custom-control-label" for="size-1">XS</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="size-2">
-                                                        <label class="custom-control-label" for="size-2">S</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="size-3">
-                                                        <label class="custom-control-label" for="size-3">M</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="size-4">
-                                                        <label class="custom-control-label" for="size-4">L</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="size-5">
-                                                        <label class="custom-control-label" for="size-5">XL</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
-
-                                                <div class="filter-item">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="size-6">
-                                                        <label class="custom-control-label" for="size-6">XXL</label>
-                                                    </div><!-- End .custom-checkbox -->
-                                                </div><!-- End .filter-item -->
+                                                @foreach ($sizes as $item)
+                                                    <div class="filter-item">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input customFilterData" id="size-{{$item->id}}">
+                                                            <label class="custom-control-label" for="size-{{$item->id}}">{{$item->name}}</label>
+                                                        </div><!-- End .custom-checkbox -->
+                                                    </div><!-- End .filter-item -->                                                    
+                                                @endforeach
                                             </div><!-- End .filter-items -->
                                         </div><!-- End .widget-body -->
                                     </div><!-- End .collapse -->
@@ -145,14 +110,10 @@
                                     <div class="collapse show" id="widget-3">
                                         <div class="widget-body">
                                             <div class="filter-colors">
-                                                <a href="#" style="background: #b87145;"><span class="sr-only">Color Name</span></a>
-                                                <a href="#" style="background: #f0c04a;"><span class="sr-only">Color Name</span></a>
-                                                <a href="#" style="background: #333333;"><span class="sr-only">Color Name</span></a>
-                                                <a href="#" style="background: #cc3333;"><span class="sr-only">Color Name</span></a>
-                                                <a href="#" style="background: #3399cc;"><span class="sr-only">Color Name</span></a>
-                                                <a href="#" style="background: #669933;"><span class="sr-only">Color Name</span></a>
-                                                <a href="#" style="background: #f2719c;"><span class="sr-only">Color Name</span></a>
-                                                <a href="#" style="background: #ebebeb;"><span class="sr-only">Color Name</span></a>
+                                                @foreach ($colors as $item)
+                                                   <a href="javascript:void(0);" style="background: {{$item->code}}" id="color-{{$item->id}}"><span class="sr-only customFilterData">{{$item->name}}</span></a>
+                                                @endforeach
+                                                
                                             </div><!-- End .filter-colors -->
                                         </div><!-- End .widget-body -->
                                     </div><!-- End .collapse -->
@@ -253,10 +214,4 @@
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
-        <script>
-             $("body").on('click','#reset-filter',function()
-             {
-                 alert('tetst');
-             });
-        </script>
 @endsection

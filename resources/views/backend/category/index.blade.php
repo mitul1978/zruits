@@ -28,18 +28,6 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Slug</th>
-              <th>Is Parent</th>
-              <th>Parent Category</th>
-              <th>Photo</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </tfoot>
           <tbody>
 
             @foreach($categories as $category)
@@ -62,7 +50,7 @@
                     <td>
                         @if($category->photo)
                         <a target="_blank" href="{{ asset($category->photo) }}">
-                            <img src="{{ asset($category->photo) }}" class="img-fluid" style="max-width:100px" alt="{{$category->photo}}">
+                            <img src="{{ asset($category->photo) }}" class="img-fluid" style=" max-height:100px" alt="{{$category->photo}}">
                         </a>
                         @else
                             <img src="{{asset('backend/img/thumbnail-default.jpg')}}" class="img-fluid" style="max-width:80px" alt="avatar.png">
