@@ -66,12 +66,12 @@ class ProductController extends Controller
 
 
     public function product(Request $request)
-    {
-        $product = Product::withCount('user_wishlist')->with('available:product_texture,id,slug,fullsheet_view,a4sheet_view','color_palettes','thicknesses')->where('slug',$request->slug)->first();
-        $color_palette_products = Product::with('color_palettes')->whereHas('color_palettes',function($query) use($product){
-            $query->where('color_palette_id',$product->color_palettes->pluck('id')->toArray());
-        })->get();
-
-        return view('frontend.pages.product',compact('product','color_palette_products'));
+    {   
+        $id = decrypt($request->slug);
+        $product = Product::withCount('user_wishlist')->where('id',$id)->first();
+        // $color_palette_products = Product::with('color_palettes')->whereHas('color_palettes',function($query) use($product){
+        //     $query->where('color_palette_id',$product->color_palettes->pluck('id')->toArray());
+        // })->get();
+        return view('frontend.product',compact('product'));
     }
 }

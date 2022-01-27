@@ -24,7 +24,7 @@
                         <ul class="menu sf-arrows">
                             @foreach ($categoriesHeader as $category)
                                 <li>
-                                    <a href="{{url($category->slug)}}" class="">{{$category->title}}</a>
+                                    <a href="{{url('/categories/'.encrypt($category->id))}}" class="">{{$category->title}}</a>
                                 </li>
                             @endforeach
                            

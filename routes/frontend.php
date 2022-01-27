@@ -31,7 +31,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('product/{slug}', 'ProductController@product')->name('product');   
     Route::get('/collabration','CartController@collabration')->name('collabration');
     Route::get('/single','HomeController@getProduct');
-    Route::get('/categories/{id?}','HomeController@getCategoriesProducts');
+    Route::get('/categories/{slug?}','HomeController@getCategoriesProducts');
     Route::get('/coming-soon','HomeController@comingSoon');
     Route::get('/dashboard','HomeController@dashboard');
     Route::get('/contact','HomeController@contact');

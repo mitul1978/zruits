@@ -52,7 +52,8 @@ class HomeController extends Controller
             // return view('frontend.pages.home_desktop');
            // $categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
             $products = Product::where('status','active')->where('is_giftcard',0)->get();
-            return view('frontend.index',compact('products'));
+            $categories = Category::where('status','active')->where('is_parent',1)->where('is_giftcard',0)->orderBy('title','ASC')->get();
+            return view('frontend.index',compact('products','categories'));
         // }
     }
 
@@ -88,8 +89,36 @@ class HomeController extends Controller
         return view('frontend.single');
     }
 
-    public function getCategoriesProducts($id= null){
-        return view('frontend.category');
+    public function getCategoriesProducts(Request $request,$id= null)
+    {        
+        $requestData = $request->all();
+        $keyword  = $request->get('search');
+        $count = Product::where('status','active')->count();
+
+        if($id)
+        {
+            $products = Product::withCount('user_wishlist')
+                        ->where(function($t) use($keyword){
+                          if(@$keyword)
+                          $t->where('name', 'LIKE', "%$keyword%")
+                          ->orWhere('slug', 'LIKE', "%$keyword%");
+                        })
+                        ->where('status','active')
+                        ->where('category_id',$id)
+                        ->where('is_giftcard',0)->latest()->paginate(9);
+        }
+        else
+        {
+            $products = Product::withCount('user_wishlist')
+                        ->where(function($t) use( $keyword){
+                        if(@$keyword)
+                        $t->where('name', 'LIKE', "%$keyword%")
+                        ->orWhere('slug', 'LIKE', "%$keyword%");
+                        })
+                        ->where('status','active')->where('is_giftcard',0)->latest()->paginate(9);
+        }
+
+        return view('frontend.products', compact('products'));
     }
 
     public function catalogues()
