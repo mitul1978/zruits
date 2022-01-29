@@ -1,190 +1,202 @@
 
-<section class="pd-top-cart">
-  <div class="cart-container">
-    <div class="cart-top container">
-    <h2 style="">My Cart</h2>
 
-      @if(count(get_cart()))
 
-        <div>
-
-          <div class="tableHead">
-            <div class="single-row">
-               <div class="e-product-intro">
-                    <h2>Product</h2>
-               </div>
-                <div class="e-pro-price-block">
-                    <h2>Price</h2>
-                </div>
-                <div class="e-pro-qty-block">
-                    <h2>Quantity</h2>
-                </div>
-                <div class="e-pro-price-total-block">
-                   <h2>Total</h2>
-                </div>
-                <div class="e-pro-remove-block">
-                   <h2>Remove</h2>
-                </div>
-            </div>
-          </div>
-          <div class="tableBody">
-           <!-- row start -->
-
-            <form class="cart_update_form" action="{{route('cart.update')}}" method="POST">
-                @csrf
+<main class="main">
+  <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+    <div class="container">
+      <h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+    </div><!-- End .container -->
+  </div><!-- End .page-header -->
+  <nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+      </ol>
+    </div><!-- End .container -->
+  </nav><!-- End .breadcrumb-nav -->
+  @if(count(get_cart()))
+    @php 
+      $addresses = @Auth()->user() ? Auth()->user()->addresses :[];
+      $user = @auth()->user();
+      $freight_details = Session::get('freight_charge');
+      $coupon_value = @Session::get('coupon') ? Session::get('coupon')['value'] :0;
+    @endphp
+    <div class="page-content">
+      <div class="cart">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-9">
+              <table class="table table-cart table-mobile">
+                <thead>
+                  <tr style="text-align: center;">
+                    <th>Product Image</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th></th>
+                  </tr>
+                </thead>
                 @php
-                  $sub_total = 0;
+                  $taxable_amount =  get_cart_taxable_amount();												
+                  $tax = 0;//  get_tax_total($taxable_amount);										  
+                  $freight_charge = 0; //  @$freight_details['freight_charge'] ? $freight_details['freight_charge'] :0;
+                  $grand_total =  $tax + $taxable_amount+$freight_charge - $coupon_value;		
+                  $isGiftCard = 0;							
                 @endphp
-                @foreach(get_cart() as $cart)
+                <tbody>
+                  
+                  <form class="cart_update_form" action="{{route('cart.update')}}" method="POST">
+                    @csrf
                     @php
-                      $total      =  $cart['product']['price'] *$cart['quantity'];
-                      $sub_total  += $total;
+                        $sub_total = 0;
                     @endphp
+                    @foreach(get_cart() as $cart)
+                        @php
+                          $total      =  $cart['product']['price'] *$cart['quantity'];
+                          $sub_total  += $total;
+                        @endphp
 
-                    @if($total>0)
-          
-                      <div class="single-row delete_cart_item{{$cart['product']['id']}}">
-
-                          <div class="e-product-intro">
-                            <div class="e-product-img">
-                            <a href="{{route('product',[$cart['product']['slug']])}}">
-                              <img src="{{@$cart['product']['a4sheet_view']}}">
-                            </a>
-
-                            </div>
-                            <div class="e-pro-info">
-                              <h2 class="e-pro-name">{{$cart['product']['name']}}</h2>
-                              <h6 class="e-pro-color">{{$cart['product']['design']}}</h6>
-                            </div>
-                          </div>
-
-                        <div class="e-pro-price-block">
-                            <h2 class="e-pro-price"><span class="visible-xs-cart">Price :   </span> &#8377; {{$cart['product']['price']}}</h2>
-                            <input type="hidden" id="product_price{{$cart['product']['id']}}" data-price="{{$cart['product']['price']}}">
-                        </div>
-
-                        <div class="e-pro-qty-block">
-
-                          
-
-                          @if($cart['quantity']>1)
-                          <span wire:click="removeToCart({{$cart['product']['id'] }})" class="input-number-increment">-</span>
-
-                          @else
-                                    
-                          <span wire:click="alertConfirmDelete({{$cart['product']['id']}})" class="input-number-increment"><i class="fas fa-trash-alt"></i> </span>
-                          @endif
-
-
-
-                          <input name="quant[{{$cart['product']['id']}}]" class="input-number" data-product_id="{{$cart['product']['id']}}" id="cart_item_count{{$cart['product']['id']}}" type="number" value="{{$cart['quantity']}}" min="{{@$cart['product']['min_qty']}}" max="{{@$cart['product']['max_qty']}}" >
-                          <span wire:click="addToCart({{$cart['product']['id'] }})" class="input-number-increment" >+</span>
-
-                        
-                        
-                        </div>
-
-                        <div class="e-pro-price-total-block">
-                            <h2 class="e-pro-price"><span class="visible-xs-cart">Total : </span> &#8377; <span class="product_total{{$cart['product']['id']}}">{{$total }}</span> </h2>
-                        </div>
-
-                        <div class="e-pro-remove-block trash_btn" id="">
-
-                          {{-- <form  method="POST" action="{{route('cart-delete',$cart['product']['id'])}}"> --}}
-                                {{-- <button type="button" class="btn btn-danger btn-sm dltBtn" data-id={{$cart['product']['id']}} style="height:30px; border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button> --}}
-                                <button type="button" class="btn btn-danger btn-sm " wire:click="alertConfirmDelete({{$cart['product']['id']}})" style="height:30px; border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                              {{-- </form> --}}
-                        </div>
-
-                      </div>
-
-                      @endif
-                @endforeach
-              
-            </form>
-            
-          </div>
-          
-        </div>
-
-
-        <div class="subtotal-block">
-          @if($show_order_note)
-            <div class="subtotal-left form-group">
-              <textarea style="color: black !important" class="form-control" wire:change="save_order_note"  wire:model="order_note"   cols="50" rows="4" placeholder="Enter your order not">{{Session::get('order_note')}}</textarea>            
-            </div>
-          @else
-          <div class="subtotal-left">
-            <a href="javascript:void(0);" wire:click="show_order_note" wire:keydown.enter="doSomething" class="grey-text line-bottom" >Add a note to your order</a>
-          </div>
-          @endif
-       
-          <div class="subtotal-right">
-            <P><strong>Subtotal: &#8377; <span class="cart-subtotal">{{ $sub_total }}</span></strong></P>
-            <p class="grey-text">Shipping taxes and discounts will be calculated at checkout page</p>
-
-            <div>
-              <a href="{{route('products')}}" class="btn btn-green">Continue Shopping</a>
-              <a href="{{route('checkout')}}" class="btn btn-green">Checkout</a>
-            </div>
-          </div>
-      </div>
-      <p> <strong>  Get Shipping estimates</strong></p>
-        <div class="shipping-form-block">
-
-        
-                <div class="row">
-
-                  <div class="col-md-12 row-grp">
-     
-                  @php 
-                  $freight_charge = Session::get('freight_charge');
-
-               
-                  @endphp
+                        @if($total>0)
+                          <tr class="single-row delete_cart_item{{$cart['product']['id']}}" style="text-align: center;">
+                            <td class="product-col">
+                              <div class="product">
+                                <figure class="product-media">
+                                  <a href="{{route('product',[$cart['product']['slug']])}}">
+                                    <img src="{{@$cart['product']['slug']}}" alt="Product image">
+                                  </a>
+                                </figure>
+                              </div> 
+                            </td>
+                            <td>    
+                              <div class="product">
+                                <h3 class="product-title">
+                                  <a href="{{route('product',[$cart['product']['slug']])}}">{{$cart['product']['name']}}</a>
+                                </h3><!-- End .product-title -->
+                                <input type="hidden" id="product_price{{$cart['product']['id']}}" data-price="{{$cart['product']['price']}}">
+                              </div><!-- End .product -->
+                            </td>
+                            <td class="price-col">&#8377; {{$cart['product']['price']}}</td>
+                            <td class="quantity-col">
+                              <div class="e-pro-qty-block"> 
+                                @if($cart['quantity']>1)
+                                  <span wire:click="removeToCart({{$cart['product']['id'] }})" class="input-number-increment" >-</span>
+                                @else                                    
+                                  <span wire:click="alertConfirmDelete({{$cart['product']['id']}})" class="input-number-increment"><i class="fas fa-trash-alt"></i> X </span>
+                                @endif
+      
+                                <input style="width:50px;" name="quant[{{$cart['product']['id']}}]" class="input-number" data-product_id="{{$cart['product']['id']}}" id="cart_item_count{{$cart['product']['id']}}" type="number" value="{{$cart['quantity']}}" min="{{@$cart['product']['min_qty']}}" max="{{@$cart['product']['max_qty']}}" >
+                                <span wire:click="addToCart({{$cart['product']['id'] }})" class="input-number-increment" >+</span>   
+                              </div>
+                            </td>
+                            <td class="total-col">&#8377; <span class="product_total{{$cart['product']['id']}}">{{$total }}</span></td>
+                            <td class="remove-col">
+                              <div class="e-pro-remove-block trash_btn" id="">
+                                  <button type="button" class="btn-remove dltBtn" wire:click="alertConfirmDelete({{$cart['product']['id']}})" style="height:30px; border-radius:50%" title="Delete"><i class="fas fa-trash-alt"></i>X</button>
+                              </div>
+                            </td>
+                          </tr>
+                        @endif
+                    @endforeach
                   
+                </tbody>
+              </table><!-- End .table table-wishlist -->
 
-                  <div class="col-md-3 m-mg-bott" >
-                    <label for="">Postal/zip code</label>
-                    <input type="number" min="0"  class="form-control" name="pincode" id="zip-code" value="{{old('pincode')? old('pincode') : @$freight_charge['pincode'] }}">
+              {{-- <div class="cart-bottom">
+                <div class="cart-discount">
+                  <form action="#">
+                    <div class="input-group">
+                      <input type="text" class="form-control" required placeholder="coupon code">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
+                      </div><!-- .End .input-group-append -->
+                    </div><!-- End .input-group -->
+                  </form>
+                </div><!-- End .cart-discount -->
 
-                    <p class="zip_alert"></p>
-                  </div>
+                <a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
+              </div><!-- End .cart-bottom --> --}}
+            </div><!-- End .col-lg-9 -->
+            <aside class="col-lg-3">
+              <div class="summary summary-cart">
+                <h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
 
-                 <div class="col-md-3">
-                    <label for="" ></label>
-                    <input type="button" class="btn btn-green btn-ship-submit"  id="submit-btn" value="Calculate Shipping">
-                  </div>
-                  <div class="col-md-3 m-mg-bott" style="
-                  padding: 20px;">
+                <table class="table table-summary">
+                  <tbody>
+                    <tr class="summary-subtotal">
+                      <td>Subtotal:</td>
+                      <td>&#8377; {{ $taxable_amount}}</td>
+                    </tr><!-- End .summary-subtotal -->
+                    {{-- <tr class="summary-shipping">
+                      <td>Shipping:</td>
+                      <td>&nbsp;</td>
+                    </tr>
 
-                    <span style="font-size: x-large;
-                    font-weight: bold;" class="freight_charge_result"> {!! @$freight_charge['freight_charge']?'&#x20B9; '. $freight_charge['freight_charge'] : '' !!}</span>
+                    <tr class="summary-shipping-row">
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
+                          <label class="custom-control-label" for="free-shipping">Free Shipping</label>
+                        </div><!-- End .custom-control -->
+                      </td>
+                      <td>$0.00</td>
+                    </tr><!-- End .summary-shipping-row -->
 
-                </div>
-                  
-                </div>
-                 </div>
-        </div>
+                    <tr class="summary-shipping-row">
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
+                          <label class="custom-control-label" for="standart-shipping">Standart:</label>
+                        </div><!-- End .custom-control -->
+                      </td>
+                      <td>$10.00</td>
+                    </tr><!-- End .summary-shipping-row -->
 
-        @else
+                    <tr class="summary-shipping-row">
+                      <td>
+                        <div class="custom-control custom-radio">
+                          <input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
+                          <label class="custom-control-label" for="express-shipping">Express:</label>
+                        </div><!-- End .custom-control -->
+                      </td>
+                      <td>$20.00</td>
+                    </tr><!-- End .summary-shipping-row --> --}}
 
-        <div style="min-height:400px">
-          <br>
-          <br>
-          <h3 style="text-align: center">Your cart is empty!</h3>
-          <p style="text-align: center">Add items to it now.</p>
-          
-        <div class="text-center">
-          <a href="{{route('products')}}" style="background: #2874f0;
-          color: #fff;" class="btn btn-lg pull-center">Shop Now</a>
-        </div>
-        </div>
-        @endif
+                    {{-- <tr class="summary-shipping-estimate">
+                      <td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
+                      <td>&nbsp;</td>
+                    </tr><!-- End .summary-shipping-estimate --> --}}
 
+                    <tr class="summary-total">
+                      <td>Total:</td>
+                      <td>&#8377; {{ $grand_total }}</td>
+                    </tr><!-- End .summary-total -->
+                  </tbody>
+                </table><!-- End .table table-summary -->
+
+                <a href="{{route('checkout')}}" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+              </div><!-- End .summary -->
+
+              <a href="{{route('products')}}" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
+            </aside><!-- End .col-lg-3 -->
+          </div><!-- End .row -->
+        </div><!-- End .container -->
+      </div><!-- End .cart -->
+    </div><!-- End .page-content -->
+  @else
+    <div style="min-height:400px">
+      <br>
+      <br>
+      <h3 style="text-align: center">Your cart is empty!</h3>
+      <p style="text-align: center">Add items to it now.</p>
+      
+    <div class="text-center">
+      <a href="{{route('products')}}" style="background: #2874f0;
+      color: #fff;" class="btn btn-lg pull-center">Shop Now</a>
     </div>
-  </div>
-</section>
+  @endif  
+</main><!-- End .main -->
 
 
 

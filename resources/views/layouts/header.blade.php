@@ -24,18 +24,21 @@
                         <ul class="menu sf-arrows">
                             @foreach ($categoriesHeader as $category)
                                 <li>
-                                    <a href="{{url('/categories/'.encrypt($category->id))}}" class="">{{$category->title}}</a>
+                                    <a href="{{url('/categories/'.$category->slug)}}" class="">{{$category->title}}</a>
                                 </li>
                             @endforeach
+                            <li>
+                                <a href="/products" class="">New Arrivals</a>
+                            </li>
                             <li>
                                 <a href="/offers" class="">Offers</a>
                             </li>
                             <li>
                                 <a href="{{url('/giftcard')}}" class="">Gift Card</a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{url('/collaboration')}}" class="">Collaborations</a>
-                            </li>
+                            </li> --}}
                         </ul><!-- End .menu -->
                     </nav><!-- End .main-nav -->
                 </div><!-- End .header-left -->

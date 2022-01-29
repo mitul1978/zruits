@@ -72,8 +72,8 @@ class ProductController extends Controller
 
     public function product(Request $request)
     {   
-        $id = decrypt($request->slug);
-        $product = Product::withCount('user_wishlist')->where('id',$id)->first();
+        $slug = $request->slug;
+        $product = Product::withCount('user_wishlist')->where('slug',$slug)->first();
         // $color_palette_products = Product::with('color_palettes')->whereHas('color_palettes',function($query) use($product){
         //     $query->where('color_palette_id',$product->color_palettes->pluck('id')->toArray());
         // })->get();

@@ -123,7 +123,7 @@ class HomeController extends Controller
         }    
     }
 
-    public function getCategoriesProducts(Request $request,$id= null)
+    public function getCategoriesProducts(Request $request,$slug= null)
     {        
         $requestData = $request->all();
         $keyword  = $request->get('search');
@@ -133,8 +133,11 @@ class HomeController extends Controller
         $sizes = Size::where('status',1)->get();
         $colors = Color::where('status',1)->get();
 
-        if($id)
-        {
+        if($slug)
+        {   
+            $category = Category::where('slug',$slug)->first();
+            $pageType = 'Shop By Category ' . $category->title;        
+
             $products = Product::withCount('user_wishlist')
                         ->where(function($t) use($keyword){
                           if(@$keyword)
@@ -142,11 +145,8 @@ class HomeController extends Controller
                           ->orWhere('slug', 'LIKE', "%$keyword%");
                         })
                         ->where('status','active')
-                        ->where('category_id',decrypt($id))
-                        ->where('is_giftcard',0)->latest()->paginate(9);
-
-            $category = Category::find(decrypt($id));
-            $pageType = 'Shop By Category ' . $category->title;            
+                        ->where('category_id',$category->id)
+                        ->where('is_giftcard',0)->latest()->paginate(9);    
         }
         else
         {

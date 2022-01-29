@@ -1,7 +1,7 @@
-@extends('frontend.layouts.app')
+@extends('layouts.app')
 @section('content')
-@include('frontend.layouts.svg-icons')
-
+@include('frontend_newold.layouts.svg-icons')
+@livewire('cart')
 <section class="pd-top-cart">
   <div class="cart-container">
     <div class="cart-top container">

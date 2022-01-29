@@ -4,7 +4,7 @@
                                                 <div class="product product-7 text-center">
                                                     <figure class="product-media">
                                                         <span class="product-label label-new">New</span>
-                                                        <a href="{{route('product',encrypt($product->id))}}">
+                                                        <a href="{{route('product',$product->slug)}}">
                                                             <img src="{{url('assets/images/products/product-4.jpg')}}" alt="{{$product->name}}" class="product-image">
                                                         </a>
 
@@ -20,9 +20,9 @@
 
                                                     <div class="product-body">
                                                         <div class="product-cat">
-                                                            <a href="{{route('product',encrypt($product->id))}}">{{$product->category->title}}</a>
+                                                            <a href="{{route('product',$product->category->slug)}}">{{$product->category->title}}</a>
                                                         </div><!-- End .product-cat -->
-                                                        <h3 class="product-title"><a href="{{route('product',encrypt($product->id))}}">{{$product->name}}</a></h3><!-- End .product-title -->
+                                                        <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                                         <div class="product-price">
                                                             ₹ {{$product->price}}  <small>(MRP incl Taxes)</small>
                                                         </div><!-- End .product-price -->

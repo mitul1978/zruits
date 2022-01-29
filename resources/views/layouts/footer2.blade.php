@@ -39,8 +39,9 @@
                         <h4 class="widget-title">COMPANY</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="{{url('/collaboration')}}">Collaborations</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
@@ -99,9 +100,12 @@
                     <ul class="mobile-menu"> 
                         @foreach ($categoriesHeader as $category)
                            <li>
-                                <a href="{{url('/categories/'.encrypt($category->id))}}" class="">{{$category->title}}</a>
+                                <a href="{{url('/categories/'.$category->slug)}}" class="">{{$category->title}}</a>
                            </li>
-                        @endforeach   
+                        @endforeach 
+                        <li>
+                            <a href="/products" class="">New Arrivals</a>
+                        </li>  
                         <li>
                             <a href="/offers" class="">Offers</a>
                         </li>

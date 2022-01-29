@@ -49,7 +49,7 @@
         <div class="row">
             @foreach($categories as $category)
                 <div class="col-6 col-md-3">
-                    <a href="{{url('categories/' . encrypt($category->id))}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="{{$category->title}}"></a>
+                    <a href="{{url('categories/' . $category->slug)}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="{{$category->title}}"></a>
                 </div>
             @endforeach  
             <div class="col-6 col-md-3">
@@ -111,7 +111,7 @@
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
                                     <span class="product-label label-new">New</span>
-                                    <a href="{{url('product/' . encrypt($product->id))}}">
+                                    <a href="{{url('product/' .$product->slug)}}">
                                         <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
                                     </a>
 
@@ -126,9 +126,9 @@
 
                                 <div class="product-body">
                                     <div class="product-cat">
-                                        <a href="{{url('categories/' . encrypt($product->category_id))}}">{{$product->category->title}}</a>
+                                        <a href="{{url('categories/' . $product->category->slug)}}">{{$product->category->title}}</a>
                                     </div><!-- End .product-cat -->
-                                    <h3 class="product-title"><a href="{{url('product/' . encrypt($product->id))}}">{{$product->name}}</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="{{url('product/' . $product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         ₹ {{$product->price }} <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
@@ -192,7 +192,7 @@
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
                                     <span class="product-label label-new">New</span>
-                                    <a href="product.html">
+                                    <a href="{{url('product/' .$product->slug)}}">
                                         <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
                                     </a>
 
@@ -207,9 +207,9 @@
 
                                 <div class="product-body">
                                     <div class="product-cat">
-                                        <a href="#">Women</a>
+                                        <a href="{{url('categories/' . $product->category->slug)}}">{{$product->category->title}}</a>
                                     </div><!-- End .product-cat -->
-                                    <h3 class="product-title"><a href="product.html">{{$product->name}}</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="{{url('product/' . $product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         ₹ {{$product->price }} <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
