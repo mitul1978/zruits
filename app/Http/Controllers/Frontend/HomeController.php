@@ -15,6 +15,7 @@ use App\Models\Product;
 use App\Models\Catalogue;
 use App\Models\Application;
 use Illuminate\Http\Request;
+use App\Models\Banner;
 Use Alert;
 use App\Models\CareerFormLead;
 use App\Models\CatalogueUserForm;
@@ -53,9 +54,11 @@ class HomeController extends Controller
         // {
             // return view('frontend.pages.home_desktop');
            // $categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
-            $products = Product::where('status','active')->where('is_giftcard',0)->get();
+            $banners = Banner::where('status',1)->latest()->take(5)->get();
+            $newArrivals = Product::where('status','active')->where('is_giftcard',0)->where('is_new',1)->latest()->take(5)->get();
+            $bestSellers = Product::where('status','active')->where('is_giftcard',0)->where('is_bestsellers',1)->take(5)->latest()->get();
             $categories = Category::where('status','active')->where('is_parent',1)->where('is_giftcard',0)->orderBy('title','ASC')->get();
-            return view('frontend.index',compact('products','categories'));
+            return view('frontend.index',compact('banners','newArrivals','bestSellers','categories'));
         // }
     }
 
@@ -93,22 +96,31 @@ class HomeController extends Controller
 
     public function offers($slug = null)
     {  
-        if($slug == 'xxxx')
-        {
-            $pageType = 'Buy 3 flat at Rs. 6500';
+        if($slug)
+        {   
+            $slug = decrypt($slug);
+            if($slug == 'offer1')
+            {
+                $pageType = 'Buy 3 flat at Rs. 6500';
+                $products = Product::withCount('user_wishlist')
+                ->where('status','active')->where('is_giftcard',0)->where('is_offer',1)->where('offer',1)->latest()->paginate(9);
+            }
+            else if($slug == 'offer2')
+            {
+                $pageType = 'Buy 2 and get the 3rd at 20% OFF';
+                $products = Product::withCount('user_wishlist')
+                ->where('status','active')->where('is_giftcard',0)->where('is_offer',1)->where('offer',2)->latest()->paginate(9);
+            }
+
+            $sizes = Size::where('status',1)->get();
+            $colors = Color::where('status',1)->get();                   
+
+            return view('frontend.products', compact('products','pageType','sizes','colors'));
         }
-        else if($slug == 'yyyy')
+        else
         {
-            $pageType = 'Buy 2 and get the 3rd at 20% OFF';
-        }
-
-        $sizes = Size::where('status',1)->get();
-        $colors = Color::where('status',1)->get();        
-
-        $products = Product::withCount('user_wishlist')
-                    ->where('status','active')->where('is_giftcard',0)->latest()->paginate(9);
-
-        return view('frontend.products', compact('products','pageType','sizes','colors'));
+            return view('frontend.offers');
+        }    
     }
 
     public function getCategoriesProducts(Request $request,$id= null)

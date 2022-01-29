@@ -201,6 +201,10 @@
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="price-1">
                                                         <label class="custom-control-label" for="price1">Price > 500 & Price < 1000</label>
+                                                    </div><!-- End .custom-checkbox -->            
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input" id="price-1">
+                                                        <label class="custom-control-label" for="price1">Price > 1000 & Price < 2000</label>
                                                     </div><!-- End .custom-checkbox -->                                                   
                                                 </div><!-- End .filter-price-text -->
                                                 <div id="price-slider"></div><!-- End #price-slider -->

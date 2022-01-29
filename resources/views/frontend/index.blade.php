@@ -4,26 +4,17 @@
 <main class="main">
     <div class="intro-slider-container">
         <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false}'>
-            <a href="/products">
-                <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/2/1/211221-d-global-desi-eoss-women-clothing_1.jpg);">
-                    <div class="container intro-content">
-                    </div><!-- End .container intro-content -->
-                </div><!-- End .intro-slide -->
-            </a> 
-            
-            <a href="/products">
-                <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/2/1/211221-d-global-desi-eoss-women-clothing_1.jpg);">
-                    <div class="container intro-content">
-                    </div><!-- End .container intro-content -->
-                </div><!-- End .intro-slide -->
-            </a>    
- 
-            <a href="/products">
-                <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/d/-/d-gd-ww.jpg);">
-                    <div class="container intro-content">                        
-                    </div><!-- End .container intro-content -->
-                </div><!-- End .intro-slide -->
-            </a>    
+            @if(isset($banners) && $banners->isNotEmpty())
+               @foreach ($banners as $item)
+                <a href="/products">
+                    <div class="intro-slide" style="background-image: url({{$item->photo}});">
+                        <div class="container intro-content">
+                        </div><!-- End .container intro-content -->
+                    </div><!-- End .intro-slide -->
+                </a> 
+               @endforeach               
+            @endif               
+           
         </div><!-- End .owl-carousel owl-simple -->
 
         <span class="slider-loader text-white"></span><!-- End .slider-loader -->
@@ -35,12 +26,12 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 mb-1 mb-sm-0"">
-                <a href="/offers/xxxx">
+                <a href="{{url('offers/' . encrypt('offer1'))}}">
                    <img src="assets/images/home/offer-2.jpeg" alt="">
                 </a>
             </div>
             <div class="col-sm-6">
-                <a href="/offers/yyyy">
+                <a href="{{url('offers/' . encrypt('offer1'))}}">
                    <img src="assets/images/home/offer-1.jpeg" alt="">
                 </a>
             </div>
@@ -58,11 +49,11 @@
         <div class="row">
             @foreach($categories as $category)
                 <div class="col-6 col-md-3">
-                    <a href="{{url('categories/' . encrypt($category->id))}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="">{{$category->title}}</a>
+                    <a href="{{url('categories/' . encrypt($category->id))}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="{{$category->title}}"></a>
                 </div>
             @endforeach  
             <div class="col-6 col-md-3">
-                <a href="{{url('categories')}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="">View All</a>
+                <a href="{{url('categories')}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="View All"></a>
             </div>  
             {{-- <div class="col-6 col-md-3">
                 <a href="#"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-chic-trendy-_dresses-women-online.jpg" alt=""></a>
@@ -115,12 +106,12 @@
                         }
                     }'>
 
-                    @if(isset($products) && $products->isNotEmpty())
-                       @foreach ($products as $product)
+                    @if(isset($newArrivals) && $newArrivals->isNotEmpty())
+                       @foreach ($newArrivals as $product)
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
                                     <span class="product-label label-new">New</span>
-                                    <a href="product.html">
+                                    <a href="{{url('product/' . encrypt($product->id))}}">
                                         <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
                                     </a>
 
@@ -135,9 +126,9 @@
 
                                 <div class="product-body">
                                     <div class="product-cat">
-                                        <a href="#">Women</a>
+                                        <a href="{{url('categories/' . encrypt($product->category_id))}}">{{$product->category->title}}</a>
                                     </div><!-- End .product-cat -->
-                                    <h3 class="product-title"><a href="product.html">{{$product->name}}</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="{{url('product/' . encrypt($product->id))}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         ₹ {{$product->price }} <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
@@ -196,8 +187,8 @@
                         }
                     }'>
 
-                    @if(isset($products) && $products->isNotEmpty())
-                       @foreach ($products as $product)
+                    @if(isset($bestSellers) && $bestSellers->isNotEmpty())
+                       @foreach ($bestSellers as $product)
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
                                     <span class="product-label label-new">New</span>

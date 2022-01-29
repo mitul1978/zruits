@@ -27,12 +27,8 @@
                                     <a href="{{url('/categories/'.encrypt($category->id))}}" class="">{{$category->title}}</a>
                                 </li>
                             @endforeach
-                           
                             <li>
-                                <a href="#" class="">New Arrrivals</a>
-                            </li>
-                            <li>
-                                <a href="#" class="">Offers</a>
+                                <a href="/offers" class="">Offers</a>
                             </li>
                             <li>
                                 <a href="{{url('/giftcard')}}" class="">Gift Card</a>
@@ -40,7 +36,6 @@
                             <li>
                                 <a href="{{url('/collaboration')}}" class="">Collaborations</a>
                             </li>
-
                         </ul><!-- End .menu -->
                     </nav><!-- End .main-nav -->
                 </div><!-- End .header-left -->
@@ -85,9 +80,9 @@
 
                     <div class="dropdown cart-dropdown">
                         @if(is_user_logged_in())
-                           <a href="{{route('user-cart')}}" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                           <a href="{{route('user-cart')}}" class="dropdown-toggle" role="button"  aria-haspopup="true" aria-expanded="false" data-display="static">
                         @else
-                           <a href="{{route('cart')}}" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                           <a href="{{route('cart')}}" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" data-display="static">
                         @endif     
                             <i class="icon-shopping-cart"></i>
                                <span class="cart-count"> @livewire('cart-counter') </span>
@@ -96,15 +91,15 @@
                                 @endif --}}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right">
-                            @livewire('cart-list')                            
+                        {{-- <div class="dropdown-menu dropdown-menu-right"> --}}
+                            {{-- @livewire('cart-list')                             --}}
 
                             {{-- <div class="dropdown-cart-total">
                                 <span>Total</span>
                                 <span class="cart-total-price">$160.00</span>
                                 </div><!-- End .dropdown-cart-total --> --}}
                             
-                            @if(is_user_logged_in())
+                            {{-- @if(is_user_logged_in())
                                 <div class="dropdown-cart-action">
                                     <a href="{{route('user-cart')}}" class="btn btn-primary">View Cart</a>
                                     <a href="{{route('checkout')}}" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
@@ -115,7 +110,7 @@
                                     <a href="{{route('checkout')}}" class="btn btn-outline-primary-2"><span>Checkout</span><i class="icon-long-arrow-right"></i></a>
                                 </div><!-- End .dropdown-cart-total -->
                             @endif    
-                        </div><!-- End .dropdown-menu -->
+                        </div><!-- End .dropdown-menu --> --}}
                
                     </div><!-- End .cart-dropdown -->
                 </div><!-- End .header-right -->

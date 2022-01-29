@@ -33,7 +33,8 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::resource('cities','CityController');
     Route::resource('pincodes','PincodeController');
 
-
+    // Offer
+    //Route::resource('offer','OfferController');
     // Banner
     Route::resource('banner','BannerController');
     // Brand

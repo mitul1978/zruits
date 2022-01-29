@@ -96,88 +96,23 @@
         <div class="tab-content">
             <div class="tab-pane active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
                 <nav class="mobile-nav">
-                    <ul class="mobile-menu">    
-                        <li class="active">
-                            <a href="#" class="">Anarkali</a>
+                    <ul class="mobile-menu"> 
+                        @foreach ($categoriesHeader as $category)
+                           <li>
+                                <a href="{{url('/categories/'.encrypt($category->id))}}" class="">{{$category->title}}</a>
+                           </li>
+                        @endforeach   
+                        <li>
+                            <a href="/offers" class="">Offers</a>
                         </li>
                         <li>
-                            <a href="#" class="">Plazo</a>
+                            <a href="{{url('/giftcard')}}" class="">Gift Card</a>
                         </li>
                         <li>
-                            <a href="#" class="">Ghaghra Choli</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Crop Top</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Gown</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">New Arrrivals</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Offers</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Gift Card</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Collaborations</a>
+                            <a href="{{url('/collaboration')}}" class="">Collaborations</a>
                         </li>
                     </ul>
-                    <div class="tab-content" id="tab-content-5">
-                        <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                            <form method="post" action="{{route('login.submit')}}" enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" class="form-control" id="popup" name="popup" value="1">
-                                <div class="form-group">
-                                    <label for="singin-email">Email address *</label>
-                                    <input type="text" class="form-control" id="email" name="email" required>
-                                </div><!-- End .form-group -->
-
-                                <div class="form-group">
-                                    <label for="singin-password">Password *</label>
-                                    <input type="password" class="form-control" id="password" name="password" required>
-                                </div><!-- End .form-group -->
-
-                                <div class="form-footer">
-                                    <button type="submit" class="btn btn-outline-primary-2">
-                                        <span>LOG IN</span>
-                                        <i class="icon-long-arrow-right"></i>
-                                    </button>
-
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="signin-remember">
-                                        <label class="custom-control-label" for="signin-remember">Remember Me</label>
-                                    </div><!-- End .custom-checkbox -->
-
-                                    <a href="#" class="forgot-link">Forgot Your Password?</a>
-                                </div><!-- End .form-footer -->
-                            </form>
-                            <div class="form-choice">
-                                <p class="text-center">or sign in with</p>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <a href="{{ url('login/google') }}" class="btn btn-login btn-g">
-                                            <i class="icon-google"></i>
-                                            Login With Google
-                                        </a>
-                                    </div><!-- End .col-6 -->
-                                    <!--<div class="col-sm-6">
-                                        <a href="#" class="btn btn-login btn-f">
-                                            <i class="icon-facebook-f"></i>
-                                            Login With Facebook
-                                        </a>
-                                    </div><!-- End .col-6 -->
-                                </div><!-- End .row -->
-                            </div><!-- End .form-choice -->
-                        </div><!-- .End .tab-pane -->
-                        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                            <form action="#">
-                                <div class="form-group">
-                                    <label for="register-email">Your email address *</label>
-                                    <input type="email" class="form-control" id="register-email" name="register-email" required>
-                                </div><!-- End .form-group -->
+                    
                 </nav><!-- End .mobile-nav -->
             </div><!-- .End .tab-pane -->
         </div><!-- End .tab-content -->
@@ -289,7 +224,7 @@
             <div class="row no-gutters bg-white newsletter-popup-content">
                 <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
                     <div class="banner-content text-center">
-                        <img src="assets/images/logo.png" class="logo" alt="logo" width="100">
+                        <img src="{{url('assets/images/logo.png')}}" class="logo" alt="logo" width="100">
                         <h2 class="banner-title">get <span>25<light>%</light></span> off</h2>
                         <p>Subscribe to the Zehna newsletter to receive timely updates from your favorite products.</p>
                         <form action="#">
@@ -307,7 +242,7 @@
                     </div>
                 </div>
                 <div class="col-xl-2-5col col-lg-5 ">
-                    <img src="assets/images/popup/newsletter/img-1.jpg" class="newsletter-img" alt="newsletter">
+                    <img src="{{url('assets/images/popup/newsletter/img-1.jpg')}}" class="newsletter-img" alt="newsletter">
                 </div>
             </div>
         </div>

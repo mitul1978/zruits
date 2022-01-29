@@ -36,28 +36,40 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
         $this->validate($request,[
             'title'=>'string|required|max:50',
             'description'=>'string|nullable',
-            'photo'=>'string|required',
             'status'=>'required|in:active,inactive',
         ]);
+
         $data=$request->all();
         $slug=Str::slug($request->title);
+
         $count=Banner::where('slug',$slug)->count();
-        if($count>0){
+
+        if($count>0)
+        {
             $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
         }
+
         $data['slug']=$slug;
-        // return $slug;
+        if(@$request->photo)
+        {
+            $fileName = 'images/banners/'.rand().time().'.'.$request->photo->getClientOriginalExtension();
+            $request->photo->move(base_path('public/images/banners/'), $fileName);
+            $data['photo']= $fileName;
+        }
+
         $status=Banner::create($data);
-        if($status){
+        if($status)
+        {
             request()->session()->flash('success','Banner successfully added');
         }
-        else{
+        else
+        {
             request()->session()->flash('error','Error occurred while adding banner');
         }
+
         return redirect()->route('banner.index');
     }
 
@@ -94,12 +106,13 @@ class BannerController extends Controller
     public function update(Request $request, $id)
     {
         $banner=Banner::findOrFail($id);
+     
         $this->validate($request,[
             'title'=>'string|required|max:50',
             'description'=>'string|nullable',
-            'photo'=>'string|required',
             'status'=>'required|in:active,inactive',
         ]);
+
         $data=$request->all();
         // $slug=Str::slug($request->title);
         // $count=Banner::where('slug',$slug)->count();
@@ -108,11 +121,22 @@ class BannerController extends Controller
         // }
         // $data['slug']=$slug;
         // return $slug;
+
+        if(@$request->photo)
+        {
+            $fileName = 'images/banners/'.rand().time().'.'.$request->photo->getClientOriginalExtension();
+            $request->photo->move(base_path('public/images/banners/'), $fileName);
+            $data['photo']= $fileName;
+        }
+
         $status=$banner->fill($data)->save();
-        if($status){
+
+        if($status)
+        {
             request()->session()->flash('success','Banner successfully updated');
         }
-        else{
+        else
+        {
             request()->session()->flash('error','Error occurred while updating banner');
         }
         return redirect()->route('banner.index');
