@@ -64,17 +64,32 @@ class CartController extends Controller
     public function ajax_addToCart(Request $request){
 
         $product = Product::where('id',  $request->product_id)->first();
-        if (empty($product)) {
+        if (empty($product)) 
+        {
             return response(['error'=>'Something is going wrong'], 200);
         }
 
-        if (is_user_logged_in())
+        if($product->is_giftcard == 0)
         {
-            addToCart($product);
-        }
+            if (is_user_logged_in())
+            {
+                addToCart($product);
+            }
+            else
+            {
+                addToCartForGuestInSession($product);
+            }
+        }    
         else
         {
-            addToCartForGuestInSession($product);
+            if (is_user_logged_in())
+            {
+                addGiftToCart($product,$request->toName,$request->toEmail,$request->message,$request->fromName);
+            }
+            else
+            {
+                addGiftToCartForGuestInSession($product,$request->toName,$request->toEmail,$request->message,$request->fromName);
+            }
         }
 
         return response(['add_to_cart'=>'Added',

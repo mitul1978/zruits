@@ -114,10 +114,12 @@
 		                					</thead>
 											@php
 												$taxable_amount =  get_cart_taxable_amount();												
-												$tax =  get_tax_total($taxable_amount);										  
-												$freight_charge =  @$freight_details['freight_charge'] ? $freight_details['freight_charge'] :0;
-												$grand_total =  $tax + $taxable_amount+$freight_charge - $coupon_value;		
-												$isGiftCard = 0;							
+												$tax = 0;// get_tax_total($taxable_amount);										  
+												$freight_charge = 0;//  @$freight_details['freight_charge'] ? $freight_details['freight_charge'] :0;
+												$offerDiscount = get_offer_discount_amount();			
+												$grand_total =  $tax + $taxable_amount+$freight_charge - $coupon_value - $offerDiscount;		
+												$isGiftCard = 0;	
+															
 											@endphp
 		                					<tbody>
 												@foreach (get_cart() as $cart)
@@ -136,6 +138,10 @@
 		                						<tr class="summary-subtotal">
 		                							<td>Subtotal:</td>
 		                							<td>{!! $rupee !!} {{ $taxable_amount}}</td>
+		                						</tr><!-- End .summary-subtotal -->
+												<tr class="summary-subtotal">
+		                							<td>Offer Discount:</td>
+		                							<td>{!! $rupee !!} {{ $offerDiscount }}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">
 		                							<td>Coupon Code:</td>

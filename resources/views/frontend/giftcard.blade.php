@@ -69,9 +69,15 @@
                                         </div><!-- End .product-details-quantity -->
                                     </div><!-- End .details-filter-row -->
                                     <div class="details-filter-row details-row-size">
+                                        <label for="gift_card_to_name" >To</label>
+                                        <input type="text" id="gift_card_to_name" name="gift_card_to_name" class="form-control" placeholder="Enter name of recipient" value="" required>
+                                       
+                                    </div>
+
+                                    <div class="details-filter-row details-row-size">
                                         <label for="gift_card_to" >To</label>
-                                        <input type="text" id="gift_card_to" name="gift_card_to" class="form-control" placeholder="Enter an email address for each recipient" value="" required>
-                                        <div class="pwgc-subtitle">Separate multiple email addresses with a comma.</div>
+                                        <input type="text" id="gift_card_to" name="gift_card_to" class="form-control" placeholder="Enter an email address of recipient" value="" required>
+                                        
                                     </div>
                                 
                                     <div class="details-filter-row details-row-size">
@@ -82,7 +88,7 @@
                                     <div class="details-filter-row details-row-size">
                                         <label for="giftcard_message" >Message (optional)</label>
                                         <textarea class="form-control" id="giftcard_message" name="giftcard_message" placeholder="Add a message"></textarea>
-                                        <div class="pwgc-subtitle"><span id="pwgc-message-characters-remaining">500</span> characters remaining</div>
+                                        
                                     </div>
                                     <div class="product-details-action"> 
                                         @foreach ($giftcards as $key => $product)

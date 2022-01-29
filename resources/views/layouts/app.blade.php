@@ -122,8 +122,12 @@
         {
             var product_id = $(this).data('id');
             var qty = $('#quantity').val();
-            
-             var loopTime = 0;
+            var toName = $('#gift_card_to_name').val();
+            var toEmail =  $('#gift_card_to').val();
+            var fromName = $('#gift_card_from').val();
+            var message = $('#giftcard_message').val();
+
+            var loopTime = 0;
             if(qty != undefined)
             {
                 loopTime = qty;
@@ -131,13 +135,14 @@
            
            $('.product'+product_id).text('Please Wait...');
 
-           if(loopTime == 0){
+           if(loopTime == 0)
+           {
                          $.ajax({
                             url: "{{route('ajax-add-to-cart')}}",
                             type: 'post',
                             data:{
                                 _token:"{{csrf_token()}}",
-                                product_id
+                                product_id,
                             },
                             success: function(response) {
                                 if(response.add_to_cart)
@@ -182,7 +187,11 @@
                             type: 'post',
                             data:{
                                 _token:"{{csrf_token()}}",
-                                product_id
+                                product_id,
+                                toName,
+                                toEmail,
+                                fromName,
+                                message
                             },
                             success: function(response) 
                             {
@@ -216,7 +225,8 @@
                                         showConfirmButton:false,
                                         title: "Added!",
                                     })
-                
+                $('#gift_card_to_name').val('');
+                $('#gift_card_to').val('');
                 $('.product'+product_id).text('Added');
            }            
         });
