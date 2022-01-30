@@ -4,17 +4,26 @@
 <main class="main">
     <div class="intro-slider-container">
         <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false}'>
-            @if(isset($banners) && $banners->isNotEmpty())
-               @foreach ($banners as $item)
-                <a href="/products">
-                    <div class="intro-slide" style="background-image: url({{$item->photo}});">
-                        <div class="container intro-content">
-                        </div><!-- End .container intro-content -->
-                    </div><!-- End .intro-slide -->
-                </a> 
-               @endforeach               
-            @endif               
-           
+            <a href="/products">
+                <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/2/1/211221-d-global-desi-eoss-women-clothing_1.jpg);">
+                    <div class="container intro-content">
+                    </div><!-- End .container intro-content -->
+                </div><!-- End .intro-slide -->
+            </a> 
+            
+            <a href="/products">
+                <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/2/1/211221-d-global-desi-eoss-women-clothing_1.jpg);">
+                    <div class="container intro-content">
+                    </div><!-- End .container intro-content -->
+                </div><!-- End .intro-slide -->
+            </a>    
+ 
+            <a href="/products">
+                <div class="intro-slide" style="background-image: url(https://www.globaldesi.in/media/homepage_content/d/-/d-gd-ww.jpg);">
+                    <div class="container intro-content">                        
+                    </div><!-- End .container intro-content -->
+                </div><!-- End .intro-slide -->
+            </a>    
         </div><!-- End .owl-carousel owl-simple -->
 
         <span class="slider-loader text-white"></span><!-- End .slider-loader -->
@@ -26,12 +35,12 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 mb-1 mb-sm-0"">
-                <a href="{{url('offers/' . encrypt('offer1'))}}">
+                <a href="/offers/xxxx">
                    <img src="assets/images/home/offer-2.jpeg" alt="">
                 </a>
             </div>
             <div class="col-sm-6">
-                <a href="{{url('offers/' . encrypt('offer1'))}}">
+                <a href="/offers/yyyy">
                    <img src="assets/images/home/offer-1.jpeg" alt="">
                 </a>
             </div>
@@ -106,8 +115,8 @@
                         }
                     }'>
 
-                    @if(isset($newArrivals) && $newArrivals->isNotEmpty())
-                       @foreach ($newArrivals as $product)
+                    @if(isset($products) && $products->isNotEmpty())
+                       @foreach ($products as $product)
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
                                     <span class="product-label label-new">{{$product->tag}}</span>
@@ -126,9 +135,9 @@
 
                                 <div class="product-body">
                                     <div class="product-cat">
-                                        <a href="{{url('categories/' . $product->category->slug)}}">{{$product->category->title}}</a>
+                                        <a href="#">Women</a>
                                     </div><!-- End .product-cat -->
-                                    <h3 class="product-title"><a href="{{url('product/' . $product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.html">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         ₹ {{$product->price }} <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
@@ -187,8 +196,8 @@
                         }
                     }'>
 
-                    @if(isset($bestSellers) && $bestSellers->isNotEmpty())
-                       @foreach ($bestSellers as $product)
+                    @if(isset($products) && $products->isNotEmpty())
+                       @foreach ($products as $product)
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
                                     <span class="product-label label-new">{{$product->tag}}</span>
@@ -207,9 +216,9 @@
 
                                 <div class="product-body">
                                     <div class="product-cat">
-                                        <a href="{{url('categories/' . $product->category->slug)}}">{{$product->category->title}}</a>
+                                        <a href="#">Women</a>
                                     </div><!-- End .product-cat -->
-                                    <h3 class="product-title"><a href="{{url('product/' . $product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="product.html">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         ₹ {{$product->price }} <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
