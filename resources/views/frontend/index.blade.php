@@ -58,7 +58,7 @@
         <div class="row">
             @foreach($categories as $category)
                 <div class="col-6 col-md-3">
-                    <a href="{{url('categories/' . $category->slug)}}"><img src="{{url(@$category->photo)}}" alt="{{$category->title}}"></a>
+                    <a href="{{url('categories/' . $category->slug)}}"><img src="{{url(@$category->photo)}}" alt="{{$category->title}}">{{$category->title}}</a>
                 </div>
             @endforeach  
             {{-- <div class="col-6 col-md-3">
