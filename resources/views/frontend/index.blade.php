@@ -110,7 +110,7 @@
                        @foreach ($newArrivals as $product)
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
-                                    <span class="product-label label-new">New</span>
+                                    <span class="product-label label-new">{{$product->tag}}</span>
                                     <a href="{{url('product/' .$product->slug)}}">
                                         <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
                                     </a>
@@ -191,7 +191,7 @@
                        @foreach ($bestSellers as $product)
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
-                                    <span class="product-label label-new">New</span>
+                                    <span class="product-label label-new">{{$product->tag}}</span>
                                     <a href="{{url('product/' .$product->slug)}}">
                                         <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
                                     </a>

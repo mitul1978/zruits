@@ -14,7 +14,7 @@ class Product extends Model
 
     protected $attributes = ['in_cart' => false];
 
-    protected $fillable=['category_id','name','design','is_featured','is_new','is_bestsellers','is_offer','offer','price','stock_quantity','description','discount','slug','a4sheet_view','fullsheet_view','room_view','meta_title','meta_description','meta_image','meta_keyword','status','sort_order','tags'];
+    protected $fillable=['category_id','name','design','is_featured','is_new','is_bestsellers','is_offer','offer','price','stock_quantity','description','discount','slug','a4sheet_view','fullsheet_view','room_view','meta_title','meta_description','meta_image','meta_keyword','status','sort_order','tags','tag'];
 
 
     public function toArray()
