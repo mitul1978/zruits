@@ -49,12 +49,12 @@
         <div class="row">
             @foreach($categories as $category)
                 <div class="col-6 col-md-3">
-                    <a href="{{url('categories/' . $category->slug)}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="{{$category->title}}"></a>
+                    <a href="{{url('categories/' . $category->slug)}}"><img src="{{url(@$category->photo)}}" alt="{{$category->title}}"></a>
                 </div>
             @endforeach  
-            <div class="col-6 col-md-3">
+            {{-- <div class="col-6 col-md-3">
                 <a href="{{url('categories')}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="View All"></a>
-            </div>  
+            </div>   --}}
             {{-- <div class="col-6 col-md-3">
                 <a href="#"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-chic-trendy-_dresses-women-online.jpg" alt=""></a>
             </div>
