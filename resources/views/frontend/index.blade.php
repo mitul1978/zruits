@@ -58,12 +58,12 @@
         <div class="row">
             @foreach($categories as $category)
                 <div class="col-6 col-md-3">
-                    <a href="{{url('categories/' . encrypt($category->id))}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="">{{$category->title}}</a>
+                    <a href="{{url('categories/' . $category->slug)}}"><img src="{{url(@$category->photo)}}" alt="{{$category->title}}">{{$category->title}}</a>
                 </div>
             @endforeach  
-            <div class="col-6 col-md-3">
-                <a href="{{url('categories')}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="">View All</a>
-            </div>  
+            {{-- <div class="col-6 col-md-3">
+                <a href="{{url('categories')}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="View All"></a>
+            </div>   --}}
             {{-- <div class="col-6 col-md-3">
                 <a href="#"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-chic-trendy-_dresses-women-online.jpg" alt=""></a>
             </div>
@@ -120,12 +120,17 @@
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <span class="product-label label-new">New</span>
                                     <a href="product.html">
 =======
                                     <span class="product-label label-new">{{$product->tag}}</span>
                                     <a href="{{url('product/' .$product->slug)}}">
 >>>>>>> 1c5898c886af800db979a6f6aa3d9d3bbae24df3
+=======
+                                    <span class="product-label label-new">{{$product->tag}}</span>
+                                    <a href="{{url('product/' .$product->slug)}}">
+>>>>>>> 7779ac7384caa269fb26d0caf2ec4133d9853b0c
                                         <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
                                     </a>
 
@@ -205,13 +210,8 @@
                        @foreach ($products as $product)
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
-<<<<<<< HEAD
-                                    <span class="product-label label-new">New</span>
-                                    <a href="product.html">
-=======
                                     <span class="product-label label-new">{{$product->tag}}</span>
                                     <a href="{{url('product/' .$product->slug)}}">
->>>>>>> 1c5898c886af800db979a6f6aa3d9d3bbae24df3
                                         <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
                                     </a>
 
