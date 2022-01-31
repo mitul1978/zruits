@@ -119,8 +119,13 @@
                        @foreach ($products as $product)
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
+<<<<<<< HEAD
                                     <span class="product-label label-new">New</span>
                                     <a href="product.html">
+=======
+                                    <span class="product-label label-new">{{$product->tag}}</span>
+                                    <a href="{{url('product/' .$product->slug)}}">
+>>>>>>> 1c5898c886af800db979a6f6aa3d9d3bbae24df3
                                         <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
                                     </a>
 
@@ -200,8 +205,13 @@
                        @foreach ($products as $product)
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
+<<<<<<< HEAD
                                     <span class="product-label label-new">New</span>
                                     <a href="product.html">
+=======
+                                    <span class="product-label label-new">{{$product->tag}}</span>
+                                    <a href="{{url('product/' .$product->slug)}}">
+>>>>>>> 1c5898c886af800db979a6f6aa3d9d3bbae24df3
                                         <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
                                     </a>
 

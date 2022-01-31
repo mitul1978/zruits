@@ -19725,15 +19725,118 @@ display: none;
     font-size: 1rem;
 }
 .icon-boxes-container {
-	padding-top: :1rem;
+	padding-top:1rem;
 }
 .icon-boxes-container .icon-box-icon {
     color: #333;
     font-size: 2rem;
 }
+.size-guide,
+.radio.has-color label,
+.radio.has-image label {
+	margin-bottom:10px;
 }
-
+.radio-cell {
+	margin-bottom:0px !important;
+}
+}
+.radio-cell {
+	margin-bottom:20px;
+}
 .owl-simple .owl-nav.disabled+.owl-dots {
     margin-top: -10px;
 }
 
+
+.custom-color:hover {
+border: 1px solid rgb(0 0 0 / 60%);
+}
+.custom-color {
+    padding: 3px;
+    line-height: 0;
+    margin-right: 5px;
+    border-radius: 50%;
+	border: 1px solid transparent;
+}
+
+.custom-color span {
+    font-size: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-size: cover;
+    font-weight: 700;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    min-width: 20px;
+}
+.radio.has-color input[type="radio"]:checked + .custom-color {
+    border: 1px solid rgb(0 0 0 / 80%);
+}
+.radio.has-color .p-cradio,
+.radio.has-image .p-cradio {
+	display:none;
+}
+.radio.has-image input[type="radio"]:checked + .custom-size {
+	color: rgba(0, 0, 0, 0.87);
+	background-color: rgba(0, 0, 0, 0.08);
+}
+.custom-size:hover {
+background-color: rgba(0, 0, 0, 0.04);
+}
+.custom-size {
+    margin-right: 8px;
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    color: rgba(0, 0, 0, 0.54);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.75;
+    text-transform: uppercase;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+}
+.fw-400 {
+	font-weight:400;
+}
+.text-underline {
+	text-decoration:underline;
+}
+.size-guide {
+    text-transform: capitalize;
+    text-decoration: underline;
+    font-weight: 400;
+}
+@media (min-width:768px) {
+	.size-guide {
+		margin-left: 10px;
+	}
+.radio-cell {
+	display: flex;
+	align-items: center;
+	}
+	.radio.has-color label,
+	.radio.has-image label {
+		margin-bottom:0px;
+	}
+}
+.svg {
+	display:none;
+}

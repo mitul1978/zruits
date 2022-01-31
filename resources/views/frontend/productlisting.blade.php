@@ -3,7 +3,7 @@
                                             <div class="col-6 col-md-4 col-lg-4">
                                                 <div class="product product-7 text-center">
                                                     <figure class="product-media">
-                                                        <span class="product-label label-new">New</span>
+                                                        <span class="product-label label-new">{{$product->tag}}</span>
                                                         <a href="{{route('product',$product->slug)}}">
                                                             <img src="{{url('assets/images/products/product-4.jpg')}}" alt="{{$product->name}}" class="product-image">
                                                         </a>

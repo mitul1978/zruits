@@ -60,33 +60,60 @@
                                         {!! $product->title !!}
                                     </div><!-- End .product-content -->
 
-                                    <div class="details-filter-row details-row-size">
-                                        <label>Color:</label>
+                                    <div class="table-cell radio-cell">
+                                        <div class="label text-underline fw-400 mr-4">Color</div>
+                                        <div id="" class="d-flex">
+                                            <div class="radio has-color">
+                                                <label>
+                                                    <input type="radio" name="color" value="Red" class="p-cradio">
+                                                    <div class="custom-color"><span style="background-color:#0c0c0c" ></span></div>
+                                               </label>
+                                            </div>
+                                            <div class="radio has-color"> 
+                                                <label>
+                                                    <input type="radio" name="color" value="Black" class="p-cradio">
+                                                    <div class="custom-color"><span style="background-color:#c44141"></span></div>
+                                               </label>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                        <div class="product-nav product-nav-thumbs">
-                                            <a href="#" class="active">
-                                                <img src="{{url('assets/images/products/single/1-thumb.jpg')}}" alt="product desc">
-                                            </a>
-                                            <a href="#">
-                                                <img src="{{url('assets/images/products/single/2-thumb.jpg')}}" alt="product desc">
-                                            </a>
-                                        </div><!-- End .product-nav -->
-                                    </div><!-- End .details-filter-row -->
-
-                                    <div class="details-filter-row details-row-size">
-                                        <label for="size">Size:</label>
-                                        <div class="select-custom">
-                                            <select name="size" id="size" class="form-control">
-                                                <option value="#" selected="selected">Select a size</option>
-                                                <option value="s">Small</option>
-                                                <option value="m">Medium</option>
-                                                <option value="l">Large</option>
-                                                <option value="xl">Extra Large</option>
-                                            </select>
-                                        </div><!-- End .select-custom -->
-
+                                    <div class="table-cell radio-cell">
+                                        <div class="label text-underline fw-400 mr-4">Size</div>
+                                        <div id="" class="d-flex">
+                                            <div class="radio has-image">
+                                                <label>
+                                                    <input type="radio" name="size" value="s" class="p-cradio">
+                                                    <div class="custom-size"><span>S</span></div>
+                                               </label>
+                                            </div>
+                                            <div class="radio has-image">
+                                                <label>
+                                                    <input type="radio" name="size" value="m" class="p-cradio">
+                                                    <div class="custom-size"><span>M</span></div>
+                                               </label>
+                                            </div>
+                                            <div class="radio has-image">
+                                                <label>
+                                                    <input type="radio" name="size" value="l" class="p-cradio">
+                                                    <div class="custom-size"><span>L</span></div>
+                                               </label>
+                                            </div>
+                                            <div class="radio has-image">
+                                                <label>
+                                                    <input type="radio" name="size" value="xl" class="p-cradio">
+                                                    <div class="custom-size"><span>XL</span></div>
+                                               </label>
+                                            </div>
+                                            <div class="radio has-image">
+                                                <label>
+                                                    <input type="radio" name="size" value="xxl" class="p-cradio">
+                                                    <div class="custom-size"><span>XXL</span></div>
+                                               </label>
+                                            </div>
+                                        </div>
                                         <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
-                                    </div><!-- End .details-filter-row -->
+                                    </div>
 
                                     <div class="details-filter-row details-row-size">
                                         <label for="qty">Qty:</label>
