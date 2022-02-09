@@ -7642,14 +7642,24 @@ p {
 .product-body.product-action-inner {
 	padding-right: 4rem
 }
-
+@media (max-width:480px) {
 .product-title {
+    font-size: 1.4rem;
+}
+}
+.product-title {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 	font-weight: 400;
 	font-size: 1.6rem;
-	line-height: 1.25;
+    line-height: 20px;
+    max-height: 40px;
 	letter-spacing: -.01em;
 	color: #333333;
-	margin-bottom: .2rem
+    margin-bottom: 0.5em;
 }
 
 .product-title a {
@@ -13265,6 +13275,7 @@ button:focus {
 		margin-left: 0;
 		margin-right: 0
 	}
+	
 	.product-gallery-vertical .product-gallery-item {
 		flex: 0 0 100%;
 		max-width: 100%;
@@ -19547,7 +19558,7 @@ demo 2 css start here
 
 .intro-slider-container,
 .intro-slide {
-	height: 360px;
+	height: 560px;
 	background-color: #8a8988
 }
 
@@ -19611,6 +19622,7 @@ demo 2 css start here
     color: #333;
     border: .1rem solid #333;
     padding: 0.7rem 1.4rem;
+	white-space: nowrap;
 }
 .atc-container .btn-cart:hover {
     color: #fff;
