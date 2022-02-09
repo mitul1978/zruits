@@ -30,8 +30,9 @@ class CartController extends Controller
         return view('frontend_newold.pages.cart2');
     }
 
-    public function viewCart(){
-        return view('user.pages.cart');
+    public function viewCart()
+    {return view('frontend_newold.pages.cart2');
+        //return view('user.pages.cart');
     }
 
     public function collabration()
@@ -148,7 +149,6 @@ class CartController extends Controller
     }
 
     public function cartDelete(Request $request,$product_id){
-
 
         if (is_user_logged_in()){
     

@@ -19,20 +19,13 @@
             <div class="page-content">
             	<div class="checkout">
 	                <div class="container">
-            			<div class="checkout-discount">
-            				<form action="{{route('coupon-store')}}" method="POST">
-								@csrf
-								<div class="row">
-									<input type="text" class="form-control" required id="checkout-discount-input" name="code" placeholder="Have a coupon? enter your code" value="{{@Session::get('coupon')['code']}}">
-									<button class="btn ">{{@Session::get('coupon')['code'] ? 'Remove' :'Apply'}}</button>
-								</div>
-            				</form>
-            			</div><!-- End .checkout-discount -->
+            			
 						@php 
 							$addresses = @Auth()->user() ? Auth()->user()->addresses :[];
 							$user = @auth()->user();
 							$freight_details = Session::get('freight_charge');
 							$coupon_value = @Session::get('coupon') ? Session::get('coupon')['value'] :0;
+							$giftcard_value =  @Session::get('giftcard') ? Session::get('giftcard')['value'] :0;
 						@endphp
             			<form action="{{url('place-order')}}" class="place_order" method="POST">
 							@csrf
@@ -41,52 +34,57 @@
 		                			<h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
 		                				<div class="row">
 		                					<div class="col-sm-6">
-		                						<label>Name *</label>
+		                						<label>Full Name *</label>
 		                						<input type="text" class="form-control" name="first_name" value="{{@$user->name}}" required>
 		                					</div><!-- End .col-sm-6 -->
 
-		                					{{-- <div class="col-sm-6">
-		                						<label>Last Name *</label>
-		                						<input type="text" class="form-control" name="first_name" required>
-		                					</div><!-- End .col-sm-6 --> --}}
+										    <div class="col-sm-6">
+												<label>Company Name (Optional)</label>
+												<input type="text" class="form-control" name="company">		
+											</div>	
 		                				</div><!-- End .row -->
 
-	            						<label>Company Name (Optional)</label>
-	            						<input type="text" class="form-control" name="company">
-
-	            						<label>Country *</label>
-	            						<input type="text" class="form-control" name="country" value="India" required>
+										<div class="row">
+		                					<div class="col-sm-6">
+		                						<label>Phone *</label>
+		                						<input type="tel" class="form-control" name="mobile" value="{{@$user->mobile}}" required>
+		                					</div><!-- End .col-sm-6 -->
+											<div class="col-sm-6" >
+												<label>Email address *</label>
+												<input type="email" class="form-control" name="email" value="{{@$user->email}}" required>
+											</div>
+		                				</div><!-- End .row -->
 
 	            						<label>Address *</label>
 	            						<input type="text" class="form-control" name="address" placeholder="Address Line 1" value="{{@$address->address}}"  required>
 	            						<input type="text" class="form-control" name="address1" placeholder="Address Line 2" value="{{@$address->address}}">
 
 	            						<div class="row">
-		                					<div class="col-sm-6">
-		                						<label>Town / City *</label>
-		                						<input type="text" class="form-control" name="city_id" required>
-		                					</div><!-- End .col-sm-6 -->
-
-		                					<div class="col-sm-6">
+											<div class="col-sm-4">
 		                						<label>State *</label>
-		                						<input type="text" class="form-control" name="state_id" required>
+		                						<select  class="form-control state_id" name="state_id" required>
+													<option value="">Select State </option>
+													@foreach($states as $state)
+												    	<option value="{{$state->id}}">{{$state->name}}</option>
+													@endforeach
+												</select>
 		                					</div><!-- End .col-sm-6 -->
-		                				</div><!-- End .row -->
-
-		                				<div class="row">
-		                					<div class="col-sm-6">
+		                					<div class="col-sm-4">
+		                						<label>Town / City *</label>
+		                						<select  class="form-control city" name="city_id" required>
+													<option value="">Select City </option>
+												</select>	
+		                					</div><!-- End .col-sm-6 -->
+											<div class="col-sm-4">
 		                						<label>Postcode / ZIP *</label>
 		                						<input type="text" class="form-control" name="pincode" required>
 		                					</div><!-- End .col-sm-6 -->
-
-		                					<div class="col-sm-6">
-		                						<label>Phone *</label>
-		                						<input type="tel" class="form-control" name="mobile" value="{{@$user->mobile}}" required>
-		                					</div><!-- End .col-sm-6 -->
+		                					
 		                				</div><!-- End .row -->
 
-	                					<label>Email address *</label>
-	        							<input type="email" class="form-control" name="email" value="{{@$user->email}}" required>
+		                				
+
+	                					
 
 	        							{{-- <div class="custom-control custom-checkbox">
 											<input type="checkbox" class="custom-control-input" id="checkout-create-acc">
@@ -117,9 +115,8 @@
 												$tax = 0;// get_tax_total($taxable_amount);										  
 												$freight_charge = 0;//  @$freight_details['freight_charge'] ? $freight_details['freight_charge'] :0;
 												$offerDiscount = get_offer_discount_amount();			
-												$grand_total =  $tax + $taxable_amount+$freight_charge - $coupon_value - $offerDiscount;		
-												$isGiftCard = 0;	
-															
+												$grand_total =  $tax + $taxable_amount+$freight_charge - $offerDiscount - $giftcard_value - $coupon_value;		
+												$isGiftCard = 0;
 											@endphp
 		                					<tbody>
 												@foreach (get_cart() as $cart)
@@ -135,6 +132,24 @@
 														<td> {!! $rupee !!} {{$total }}</td>
 													</tr>
 												@endforeach
+												
+												<tr class="summary-subtotal"> 
+												  <td><input type="text" class="form-control"  id="checkout-gift-discount-input" name="giftcard"  placeholder="Gift card number" value="{{@Session::get('giftcard')['code']}}"></td>        
+												  <td><span id="error1" class="error" style="color:red">Invalid</span></td>                         
+												</tr>
+												<tr class="summary-subtotal">  
+												   <td> <button class="btn" type="button" id="applyGiftcard">{{@Session::get('giftcard')['code'] ? 'Remove Gift Card' :'Apply Gift Card'}}</button> </td>  
+												</tr>
+												@if($offerDiscount == 0)
+													<tr class="summary-subtotal"> 
+													<td> <input type="text" class="form-control"  id="checkout-discount-input" name="code" placeholder="Coupon Code" value="{{@Session::get('coupon')['code']}}"></td>                                 
+													<td><span id="error2" class="error" style="color:red">Invalid</span></td> 
+													</tr>
+													<tr class="summary-subtotal">  
+														<td> <button class="btn" type="button" id="applyCoupon">{{@Session::get('coupon')['code'] ? 'Remove Coupon' :'Apply Coupon'}}</button> </td>  
+													</tr> 
+												@endif
+												
 		                						<tr class="summary-subtotal">
 		                							<td>Subtotal:</td>
 		                							<td>{!! $rupee !!} {{ $taxable_amount}}</td>
@@ -143,6 +158,10 @@
 		                							<td>Offer Discount:</td>
 		                							<td>{!! $rupee !!} {{ $offerDiscount }}</td>
 		                						</tr><!-- End .summary-subtotal -->
+												<tr class="summary-subtotal">
+		                							<td>Gift Card:</td>
+		                							<td>{!! $rupee !!} {{ @Session::get('giftcard')['value'] ? Session::get('giftcard')['value'] : '0.00' }}</td>
+		                						</tr><!-- End .summary-subtotal -->	
 												<tr class="summary-subtotal">
 		                							<td>Coupon Code:</td>
 		                							<td>{!! $rupee !!} {{ @Session::get('coupon')['value'] ? Session::get('coupon')['value'] : '0.00' }}</td>
@@ -159,85 +178,19 @@
 		                				</table><!-- End .table table-summary -->
 
 		                				<div class="accordion-summary" id="accordion-payment">
-										    <div class="card">
-										        <div class="card-header" id="heading-1">
-										            <h2 class="card-title">
-										                <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-										                    Direct bank transfer
-										                </a>
-										            </h2>
-										        </div><!-- End .card-header -->
-										        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
-										            <div class="card-body">
-										                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
-
-										    <div class="card">
-										        <div class="card-header" id="heading-2">
-										            <h2 class="card-title">
-										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-										                    Check payments
-										                </a>
-										            </h2>
-										        </div><!-- End .card-header -->
-										        <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
-										            <div class="card-body">
-										                Ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. 
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
-
-										    <div class="card">
-										        <div class="card-header" id="heading-3">
-										            <h2 class="card-title">
-														@if($isGiftCard != 1 )
-										                  <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
-															Cash on delivery 
-										                  </a>
-														@else 
-														  <a class="collapsed" role="button" href="#collapse-3"  data-toggle="collapse" aria-expanded="false" aria-controls="collapse-3">  
-															Cash on delivery ( Not Available if Gift card is in cart)
-										                  </a>
-														@endif															
-										            </h2>
-										        </div><!-- End .card-header -->
-										        <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
-										            <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. 
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
 
 										    <div class="card">
 										        <div class="card-header" id="heading-4">
 										            <h2 class="card-title">
-										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
-										                    PayPal <small class="float-right paypal-link">What is PayPal?</small>
+										                <a role="button" aria-expanded="false" aria-controls="collapse-4">
+										                    Razor Pay
 										                </a>
 										            </h2>
 										        </div><!-- End .card-header -->
-										        <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
-										            <div class="card-body">
-										                Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
+										       
 										    </div><!-- End .card -->
 
-										    <div class="card">
-										        <div class="card-header" id="heading-5">
-										            <h2 class="card-title">
-										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
-										                    Credit Card (Stripe)
-										                    <img src="assets/images/payments-summary.png" alt="payments cards">
-										                </a>
-										            </h2>
-										        </div><!-- End .card-header -->
-										        <div id="collapse-5" class="collapse" aria-labelledby="heading-5" data-parent="#accordion-payment">
-										            <div class="card-body"> Donec nec justo eget felis facilisis fermentum.Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Lorem ipsum dolor sit ame.
-										            </div><!-- End .card-body -->
-										        </div><!-- End .collapse -->
-										    </div><!-- End .card -->
+										
 										</div><!-- End .accordion -->
 
 		                				<button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
@@ -253,81 +206,135 @@
             </div><!-- End .page-content -->
         </main><!-- End .main -->
 		<script>
-			$( document ).ready(function() 
-			{		  
-			    $('.address_action_btn').on('click',function(e){
-				$('.new_address_block').addClass('hide');
 
-				var address_id =  $(this).data('address_id');
-				var action =  $(this).attr('action');
+			$(document).ready(function() 
+			{  
+				$('#error1').hide();
+				$('#error2').hide();
+
+			    $('.address_action_btn').on('click',function(e){
+			    	$('.new_address_block').addClass('hide');
+
+			    	var address_id =  $(this).data('address_id');
+				    var action =  $(this).attr('action');
 		  
-				if(action=='edit')
-				{		  
-				  $("#edit-user-address").modal("toggle");
-		  
-					$.ajax({
-					  url:"{{url('edit-user-address')}}/"+address_id,
-					  data:{_token:"{{csrf_token()}}"},
-					  type:"POST",
-					  success:function(response){
-				     	$('#edit-user-address-response').html(response)
-							
-		  
-					  }
-					});		  
-				}
-				else
-				{
-				  e.preventDefault();
-					  swal({
-							title: "Are you sure?",
-							text: "Are you want to remove this address?",
-							icon: "warning",
-							buttons: true,  
-							dangerMode: true,
-						})
-						.then((willDelete) => {
-							if (willDelete) 
+					if(action=='edit')
+					{		  
+					$("#edit-user-address").modal("toggle");
+			
+						$.ajax({
+						url:"{{url('edit-user-address')}}/"+address_id,
+						data:{_token:"{{csrf_token()}}"},
+						type:"POST",
+						success:function(response){
+							$('#edit-user-address-response').html(response)
+								
+			
+						}
+						});		  
+					}
+					else
+					{
+					e.preventDefault();
+						swal({
+								title: "Are you sure?",
+								text: "Are you want to remove this address?",
+								icon: "warning",
+								buttons: true,  
+								dangerMode: true,
+							})
+							.then((willDelete) => {
+								if (willDelete) 
+								{
+									$.ajax({
+										url:"{{url('remove-user-address')}}/"+address_id,
+										data:{_token:"{{csrf_token()}}"},
+										type:"POST",
+										success:function(response)
+										{								
+										if(response==1)
+										{
+											swal({
+											// title: "Are you sure?",
+											text: 'Address has been removed',
+											icon: "success",
+											buttons: false,  
+											// dangerMode: false,
+											});
+			
+											$('.user-address-div'+address_id).hide();  
+										}
+										else
+										{		  
+											swal({
+											// title: "Are you sure?",
+											text: 'Something went wrong..',
+											icon: "error",
+											buttons: false,  
+											// dangerMode: false,
+											});
+											//  location.reload(true);
+										}										 
+			
+										}
+									});
+								} 
+								else 
+								{
+									// swal("Your product is not remo!");
+								}
+						});
+					}		  
+			  });
+
+			  $('#applyGiftcard').on('click',function(e){
+
+				  var coupon_type = 1;
+				  var code = $('#checkout-gift-discount-input').val();
+				  if(code)
+				  {
+					   $.ajax({
+							url:"{{url('coupon-store')}}",
+							data:{_token:"{{csrf_token()}}",code,coupon_type},
+							type:"POST",
+							success:function(response)
 							{
-								$.ajax({
-									url:"{{url('remove-user-address')}}/"+address_id,
-									data:{_token:"{{csrf_token()}}"},
-									type:"POST",
-									success:function(response)
-									{								
-									  if(response==1)
-									  {
-										swal({
-										  // title: "Are you sure?",
-										  text: 'Address has been removed',
-										  icon: "success",
-										  buttons: false,  
-										  // dangerMode: false,
-										});
-		  
-										$('.user-address-div'+address_id).hide();  
-									  }
-									  else
-									  {		  
-										swal({
-										  // title: "Are you sure?",
-										  text: 'Something went wrong..',
-										  icon: "error",
-										  buttons: false,  
-										  // dangerMode: false,
-										});
-									    //  location.reload(true);
-									  }										 
-		  
-									}
-								});
-							} 
-							else 
-							{
-								// swal("Your product is not remo!");
+								if(response == 1)
+								{
+									location.reload();
+								}
+								else
+								{
+									$('#error1').show();
+								}
 							}
-					});
-				}		  
+						});
+				   }				   
+			  });
+
+			  $('#applyCoupon').on('click',function(e){
+				  var coupon_type = 0;
+				  var code = $('#checkout-discount-input').val();
+                  
+				  if(code)
+				  {
+					   $.ajax({
+							url:"{{url('coupon-store')}}",
+							data:{_token:"{{csrf_token()}}",code,coupon_type},
+							type:"POST",
+							success:function(response)
+							{
+								if(response == 1)
+								{
+									location.reload();
+								}
+								else
+								{
+									$('#error2').show();
+								}
+							}
+						});
+				   }
 			  });
 		  
 			  $('.address_id').on('change',function()
@@ -345,10 +352,10 @@
 				}
 			  })		  
 		  
-			  @auth				
-			  @else
-			    openLoginModal();
-			  @endauth
+			  //@auth				
+			  //@else
+			  //  openLoginModal();
+			  //@endauth
 		  
 			  $('.place_order_btn').click(function()
 			  {
@@ -357,7 +364,7 @@
 		  
 			  $('body').on('change','.state_id',function()
 			  {
-				  var state_id = $(this).val();
+				  var state_id = $(this).val();				  
 				  if(state_id)
 				  {
 					  $.ajax({

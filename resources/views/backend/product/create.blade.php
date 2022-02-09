@@ -23,16 +23,6 @@
             </div>
           </div>
 
-            {{-- <div class="col-md-4">
-              <div class="form-group">
-                  <label for="product_texture" class="col-form-label">Product Texture <span class="text-danger">*</span></label>
-                  <input id="product_texture" type="text" name="product_texture" placeholder="Enter Product Texture"  value="{{old('product_texture')}}" class="form-control">
-                  @error('title')
-                  <span class="text-danger">{{$message}}</span>
-                  @enderror
-              </div>
-           </div> --}}
-
           <div class="col-md-4">
             <div class="form-group">
                 <label for="name" class="col-form-label">Name <span class="text-danger">*</span></label>
@@ -53,43 +43,47 @@
             </div>
           </div>
 
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="hsn" class="col-form-label">HSN <span class="text-danger">*</span></label>
+              <input id="hsn" type="text" name="hsn" placeholder="Enter HSN"  value="{{old('hsn')}}" class="form-control">
+              @error('hsn')
+              <span class="text-danger">{{$message}}</span>
+              @enderror
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+                <label for="fabric">Fabric </label>
+                <select name="fabric" id="fabric" class="form-control selectpicker">
+                      <option value ="">Select Fabric</option>
+                      @foreach($fabrics as $key=>$attribute)
+                          <option value='{{$attribute->id}}'>{{$attribute->name}}</option>
+                      @endforeach
+                </select>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+                <label for="fabric">Orientation </label>
+                <select name="orientation[]" id="orientation" class="form-control multiple selectpicker" multiple>
+                      <option value ="">Select Orientation</option>
+                      @foreach($orientations as $key=>$attribute)
+                          <option value='{{$attribute->id}}'>{{$attribute->name}}</option>
+                      @endforeach
+                </select>
+            </div>
+          </div>
+
         </div>
 
         <div class="row">
             <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="is_featured">Is Featured</label><br>
-                    <input type="checkbox" name='is_featured' id='is_featured' value='1' > Yes
-                    @error('is_featured')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                  </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="is_new">Is New</label><br>
-                <input type="checkbox" name='is_new' id='is_new' value='1' > Yes
-                @error('is_new')
-                  <span class="text-danger">{{$message}}</span>
-                @enderror
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="is_bestsellers">Is Bestseller</label><br>
-                <input type="checkbox" name='is_bestsellers' id='is_bestsellers' value='1' > Yes
-                @error('is_bestsellers')
-                  <span class="text-danger">{{$message}}</span>
-                @enderror
-              </div>
-            </div>
-
-            <div class="col-md-3">
               <div class="form-group">
                   <label for="price" class="col-form-label">Price(INR) <span class="text-danger">*</span></label>
-                  <input id="price" type="number" name="price" placeholder="Enter price" value="{{old('price')}}" class="form-control">
+                  <input id="price" type="number" name="price" min="0" placeholder="Enter price" value="{{old('price')}}" class="form-control">
                   @error('price')
                   <span class="text-danger">{{$message}}</span>
                   @enderror
@@ -99,7 +93,7 @@
             <div class="col-md-3">
               <div class="form-group">
                   <label for="discount" class="col-form-label">Discount(%) <span class="text-danger">*</span></label>
-                  <input id="discount" type="number" name="discount" placeholder="Enter discount" value="{{old('discount')}}" class="form-control">
+                  <input id="discount" type="number" name="discount" min="0" placeholder="Enter discount" value="{{old('discount')}}" class="form-control">
                     @error('discount')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
@@ -108,174 +102,44 @@
 
             <div class="col-md-3">
               <div class="form-group">
-                  <label for="stock_quantity">Stock Quantity </label>
-                  <input id="stock_quantity" type="number" name="stock_quantity" min="0" placeholder="Enter Stock quantity"  value="{{ old('stock_quantity') }}" class="form-control">
-                  @error('stock_quantity')
+                  <label for="min_qty">Minimum Order Quantity <span class="text-danger">*</span></label>
+                  <input id="min_qty" type="number" name="min_qty" min="0" placeholder="Enter Minimum Order Quantity"  value="{{ old('min_qty') }}" class="form-control">
+                  @error('min_qty')
                   <span class="text-danger">{{$message}}</span>
                   @enderror
               </div>
-            </div>
+            </div> 
+
+              <div class="col-md-3">
+                <div class="form-group">
+                    <label for="tag">Tag <span class="text-danger">*</span></label>
+                    <input id="tag" type="text" name="tag" placeholder="Enter tag"  value="{{ old('tag')  }}" class="form-control">
+                    @error('tag')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+              </div>       
         </div>
+
+        
 
         <div class="form-group">
           <label for="description" class="col-form-label">Description</label>
           <textarea class="form-control" id="description" name="description">{{old('description')}}</textarea>
           @error('description')
-          <span class="text-danger">{{$message}}</span>
+            <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
 
-              {{-- {{ Applications}} --}}
+        <div class="form-group">
+          <label for="additional_information" class="col-form-label">Additional Information</label>
+          <textarea class="form-control" id="additional_information" name="additional_information">{{old('additional_information')}}</textarea>
+          @error('additional_information')
+            <span class="text-danger">{{$message}}</span>
+          @enderror
+        </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                  <div class="form-group">
-                      <label for="attributes">Attributes </label>
-                      <select name="attributes[]" id="attributes" class="form-control selectpicker" multiple>
-                          @foreach($attributes as $key=>$attribute)
-                              <option value='{{$attribute->id}}'>{{$attribute->name}}</option>
-                          @endforeach
-                      </select>
-                  </div>
-            </div>
-
-                  {{-- <div class="col-md-3">
-                      <div class="form-group">
-                        <label for="applications">Applications </label>
-                        <select name="applications[]" id="applications" class="form-control selectpicker" multiple>
-                            @foreach($applications as $key=>$application)
-                                <option value='{{$application->id}}'>{{$application->name}}</option>
-                            @endforeach
-                        </select>
-                      </div>
-                  </div> --}}
-
-                  {{-- {{Features}} --}}
-                  {{-- <div class="col-md-3">
-                      <div class="form-group">
-                        <label for="characteristics">Characteristics </label>
-                        <select name="characteristics[]" id="characteristics" class="form-control selectpicker" multiple>
-                            @foreach($characteristics as $key=>$characteristic)
-                                <option value='{{$characteristic->id}}'>{{$characteristic->name}}</option>
-                            @endforeach
-                        </select>
-                      </div>
-                  </div> --}}
-
-                  {{-- {{ Features}} --}}
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="features">Features </label>
-                    <select name="features[]" id="features" class="form-control selectpicker" multiple>
-                        @foreach($features as $key=>$feature)
-                            <option value='{{$feature->id}}'>{{$feature->name}}</option>
-                        @endforeach
-                    </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="related_products">Related Products </label>
-                <select name="related_products[]" id="related_products" class="form-control selectpicker "  data-live-search="true" data-actions-box="true" title="Choose in the following products..." multiple>
-                    @foreach($related_products as $key=>$product)
-                        <option value='{{$product->id}}'>{{$product->name}}</option>
-                    @endforeach
-                </select>
-              </div>
-            </div>
-
-                    {{-- {{ Products}} --}}
-                    {{-- <div class="row"> --}}
-                        {{-- <div class="col-md-3">
-                            <div class="form-group">
-                              <label for="laminates"> Laminates </label>
-                              <select name="laminates[]" id="related_products" class="form-control selectpicker" multiple>
-                                  @foreach($laminates as $key=>$laminate)
-                                      <option value='{{$laminate->id}}'>{{$laminate->name}}</option>
-                                  @endforeach
-                              </select>
-                            </div>
-                        </div> --}}
-
-                        {{-- {{Textures}} --}}
-                          {{-- <div class="col-md-3">
-                              <div class="form-group">
-                                <label for="textures"> Textures </label>
-                                <select name="textures[]" id="textures" class="form-control selectpicker" multiple>
-                                    @foreach($textures as $key=>$product)
-                                        <option value='{{$product->id}}'>{{$product->name}}</option>
-                                    @endforeach
-                                </select>
-                              </div>
-                          </div> --}}
-
-                              {{-- {{ Thicknesses}} --}}
-                              {{-- <div class="col-md-3">
-                                  <div class="form-group">
-                                    <label for="thicknesses"> Thicknesses </label>
-                                    <select name="thicknesses[]" id="thicknesses" class="form-control selectpicker" multiple>
-                                        @foreach($thicknesses as $key=>$thickness)
-                                            <option value='{{$thickness->id}}'>{{$thickness->name}}</option>
-                                        @endforeach
-                                    </select>
-                                  </div>
-                              </div> --}}
-
-                              {{-- {{Related Products}} --}}
-                            {{-- <div class="col-md-3">
-                              <div class="form-group">
-                                <label for="related_products">Related Products </label>
-                                <select name="related_products[]" id="related_products" class="form-control selectpicker "  data-live-search="true" data-actions-box="true" title="Choose in the following products..." multiple>
-                                    @foreach($related_products as $key=>$product)
-                                        <option value='{{$product->id}}'>{{$product->name}}</option>
-                                    @endforeach
-                                </select>
-                              </div>
-                            </div> --}}
-                    {{-- </div> --}}
-
-            <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="image1" class="col-form-label">Image 1 <span class="text-danger">*</span></label>
-                      <div class="input-group">
-                      <input  class="form-control" type="file" name="image1" value="{{old('image1')}}">
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="image2" class="col-form-label">Image 2</label>
-                        <div class="input-group">
-                          <input class="form-control" type="file" name="image2" value="{{old('image2')}}">
-                      </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                      <div class="form-group">
-                        <label for="image3" class="col-form-label">Image 3 </label>
-                        <div class="input-group">
-                          <input class="form-control" type="file" name="image3" value="{{old('image3')}}">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-              <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
-              <select name="status" class="form-control">
-                  <option value="1">Active</option>
-                  <option value="0">Inactive</option>
-              </select>
-              @error('status')
-              <span class="text-danger">{{$message}}</span>
-              @enderror
-            </div>
+           
 
 
             <div class="row">
@@ -288,7 +152,6 @@
                           @enderror
                       </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="meta_keyword" class="col-form-label">Meta Keyword </label>
@@ -298,25 +161,131 @@
                         @enderror
                     </div>
                 </div>
+            </div>
 
-                {{-- <div class="col-md-4">
+              <div class="form-group">
+                    <label for="meta_description" class="col-form-label">Meta Description</label>
+                    <textarea class="form-control" id="meta_description" name="meta_description">{{old('meta_description')}}</textarea>
+                    @error('meta_description')
+                    <span class="text-danger">{{$message}}</span>
+                    @enderror
+              </div>
+              
+             <div class="row">
+                <div class="col-md-6">
                   <div class="form-group">
-                    <label for="meta_image" class="col-form-label">Meta Image</label>
+                    <label for="image-1" class="col-form-label">Images </label>
                     <div class="input-group">
-                      <input class="form-control" type="file" name="meta_image" value="{{old('meta_image')}}">
+                      <input class="form-control" type="file" id="images" name="images[]" value="{{old('images')}}" multiple>
                     </div>
                   </div>
-                </div> --}}
-        </div>
+                </div>  
 
-        <div class="form-group">
-              <label for="meta_description" class="col-form-label">Meta Description</label>
-              <textarea class="form-control" id="meta_description" name="meta_description">{{old('meta_description')}}</textarea>
-              @error('meta_description')
-              <span class="text-danger">{{$message}}</span>
-              @enderror
-        </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="related_products">Related Products </label>
+                    <select name="related_products[]" id="related_products" class="form-control selectpicker "  data-live-search="true" data-actions-box="true" title="Choose in the following products..." multiple>
+                        @foreach($related_products as $key=>$product)
+                            <option value='{{$product->id}}'>{{$product->name}}</option>
+                        @endforeach
+                    </select>
+                  </div>
+                </div>                
+              </div>      
+            <div class="parentDiv">
+                <div id="multiple">
+                  <div class="row" >
+                    <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="colors">Size </label>
+                          <select name="sizes[]" id="sizes" class="form-control" required>
+                                <option value ="">Select Size</option>
+                                @foreach($sizes as $key=>$attribute)
+                                    <option value='{{$attribute->id}}'>{{$attribute->name}}</option>
+                                @endforeach
+                          </select>
+                      </div>
+                    </div>
 
+                    <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="colors">Colors </label>
+                          <select name="colors[]" id="colors" class="form-control" required>
+                                <option value ="">Select Color</option>
+                              @foreach($colors as $key=>$attribute)
+                                  <option value='{{$attribute->id}}'>{{$attribute->name}}</option>
+                              @endforeach
+                          </select>
+                      </div>
+                    </div>
+                  
+                    <div class="col-md-4">
+                      <div class="form-group">
+                          <label for="stock_quantities">Stock Quantity <span class="text-danger">*</span></label>
+                          <input id="stock_quantities[]" type="number" name="stock_quantities[]" min="0" placeholder="Enter Stock quantity"  value="{{ old('stock_quantities') }}" class="form-control" required>
+                          @error('stock_quantities')
+                            <span class="text-danger">{{$message}}</span>
+                          @enderror
+                      </div>
+                    </div>      
+                  </div>     
+              </div>
+            </div>  
+
+            {{-- <div id="multipleClone" class="row multipleClone"> 
+            </div> --}}
+            
+            <div class="form-group mb-3">
+               <button class="btn btn-primary" id="addNewProduct" type="button">Add New</button>
+            </div>
+            <br>
+
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="checkbox" id="is_featured" name="is_featured" value="1">
+                  <label for="vehicle1">Is Featured ?</label>
+                </div> 
+              </div>  
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="checkbox" id="is_new" name="is_new"  value="1">
+                  <label for="vehicle2">Is New ?</label>
+                </div>
+              </div>   
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="checkbox" id="is_bestsellers" name="is_bestsellers" value="1">
+                  <label for="vehicle3">Is Bestsellers ?</label>
+                </div>  
+              </div> 
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="offer" class="col-form-label">Offer</label>
+                <select name="offer" class="form-control">
+                    <option value=""> Select Offer if any </option>
+                    <option value="1">Buy 3 flat at 6500</option>
+                    <option value="2">Buy 1 get 2nd at 20%</option>
+                </select>
+                @error('offer')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
+              </div>
+            </div>
+
+            <div class="form-group">
+                <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
+                <select name="status" class="form-control">
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
+                @error('status')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
+            </div>
+          
         <div class="form-group mb-3">
           <button type="reset" class="btn btn-warning">Reset</button>
            <button class="btn btn-success" type="submit">Submit</button>
@@ -339,22 +308,51 @@
 <script>
     $('#lfm').filemanager('image');
 
-    $(document).ready(function() {
+    $(document).ready(function() 
+    { 
+      $('#addNewProduct').on('click',function(e)
+      {
+        var copyContent = $("#multiple").clone();
+        copyContent.find('.bootstrap-select').replaceWith(function() { return $('select', this); })    
+        copyContent.find('.selectpicker').selectpicker('render'); 
+        $('.parentDiv').append(copyContent);
+        //$('.multipleClone').append($('.multiple').html());
+
+        // var size = $('select[id^="size"]:last');
+
+        // // Read the Number from that DIV's ID (i.e: 3 from "klon3")
+        // // And increment that number by 1
+        // var num = parseInt( size.prop("id").match(/\d+/g), 10 ) +1;
+
+        // // Clone it and assign the new ID (i.e: from num 4 to ID "klon4")
+        // var $klon = $div.clone().prop('id', 'klon'+num );
+
+        // // Finally insert $klon wherever you want
+        // $div.after( $klon.text('klon'+num) );       
+      });
+     
       $('#meta_description').summernote({
         placeholder: "Write meta description.....",
           tabsize: 2,
           height: 100
       });
+
     });
 
-    $(document).ready(function() {
+    $(document).ready(function() 
+    {
       $('#description').summernote({
         placeholder: "Write detail description.....",
           tabsize: 2,
           height: 150
       });
+      $('#additional_information').summernote({
+        placeholder: "Write detail information.....",
+          tabsize: 2,
+          height: 150
+      });
     });
-    // $('select').selectpicker();
+    $('select').selectpicker();
 
 </script>
 

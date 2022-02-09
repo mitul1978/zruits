@@ -14,7 +14,7 @@ class Product extends Model
 
     protected $attributes = ['in_cart' => false];
 
-    protected $fillable=['category_id','name','design','is_featured','is_new','is_bestsellers','is_offer','offer','price','stock_quantity','description','discount','slug','a4sheet_view','fullsheet_view','room_view','meta_title','meta_description','meta_image','meta_keyword','status','sort_order','tags','tag'];
+    protected $fillable=['category_id','name','design','hsn','fabric','orientation','related_products','min_qty','is_featured','is_new','is_bestsellers','is_offer','offer','price','stock_quantity','description','additional_information','discount','slug','a4sheet_view','fullsheet_view','room_view','meta_title','meta_description','meta_image','meta_keyword','status','sort_order','tags','tag'];
 
 
     public function toArray()
@@ -43,6 +43,7 @@ class Product extends Model
     public function getReview(){
         return $this->hasMany('App\Models\ProductReview','product_id','id')->with('user_info')->where('status','active')->orderBy('id','DESC');
     }
+
     public static function getProductBySlug($slug){
         return Product::with(['cat_info','rel_prods','getReview'])->where('slug',$slug)->first();
     }
@@ -52,6 +53,16 @@ class Product extends Model
             return $data;
         }
         return 0;
+    }
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\ProductImage','product_id');
+    }
+
+    public function sizesstock()
+    {
+        return $this->hasMany('App\Models\ProductStock','product_id');
     }
 
 

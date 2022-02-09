@@ -64,6 +64,6 @@
       $('.alert').slideUp();
     },4000);
 
-    $(".selectSearchClass").select2();
+    //$(".selectSearchClass").select2();
 
   </script>

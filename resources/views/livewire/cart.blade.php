@@ -42,7 +42,7 @@
                   $taxable_amount =  get_cart_taxable_amount();												
                   $tax = 0;//  get_tax_total($taxable_amount);										  
                   $freight_charge = 0; //  @$freight_details['freight_charge'] ? $freight_details['freight_charge'] :0;
-                  $grand_total =  $tax + $taxable_amount+$freight_charge - $coupon_value;		
+                  $grand_total =  $tax + $taxable_amount + $freight_charge - $coupon_value;		
                   $isGiftCard = 0;							
                 @endphp
                 <tbody>
@@ -128,10 +128,12 @@
                       <td>Subtotal:</td>
                       <td>&#8377; {{ $taxable_amount}}</td>
                     </tr><!-- End .summary-subtotal -->
+                   
                     {{-- <tr class="summary-shipping">
                       <td>Shipping:</td>
                       <td>&nbsp;</td>
                     </tr>
+                    
 
                     <tr class="summary-shipping-row">
                       <td>
@@ -167,6 +169,7 @@
                       <td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
                       <td>&nbsp;</td>
                     </tr><!-- End .summary-shipping-estimate --> --}}
+                   
 
                     <tr class="summary-total">
                       <td>Total:</td>

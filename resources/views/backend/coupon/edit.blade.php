@@ -10,29 +10,30 @@
         @method('PATCH')
 
         <div class="form-group">
-            <label for="distributor_id" class="col-form-label">Distributors  <span class="text-danger">*</span></label>
-            <select name="distributor_id" class="form-control">
-              <option value="">Select Distributor</option>
-
-              @foreach ($distributors as $distributor_id => $distributor )
-              <option {{@$coupon->distributor_id && $coupon->distributor_id==$distributor_id ? 'selected' :''}} value="{{$distributor_id}}">{{$distributor }}</option>
-
-              @endforeach
-            </select>
-            @error('type')
+          <label for="name" class="col-form-label">Name <span class="text-danger">*</span></label>
+          <input id="name" type="text" name="name" placeholder="Enter Coupon Name"  value="{{$coupon->name}}"  class="form-control" required>
+          @error('name')
             <span class="text-danger">{{$message}}</span>
-            @enderror
+          @enderror
         </div>
 
         <div class="form-group">
           <label for="inputTitle" class="col-form-label">Coupon Code <span class="text-danger">*</span></label>
           <input id="inputTitle" type="text" name="code" placeholder="Enter Coupon Code"  value="{{$coupon->code}}" class="form-control">
           @error('code')
-          <span class="text-danger">{{$message}}</span>
+            <span class="text-danger">{{$message}}</span>
           @enderror
-          </div>
+        </div>
 
-          <div class="form-group">
+        <div class="form-group">
+          <label for="max_use" class="col-form-label">Max Use<span class="text-danger">*</span></label>
+          <input id="max_use" type="number" name="max_use" placeholder="Enter Max Use"  value="{{$coupon->max_use}}" class="form-control" required>
+          @error('max_use')
+            <span class="text-danger">{{$message}}</span>
+          @enderror
+        </div>
+
+        <div class="form-group">
               <label for="type" class="col-form-label">Type <span class="text-danger">*</span></label>
               <select name="type" class="form-control">
                   <option value="fixed" {{(($coupon->type=='fixed') ? 'selected' : '')}}>Fixed</option>
@@ -50,6 +51,22 @@
               <span class="text-danger">{{$message}}</span>
               @enderror
           </div>
+
+          <div class="form-group">
+            <label for="start_date" class="col-form-label">Start Date <span class="text-danger">*</span></label>
+            <input id="start_date" type="date" name="start_date"  value="{{date("Y-m-d", strtotime($coupon->start_date))}}" class="form-control" required>
+            @error('start_date')
+              <span class="text-danger">{{$message}}</span>
+            @enderror
+        </div>
+  
+        <div class="form-group">
+          <label for="end_date" class="col-form-label">End Date <span class="text-danger">*</span></label>
+          <input id="end_date" type="date" name="end_date" value="{{date("Y-m-d", strtotime($coupon->end_date))}}" class="form-control" required>
+          @error('end_date')
+            <span class="text-danger">{{$message}}</span>
+          @enderror
+      </div>
 
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>

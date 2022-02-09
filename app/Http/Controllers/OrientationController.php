@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Size;
+use App\Models\Orientation;
 use Illuminate\Http\Request;
 
-class SizeController extends Controller
+class OrientationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class SizeController extends Controller
      */
     public function index()
     {
-       $sizes =  Size::where('status',1)->orderBy('name')->paginate(50);
-       return view('backend.sizes.index')->with('sizes',$sizes);
+       $orientations =  Orientation::where('status',1)->orderBy('name')->paginate(50);
+       return view('backend.orientations.index')->with('orientations',$orientations);
     }
 
     /**
@@ -25,7 +25,7 @@ class SizeController extends Controller
      */
     public function create()
     {
-        return view('backend.sizes.create');
+        return view('backend.orientations.create');
     }
 
     /**
@@ -37,9 +37,9 @@ class SizeController extends Controller
     public function store(Request $request)
     {   
         $data = $request->all();       
-        Size::create($data);
-        request()->session()->flash('success','Size Successfully created');
-        return redirect()->route('sizes.index');
+        Orientation::create($data);
+        request()->session()->flash('success','Orientation Successfully created');
+        return redirect()->route('orientations.index');
     }
 
     /**
@@ -59,10 +59,10 @@ class SizeController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function edit(Size $size)
+    public function edit(Orientation $orientation)
     { 
-        $size = Size::find($size->id);
-        return view('backend.sizes.edit',compact('size'));
+        $orientation = Orientation::find($orientation->id);
+        return view('backend.orientations.edit',compact('orientation'));
     }
 
     /**
@@ -72,13 +72,13 @@ class SizeController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Size $size)
+    public function update(Request $request, Orientation $orientation)
     {   
         $data = $request->all();
-        $size=Size::findOrFail($size->id);        
-        $size->update($data);
-        request()->session()->flash('success','Size Successfully updated');
-        return redirect()->route('sizes.index');
+        $orientation=Orientation::findOrFail($orientation->id);        
+        $orientation->update($data);
+        request()->session()->flash('success','Orientation Successfully updated');
+        return redirect()->route('orientations.index');
     }
 
     /**
@@ -87,17 +87,18 @@ class SizeController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Size $size)
+    public function destroy(Orientation $orientation)
     {
-        $size=Size::findOrFail($size->id);
-        $status=$size->delete();
+        $orientation=Orientation::findOrFail($orientation->id);
+        $status=$orientation->delete();
 
         if($status){
-            request()->session()->flash('success','Size successfully deleted');
+            request()->session()->flash('success','Orientation successfully deleted');
         }
-        else{
-            request()->session()->flash('error','Error while deleting size');
+        else
+        {
+            request()->session()->flash('error','Error while deleting Orientation');
         }
-        return redirect()->route('sizes.index');
+        return redirect()->route('orientations.index');
     }
 }

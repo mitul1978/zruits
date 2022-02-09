@@ -3,15 +3,15 @@
 @section('main-content')
 
 <div class="card">
-    <h5 class="card-header">Edit Size</h5>
+    <h5 class="card-header">Edit Orientation</h5>
     <div class="card-body">
-      <form method="post" action="{{route('sizes.update',$size->id)}}">
+      <form method="post" action="{{route('orientations.update',$orientation->id)}}">
         @csrf
         @method('PATCH')
 
         <div class="form-group">
           <label for="name" class="col-form-label">Name <span class="text-danger">*</span></label>
-          <input id="name" type="text" name="name" placeholder="Enter Size"  value="{{$size->name}}" class="form-control">
+          <input id="name" type="text" name="name" placeholder="Enter Orientation"  value="{{$orientation->name}}" class="form-control">
             @error('name')
               <span class="text-danger">{{$message}}</span>
             @enderror
@@ -20,8 +20,8 @@
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
-              <option value="1" {{$size->status == 1 ?? 'selected'}}>Active</option>
-              <option value="0" {{$size->status == 0 ?? 'selected'}}>Inactive</option>
+              <option value="1" {{$orientation->status == 1 ?? 'selected'}}>Active</option>
+              <option value="0" {{$orientation->status == 0 ?? 'selected'}}>Inactive</option>
           </select>
           @error('status')
              <span class="text-danger">{{$message}}</span>

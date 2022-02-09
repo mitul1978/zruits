@@ -18,8 +18,7 @@ class CouponController extends Controller
      */
     public function index()
     {
-
-        $coupon=Coupon::paginate('10');
+        $coupon=Coupon::where('is_giftcard',0)->paginate('10');
         return view('backend.coupon.index')->with('coupons',$coupon);
     }
 
@@ -30,9 +29,8 @@ class CouponController extends Controller
      */
     public function create()
     {
-
-        $dealers =  Dealer::where('distributor_id',Auth::guard('distributor')->user()->id)->where('status',1)->pluck('name','id');
-        return view('distributor.coupon.create',compact('dealers'));
+        //$dealers =  Dealer::where('distributor_id',Auth::guard('distributor')->user()->id)->where('status',1)->pluck('name','id');
+        return view('backend.coupon.create');
     }
 
     /**
@@ -45,21 +43,27 @@ class CouponController extends Controller
     {
         // return $request->all();
         $this->validate($request,[
+            'name'=>'string|required',
             'code'=>'string|required',
+            'max_use'=>'integer|required',
             'type'=>'required|in:fixed,percent',
             'value'=>'required|numeric',
-            'status'=>'required|in:active,inactive',
-            'dealer_id'=>'required|numeric',
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'status'=>'required|in:active,inactive'
         ]);
+
         $data=$request->all();
 
-        $data['distributor_id']=Auth::guard('distributor')->user()->id;
+       // $data['distributor_id']=Auth::guard('distributor')->user()->id;
 
         $status=Coupon::create($data);
-        if($status){
+        if($status)
+        {
             request()->session()->flash('success','Coupon Successfully added');
         }
-        else{
+        else
+        {
             request()->session()->flash('error','Please try again!!');
         }
         return redirect()->route('coupon.index');
@@ -83,14 +87,14 @@ class CouponController extends Controller
      */
     public function edit($id)
     {
-
-        $dealers =  Dealer::where('status',1)->pluck('name','id');
-
+        //$dealers =  Dealer::where('status',1)->pluck('name','id');
         $coupon=Coupon::find($id);
-        if($coupon){
-            return view('backend.coupon.edit',compact('dealers','coupon'));
+        if($coupon)
+        {
+            return view('backend.coupon.edit',compact('coupon'));
         }
-        else{
+        else
+        {
             return view('admin.coupon.index')->with('error','Coupon not found');
         }
     }
@@ -106,25 +110,29 @@ class CouponController extends Controller
     {
         $coupon=Coupon::find($id);
         $this->validate($request,[
+            'name'=>'string|required',
             'code'=>'string|required',
+            'max_use'=>'integer|required',
             'type'=>'required|in:fixed,percent',
             'value'=>'required|numeric',
-            'status'=>'required|in:active,inactive',
-            'dealer_id'=>'required|numeric',
-
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'status'=>'required|in:active,inactive'
         ]);
+
         $data=$request->all();
-        $data['distributor_id']=Auth::guard('distributor')->user()->id;
+        //$data['distributor_id']=Auth::guard('distributor')->user()->id;
 
         $status=$coupon->fill($data)->save();
-        if($status){
+        if($status)
+        {
             request()->session()->flash('success','Coupon Successfully updated');
         }
-        else{
+        else
+        {
             request()->session()->flash('error','Please try again!!');
         }
         return redirect()->route('coupon.index');
-
     }
 
     /**
@@ -136,17 +144,21 @@ class CouponController extends Controller
     public function destroy($id)
     {
         $coupon=Coupon::find($id);
-        if($coupon){
+        if($coupon)
+        {
             $status=$coupon->delete();
-            if($status){
+            if($status)
+            {
                 request()->session()->flash('success','Coupon successfully deleted');
             }
-            else{
+            else
+            {
                 request()->session()->flash('error','Error, Please try again');
             }
             return redirect()->route('coupon.index');
         }
-        else{
+        else
+        {
             request()->session()->flash('error','Coupon not found');
             return redirect()->back();
         }

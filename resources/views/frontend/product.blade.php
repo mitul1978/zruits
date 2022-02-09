@@ -11,16 +11,16 @@
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
-
-            <div class="page-content">
+            <input type="hidden" name="product_id" id="product_id" value="{{@$product->id}}">
+            <div class="page-content" >
                 <div class="container">
-                    <div class="product-details-top">
+                    <div class="product-details-top" id="loadAjax">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="product-gallery product-gallery-vertical">
                                     <div class="row">
                                         <figure class="product-main-image">
-                                            <img id="product-zoom" src="{{url('assets/images/products/single/1.jpg')}}" data-zoom-image="{{url('assets/images/products/single/1.jpg')}}" alt="product image">
+                                            <img id="product-zoom" src="{{asset(@$product->images()->first()->image)}}" data-zoom-image="{{asset(@$product->images()->first()->image)}}" alt="product image">
 
                                             <a href="#" id="btn-product-gallery" class="btn-product-gallery">
                                                 <i class="icon-arrows"></i>
@@ -28,21 +28,17 @@
                                         </figure><!-- End .product-main-image -->
 
                                         <div id="product-zoom-gallery" class="product-image-gallery">
-                                            <a class="product-gallery-item active" href="javascript:void(0)" data-image="{{url('assets/images/products/single/1.jpg')}}" data-zoom-image="{{url('assets/images/products/single/1.jpg')}}">
-                                                <img src="{{url('assets/images/products/single/1-small.jpg')}}" alt="product side">
-                                            </a>
-
-                                            <a class="product-gallery-item" href="javascript:void(0)" data-image="{{url('assets/images/products/single/2.jpg')}}" data-zoom-image="{{url('assets/images/products/single/2.jpg')}}">
-                                                <img src="{{url('assets/images/products/single/2-small.jpg')}}" alt="product cross">
-                                            </a>
-
-                                            <a class="product-gallery-item" href="javascript:void(0)" data-image="{{url('assets/images/products/single/3.jpg')}}" data-zoom-image="{{url('assets/images/products/single/3-big.jpg')}}">
-                                                <img src="{{url('assets/images/products/single/3-small.jpg')}}" alt="product with model">
-                                            </a>
-
-                                            <a class="product-gallery-item" href="javascript:void(0)" data-image="{{url('assets/images/products/single/4.jpg')}}" data-zoom-image="{{url('assets/images/products/single/4-big.jpg')}}">
-                                                <img src="{{url('assets/images/products/single/4-small.jpg')}}" alt="product back">
-                                            </a>
+                                            @foreach($product->images as $key => $image)
+                                                @if($key == 0)
+                                                    <a class="product-gallery-item active" href="#" data-image="{{asset(@$image->image)}}" data-zoom-image="{{asset(@$image->image)}}">
+                                                        <img src="{{asset(@$image->image)}}" alt="product side">
+                                                    </a>
+                                                @else
+                                                    <a class="product-gallery-item" href="#" data-image="{{asset(@$image->image)}}" data-zoom-image="{{asset(@$image->image)}}">
+                                                        <img src="{{asset(@$image->image)}}" alt="product side">
+                                                    </a>
+                                                @endif
+                                            @endforeach
                                         </div><!-- End .product-image-gallery -->
                                     </div><!-- End .row -->
                                 </div><!-- End .product-gallery -->
@@ -59,67 +55,57 @@
                                     <div class="product-content">
                                         {!! $product->title !!}
                                     </div><!-- End .product-content -->
-
+                                     <?php
+                                        $availableColors = $product->sizesstock()->groupBy('color_id')->get();
+                                        $availableSizes = $product->sizesstock()->groupBy('size_id')->get();
+                                     ?>
                                     <div class="table-cell radio-cell">
                                         <div class="label text-underline fw-400 mr-4">Color</div>
                                         <div id="" class="d-flex">
-                                            <div class="radio has-color">
-                                                <label>
-                                                    <input type="radio" name="color" value="Red" class="p-cradio">
-                                                    <div class="custom-color"><span style="background-color:#0c0c0c" ></span></div>
-                                               </label>
-                                            </div>
-                                            <div class="radio has-color"> 
-                                                <label>
-                                                    <input type="radio" name="color" value="Black" class="p-cradio">
-                                                    <div class="custom-color"><span style="background-color:#c44141"></span></div>
-                                               </label>
-                                            </div>
+                                            @if(isset($availableColors) && $availableColors->isNotEmpty())  
+                                               @foreach($availableColors as $color)                                     
+                                                <div class="radio has-color">
+                                                    <label>
+                                                        <input type="radio" name="color" value="{{@$color->color_id}}" class="p-cradio colorOptions">
+                                                        <div class="custom-color"><span style="background-color:{{@$color->productColor->code}}" ></span></div>
+                                                     </label>
+                                                </div>
+                                               @endforeach 
+                                            @endif
+                                            
                                         </div>
                                     </div>
 
                                     <div class="table-cell radio-cell">
                                         <div class="label text-underline fw-400 mr-4">Size</div>
                                         <div id="" class="d-flex">
-                                            <div class="radio has-image">
-                                                <label>
-                                                    <input type="radio" name="size" value="s" class="p-cradio">
-                                                    <div class="custom-size"><span>S</span></div>
-                                               </label>
-                                            </div>
-                                            <div class="radio has-image">
-                                                <label>
-                                                    <input type="radio" name="size" value="m" class="p-cradio">
-                                                    <div class="custom-size"><span>M</span></div>
-                                               </label>
-                                            </div>
-                                            <div class="radio has-image">
-                                                <label>
-                                                    <input type="radio" name="size" value="l" class="p-cradio">
-                                                    <div class="custom-size"><span>L</span></div>
-                                               </label>
-                                            </div>
-                                            <div class="radio has-image">
-                                                <label>
-                                                    <input type="radio" name="size" value="xl" class="p-cradio">
-                                                    <div class="custom-size"><span>XL</span></div>
-                                               </label>
-                                            </div>
-                                            <div class="radio has-image">
-                                                <label>
-                                                    <input type="radio" name="size" value="xxl" class="p-cradio">
-                                                    <div class="custom-size"><span>XXL</span></div>
-                                               </label>
-                                            </div>
+                                            @if(isset($availableSizes) && $availableSizes->isNotEmpty())  
+                                               @foreach($availableSizes as $size)              
+                                                 <div class="radio has-image">
+                                                    <label>
+                                                        <input type="radio" name="size" value="{{@$size->size_id}}" class="p-cradio ">
+                                                        <div class="custom-size"><span>{{@$size->productSize->name}}</span></div>
+                                                    </label>
+                                                 </div>
+                                                @endforeach
+                                            @endif     
+                                           
                                         </div>
                                         <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
                                     </div>
+
+                                    <div id="displayProdCount">                           
+                                    </div><!-- End .details-filter-row -->
 
                                     <div class="details-filter-row details-row-size">
                                         <label for="qty">Qty:</label>
                                         <div class="product-details-quantity">
                                             <input type="number" id="qty" class="form-control" value="1" min="1" max="5" step="1" data-decimals="0" required>
                                         </div><!-- End .product-details-quantity -->
+                                    </div><!-- End .details-filter-row -->
+
+                                    <div class="details-filter-row details-row-size">
+                                        <label id="availableContsu"></label>                                        
                                     </div><!-- End .details-filter-row -->
 
                                     <div class="product-details-action">
@@ -138,9 +124,7 @@
                                     <div class="product-details-footer">
                                         <div class="product-cat">
                                             <span>Category:</span>
-                                            <a href="javascript:void(0);">Women</a>,
-                                            <a href="javascript:void(0);">Dresses</a>,
-                                            <a href="javascript:void(0);">Yellow</a>
+                                            <a href="javascript:void(0);">{{$product->category->title}}</a>
                                         </div><!-- End .product-cat -->
 
                                         <div class="social-icons social-icons-sm">

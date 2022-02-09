@@ -25,15 +25,7 @@
               {{-- <th>Action</th> --}}
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Name</th>
-              <th>State</th>
-              <th>Status</th>
-                {{-- <th>Action</th> --}}
-              </tr>
-          </tfoot>
+       
           <tbody>
             @foreach($cities as $city)
                 <tr>

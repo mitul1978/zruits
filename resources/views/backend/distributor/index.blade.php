@@ -26,18 +26,7 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-                <th>S.N.</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Photo</th>
-                <th>Join Date</th>
-
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-          </tfoot>
+          
           <tbody>
             @foreach($users as $user)
                 <tr>

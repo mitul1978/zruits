@@ -9,42 +9,40 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Shipping List</h6>
-      <a href="{{route('shipping.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Shipping</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Orientation List</h6>
+      <a href="{{route('orientations.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add Size"><i class="fas fa-plus"></i> Add Orientation</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        @if(count($shippings)>0)
+        @if(count($orientations)>0)
         <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Status</th>
-              <th>Action</th>
+                <th>S.N.</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Action</th>
             </tr>
           </thead>
          
           <tbody>
-            @foreach($shippings as $shipping)
+            @foreach($orientations as $key => $orientation)
                 <tr>
-                    <td>{{$shipping->id}}</td>
-                    <td>{{$shipping->type}}</td>
-                    <td>${{$shipping->price}}</td>
+                    <td>{{++$key}}</td>
+                    <td>{{$orientation->name}}</td>
                     <td>
-                        @if($shipping->status=='active')
-                            <span class="badge badge-success">{{$shipping->status}}</span>
+                        @if($orientation->status=='1')
+                            <span class="badge badge-success">Active</span>
                         @else
-                            <span class="badge badge-warning">{{$shipping->status}}</span>
+                            <span class="badge badge-warning">Inactive</span>
                         @endif
                     </td>
                     <td>
-                        <a href="{{route('shipping.edit',$shipping->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <form method="POST" action="{{route('shipping.destroy',[$shipping->id])}}">
+                        <a href="{{route('orientations.edit',$orientation->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <form method="POST" action="{{route('orientations.destroy',[$orientation->id])}}">
                           @csrf
                           @method('delete')
-                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$shipping->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                              <button class="btn btn-danger btn-sm dltBtn" data-id={{$orientation->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
                     {{-- Delete Modal --}}
@@ -71,9 +69,9 @@
             @endforeach
           </tbody>
         </table>
-        <span style="float:right">{{$shippings->links()}}</span>
+        <span style="float:right">{{$orientations->links()}}</span>
         @else
-          <h6 class="text-center">No shippings found!!! Please create shipping</h6>
+          <h6 class="text-center">No Orientation found!!! Please create Orientation</h6>
         @endif
       </div>
     </div>
@@ -112,7 +110,9 @@
             "columnDefs":[
                 {
                     "orderable":false,
-                    "targets":[3,4]
+                    "targets":[4,5],
+                    "paging": true,
+
                 }
             ]
         } );

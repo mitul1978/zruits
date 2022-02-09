@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Size;
+use App\Models\Fabric;
 use Illuminate\Http\Request;
 
-class SizeController extends Controller
+class FabricController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class SizeController extends Controller
      */
     public function index()
     {
-       $sizes =  Size::where('status',1)->orderBy('name')->paginate(50);
-       return view('backend.sizes.index')->with('sizes',$sizes);
+       $fabrics =  Fabric::where('status',1)->orderBy('name')->paginate(50);
+       return view('backend.fabrics.index')->with('fabrics',$fabrics);
     }
 
     /**
@@ -25,7 +25,7 @@ class SizeController extends Controller
      */
     public function create()
     {
-        return view('backend.sizes.create');
+        return view('backend.fabrics.create');
     }
 
     /**
@@ -37,9 +37,9 @@ class SizeController extends Controller
     public function store(Request $request)
     {   
         $data = $request->all();       
-        Size::create($data);
-        request()->session()->flash('success','Size Successfully created');
-        return redirect()->route('sizes.index');
+        Fabric::create($data);
+        request()->session()->flash('success','Fabric Successfully created');
+        return redirect()->route('fabrics.index');
     }
 
     /**
@@ -48,7 +48,7 @@ class SizeController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function show(Color $color)
+    public function show(Fabric $fabric)
     {
         //
     }
@@ -59,10 +59,10 @@ class SizeController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function edit(Size $size)
+    public function edit(Fabric $fabric)
     { 
-        $size = Size::find($size->id);
-        return view('backend.sizes.edit',compact('size'));
+        $fabric = Fabric::find($size->id);
+        return view('backend.fabrics.edit',compact('fabric'));
     }
 
     /**
@@ -72,13 +72,13 @@ class SizeController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Size $size)
+    public function update(Request $request, Fabric $fabric)
     {   
         $data = $request->all();
-        $size=Size::findOrFail($size->id);        
-        $size->update($data);
-        request()->session()->flash('success','Size Successfully updated');
-        return redirect()->route('sizes.index');
+        $fabric=Fabric::findOrFail($fabric->id);        
+        $fabric->update($data);
+        request()->session()->flash('success','Fabric Successfully updated');
+        return redirect()->route('fabrics.index');
     }
 
     /**
@@ -87,17 +87,17 @@ class SizeController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Size $size)
+    public function destroy(Fabric $fabric)
     {
-        $size=Size::findOrFail($size->id);
-        $status=$size->delete();
+        $fabric=Fabric::findOrFail($size->id);
+        $status=$fabric->delete();
 
         if($status){
-            request()->session()->flash('success','Size successfully deleted');
+            request()->session()->flash('success','Fabric successfully deleted');
         }
         else{
-            request()->session()->flash('error','Error while deleting size');
+            request()->session()->flash('error','Error while deleting Fabric');
         }
-        return redirect()->route('sizes.index');
+        return redirect()->route('fabrics.index');
     }
 }

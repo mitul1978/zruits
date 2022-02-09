@@ -34,7 +34,7 @@
 
             <td>{{number_format($order->total_amount,2)}}</td>
             <td>
-              <span class="badge {{$order->order_status->class}}">{{$order->order_status->name}}</span>
+              <span class="badge {{@$order->order_status->class}}">{{@$order->order_status->name}}</span>
 
             </td>
             <td>

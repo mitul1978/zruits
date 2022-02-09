@@ -3,32 +3,30 @@
 @section('main-content')
 
 <div class="card">
-    <h5 class="card-header">Edit Size</h5>
+    <h5 class="card-header">Add Fabric</h5>
     <div class="card-body">
-      <form method="post" action="{{route('sizes.update',$size->id)}}">
-        @csrf
-        @method('PATCH')
-
+      <form method="post" action="{{route('fabrics.store')}}" enctype="multipart/form-data">
+         {{csrf_field()}}
         <div class="form-group">
-          <label for="name" class="col-form-label">Name <span class="text-danger">*</span></label>
-          <input id="name" type="text" name="name" placeholder="Enter Size"  value="{{$size->name}}" class="form-control">
+            <label for="name" class="col-form-label">Name<span class="text-danger">*</span></label>
+            <input id="name" type="text" name="name" placeholder="Enter Fabric Name"  value="{{old('name')}}" class="form-control">
             @error('name')
               <span class="text-danger">{{$message}}</span>
             @enderror
-        </div>  
+        </div>    
 
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
-              <option value="1" {{$size->status == 1 ?? 'selected'}}>Active</option>
-              <option value="0" {{$size->status == 0 ?? 'selected'}}>Inactive</option>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
           </select>
           @error('status')
              <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
         <div class="form-group mb-3">
-           <button class="btn btn-success" type="submit">Update</button>
+           <button class="btn btn-success" type="submit">Submit</button>
         </div>
       </form>
     </div>

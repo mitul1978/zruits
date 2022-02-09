@@ -71,7 +71,7 @@
 												<div class="col-xl-12 col-lg-12">
 													<table class="table table-bordered" id="order-dataTable" width="100%" cellspacing="0">
 														<thead>
-														<tr>
+														<tr style="text-align: center;">
 															<th>S.N.</th>
 															<th>Order No.</th>
 															<th>Name</th>
@@ -79,6 +79,7 @@
 															<th>Taxable Amount</th>
 															<th>Tax </th>
 															<th>Sub Total</th>
+															<th>Gift Card Discount</th>
 															<th>Coupon Discount</th>
 															<th>Freight Charge</th>
 															<th>Total Amount</th>
@@ -90,7 +91,7 @@
 														</thead>												
 														<tbody>												 
 															@foreach($orders as $order)
-															<tr>
+															<tr style="text-align: center;">
 																<td>{{$order->id}}</td>
 																<td>{{$order->order_number}}</td>
 																<td>{{@$order->address->first_name}} {{@$order->address->last_name}}</td>
@@ -98,6 +99,7 @@
 																<td>&#x20B9; {{$order->taxable_amount}}</td>
 																<td>&#x20B9; {{$order->tax}}</td>
 																<td>&#x20B9; {{$order->sub_total}}</td>
+																<td>&#x20B9; {{$order->coupon_value}}</td>
 																<td>&#x20B9; {{$order->coupon_value}}</td>
 																<td>&#x20B9; {{$order->freight_charge}}</td>
 																<td>&#x20B9; {{number_format($order->total_amount,2)}}</td>									  
@@ -117,7 +119,7 @@
 																	<span class="badge {{@$order->order_status->class}}">{{@$order->order_status->name}}</span>															
 																</td>
 																<td>
-																	<a href="{{route('invoice',$order->id)}}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
+																	<a href="{{route('invoice',$order->id)}}"  data-toggle="tooltip" title="view" data-placement="bottom">View</a>
 																	{{-- <form method="POST" action="{{route('user.order.delete',[$order->id])}}">
 																		@csrf 
 																		@method('delete')
@@ -142,8 +144,8 @@
 											<table class="table shopping-summery">
 												<thead>
 													<tr class="main-hading">
-														<th>PRODUCT</th>
-														<th>NAME</th>
+														<th>PRODUCT IMAGE</th>
+														<th>PRODUCT NAME</th>
 														<th class="text-center">TOTAL</th>
 														<th class="text-center">ADD TO CART</th>
 														<th class="text-center">REMOVE</th>
@@ -152,7 +154,7 @@
 												<tbody>
 														@foreach(Helper::getAllProductFromWishlist() as $key=>$wishlist)
 														@if(@$wishlist->product)
-															<tr>						
+															<tr style="text-align: center;">						
 																<td class="image" data-title="No"><img  class="product_img" src="{{@$wishlist->product->a4sheet_view}}"  alt="{{@$wishlist->product->a4sheet_view}}"></td>
 																<td class="product-des" data-title="Description">
 																	<p class="product-name"><a href="{{route('product-detail',$wishlist->product->slug)}}">{{$wishlist->product->name}}</a></p>
@@ -160,7 +162,7 @@
 																</td>
 																<td class="total-amount" data-title="Total"><span>Rs. {{$wishlist['amount']}}</span></td>
 																<td><a href="{{route('add-to-cart',$wishlist->product->slug)}}" class='btn btn-success btn-xs'>Add To Cart</a></td>
-																<td class="action" data-title="Remove"><a href="{{route('wishlist-delete',$wishlist->id)}}"><i class="fas fa-trash"></i></a></td>
+																<td class="action" data-title="Remove"><a href="{{route('wishlist-delete',$wishlist->id)}}"><i class="fas fa-trash"></i>X</a></td>
 															</tr>
 														@endif
 														@endforeach

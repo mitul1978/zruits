@@ -211,17 +211,19 @@ function add_to_cart_session_cart_item(){
     }
   }
 
-  function get_offer_discount_amount(){
+  function get_offer_discount_amount()
+  {
         if(is_user_logged_in())
         {
-            $amount = Cart::where('user_id',auth()->user()->id)->where('order_id',null)->sum('amount');
-            return  $amount;
+            $carts = Cart::where('user_id',auth()->user()->id)->where('order_id',null)->get();
+            $totalAmt = $carts->sum('amount');
+           // $totalAmt  $amount;
         }
         else
         {
             $carts = Session::get('carts');
             $totalAmt = array_sum(array_column($carts,'amount'));
-
+        }
             $countOffer1 = 0;
             $productIdsOffer1 = [];
             $finalAmtOffer1 = 0;  
@@ -246,7 +248,7 @@ function add_to_cart_session_cart_item(){
                }
             }
 
-              //dd($countOffer1,$countOffer2,$carts,$productIdsOffer1,$productIdsOffer2);
+             // dd($countOffer1,$countOffer2,$carts,$productIdsOffer1,$productIdsOffer2);
             if($countOffer1 >= 3)
             {   
                 if( $totalAmt > 6500)
@@ -283,9 +285,9 @@ function add_to_cart_session_cart_item(){
                 $cartOrderByAmt = collect($carts)->sortBy('price')->toArray();
 
                 foreach($cartOrderByAmt as $v)
-                {
+                { 
                     if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 2)
-                    {
+                    { 
                         if($offer2Qty > 0 && $offer2Qty >= $v['quantity'])
                         { 
                            $discountAmtOffer2 = $discountAmtOffer2 + (20 * ( $v['quantity'] * $v['price'] ))/100; 
@@ -309,7 +311,7 @@ function add_to_cart_session_cart_item(){
                     }
                 }    
 
-            // dd($totalAmt,$remainingAmtOffer2,$discountAmtOffer2);   $finalAmtOffer2 = $totalAmt - $remainingAmtOffer2;
+                // dd($totalAmt,$remainingAmtOffer2,$discountAmtOffer2);   $finalAmtOffer2 = $totalAmt - $remainingAmtOffer2;
                 return $discountAmtOffer2;
             }
 
@@ -318,7 +320,7 @@ function add_to_cart_session_cart_item(){
 
             return 0;
             //return Session::get('carts') ? Session::get('carts') :[];
-        }
+        
   }
 
   function get_tax_total($taxable_amount){

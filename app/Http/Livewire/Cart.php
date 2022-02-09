@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Product;
 use Livewire\Component;
 use Illuminate\Support\Facades\Session;
+use App\Models\Cart as DBCart;
 
 class Cart extends Component
 {
@@ -49,8 +50,9 @@ class Cart extends Component
 
     public function cartDelete($product_id){
 
-        if (is_user_logged_in()){
-            $cart = Cart::where('user_id',auth()->user()->id)->where('product_id',$product_id)->whereNull('order_id')->first();
+        if (is_user_logged_in())
+        {
+            $cart = DBCart::where('user_id',auth()->user()->id)->where('product_id',$product_id)->whereNull('order_id')->first();
             $cart->delete();
            
         }else{

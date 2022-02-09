@@ -19,7 +19,7 @@
           <thead>
             <tr>
               <th>S.N.</th>
-              <th>Product Texture</th>
+              <th>Category</th>
               <th>Name</th>
               <th>Design</th>
               <th>Product Price</th>
@@ -27,31 +27,17 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-                <th>S.N.</th>
-                <th>Product Texture</th>
-                <th>Name</th>
-                <th>Design</th>
-                <th>Product Price</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-          </tfoot>
+         
           <tbody>
-
             @foreach($products as $product)
-
                 <tr>
                     <td>{{$product->id}}</td>
-                    <td>{{$product->product_texture}}</td>
+                    <td>{{$product->category->title}}</td>
                     <td>{{$product->name}}</td>
                     <td>{{$product->design}}</td>
                     <td>Rs. {{$product->price}} /-</td>
-
-
                     <td>
-                        @if($product->status=='1')
+                        @if($product->status == '1')
                             <span class="badge badge-success">Active</span>
                         @else
                             <span class="badge badge-warning">Inactive</span>
@@ -59,18 +45,14 @@
                     </td>
                     <td>
                         <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                    <form method="POST" action="{{route('product.destroy',[$product->id])}}">
-                      @csrf
-                      @method('delete')
+                        <form method="POST" action="{{route('product.destroy',[$product->id])}}">
+                          @csrf
+                          @method('delete')
                           <button class="btn btn-danger btn-sm dltBtn" data-id={{$product->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </form>
 
-
-                    <a href="{{url('admin/product/edit/characteristics',$product->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="Edit Characterstics" data-placement="bottom"><i class="fas fa-hand-holding-medical"></i></a>
-
+                        <a href="{{url('admin/product/edit/characteristics',$product->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="Edit Characterstics" data-placement="bottom"><i class="fas fa-hand-holding-medical"></i></a>
                     </td>
-
-
                 </tr>
             @endforeach
           </tbody>

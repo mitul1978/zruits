@@ -94,9 +94,7 @@ class StateController extends Controller
 
     public function get_cities_by_state_id(Request $request){
 
-
        $cities =  City::where('status',1)->where('state_id',$request->state_id)->orderBy('name')->pluck('name','id')->toArray();
-
         return $cities;
     }
 }

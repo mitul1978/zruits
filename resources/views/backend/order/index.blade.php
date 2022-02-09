@@ -37,27 +37,7 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-
-              <th>Order Date</th>
-
-              <th>Order No.</th>
-              <th>Name</th>
-              <th>Quantity</th>
-              <th>Taxable Amount</th>
-              <th>Tax </th>
-              <th>Sub Total</th>
-              <th>Coupon Discount</th>
-              <th>Shipping Charge</th>
-              <th>Total Amount</th>
-              <th>Payment Method</th>
-              <th>Payment Staus</th>
-              <th>Status</th>
-              <th>Action</th>
-              </tr>
-          </tfoot>
+         
           <tbody>
             @if(count($orders)>0)
               @foreach($orders as $order)   
@@ -94,7 +74,7 @@
                     </td>
                    
                     <td>
-                      <span class="badge {{$order->order_status->class}}">{{$order->order_status->name}}</span>
+                      <span class="badge {{@$order->order_status->class}}">{{@$order->order_status->name}}</span>
                       
                     </td>
                     <td>

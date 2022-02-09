@@ -5,7 +5,7 @@
                                                     <figure class="product-media">
                                                         <span class="product-label label-new">{{$product->tag}}</span>
                                                         <a href="{{route('product',$product->slug)}}">
-                                                            <img src="{{url('assets/images/products/product-4.jpg')}}" alt="{{$product->name}}" class="product-image">
+                                                            <img src="{{url(@$product->images()->first()->image)}}" alt="{{$product->name}}" class="product-image">
                                                         </a>
 
                                                         <div class="product-action-vertical">
@@ -17,11 +17,26 @@
                                                         </div><!-- End .product-action-vertical -->
 
                                                     </figure><!-- End .product-media -->
-
+                                                    <?php
+                                                        $availableColors = $product->sizesstock()->groupBy('color_id')->get();
+                                                        $availableSizes = $product->sizesstock()->groupBy('size_id')->get();
+                                                    ?>
                                                     <div class="product-body">
                                                         <div class="product-cat">
                                                             <a href="{{route('product',$product->category->slug)}}">{{$product->category->title}}</a>
                                                         </div><!-- End .product-cat -->
+                                                        @if(isset($availableColors) && $availableColors->isNotEmpty())
+                                                            <div class="product-color row justify-content-center">  
+                                                                @foreach($availableColors as $color)     
+                                                                        <div class="radio has-color">
+                                                                            <label>
+                                                                                <input type="radio" name="color" value="{{@$color->color_id}}" class="p-cradio colorOptions">
+                                                                                <div class="custom-color"><span style="background-color:{{@$color->productColor->code}}" ></span></div>
+                                                                            </label>
+                                                                        </div>
+                                                                @endforeach 
+                                                            </div><!-- End .product-cat -->
+                                                        @endif
                                                         <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                                         <div class="product-price">
                                                             ₹ {{$product->price}}  <small>(MRP incl Taxes)</small>

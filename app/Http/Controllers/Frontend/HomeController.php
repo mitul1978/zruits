@@ -8,7 +8,9 @@ use App\Models\Category;
 use App\Models\State;
 use App\Models\Pincode;
 use App\Models\Size;
+use App\Models\Fabric;
 use App\Models\Color;
+use App\Models\Orientation;
 use App\Models\Texture;
 use App\Models\Laminate;
 use App\Models\Product;
@@ -55,16 +57,16 @@ class HomeController extends Controller
             // return view('frontend.pages.home_desktop');
            // $categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
             $banners = Banner::where('status',1)->latest()->take(5)->get();
-            $newArrivals = Product::where('status','active')->where('is_giftcard',0)->where('is_new',1)->latest()->take(5)->get();
-            $bestSellers = Product::where('status','active')->where('is_giftcard',0)->where('is_bestsellers',1)->take(5)->latest()->get();
-            $categories = Category::where('status','active')->where('is_parent',1)->where('is_giftcard',0)->orderBy('title','ASC')->get();
+            $newArrivals = Product::where('status','1')->where('is_giftcard',0)->where('is_new',1)->latest()->take(5)->get();
+            $bestSellers = Product::where('status','1')->where('is_giftcard',0)->where('is_bestsellers',1)->take(5)->latest()->get();
+            $categories = Category::where('status','1')->where('is_parent',1)->where('is_giftcard',0)->orderBy('title','ASC')->get();
             return view('frontend.index',compact('banners','newArrivals','bestSellers','categories'));
         // }
     }
 
     public function giftcard()
     {   
-        $giftcards = Product::where('status','active')->where('is_giftcard',1)->get();
+        $giftcards = Product::where('status','1s')->where('is_giftcard',1)->get();
         return view('frontend.giftcard',compact('giftcards'));
     }
 
@@ -103,19 +105,22 @@ class HomeController extends Controller
             {
                 $pageType = 'Buy 3 flat at Rs. 6500';
                 $products = Product::withCount('user_wishlist')
-                ->where('status','active')->where('is_giftcard',0)->where('is_offer',1)->where('offer',1)->latest()->paginate(9);
+                ->where('status','1')->where('is_giftcard',0)->where('is_offer',1)->where('offer',1)->latest()->paginate(9);
             }
             else if($slug == 'offer2')
             {
                 $pageType = 'Buy 2 and get the 3rd at 20% OFF';
                 $products = Product::withCount('user_wishlist')
-                ->where('status','active')->where('is_giftcard',0)->where('is_offer',1)->where('offer',2)->latest()->paginate(9);
+                ->where('status','1')->where('is_giftcard',0)->where('is_offer',1)->where('offer',2)->latest()->paginate(9);
             }
 
             $sizes = Size::where('status',1)->get();
-            $colors = Color::where('status',1)->get();                   
+            $colors = Color::where('status',1)->get();  
+            $fabrics = Fabric::where('status',1)->get();  
+            $orientations = Orientation::where('status',1)->get();   
+            $maxValue = Product::where('is_giftcard',0)->max('price');                           
 
-            return view('frontend.products', compact('products','pageType','sizes','colors'));
+            return view('frontend.products', compact('products','pageType','sizes','colors','fabrics','orientations','maxValue'));
         }
         else
         {
@@ -127,11 +132,14 @@ class HomeController extends Controller
     {        
         $requestData = $request->all();
         $keyword  = $request->get('search');
-        $count = Product::where('status','active')->count();
+        $count = Product::where('status','1')->count();
         $pageType = 'Shop By Categories';
 
         $sizes = Size::where('status',1)->get();
         $colors = Color::where('status',1)->get();
+        $fabrics = Fabric::where('status',1)->get();
+        $orientations = Orientation::where('status',1)->get();  
+        $maxValue = Product::where('is_giftcard',0)->max('price');
 
         if($slug)
         {   
@@ -144,7 +152,7 @@ class HomeController extends Controller
                           $t->where('name', 'LIKE', "%$keyword%")
                           ->orWhere('slug', 'LIKE', "%$keyword%");
                         })
-                        ->where('status','active')
+                        ->where('status','1')
                         ->where('category_id',$category->id)
                         ->where('is_giftcard',0)->latest()->paginate(9);    
         }
@@ -156,10 +164,10 @@ class HomeController extends Controller
                         $t->where('name', 'LIKE', "%$keyword%")
                         ->orWhere('slug', 'LIKE', "%$keyword%");
                         })
-                        ->where('status','active')->where('is_giftcard',0)->latest()->paginate(9);
+                        ->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);
         }
 
-        return view('frontend.products', compact('products','pageType','sizes','colors'));
+        return view('frontend.products', compact('products','pageType','sizes','colors','fabrics','orientations','maxValue'));
     }
 
     public function catalogues()
@@ -174,7 +182,8 @@ class HomeController extends Controller
 
     }
 
-    public function save_catalogue_form(Request $request){
+    public function save_catalogue_form(Request $request)
+    {
         $utm_source = '';
         $utm_campaign = '';
         $utm_medium = '';
@@ -269,13 +278,13 @@ class HomeController extends Controller
              return json_encode(array('statusCode'=>200,'msg'=>'Thank you!!! We have sent our catalogue via WHATSAPP to your number. Our executive in your city will connect with you soon...'));
             }
 
-    }else{
-    return json_encode(array('statusCode'=>200,'msg'=>'Thank you!!! We have sent our catalogue via WHATSAPP to your number. Our executive in your city will connect with you soon...'));
-    }
-    }
-    else{
-      return json_encode(array('statusCode'=>200,'msg'=>'We have already recieved your details. Our team will get in touch with you.'));
-    }
+        }else{
+        return json_encode(array('statusCode'=>200,'msg'=>'Thank you!!! We have sent our catalogue via WHATSAPP to your number. Our executive in your city will connect with you soon...'));
+        }
+        }
+        else{
+        return json_encode(array('statusCode'=>200,'msg'=>'We have already recieved your details. Our team will get in touch with you.'));
+        }
     }
 
     public function selectcity(Request $request){

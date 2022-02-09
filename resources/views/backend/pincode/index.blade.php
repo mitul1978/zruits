@@ -29,18 +29,7 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>S.N.</th>
-              <th>Pincode</th>
-              <th>Freight Charge</th>
-              <th>Minimum Bundle Qty</th>
-              <th>Office Name</th>
-              <th>City</th>
-              <th>State</th>
-              <th>Action</th>
-              </tr>
-          </tfoot>
+         
           <tbody>
             @foreach($pincodes as $banner)
                 <tr>

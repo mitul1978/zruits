@@ -8,35 +8,33 @@
       <form method="post" action="{{route('coupon.store')}}">
         {{csrf_field()}}
 
-
-
         <div class="form-group">
-            <label for="distributor_id" class="col-form-label">Distributors  <span class="text-danger">*</span></label>
-            <select name="distributor_id" class="form-control">
-              <option value="">Select Distributor</option>
-
-              @foreach ($distributors as $distributor_id => $distributor )
-
-              <option value="{{$distributor_id}}">{{$distributor }}</option>
-
-              @endforeach
-            </select>
-            @error('type')
+          <label for="name" class="col-form-label">Name <span class="text-danger">*</span></label>
+          <input id="name" type="text" name="name" placeholder="Enter Coupon Name"  value="{{old('name')}}" class="form-control" required>
+          @error('name')
             <span class="text-danger">{{$message}}</span>
-            @enderror
+          @enderror
         </div>
 
         <div class="form-group">
-        <label for="inputTitle" class="col-form-label">Coupon Code <span class="text-danger">*</span></label>
-        <input id="inputTitle" type="text" name="code" placeholder="Enter Coupon Code"  value="{{old('code')}}" class="form-control">
-        @error('code')
-        <span class="text-danger">{{$message}}</span>
-        @enderror
+          <label for="inputTitle" class="col-form-label">Coupon Code <span class="text-danger">*</span></label>
+          <input id="inputTitle" type="text" name="code" placeholder="Enter Coupon Code"  value="{{old('code')}}" class="form-control" required>
+          @error('code')
+            <span class="text-danger">{{$message}}</span>
+          @enderror
+        </div>
+
+        <div class="form-group">
+          <label for="max_use" class="col-form-label">Max Use<span class="text-danger">*</span></label>
+          <input id="max_use" type="number" name="max_use" placeholder="Enter Max Use"  value="{{old('max_use')}}" class="form-control" required>
+          @error('max_use')
+            <span class="text-danger">{{$message}}</span>
+          @enderror
         </div>
 
         <div class="form-group">
             <label for="type" class="col-form-label">Type <span class="text-danger">*</span></label>
-            <select name="type" class="form-control">
+            <select name="type" class="form-control" required>
                 <option value="fixed">Fixed</option>
                 <option value="percent">Percent</option>
             </select>
@@ -46,21 +44,37 @@
         </div>
 
         <div class="form-group">
-            <label for="inputTitle" class="col-form-label">Value <span class="text-danger">*</span></label>
-            <input id="inputTitle" type="number" name="value" placeholder="Enter Coupon value"  value="{{old('value')}}" class="form-control">
+            <label for="value" class="col-form-label">Value <span class="text-danger">*</span></label>
+            <input id="value" type="number" name="value" placeholder="Enter Coupon value"  value="{{old('value')}}" class="form-control" required>
             @error('value')
             <span class="text-danger">{{$message}}</span>
             @enderror
         </div>
 
         <div class="form-group">
+          <label for="start_date" class="col-form-label">Start Date <span class="text-danger">*</span></label>
+          <input id="start_date" type="date" name="start_date"  value="{{old('start_date')}}" class="form-control" required>
+          @error('start_date')
+            <span class="text-danger">{{$message}}</span>
+          @enderror
+      </div>
+
+      <div class="form-group">
+        <label for="end_date" class="col-form-label">End Date <span class="text-danger">*</span></label>
+        <input id="end_date" type="date" name="end_date" value="{{old('end_date')}}" class="form-control" required>
+        @error('end_date')
+          <span class="text-danger">{{$message}}</span>
+        @enderror
+    </div>
+
+        <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
-          <select name="status" class="form-control">
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
+          <select name="status" class="form-control" required>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
           </select>
           @error('status')
-          <span class="text-danger">{{$message}}</span>
+            <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
         <div class="form-group mb-3">

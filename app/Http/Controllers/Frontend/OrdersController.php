@@ -72,7 +72,8 @@ class OrdersController extends Controller
 
             DB::beginTransaction();
             try 
-            {$requestData['state_id'] = 1;
+            {
+                $requestData['state_id'] = 1;
                 $requestData['city_id'] = 1;
                 $total_amount = 0;
                 $order=new Order();
