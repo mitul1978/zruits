@@ -53,8 +53,7 @@
         <script src="{{URL::asset('assets/js/main.js')}}"></script>
         {{-- <script src="{{URL::asset('assets/js/demos/demo-2.js')}}"></script> --}}
         <script  src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-        {{-- <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> --}}
+       
         <script src="{{URL::asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
         @livewireScripts
 

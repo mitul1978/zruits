@@ -64,7 +64,7 @@
                               <div class="product">
                                 <figure class="product-media">
                                   <a href="{{route('product',[$cart['product']['slug']])}}">
-                                    <img src="{{@$cart['product']['slug']}}" alt="Product image">
+                                    <img src="{{asset(@$cart['image'])}}" alt="Product image">
                                   </a>
                                 </figure>
                               </div> 
@@ -84,8 +84,7 @@
                                   <span wire:click="removeToCart({{$cart['product']['id'] }})" class="input-number-increment" >-</span>
                                 @else                                    
                                   <span wire:click="alertConfirmDelete({{$cart['product']['id']}})" class="input-number-increment"><i class="fas fa-trash-alt"></i> X </span>
-                                @endif
-      
+                                @endif      
                                 <input style="width:50px;" name="quant[{{$cart['product']['id']}}]" class="input-number" data-product_id="{{$cart['product']['id']}}" id="cart_item_count{{$cart['product']['id']}}" type="number" value="{{$cart['quantity']}}" min="{{@$cart['product']['min_qty']}}" max="{{@$cart['product']['max_qty']}}" >
                                 <span wire:click="addToCart({{$cart['product']['id'] }})" class="input-number-increment" >+</span>   
                               </div>
@@ -200,7 +199,8 @@
     </div>
   @endif  
 </main><!-- End .main -->
-
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 
 

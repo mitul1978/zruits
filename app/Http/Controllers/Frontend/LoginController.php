@@ -88,31 +88,23 @@ class LoginController extends Controller
     {
         Session::forget('user');
         Auth::logout();
-     
         $request->validate([
-            'name' => 'required|string|max:255',
-            'mobile' => 'required|numeric|digits:10|unique:users',
+            //'name' => 'required|string|max:255',
+           // 'mobile' => 'required|numeric|digits:10|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required',
-        ],[
-            'name.required'=>'Name is required',
-            'email.required'=>'Email is required',
-            'mobile.required'=>'Mobile number is required',
-            'mobile.size'=>'Mobile number must be 10 digit',
+            'password' => 'required|string|min:8',
+           // 'password_confirmation' => 'required',
         ]);
 
-
          $user =  User::create([
-                'name' => $request->name,
+                //'name' => $request->name,
                 'email' => $request->email,
-                'mobile' => $request->mobile,
+               // 'mobile' => $request->mobile,
                 'password' => bcrypt($request->password),
             ]);
 
             $redirectTo = preg_match('(login|register)', session()->get('custome_intended')) == 1  ? '/user' : session()->get('custome_intended');
 
-         
             if(Auth::attempt(['email' => $user->email, 'password' => $request->password,'status'=>'active','role'=>'user']))
             {
                 Session::put('user', $user->email);

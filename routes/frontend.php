@@ -11,7 +11,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::any('user/logout','LoginController@logout')->name('user.logout');
     Route::get('user/register','LoginController@register')->name('register.form');
     Route::post('user/register','LoginController@registerSubmit')->name('register.submit');
-    Route::post('user/update','LoginController@update')->name('register.submit');
+   // Route::post('user/update','LoginController@update')->name('register.submit');
     
     // Reset password
     Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset');

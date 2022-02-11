@@ -27,7 +27,7 @@ function addToCart($product){
         $cart->product_id = $product->id;
         // $cart->price = ($product->price-($product->price*$product->discount)/100);
         $cart->price = $product->price;
-
+        $cart->image = $product->images()->first()->image;
         $cart->quantity = 1;
         $cart->amount=$cart->price*$cart->quantity;
         // if ($cart->product->stock < $cart->quantity || $cart->product->stock <= 0) return back()->with('error','Stock not sufficient!.');
@@ -91,6 +91,7 @@ function addToCart($product){
         $carts[$product->id]['quantity'] =1; // Dynamically add initial qty
         $carts[$product->id]['amount'] = $product->price*1;
         $carts[$product->id]['price'] = $product->price;
+        $carts[$product->id]['image'] = $product->images()->first()->image;
         $carts[$product->id]['product'] = $product->toArray(); 
 
     endif;
@@ -151,7 +152,7 @@ function add_to_cart_session_cart_item(){
                 $cart->product_id = $product->id;
                 // $cart->price = ($product->price-($product->price*$product->discount)/100);
                 $cart->price = $product->price;
-
+                $cart->image = $product->images()->first()->image;
                 $cart->quantity =$attribute['quantity'];
                 $cart->amount=$cart->price*$cart->quantity;
                 // if ($cart->product->stock < $cart->quantity || $cart->product->stock <= 0) return back()->with('error','Stock not sufficient!.');
@@ -248,9 +249,10 @@ function add_to_cart_session_cart_item(){
                }
             }
 
-             // dd($countOffer1,$countOffer2,$carts,$productIdsOffer1,$productIdsOffer2);
+            // dd($countOffer1,$countOffer2,$carts,$productIdsOffer1,$productIdsOffer2);
             if($countOffer1 >= 3)
             {   
+                $offerCycle1 =  (int) ( $countOffer1 / $offer1Qty);
                 if( $totalAmt > 6500)
                 {
                     $cartOrderByAmt = collect($carts)->sortBy('price')->toArray();
@@ -276,12 +278,13 @@ function add_to_cart_session_cart_item(){
                     }
 
                     $finalAmtOffer1 = 6500 + $remainingAmtOffer1;
-                    return $totalAmt - $finalAmtOffer1;
+                    return $offerCycle1 * ( $totalAmt - $finalAmtOffer1);
                 }    
             }
 
             if($countOffer2 >= 2)
             {    
+                $offerCycle2 = (int) ($countOffer2 / $offer2Qty);
                 $cartOrderByAmt = collect($carts)->sortBy('price')->toArray();
 
                 foreach($cartOrderByAmt as $v)
@@ -312,7 +315,7 @@ function add_to_cart_session_cart_item(){
                 }    
 
                 // dd($totalAmt,$remainingAmtOffer2,$discountAmtOffer2);   $finalAmtOffer2 = $totalAmt - $remainingAmtOffer2;
-                return $discountAmtOffer2;
+                return $offerCycle2 * $discountAmtOffer2;
             }
 
             // $finalAmt = $totalAmt - $finalAmtOffer1;
@@ -336,30 +339,37 @@ function add_to_cart_session_cart_item(){
   }
 
 
-  function addToCart_live($product){
+  function addToCart_live($product)
+  {
 
-
-    if (is_user_logged_in()){
+    if (is_user_logged_in())
+    {
     
-    $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->where('product_id', $product->id)->first();
+        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->where('product_id', $product->id)->first();
 
-    if($already_cart) {
-        $already_cart->quantity = $already_cart->quantity + 1;
-        $already_cart->amount = $product->price+ $already_cart->amount;
-        $already_cart->save();
-        Wishlist::where(['user_id'=>Auth::id(),'cart_id'=>null,'product_id'=>$product->id])->update(['cart_id'=>$already_cart->id]);
-    }else{
-        $cart = new Cart;
-        $cart->user_id = auth()->user()->id;
-        $cart->product_id = $product->id;
-        $cart->price = $product->price;
-        $cart->quantity = 1;
-        $cart->amount=$cart->price*$cart->quantity;
-        $cart->save();
-        Wishlist::where(['user_id'=>Auth::id(),'cart_id'=>null,'product_id'=>$product->id])->update(['cart_id'=>$cart->id]);
+        if($already_cart) 
+        {
+            $already_cart->quantity = $already_cart->quantity + 1;
+            $already_cart->amount = $product->price+ $already_cart->amount;
+            $already_cart->save();
+            Wishlist::where(['user_id'=>Auth::id(),'cart_id'=>null,'product_id'=>$product->id])->update(['cart_id'=>$already_cart->id]);
+        }
+        else
+        {
+            $cart = new Cart;
+            $cart->user_id = auth()->user()->id;
+            $cart->product_id = $product->id;
+            $cart->price = $product->price;
+            $cart->quantity = 1;
+            $cart->amount=$cart->price*$cart->quantity;
+            $cart->image = $product->images()->first()->image; 
+            $cart->save();
+            Wishlist::where(['user_id'=>Auth::id(),'cart_id'=>null,'product_id'=>$product->id])->update(['cart_id'=>$cart->id]);
+        }
+
     }
-
-    }else{
+    else
+    {
         
         $carts = Session::get('carts');
         /*
@@ -376,12 +386,12 @@ function add_to_cart_session_cart_item(){
             $carts[$product->id]['amount'] = $product->price*1;
             $carts[$product->id]['price'] = $product->price;
             $carts[$product->id]['product'] = $product->toArray(); 
+            $carts[$product->id]['image'] = $product->images()->first()->image; 
     
         endif;
     
         Session::put('carts', $carts);
     }
-
 
  }
 

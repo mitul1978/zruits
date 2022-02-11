@@ -218,8 +218,15 @@ class ProductController extends Controller
             return $html;
         }
         else
-        {
-            return view('frontend.product',compact('product'));
+        {   
+            $relatedProducts = null;
+            if(isset($product->related_products))
+            {
+                $relatedProducts = unserialize($product->related_products);
+                $relatedProducts = Product::whereIn('id',$relatedProducts)->where('status',1)->get();
+            }
+           
+            return view('frontend.product',compact('product','relatedProducts'));
         }       
     }
 }

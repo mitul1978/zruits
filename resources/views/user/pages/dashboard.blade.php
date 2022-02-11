@@ -155,7 +155,7 @@
 														@foreach(Helper::getAllProductFromWishlist() as $key=>$wishlist)
 														@if(@$wishlist->product)
 															<tr style="text-align: center;">						
-																<td class="image" data-title="No"><img  class="product_img" src="{{@$wishlist->product->a4sheet_view}}"  alt="{{@$wishlist->product->a4sheet_view}}"></td>
+																<td class="image" data-title="No"><img  class="product_img" src="{{@$wishlist->product->images()->first()->image}}"  alt="{{@$wishlist->product->images()->first()->image}}"  style="height:50px; width:50px;"></td>
 																<td class="product-des" data-title="Description">
 																	<p class="product-name"><a href="{{route('product-detail',$wishlist->product->slug)}}">{{$wishlist->product->name}}</a></p>
 																	<p class="product-des">{!!($wishlist['summary']) !!}</p>
@@ -244,8 +244,8 @@
 		                					<label>Email address *</label>
 		        							<input type="email" class="form-control" name="email" value="{{auth()->user()->email}}" required>
 
-											<label>Email address *</label>
-		        							<input type="number" min="0"  class="form-control" name="mobile" value="{{auth()->user()->mobile}}" placeholder="Enter your 10 digit mobile"  required>
+											<label>Mobile Number *</label>
+		        							<input type="tel" class="form-control" name="mobile" value="{{auth()->user()->mobile}}" placeholder="Enter your 10 digit mobile"  required>
 
 		                					<button type="submit" class="btn btn-outline-primary-2">
 			                					<span>SAVE CHANGES</span>

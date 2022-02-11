@@ -159,7 +159,7 @@
                             <div class="tab-pane fade" id="product-info-tab" role="tabpanel" aria-labelledby="product-info-link">
                                 <div class="product-desc-content">
                                     <h3>Information</h3>
-                                    {!! $product->description !!}
+                                    {!! $product->additional_information !!}
                                 </div><!-- End .product-desc-content -->
                             </div><!-- .End .tab-pane -->
                         </div><!-- End .tab-content -->
@@ -193,153 +193,56 @@
                                 }
                             }
                         }'>
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <span class="product-label label-new">New</span>
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-4.jpg" alt="Product image" class="product-image">
-                                </a>
+                        @if(isset($relatedProducts) && @$relatedProducts->isNotEmpty())
+                            @foreach ($relatedProducts as $product)
+                                <div class="product product-7 text-center">
+                                        <figure class="product-media">
+                                            <span class="product-label label-new">{{$product->tag}}</span>
+                                            <a href="{{url('product/' .$product->slug)}}">
+                                                <img src="{{asset(@$product->images()->first()->image)}}" alt="Product image" class="product-image">
+                                            </a>
 
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Women</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Brown paperbag waist pencil skirt</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    $60.00
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-2">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-5.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Dresses</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Dark yellow lace cut out swing dress</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    $84.00
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-2">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Jeans</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    $76.00
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-2">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <span class="product-label label-new">New</span>
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-8.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <a href="#">Shoes</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Beige knitted elastic runner shoes</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    $84.00
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-2">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
-
-                        <div class="product product-7 text-center">
-                            <figure class="product-media">
-                                <a href="product.html">
-                                    <img src="assets/images/products/product-7.jpg" alt="Product image" class="product-image">
-                                </a>
-
-                                <div class="product-action-vertical">
-                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                                </div><!-- End .product-action-vertical -->
-
-                            </figure><!-- End .product-media -->
-
-                            <div class="product-body">
-                                <div class="product-cat">
-                                    <span>Category:</span>
-                                    <a href="#">Women</a>,
-                                    <a href="#">Dresses</a>,
-                                    <a href="#">Yellow</a>
-                                </div><!-- End .product-cat -->
-                                <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
-                                <div class="product-price">
-                                    $76.00
-                                </div><!-- End .product-price -->
-                                <div class="atc-container">
-                                    
-                                <div class="mb-2">
-                                    <a href="#" class="btn-cart"><span>Add to cart</span></a>
-                                </div></div>
-                            </div><!-- End .product-body -->
-                        </div><!-- End .product -->
+                                            <div class="product-action-vertical">
+                                                @if(is_user_logged_in())
+                                                <a href="javascript:void(0);" class="btn-product-icon btn-wishlist btn-expandable add_to_wishlist" data-id="{{$product->id}}" id="wishlist{{$product->id}}"><span class="add_to_wishlist_msg{{$product->id}}">add to wishlist</span></a>
+                                                @else
+                                                <a href="#signin-modal" data-toggle="modal" class="btn-product-icon btn-wishlist btn-expandable" data-id="{{$product->id}}" id="wishlist{{$product->id}}"></a>
+                                                @endif
+                                            </div><!-- End .product-action-vertical -->
+                                        </figure><!-- End .product-media -->
+                                        <?php
+                                            $availableColors = $product->sizesstock()->groupBy('color_id')->get();
+                                        ?>  
+                                        <div class="product-body">
+                                            <div class="product-cat">
+                                                <a href="{{route('product',$product->category->slug)}}">{{$product->category->title}}</a>
+                                            </div><!-- End .product-cat -->
+                                            @if(isset($availableColors) && $availableColors->isNotEmpty())
+                                                <div class="product-color row justify-content-center">  
+                                                    @foreach($availableColors as $color)     
+                                                            <div class="radio has-color">
+                                                                <label>
+                                                                    <input type="radio" name="color" value="{{@$color->color_id}}" class="p-cradio colorOptions">
+                                                                    <div class="custom-color"><span style="background-color:{{@$color->productColor->code}}" ></span></div>
+                                                                </label>
+                                                            </div>
+                                                    @endforeach 
+                                                </div><!-- End .product-cat -->
+                                            @endif
+                                            <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
+                                            <div class="product-price">
+                                                ₹ {{$product->price }} <small>(MRP incl Taxes)</small>
+                                            </div><!-- End .product-price -->
+                                            <div class="atc-container">                                        
+                                                <div class="mb-0">                                    
+                                                    <a href="javascript:void(0);" class="btn-cart add_to_cart" data-id="{{$product->id}}"><span class="product{{$product->id}}">Add to cart</span></a>
+                                                </div>
+                                            </div>
+                                        </div><!-- End .product-body -->
+                                    </div><!-- End .product -->
+                            @endforeach
+                        @endif
+                       
 
                     </div><!-- End .owl-carousel -->
                 </div><!-- End .container -->

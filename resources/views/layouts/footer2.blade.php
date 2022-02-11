@@ -137,23 +137,24 @@
                     <div class="form-tab">
                         <ul class="nav nav-pills nav-fill" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="false">Sign In</a>
+                                <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="true">Register</a>
+                                <a class="nav-link " id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="true">Register</a>
                             </li>
                         </ul>
-                        <div class="tab-content" id="tab-content-5">
-                            <div class="tab-pane fade" id="signin" role="tabpanel" aria-labelledby="signin-tab">
-                                <form action="#">
+                        <div class="tab-content " id="tab-content-5">
+                            <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+                                <form method="post" action="{{route('login.submit')}}" >
+                                    @csrf
                                     <div class="form-group">
                                         <label for="singin-email">Username or email address *</label>
-                                        <input type="text" class="form-control" id="singin-email" name="singin-email" required>
+                                        <input type="text" class="form-control" id="email" name="email" required>
                                     </div><!-- End .form-group -->
 
                                     <div class="form-group">
                                         <label for="singin-password">Password *</label>
-                                        <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                        <input type="password" class="form-control" id="password" name="password" required>
                                     </div><!-- End .form-group -->
 
                                     <div class="form-footer">
@@ -172,16 +173,17 @@
                                 </form>
 
                             </div><!-- .End .tab-pane -->
-                            <div class="tab-pane fade show active" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                <form action="#">
+                            <div class="tab-pane fade show " id="register" role="tabpanel" aria-labelledby="register-tab">
+                                <form method="post" action="{{route('register.submit')}}" >
+                                    @csrf
                                     <div class="form-group">
                                         <label for="register-email">Your email address *</label>
-                                        <input type="email" class="form-control" id="register-email" name="register-email" required>
+                                        <input type="email" class="form-control" id="email" name="email" required>
                                     </div><!-- End .form-group -->
 
                                     <div class="form-group">
                                         <label for="register-password">Password *</label>
-                                        <input type="password" class="form-control" id="register-password" name="register-password" required>
+                                        <input type="password" class="form-control" id="password" name="password" required>
                                     </div><!-- End .form-group -->
 
                                     <div class="form-footer">

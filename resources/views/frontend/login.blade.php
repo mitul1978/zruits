@@ -24,7 +24,7 @@
 							    </li>
 							</ul>
 							<div class="tab-content">
-							    <div class="tab-pane fade" id="signin-2" role="tabpanel" aria-labelledby="signin-tab-2">
+							    <div class="tab-pane fade show active" id="signin-2" role="tabpanel" aria-labelledby="signin-tab-2">
 							    	<form method="post" action="{{route('login.submit')}}" enctype="multipart/form-data">
 										@csrf
 										<input type="hidden" class="form-control" id="popup" name="popup" value="1">
@@ -70,16 +70,17 @@
 								    	</div><!-- End .row -->
 							    	</div><!-- End .form-choice -->
 							    </div><!-- .End .tab-pane -->
-							    <div class="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
-							    	<form action="#">
+							    <div class="tab-pane " id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
+									<form method="post" action="{{route('register.submit')}}" >
+										@csrf
 							    		<div class="form-group">
 							    			<label for="register-email-2">Your email address *</label>
-							    			<input type="email" class="form-control" id="register-email-2" name="register-email" required>
+							    			<input type="email" class="form-control" id="email" name="email" required>
 							    		</div><!-- End .form-group -->
 
 							    		<div class="form-group">
 							    			<label for="register-password-2">Password *</label>
-							    			<input type="password" class="form-control" id="register-password-2" name="register-password" required>
+							    			<input type="password" class="form-control" id="password" name="password" required>
 							    		</div><!-- End .form-group -->
 
 							    		<div class="form-footer">
