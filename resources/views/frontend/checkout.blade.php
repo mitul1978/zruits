@@ -133,7 +133,7 @@
 													</tr>
 												@endforeach
 												
-												<tr class="summary-subtotal"> 
+												<!-- <tr class="summary-subtotal"> 
 												  <td><input type="text" class="form-control"  id="checkout-gift-discount-input" name="giftcard"  placeholder="Gift card number" value="{{@Session::get('giftcard')['code']}}"></td>        
 												  <td><span id="error1" class="error" style="color:red">Invalid</span></td>                         
 												</tr>
@@ -148,7 +148,7 @@
 													<tr class="summary-subtotal">  
 														<td> <button class="btn" type="button" id="applyCoupon">{{@Session::get('coupon')['code'] ? 'Remove Coupon' :'Apply Coupon'}}</button> </td>  
 													</tr> 
-												@endif
+												@endif -->
 												
 		                						<tr class="summary-subtotal">
 		                							<td>Subtotal:</td>
@@ -192,10 +192,20 @@
 
 										
 										</div><!-- End .accordion -->
-
-		                				<button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+										<div class="disc-sec">
+											<input type="text" class="form-control mb-0"  id="checkout-gift-discount-input" name="giftcard"  placeholder="Gift card number" value="{{@Session::get('giftcard')['code']}}">
+											<span id="error1" class="error" style="color:red">Invalid</span>                         
+												<button class="btn bg-primary text-white w-100 mt-1" type="button" id="applyGiftcard">{{@Session::get('giftcard')['code'] ? 'Remove Gift Card' :'Apply Gift Card'}}</button> 
+											<hr class="my-3">
+											@if($offerDiscount == 0)
+												<input type="text" class="form-control mb-0"  id="checkout-discount-input" name="code" placeholder="Coupon Code" value="{{@Session::get('coupon')['code']}}">                                 
+												<span id="error2" class="error" style="color:red">Invalid</span>
+												<button class="btn bg-primary text-white w-100 mt-1 mb-1" type="button" id="applyCoupon">{{@Session::get('coupon')['code'] ? 'Remove Coupon' :'Apply Coupon'}}</button>  		
+											@endif
+										</div>
+		                				<button type="submit" class="btn btn-outline-primary-2 btn-order btn-block btn-lg">
 		                					<span class="btn-text">Place Order</span>
-		                					<span class="btn-hover-text">Proceed to Checkout</span>
+		                					<span class="btn-hover-text">Place Order</span>
 		                				</button>
 		                			</div><!-- End .summary -->
 		                		</aside><!-- End .col-lg-3 -->

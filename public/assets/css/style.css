@@ -15689,7 +15689,7 @@ button:focus {
 
 .table.table-summary tbody td {
 	padding: 0;
-	height: 70px;
+	height: 50px;
 	border-bottom: .1rem solid #ebebeb
 }
 
@@ -19851,4 +19851,26 @@ background-color: rgba(0, 0, 0, 0.04);
 }
 .svg {
 	display:none;
+}
+/* .input-number .input-number-increment, */
+.e-pro-qty-block .input-number-increment {
+    padding: 5px 10px 4px;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    line-height: 4;
+	cursor: pointer;
+}
+.e-pro-qty-block .input-number {
+    width: 50px;
+    position: relative;
+    -webkit-appearance: none;
+    margin: 0;
+    text-align: center;
+    padding-left: 15px;
+    border: 2px solid #f1f1f1;
+    border-radius: 30px;
+}
+
+.page-header h1 span {
+    display: none;
 }
