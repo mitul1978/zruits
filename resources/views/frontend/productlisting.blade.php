@@ -1,4 +1,29 @@
-@if(isset($products) && $products->isNotEmpty())
+
+<div class="toolbox">
+    <div class="toolbox-left">
+        <div class="toolbox-info">
+            Showing <span>{{@$products->count() > 9 ? 9 : @$products->count()}}  of {{@$products->count()}}</span> Products
+        </div><!-- End .toolbox-info -->
+    </div><!-- End .toolbox-left -->
+
+    <div class="toolbox-right">
+        <div class="toolbox-sort">
+            <label for="sortby">Sort by:</label>
+            <div class="select-custom">
+                <select name="sortby" id="sortby" class="form-control filterBySort">
+                    <option value="latest" {{isset($value) && $value=='latest' ? 'selected':''}}>What's New</option>
+                    <option value="discount"  {{isset($value) && $value=='discount' ? 'selected':''}}>Better Discount</option>
+                    <option value="high"  {{isset($value) && $value=='high' ? 'selected':''}}>Price: High to Low</option>
+                    <option value="low"  {{isset($value) && $value=='low' ? 'selected':''}}>Price: Low to High</option>
+                </select>
+            </div>
+        </div><!-- End .toolbox-sort -->
+    </div><!-- End .toolbox-right -->
+</div><!-- End .toolbox -->
+
+<div class="products mb-3">
+    <div class="row justify-content-center">
+        @if(isset($products) && $products->isNotEmpty())
                                         @foreach($products as $product)
                                             <div class="col-6 col-md-4 col-lg-4">
                                                 <div class="product product-7 text-center">
@@ -51,6 +76,28 @@
                                             </div><!-- End .col-sm-6 col-lg-4 -->
                                         @endforeach  
 @endif      
+</div><!-- End .row -->
+</div><!-- End .products -->
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        <span style="float:right">{{$products->links()}}</span>
+        {{-- <li class="page-item disabled">
+            <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
+                <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
+            </a>
+        </li>
+        <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item-total">of 6</li>
+        <li class="page-item">
+            <a class="page-link page-link-next" href="#" aria-label="Next">
+                Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
+            </a>
+        </li> --}}
+    </ul>
+</nav>
 {{-- <br><br>
 <div id="pagination" class="paddingTopBottom-xxl pull-left widthFull">
     <!--$data->appends(@$urlParam)->render()-->

@@ -1,7 +1,90 @@
 @extends('layouts.app')
 @section('content')
-
+<style>
+    .spinner-wrapper 
+             { 
+               position: fixed; 
+               z-index: 999999; 
+               top: 0; right: 0; 
+               bottom: 0; left: 0; 
+               background: #fff; 
+               opacity:0.6;
+            } 
+            .spinner 
+            { 
+              position: absolute; 
+              top: 50%; 
+              /* centers the loading animation vertically one the screen */ 
+              left: 50%; 
+              /* centers the loading animation horizontally one the screen */ 
+              width: 3.75rem; 
+              height: 1.25rem; 
+              margin: -0.625rem 0 0 -1.875rem; 
+              /* is width and height divided by two */ 
+              text-align: center; 
+            } 
+            .spinner > div 
+            {
+               display: inline-block; 
+               width: 1rem; 
+               height: 1rem; 
+               border-radius: 100%; 
+               background-color: #4D4D4D; 
+               -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both; 
+               animation: sk-bouncedelay 1.4s infinite ease-in-out both; 
+             } 
+             .spinner .bounce1 
+             { 
+               -webkit-animation-delay: -0.32s; 
+               animation-delay: -0.32s; 
+             } 
+             .spinner .bounce2         
+             { 
+               -webkit-animation-delay: -0.16s; 
+               animation-delay: -0.16s; 
+             }
+             @-webkit-keyframes sk-bouncedelay 
+             { 
+               0%, 80%, 100% 
+               { 
+                 -webkit-transform: scale(0); 
+               } 
+               40% 
+               { 
+                 -webkit-transform: scale(1.0); 
+               } 
+             } 
+             @keyframes  sk-bouncedelay 
+             {
+                0%, 80%, 100% 
+                { 
+                  -webkit-transform: scale(0); 
+                  -ms-transform: scale(0); 
+                  transform: scale(0); 
+                } 
+                40% 
+                { 
+                  -webkit-transform: scale(1.0); 
+                  -ms-transform: scale(1.0); 
+                  transform: scale(1.0); 
+                } 
+             }
+    
+    </style>
+    
+    <div class="spinner-wrapper" id="spinner-wrapper">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
         <main class="main">
+            @if($pageType == 'Shop By Products' || $pageType == 'Shop By Categories')
+             <input type="hidden" name="pageType" id="pageType" value="0">
+            @else
+             <input type="hidden" name="pageType" id="pageType" value="{{@$catId}}">
+            @endif
             <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                 <div class="container"> 
                     <h1 class="page-title">{{$pageType}}<span>Shop</span></h1>
@@ -19,54 +102,10 @@
             <div class="page-content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-9">
-                            <div class="toolbox">
-                                <div class="toolbox-left">
-                                    <div class="toolbox-info">
-                                        Showing <span>{{@$products->count() > 9 ? 9 : @$products->count()}}  of {{@$products->count()}}</span> Products
-                                    </div><!-- End .toolbox-info -->
-                                </div><!-- End .toolbox-left -->
-
-                                <div class="toolbox-right">
-                                    <div class="toolbox-sort">
-                                        <label for="sortby">Sort by:</label>
-                                        <div class="select-custom">
-                                            <select name="sortby" id="sortby" class="form-control filterBySort">
-                                                <option value="latest" selected="selected">What's New</option>
-                                                <option value="discount">Better Discount</option>
-                                                <option value="high">Price: High to Low</option>
-                                                <option value="low">Price: Low to High</option>
-                                            </select>
-                                        </div>
-                                    </div><!-- End .toolbox-sort -->
-                                </div><!-- End .toolbox-right -->
-                            </div><!-- End .toolbox -->
-
-                            <div class="products mb-3">
-                                <div class="row justify-content-center">
-                                    @include('frontend.productlisting')
-                                </div><!-- End .row -->
-                            </div><!-- End .products -->
-
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination justify-content-center">
-                                    <span style="float:right">{{$products->links()}}</span>
-                                    {{-- <li class="page-item disabled">
-                                        <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
-                                            <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev
-                                        </a>
-                                    </li>
-                                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item-total">of 6</li>
-                                    <li class="page-item">
-                                        <a class="page-link page-link-next" href="#" aria-label="Next">
-                                            Next <span aria-hidden="true"><i class="icon-long-arrow-right"></i></span>
-                                        </a>
-                                    </li> --}}
-                                </ul>
-                            </nav>
+                        <div class="col-lg-9" id="productListings">
+                           
+                            @include('frontend.productlisting')
+                               
                         </div><!-- End .col-lg-9 -->
 
                         <!-- Filter Part Start Here -->
@@ -90,7 +129,7 @@
                                                 @foreach ($sizes as $item)
                                                     <div class="filter-item">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input customFilterData" id="size-{{$item->id}}">
+                                                            <input type="checkbox" class="custom-control-input customFilterData" id="size-{{$item->id}}" data-id="{{$item->id}}" >
                                                             <label class="custom-control-label" for="size-{{$item->id}}">{{$item->name}}</label>
                                                         </div><!-- End .custom-checkbox -->
                                                     </div><!-- End .filter-item -->                                                    
@@ -111,7 +150,8 @@
                                         <div class="widget-body">
                                             <div class="filter-colors">
                                                 @foreach ($colors as $item)
-                                                   <a href="javascript:void(0);" style="background: {{$item->code}}" id="color-{{$item->id}}"><span class="sr-only customFilterData">{{$item->name}}</span></a>
+                                                   <input style="background: {{$item->code}}" type="radio" id="color-{{$item->id}}"  name="color-{{$item->id}}" class="customFilterData" value="{{$item->id}}">
+                                                   {{-- <a href="javascript:void(0);" class="customFilterData" style="background: {{$item->code}}" id="color-{{$item->id}}" name="color-{{$item->id}}" value="{{$item->id}}"></a> --}}
                                                 @endforeach
                                                 
                                             </div><!-- End .filter-colors -->
@@ -132,8 +172,8 @@
                                                 @foreach ($fabrics as $item)
                                                     <div class="filter-item">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="fabric-{{$item->id}}">
-                                                            <label class="custom-control-label" for="brand-{{$item->id}}">{{$item->name}}</label>
+                                                            <input type="checkbox" class="custom-control-input customFilterData" id="fabric-{{$item->id}}" data-id="{{$item->id}}">
+                                                            <label class="custom-control-label" for="fabric-{{$item->id}}">{{$item->name}}</label>
                                                         </div><!-- End .custom-checkbox -->
                                                     </div><!-- End .filter-item -->
                                                 @endforeach
@@ -155,8 +195,8 @@
                                                 @foreach ($orientations as $item)
                                                     <div class="filter-item">
                                                         <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="orieentation-{{$item->id}}">
-                                                            <label class="custom-control-label" for="brand-{{$item->id}}">{{$item->name}}</label>
+                                                            <input type="checkbox" class="custom-control-input customFilterData" id="orientation-{{$item->id}}" data-id="{{$item->id}}">
+                                                            <label class="custom-control-label" for="orientation-{{$item->id}}">{{$item->name}}</label>
                                                         </div><!-- End .custom-checkbox -->
                                                     </div><!-- End .filter-item -->
                                                 @endforeach
@@ -176,8 +216,7 @@
                                         <div class="widget-body">
                                             <div class="filter-price">
                                                 <div class="filter-price-text">
-                                                        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                                                  
+                                                        <input type="text" id="amount" readonly style="border:0; color:#5b34e7; font-weight:bold;">                                                 
                                                        
                                                     <div id="slider-range"></div>
                                                     {{-- <div class="custom-control custom-checkbox">
@@ -197,7 +236,7 @@
                                                         <label class="custom-control-label" for="price-4">Price > 2000</label>
                                                     </div><!-- End .custom-checkbox -->                                                    --}}
                                                 </div><!-- End .filter-price-text -->
-                                                <div id="price-slider"></div><!-- End #price-slider -->
+                                               <!-- <div id="price-slider"></div><!-- End #price-slider -->
                                             </div><!-- End .filter-price -->
                                         </div><!-- End .widget-body -->
                                     </div><!-- End .collapse -->
@@ -208,20 +247,122 @@
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script>
-            $(function() {
-              $("#slider-range").slider({
-                range: true,
-                min: 0,
-                max: {{$maxValue}},
-                values: [ 0, {{$maxValue}} ],
-                slide: function( event, ui ) 
-                {
-                  $( "#amount" ).val( "₹" + ui.values[ 0 ] + " - ₹" + ui.values[ 1 ] );
-                }
-              });
+            // $(document).ready(function() {
+                $(function() {
+                    $("#slider-range").slider({
+                        range: true,
+                        min: 0,
+                        max: {{$maxValue}},
+                        values: [ 0, {{$maxValue}} ],
+                        slide: function( event, ui ) 
+                        {
+                        $( "#amount" ).val( "₹" + ui.values[ 0 ] + " - ₹" + ui.values[ 1 ] );
+                        }
+                    });
 
-              $( "#amount" ).val( "₹" + $( "#slider-range" ).slider( "values", 0 ) + " - ₹" + $( "#slider-range" ).slider( "values", 1 ) );
-            });
+                    $( "#amount" ).val( "₹" + $( "#slider-range" ).slider( "values", 0 ) + " - ₹" + $( "#slider-range" ).slider( "values", 1 ) );
+                });
+            // });
+        </script>
+        <script>
+         $(document).ready(function() 
+          {  
+              $('.spinner-wrapper').hide();
+              $(document).on('click','.customFilterData', function()
+              {  
+                  $('.spinner-wrapper').show();
+                  var sizes = [];
+                  var colors = [];
+                  var fabrics = [];
+                  var orientations = [];
+                  var price = [];
+                  var pageType = $('#pageType').val();
+
+                    $('*[id*=size-]:visible').each(function() 
+                    {   
+                        console.log($(this).is(':checked'));                    
+                        if($(this).is(':checked'))
+                        {  
+                            sizes.push( $(this).data('id'));
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    $('*[id*=color-]:visible').each(function() 
+                    {     
+                        var isChecked = $(this).prop('checked')?true:false; 
+                        console.log(isChecked);                 
+                        if(isChecked)
+                        {  
+                            colors.push($(this).val());
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    $('*[id*=fabric-]:visible').each(function() 
+                    {   
+                        console.log('fabric' ,$(this).is(':checked'));                    
+                        if($(this).is(':checked'))
+                        {  
+                            fabrics.push( $(this).data('id'));
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    $('*[id*=orientation-]:visible').each(function() 
+                    {   
+                        console.log('o',$(this).is(':checked'));                    
+                        if($(this).is(':checked'))
+                        {  
+                            orientations.push( $(this).data('id'));
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    $.ajax({
+                            url:"/filter-product",
+                            data:{
+                                sizes:sizes,
+                                colors:colors,
+                                fabrics:fabrics,
+                                orientations:orientations,
+                                pageType:pageType
+                            },
+                            type:"POST",
+                            success:function(response)
+                            {  
+                               $('#productListings').empty().append(response);
+                               $('.spinner-wrapper').hide();
+                            }
+                    });              
+               });
+
+               $(document).on('change','.filterBySort', function()
+              {  
+                   $('.spinner-wrapper').show();
+                   var value = $(this).val();                   
+                   var flag = 1;
+                   var pageType = $('#pageType').val();
+                   
+                    $.ajax({
+                        url:"/filter-product",
+                        data:{
+                           value:value,
+                           flag:flag,
+                           pageType:pageType
+                        },
+                        type:"POST",
+                        success:function(response)
+                        {  
+                           $('#productListings').empty().append(response);
+                           $('.spinner-wrapper').hide();
+                        }
+                    });              
+               });
+               $('.spinner-wrapper').hide();
+          });
         </script>
 @endsection

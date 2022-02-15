@@ -171,16 +171,7 @@
                     @enderror
               </div>
               
-             <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="image-1" class="col-form-label">Images </label>
-                    <div class="input-group">
-                      <input class="form-control" type="file" id="images" name="images[]" value="{{old('images')}}" multiple>
-                    </div>
-                  </div>
-                </div>  
-
+             <div class="row">                
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="related_products">Related Products </label>
@@ -191,7 +182,37 @@
                     </select>
                   </div>
                 </div>                
-              </div>      
+              </div>  
+              <div class="parentColorDiv">
+                  <div id="multipleColorImage">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                              <label for="colorsImages">Colors </label>
+                              <select name="colorsImages[]" id="colorsImages" class="form-control" required>
+                                    <option value ="">Select Color</option>
+                                  @foreach($colors as $key=>$attribute)
+                                      <option value='{{$attribute->id}}'>{{$attribute->name}}</option>
+                                  @endforeach
+                              </select>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="images" class="col-form-label">Images </label>
+                            <div class="input-group">
+                              <input class="form-control imageUploader" type="file" id="images" name="images[0][]" value="{{old('images')}}" multiple>
+                            </div>
+                          </div>
+                        </div> 
+                      </div>
+                  </div>
+              </div>   
+              <div class="form-group mb-3">
+                <button class="btn btn-primary" id="addNewProductImages" type="button">Add New Images</button>
+             </div>
+             <br> 
             <div class="parentDiv">
                 <div id="multiple">
                   <div class="row" >
@@ -310,6 +331,8 @@
 
     $(document).ready(function() 
     { 
+      var count = 1;
+
       $('#addNewProduct').on('click',function(e)
       {
         var copyContent = $("#multiple").clone();
@@ -329,6 +352,16 @@
 
         // // Finally insert $klon wherever you want
         // $div.after( $klon.text('klon'+num) );       
+      });
+
+      $('#addNewProductImages').on('click',function(e)
+      {
+        var copyContent = $("#multipleColorImage").clone();
+        copyContent.find('.imageUploader').attr({ name: "images["+count+"][]"});
+        copyContent.find('.bootstrap-select').replaceWith(function() { return $('select', this); })    
+        copyContent.find('.selectpicker').selectpicker('render'); 
+        $('.parentColorDiv').append(copyContent);   
+        count++;   
       });
      
       $('#meta_description').summernote({

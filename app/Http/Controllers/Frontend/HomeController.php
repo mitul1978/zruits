@@ -134,6 +134,7 @@ class HomeController extends Controller
         $keyword  = $request->get('search');
         $count = Product::where('status','1')->count();
         $pageType = 'Shop By Categories';
+        $catId = null;
 
         $sizes = Size::where('status',1)->get();
         $colors = Color::where('status',1)->get();
@@ -144,7 +145,8 @@ class HomeController extends Controller
         if($slug)
         {   
             $category = Category::where('slug',$slug)->first();
-            $pageType = 'Shop By Category ' . $category->title;        
+            $pageType = 'Shop By Category ' . $category->title;    
+            $catId = $category->id;    
 
             $products = Product::withCount('user_wishlist')
                         ->where(function($t) use($keyword){
@@ -167,7 +169,7 @@ class HomeController extends Controller
                         ->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);
         }
 
-        return view('frontend.products', compact('products','pageType','sizes','colors','fabrics','orientations','maxValue'));
+        return view('frontend.products', compact('products','catId','pageType','sizes','colors','fabrics','orientations','maxValue'));
     }
 
     public function catalogues()

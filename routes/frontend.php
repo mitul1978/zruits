@@ -36,6 +36,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/dashboard','HomeController@dashboard');
     Route::get('/contact','HomeController@contact');
     Route::get('/offers/{slug?}','HomeController@offers');
+    Route::post('filter-product', 'ProductController@filterProduct');
     // Wishlist
 
     // Route::get('/offers',function(){
