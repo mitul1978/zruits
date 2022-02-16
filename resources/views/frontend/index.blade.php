@@ -43,7 +43,7 @@
         </div><!-- End .heading -->
     </div><!-- End .container -->
     <div class="container">
-        <div class="row">
+        <div class="row" style="font-size: 14px; font-weight: 600; text-align: center;">
             @foreach($categories as $category)
                 <div class="col-6 col-md-3">
                     <a href="{{url('categories/' . $category->slug)}}"><img src="{{url(@$category->photo)}}" alt="{{$category->title}}">{{$category->title}}</a>
