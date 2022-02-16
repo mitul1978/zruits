@@ -99,7 +99,7 @@ class ProductController extends Controller
         $data['is_new']=$request->input('is_new',0);
         $data['is_bestsellers']=$request->input('is_bestsellers',0);
         $data['related_products']=@$request->related_products && count($request->related_products) ? serialize($request->related_products) :null;
-        $data['orientation']=@$request->orientation && count($request->orientation) ? serialize($request->orientation) :null;
+        $data['orientation']=@$request->orientation && count($request->orientation) ? json_encode($request->orientation) :null;
         
         if($request->offer)
         {
@@ -159,20 +159,28 @@ class ProductController extends Controller
                }
            }
 
-           if ($request->hasFile('images')) 
+           if($request->colorsImages)
            {
-                foreach($request->file('images') as $image)
-                {
-                   $icon=mt_rand();
-                   $filename=$icon.$image->getClientOriginalName();
-                   $image->move(base_path('public/images/products'), $filename);                    
-
-                   $prodImage = new ProductImage;
-                   $prodImage->product_id=$status->id;
-                   $prodImage->image='/images/products/'.$filename;
-                   $prodImage->save();
+                foreach(@$request->colorsImages as $key => $color)
+                { 
+                        foreach($request->images[$key] as $image)
+                        {                 
+                                $icon=mt_rand();
+                                $filename=$icon.$image->getClientOriginalName();
+                                $image->move(base_path('public/images/products'), $filename); 
+                                $prodImage = new ProductImage;
+                                $prodImage->product_id=$status->id;
+                                $prodImage->color_id = $color;
+                                $prodImage->image = '/images/products/'.$filename;
+                                $prodImage->save();
+                        }
                 }
-           }    
+            }        
+
+        //    if ($request->hasFile('images')) 
+        //    {
+                
+        //    }    
         
         //Application
         // if(@$data['applications'] && count($data['applications'])){
@@ -294,8 +302,8 @@ class ProductController extends Controller
         $data['is_new']=$request->input('is_new',0);
         $data['is_bestsellers']=$request->input('is_bestsellers',0);
         $data['related_products']=@$request->related_products && count($request->related_products) ? serialize($request->related_products) :null;
-        $data['orientation']=@$request->orientation && count($request->orientation) ? serialize($request->orientation) :null;
-        
+        $data['orientation']=@$request->orientation && count($request->orientation) ? serialize($request->orientation,true) :null;
+
         if($request->offer)
         {
             $data['is_offer'] = 1;
@@ -369,21 +377,27 @@ class ProductController extends Controller
                         ProductStock::updateOrCreate(['product_id'=> $id, 'size_id' => $size,'color_id' => $colors[$key]],['stock_qty' =>$quantities[$key]]);
                     }
                 }
-     
-                if ($request->hasFile('images')) 
+    
+                if(count($request->colorsImages))
                 {
-                     foreach($request->file('images') as $image)
-                     {
-                        $icon=mt_rand();
-                        $filename=$icon.$image->getClientOriginalName();
-                        $image->move(base_path('public/images/products'), $filename);                    
-     
-                        $prodImage = new ProductImage;
-                        $prodImage->product_id=$id;
-                        $prodImage->image='/images/products/'.$filename;
-                        $prodImage->save();
-                     }
-                }    
+                        foreach(@$request->colorsImages as $key => $color)
+                        {  
+                            if($color)
+                            {
+                                foreach($request->images[$key] as $image)
+                                {                 
+                                        $icon=mt_rand();
+                                        $filename=$icon.$image->getClientOriginalName();
+                                        $image->move(base_path('public/images/products'), $filename); 
+                                        $prodImage = new ProductImage;
+                                        $prodImage->product_id=$status->id;
+                                        $prodImage->color_id = $color;
+                                        $prodImage->image = '/images/products/'.$filename;
+                                        $prodImage->save();
+                                }
+                            }    
+                        }
+                }      
 
             if($status)
             {

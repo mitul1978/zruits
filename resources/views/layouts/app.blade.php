@@ -52,12 +52,11 @@
         <!-- Main JS File -->
         <script src="{{URL::asset('assets/js/main.js')}}"></script>
         {{-- <script src="{{URL::asset('assets/js/demos/demo-2.js')}}"></script> --}}
-        <script  src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-       
+        <script  src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>       
         <script src="{{URL::asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
         @livewireScripts
 
-    @yield('content')
+        @yield('content')
 
     <!-- Footer -->
    

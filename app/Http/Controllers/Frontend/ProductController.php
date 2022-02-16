@@ -28,18 +28,18 @@ class ProductController extends Controller
             // $laminates=Laminate::where('status','1')->get();
             // $applications=Application::where('status','1')->get();
             // $textures=Texture::where('status','1')->get();
+
             $count = Product::where('status','1')->count();
             $maxValue = Product::where('is_giftcard',0)->max('price');
+
             // $selected_lam=[];
             // $selected_apps=[];
             // $selected_text=[];
-
             // if(count( $requestData)){
             //     $selected_lam = @$requestData['laminates'] ? explode(',',$requestData['laminates'] ) : [];
             //     $selected_apps = @$requestData['applications'] ? explode(',',$requestData['applications'] ) : [];
             //     $selected_text = @$requestData['textures'] ? explode(',',$requestData['textures'] ) : [];
             // }
-
 
             $products = Product::withCount('user_wishlist')
             // ->where(function($r) use( $selected_apps){
@@ -48,8 +48,8 @@ class ProductController extends Controller
             //         if(count($selected_apps))
             //         $application->whereIn('name', $selected_apps);
             //     });
+            // })        
 
-            // })            
             ->where(function($t) use( $keyword){
                 if(@$keyword)
                 $t->where('name', 'LIKE', "%$keyword%")
@@ -57,6 +57,7 @@ class ProductController extends Controller
             })
 
             ->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);
+
             $sizes = Size::where('status',1)->get();
             $colors = Color::where('status',1)->get();
             $fabrics = Fabric::where('status',1)->get();
@@ -228,5 +229,143 @@ class ProductController extends Controller
            
             return view('frontend.product',compact('product','relatedProducts'));
         }       
+    }
+
+    public function filterProduct(Request $request)
+    {
+        $keyword  = $request->get('search');
+        $flag = isset($request->flag) ? $request->flag : null;
+        $sizes = isset($request->sizes) ? $request->sizes : null;
+        $colors = isset($request->colors) ? $request->colors : null;
+        $fabric = isset($request->fabric) ? $request->fabric : null;
+        $orientations = isset($request->orientations) ? $request->orientations : null;
+        $fromPrice = isset($request->fromPrice) ? $request->fromPrice : null;
+        $toPrice = isset($request->toPrice) ? $request->toPrice : null;
+        $value = isset($request->value) ? $request->value : null;
+        $pageType = isset($request->pageType) ? $request->pageType : null;
+
+        //$flag = $request->flag ? $request->flag:null;
+
+        // $laminates=Laminate::where('status','1')->get();
+        // $applications=Application::where('status','1')->get();
+        // $textures=Texture::where('status','1')->get();
+        // $selected_lam=[];
+        // $selected_apps=[];
+        // $selected_text=[];
+
+        // if(count( $requestData)){
+        //     $selected_lam = @$requestData['laminates'] ? explode(',',$requestData['laminates'] ) : [];
+        //     $selected_apps = @$requestData['applications'] ? explode(',',$requestData['applications'] ) : [];
+        //     $selected_text = @$requestData['textures'] ? explode(',',$requestData['textures'] ) : [];
+        // }
+
+
+        $products = Product::withCount('user_wishlist');
+        // ->where(function($r) use( $selected_apps){
+        //     if(count($selected_apps))
+        //     $r->whereHas('applications',function($application) use( $selected_apps){
+        //         if(count($selected_apps))
+        //         $application->whereIn('name', $selected_apps);
+        //     });
+
+        // })        
+
+        // ->where(function($t) use( $keyword){
+        //     if(@$keyword)
+        //     $t->where('name', 'LIKE', "%$keyword%")
+        //     ->orWhere('slug', 'LIKE', "%$keyword%");
+        // });
+
+        if($flag == 1)
+        {   
+            if($pageType != 0)
+            {
+                $products->where('category_id',$pageType);
+            }
+
+            if($value == 'latest')
+            {
+                $products =  $products->where('status','1')->where('is_giftcard',0)->latest()->paginate(9); 
+            }
+            else if($value == 'discount')
+            {
+                $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('discount','DESC')->paginate(9); 
+            }
+            else if($value == 'high')
+            {
+                $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('price','DESC')->paginate(9); 
+            }
+            else if($value == 'low')
+            {
+                $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('price','ASC')->paginate(9); 
+            }           
+        }
+        else
+        {   
+                if($pageType != 0)
+                {
+                    $products->where('category_id',$pageType);
+                }
+                
+                if($sizes)
+                {
+                    $products->where(function($r) use( $sizes)
+                    {
+                        $r->whereHas('sizesstock',function($size) use( $sizes)
+                        {
+                            $size->whereIn('size_id', $sizes);
+                        });   
+                    });
+                }
+
+                if($colors)
+                {
+                    $products->where(function($r) use( $colors)
+                    {
+                        $r->whereHas('sizesstock',function($color) use( $colors)
+                        {
+                            $color->whereIn('color_id', $colors);
+                        });   
+                    });
+                }
+
+                if($fabric)
+                {
+                    $products->whereIn('fabric',$fabric);
+                }
+
+                if($orientations)
+                {  
+                    $orientations = serialize($orientations);
+                    $products->where('orientation','like', '%' . $orientations .'%' );
+                }
+
+                if($fromPrice)
+                {
+                    $products->where('price', '>=', $fromPrice);
+                }
+
+                if($toPrice)
+                {
+                    $products->where('price', '<=', $toPrice);
+                }
+
+                $products =  $products->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);    
+        }        
+
+      
+      
+        // if ($request->ajax()) 
+        // {
+            //$returnHTML = view('frontend.productlisting',[' products'=> $products])->render();// or method that you prefere to return data + RENDER is the key here
+            return view('frontend.productlisting', ['products'=> $products,'value' => $value]); //response()->json( array('success' => true, 'html'=>$returnHTML) );
+        // }
+        // else
+        // {  
+        //     $pageType = 'Shop By Products';
+        //     return view('frontend.products',compact('products','pageType','sizes','colors','fabrics','orientations','maxValue'));
+        // }
+       
+        // return view('frontend.products',compact('products'));
     }
 }
