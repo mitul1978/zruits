@@ -1,6 +1,84 @@
 @extends('layouts.app')
 @section('content')
-
+   <style>
+    .spinner-wrapper 
+             { 
+               position: fixed; 
+               z-index: 999999; 
+               top: 0; right: 0; 
+               bottom: 0; left: 0; 
+               background: #fff; 
+               opacity:0.6;
+            } 
+            .spinner 
+            { 
+              position: absolute; 
+              top: 50%; 
+              /* centers the loading animation vertically one the screen */ 
+              left: 50%; 
+              /* centers the loading animation horizontally one the screen */ 
+              width: 3.75rem; 
+              height: 1.25rem; 
+              margin: -0.625rem 0 0 -1.875rem; 
+              /* is width and height divided by two */ 
+              text-align: center; 
+            } 
+            .spinner > div 
+            {
+               display: inline-block; 
+               width: 1rem; 
+               height: 1rem; 
+               border-radius: 100%; 
+               background-color: #4D4D4D; 
+               -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both; 
+               animation: sk-bouncedelay 1.4s infinite ease-in-out both; 
+             } 
+             .spinner .bounce1 
+             { 
+               -webkit-animation-delay: -0.32s; 
+               animation-delay: -0.32s; 
+             } 
+             .spinner .bounce2         
+             { 
+               -webkit-animation-delay: -0.16s; 
+               animation-delay: -0.16s; 
+             }
+             @-webkit-keyframes sk-bouncedelay 
+             { 
+               0%, 80%, 100% 
+               { 
+                 -webkit-transform: scale(0); 
+               } 
+               40% 
+               { 
+                 -webkit-transform: scale(1.0); 
+               } 
+             } 
+             @keyframes  sk-bouncedelay 
+             {
+                0%, 80%, 100% 
+                { 
+                  -webkit-transform: scale(0); 
+                  -ms-transform: scale(0); 
+                  transform: scale(0); 
+                } 
+                40% 
+                { 
+                  -webkit-transform: scale(1.0); 
+                  -ms-transform: scale(1.0); 
+                  transform: scale(1.0); 
+                } 
+             }
+    
+    </style>
+    
+    <div class="spinner-wrapper" id="spinner-wrapper">
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
 <main class="main">
             <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
                 <div class="container d-flex align-items-center">
@@ -11,133 +89,14 @@
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
-            <input type="hidden" name="product_id" id="product_id" value="{{@$product->id}}">
+            <input type="hidden" name="product" id="product" value="{{@$product->slug}}">
+            <input type="hidden" name="productType" id="productType" value="1">
             <div class="page-content" >
                 <div class="container">
                     <div class="product-details-top" id="loadAjax">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="product-gallery product-gallery-vertical">
-                                    <div class="row">
-                                        <figure class="product-main-image">
-                                            <img id="product-zoom" src="{{asset(@$product->images()->first()->image)}}" data-zoom-image="{{asset(@$product->images()->first()->image)}}" alt="product image">
 
-                                            <a href="#" id="btn-product-gallery" class="btn-product-gallery">
-                                                <i class="icon-arrows"></i>
-                                            </a>
-                                        </figure><!-- End .product-main-image -->
+                        @include('frontend.singleProduct')
 
-                                        <div id="product-zoom-gallery" class="product-image-gallery">
-                                            @foreach($product->images as $key => $image)
-                                                @if($key == 0)
-                                                    <a class="product-gallery-item active" href="#" data-image="{{asset(@$image->image)}}" data-zoom-image="{{asset(@$image->image)}}">
-                                                        <img src="{{asset(@$image->image)}}" alt="product side">
-                                                    </a>
-                                                @else
-                                                    <a class="product-gallery-item" href="#" data-image="{{asset(@$image->image)}}" data-zoom-image="{{asset(@$image->image)}}">
-                                                        <img src="{{asset(@$image->image)}}" alt="product side">
-                                                    </a>
-                                                @endif
-                                            @endforeach
-                                        </div><!-- End .product-image-gallery -->
-                                    </div><!-- End .row -->
-                                </div><!-- End .product-gallery -->
-                            </div><!-- End .col-md-6 -->
-
-                            <div class="col-md-6">
-                                <div class="product-details">
-                                    <h1 class="product-title">{{$product->name}}</h1><!-- End .product-title -->
-
-                                    <div class="product-price">
-                                        ₹ {{$product->price}}  <small>(MRP incl Taxes)</small>
-                                    </div><!-- End .product-price -->
-
-                                    <div class="product-content">
-                                        {!! $product->title !!}
-                                    </div><!-- End .product-content -->
-                                     <?php
-                                        $availableColors = $product->sizesstock()->groupBy('color_id')->get();
-                                        $availableSizes = $product->sizesstock()->groupBy('size_id')->get();
-                                     ?>
-                                    <div class="table-cell radio-cell">
-                                        <div class="label text-underline fw-400 mr-4">Color</div>
-                                        <div id="" class="d-flex">
-                                            @if(isset($availableColors) && $availableColors->isNotEmpty())  
-                                               @foreach($availableColors as $color)                                     
-                                                <div class="radio has-color">
-                                                    <label>
-                                                        <input type="radio" name="color" value="{{@$color->color_id}}" class="p-cradio colorOptions">
-                                                        <div class="custom-color"><span style="background-color:{{@$color->productColor->code}}" ></span></div>
-                                                     </label>
-                                                </div>
-                                               @endforeach 
-                                            @endif
-                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="table-cell radio-cell">
-                                        <div class="label text-underline fw-400 mr-4">Size</div>
-                                        <div id="" class="d-flex">
-                                            @if(isset($availableSizes) && $availableSizes->isNotEmpty())  
-                                               @foreach($availableSizes as $size)              
-                                                 <div class="radio has-image">
-                                                    <label>
-                                                        <input type="radio" name="size" value="{{@$size->size_id}}" class="p-cradio ">
-                                                        <div class="custom-size"><span>{{@$size->productSize->name}}</span></div>
-                                                    </label>
-                                                 </div>
-                                                @endforeach
-                                            @endif     
-                                           
-                                        </div>
-                                        <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
-                                    </div>
-
-                                    <div id="displayProdCount">                           
-                                    </div><!-- End .details-filter-row -->
-
-                                    <div class="details-filter-row details-row-size">
-                                        <label for="qty">Qty:</label>
-                                        <div class="product-details-quantity">
-                                            <input type="number" id="qty" class="form-control" value="1" min="1" max="5" step="1" data-decimals="0" required>
-                                        </div><!-- End .product-details-quantity -->
-                                    </div><!-- End .details-filter-row -->
-
-                                    <div class="details-filter-row details-row-size">
-                                        <label id="availableContsu"></label>                                        
-                                    </div><!-- End .details-filter-row -->
-
-                                    <div class="product-details-action">
-                                        <a href="javascript:void(0);" class="btn-product btn-cart add_to_cart" data-id="{{$product->id}}"><span class="product{{$product->id}}">Add to cart</span></a>
-
-                                        <div class="details-action-wrapper">
-                                            @if(is_user_logged_in())
-                                                <a href="javascript:void(0);" class="btn-product btn-wishlist btn-expandable add_to_wishlist" title="Wishlist" data-id="{{$product->id}}" id="wishlist{{$product->id}}"><span class="add_to_wishlist_msg{{$product->id}}">Add to Wishlist</span></a>
-                                            @else
-                                                <a href="#signin-modal" data-toggle="modal" class="btn-product btn-wishlist btn-expandable" title="Wishlist" data-id="{{$product->id}}" id="wishlist{{$product->id}}">Add to Wishlist</a>
-                                            @endif
-                                            
-                                        </div><!-- End .details-action-wrapper -->
-                                    </div><!-- End .product-details-action -->
-
-                                    <div class="product-details-footer">
-                                        <div class="product-cat">
-                                            <span>Category:</span>
-                                            <a href="javascript:void(0);">{{$product->category->title}}</a>
-                                        </div><!-- End .product-cat -->
-
-                                        <div class="social-icons social-icons-sm">
-                                            <span class="social-label">Share:</span>
-                                            <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
-                                            <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
-                                            <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                                            <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
-                                        </div>
-                                    </div><!-- End .product-details-footer -->
-                                </div><!-- End .product-details -->
-                            </div><!-- End .col-md-6 -->
-                        </div><!-- End .row -->
                     </div><!-- End .product-details-top -->
 
                     <div class="product-details-tab">
@@ -231,7 +190,7 @@
                                             @endif
                                             <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                             <div class="product-price">
-                                                ₹ {{$product->price }} <small>(MRP incl Taxes)</small>
+                                                <span class="new-price">₹ {{$product->discounted_amt }}</span>  <span class="old-price">₹ {{$product->price}}</span>  <small>(MRP incl Taxes)</small>
                                             </div><!-- End .product-price -->
                                             <div class="atc-container">                                        
                                                 <div class="mb-0">                                    
@@ -248,5 +207,77 @@
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
+        <script>
+            
+        $(document).ready(function() 
+        {  
+           // $(this).magnificPopup();
+            $('.spinner-wrapper').hide();
+
+            $(document).on('click','.product-gallery-item', function()
+            {  
+               $('.product-gallery-item').removeClass('active');
+               $(this).addClass('active');
+               $('#product-zoom').attr('src',$(this).data('image'));
+               //$('.zoomContainer').remove();
+               $('.zoomWindow').css({
+                   'background-image':'url(' + $(this).data('image') + ')',
+               });
+            });
+
+            $(document).on('click','#btn-product-gallery', function(e)
+            { 
+                $('#product-zoom').elevateZoom({
+                    gallery:'product-zoom-gallery',
+                    galleryActiveClass: 'active',
+                    zoomType: "inner",
+                    cursor: "crosshair",
+                    zoomWindowFadeIn: 400,
+                    zoomWindowFadeOut: 400,
+                    responsive: true
+                });
+                var ez = $('#product-zoom').data('elevateZoom');
+                console.log(ez);
+                if ( $.fn.magnificPopup ) 
+                {
+                    $.magnificPopup.open({
+                        items: ez.getGalleryList(),
+                        type: 'image',
+                        gallery:{
+                           enabled:true
+                        },
+                        fixedContentPos: false,
+                        removalDelay: 600,
+                        closeBtnInside: false
+                    }, 0);
+
+                    e.preventDefault();
+                }
+            });
+           
+        });  
+
+           $(document).on('click','.colorOptions', function()
+           {   
+                $('.spinner-wrapper').show();
+                var slug = $('#product').val();
+                var colorId = $(this).val();
+                $.ajax({
+                            url:"/product/" + slug + '?colorId='+colorId,
+                            type:"GET",
+                            success:function(response)
+                            {  
+                               $('#loadAjax').empty().append(response);
+                               $('.spinner-wrapper').hide();
+                               $('.zoomContainer').remove();
+                               $('#product-zoom').elevateZoom({
+                                  zoomType : "inner",
+                               });
+                            }
+                }); 
+            });  
+
+            
+    </script>  
 
 @endsection

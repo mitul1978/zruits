@@ -65,6 +65,9 @@ class CartController extends Controller
     public function ajax_addToCart(Request $request){
 
         $product = Product::where('id',  $request->product_id)->first();
+        $colorId = $request->colorId;
+        $sizeId = $request->sizeId;
+
         if (empty($product)) 
         {
             return response(['error'=>'Something is going wrong'], 200);
@@ -74,11 +77,11 @@ class CartController extends Controller
         {
             if (is_user_logged_in())
             {
-                addToCart($product);
+                addToCart($product,$colorId,$sizeId);
             }
             else
             {
-                addToCartForGuestInSession($product);
+                addToCartForGuestInSession($product,$colorId,$sizeId);
             }
         }    
         else
@@ -95,7 +98,7 @@ class CartController extends Controller
 
         return response(['add_to_cart'=>'Added',
         'cart_count' =>get_cart_count(),
-        'msg'=>strtoupper($product->product_texture.' '. $product->design.' successfully added to cart')], 200);
+        'msg'=>strtoupper($product->product_texture.' '. $product->name.' successfully added to cart')], 200);
 
     }
     

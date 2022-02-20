@@ -20,7 +20,7 @@ class CouponController extends Controller
             $coupon=Coupon::where('code',$request->code)->where('is_giftcard',0)->where('start_date','<=',$todaysDate)->where('end_date','>=',$todaysDate)->first();
             if(!$coupon)
             {                  
-                Alert::error('The coupon code you entered is not valid or Expired');
+                //Alert::error('The coupon code you entered is not valid or Expired');
                 if ($request->ajax()) 
                 {
                     return 0;
@@ -65,7 +65,7 @@ class CouponController extends Controller
             $coupon=Coupon::where('code',$request->code)->where('is_giftcard',1)->first();
             if(!$coupon)
             {                  
-                Alert::error('The Gift card number you entered is not valid.');
+                //Alert::error('The Gift card number you entered is not valid.');
                 if ($request->ajax()) 
                 {
                     return 0;

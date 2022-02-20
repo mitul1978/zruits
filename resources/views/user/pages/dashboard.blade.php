@@ -15,8 +15,10 @@
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
-			
-   
+		
+			@if(session()->has('success'))
+				<p class="text-alert" style="text-align:center;"> {{ session()->get('success') }}</p>
+			@endif	
 			@foreach ($errors->all() as $error)
 			   <p class="text-danger" style="text-align:center;">{{ $error }}</p>
 			@endforeach 
@@ -56,7 +58,7 @@
 	                		<div class="col-md-9 col-lg-10">
 	                			<div class="tab-content">
 								    <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
-								    	<p>Hello <span class="font-weight-normal text-dark">User</span> (not <span class="font-weight-normal text-dark">User</span>? <a href="{{ route('user.logout') }}">Log out</a>) 
+								    	<p>Hello <span class="font-weight-normal text-dark">{{auth()->user()->name}}</span> (not <span class="font-weight-normal text-dark">User</span>? <a href="{{ route('user.logout') }}">Log out</a>) 
 								    	<br>
 								    	From your account dashboard you can view your <a href="#tab-orders" class="tab-trigger-link link-underline">recent orders</a>, manage your <a href="#tab-address" class="tab-trigger-link">shipping and billing addresses</a>, and <a href="#tab-account" class="tab-trigger-link">edit your password and account details</a>.</p>
 								    </div><!-- .End .tab-pane -->
@@ -119,7 +121,7 @@
 																	<span class="badge {{@$order->order_status->class}}">{{@$order->order_status->name}}</span>															
 																</td>
 																<td>
-																	<a href="{{route('invoice',$order->id)}}"  data-toggle="tooltip" title="view" data-placement="bottom">View</a>
+																	{{-- <a href="{{route('invoice',$order->id)}}"  data-toggle="tooltip" title="view" data-placement="bottom">View</a> --}}
 																	{{-- <form method="POST" action="{{route('user.order.delete',[$order->id])}}">
 																		@csrf 
 																		@method('delete')
@@ -193,7 +195,7 @@
 								    	<p>The following addresses will be used on the checkout page by default.</p>
 
 								    	<div class="row">
-								    		<div class="col-lg-6">
+								    		{{-- <div class="col-lg-6">
 								    			<div class="card card-dashboard">
 								    				<div class="card-body">
 								    					<h3 class="card-title">Billing Address</h3><!-- End .card-title -->
@@ -207,15 +209,83 @@
 														<a href="#">Edit <i class="icon-edit"></i></a></p>
 								    				</div><!-- End .card-body -->
 								    			</div><!-- End .card-dashboard -->
-								    		</div><!-- End .col-lg-6 -->
+								    		</div><!-- End .col-lg-6 --> --}}
 
-								    		<div class="col-lg-6">
+								    		<div class="col-lg-12">
 								    			<div class="card card-dashboard">
 								    				<div class="card-body">
 								    					<h3 class="card-title">Shipping Address</h3><!-- End .card-title -->
-
-														<p>You have not set up this type of address yet.<br>
-														<a href="#">Edit <i class="icon-edit"></i></a></p>
+														<br>
+                                                         <?php
+														    $addresses = auth()->user()->addresses; 
+														 ?>
+														  @foreach($addresses as $key => $address)
+														    <h3 class="card-title">Address {{++$key}} <span>{{$address->is_primary ? '(DEFAULT ADDRESS)':''}}</span></h3> <form method="POST" action="{{route('remove-user-address',$address->id)}}"> @csrf <button type="submit">X</button> </form>
+														     <div class="addresses">
+																  <span>{{$address->first_name}}</span> <br>
+																  <span>{{$address->mobile}}</span> - <span>{{$address->email}}</span><br>
+																  <span>{{$address->address}}</span> , <span>{{$address->address1}}</span><br>
+																  <span>{{$address->get_state->name}}</span> - <span>{{$address->get_city->name}}</span> -<span>{{$address->pincode}}</span><br>
+															 </div>	 
+														   <br>															  	
+														  @endforeach
+														 <h3 class="card-title">Add New</h3> 
+														 <form action="{{url('create-user-address')}}" class="place_order" method="POST">
+															@csrf
+															<div class="singleRecord">
+																<div class="row">
+																	<div class="col-sm-6">
+																		<label>Full Name *</label>
+																		<input type="text" class="form-control" name="first_name" value="" required>
+																	</div>
+																</div>
+																<div class="row">	
+																	<div class="col-sm-6">
+																		<label>Phone *</label>
+																		<input type="tel" class="form-control" name="mobile" value=""  required>
+																	</div>
+																	<div class="col-sm-6">	
+																		<label>Email Address *</label>
+																		<input type="text" class="form-control" name="email" value=""  required>
+																	</div>
+																</div>
+																<label>Address Line 1*</label>
+																<input type="text" class="form-control" name="address" value=""  required>
+																<label>Address Line 2</label>
+																<input type="text" class="form-control" name="address1" value="" >
+																<div class="row">
+																	<div class="col-sm-4">
+																		<label>State *</label>
+																		<select  class="form-control state_id" name="state_id" required>
+																			<option value="">Select State </option>
+																			@foreach($states as $state)
+																				<option value="{{$state->id}} {{isset($addresses->state_id) && @$addresses->state_id = $state->id ? 'selected':''}}">{{$state->name}}</option>
+																			@endforeach
+																		</select>
+																	</div>	
+																	<div class="col-sm-4">	
+																		<label>Town / City *</label>
+																		<select  class="form-control city" name="city_id" required>
+																			<option value="">Select City </option>
+																		</select>	
+																	</div>	
+																	<div class="col-sm-4">
+																		<label>Postcode / ZIP *</label>
+																		<input type="text" class="form-control" name="pincode" value="" required>
+																	</div>
+																</div>
+																<div class="row">
+																	<input type="checkbox" id="is_primary" name="is_primary" value="1">
+																	<label for="is_primary" >Set as Primary Address ?</label>
+																</div>		
+															</div>
+															<br>
+															<button type="submit" class="btn btn-outline-primary-2">
+																<span>Add New</span>
+															</button>
+														</form>	
+														
+														
 								    				</div><!-- End .card-body -->
 								    			</div><!-- End .card-dashboard -->
 								    		</div><!-- End .col-lg-6 -->
@@ -278,5 +348,36 @@
                 </div><!-- End .dashboard -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
-
+<script>
+	 $('body').on('change','.state_id',function()
+			  {
+				  var state_id = $(this).val();				  
+				  if(state_id)
+				  {
+					  $.ajax({
+					  url:"{{url('get_cities_by_state_id')}}",
+					  data:{_token:"{{csrf_token()}}",state_id},
+					  type:"POST",
+					  success:function(response)
+					  {
+							  var html_option=""
+							  var data=response;
+							  $.each(data,function(id,title){
+								  var selected_id ='{{old('city_id')}}';
+								  if(selected_id==id)
+								  html_option +="<option selected value='"+id+"'>"+title+"</option>"
+								  else
+								  html_option +="<option  value='"+id+"'>"+title+"</option>"
+		  
+							  });
+							  $('.city').html(html_option);
+						  }
+					  });
+				  }
+				  else
+				  {
+					  $('.city').html('');
+				  }
+			  });
+</script>
 @endsection

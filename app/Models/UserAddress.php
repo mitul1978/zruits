@@ -11,7 +11,7 @@ class UserAddress extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable=[
-        'is_primary','dnd' ,'user_id','first_name','last_name','pincode','address','email','state_id','city_id','mobile' 
+        'is_primary','dnd' ,'user_id','first_name','last_name','pincode','address','address2','email','state_id','city_id','mobile' 
      ];
 
 

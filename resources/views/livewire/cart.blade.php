@@ -32,6 +32,8 @@
                   <tr style="text-align: center;">
                     <th>Product Image</th>
                     <th>Product Name</th>
+                    <th>Color</th>
+                    <th>Size</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
@@ -50,12 +52,14 @@
                   <form class="cart_update_form" action="{{route('cart.update')}}" method="POST">
                     @csrf
                     @php
-                        $sub_total = 0;
+                        $sub_total = 0;       
                     @endphp
                     @foreach(get_cart() as $cart)
                         @php
-                          $total      =  $cart['product']['price'] *$cart['quantity'];
+                          $total      =  $cart['product']['discounted_amt'] * $cart['quantity'];
                           $sub_total  += $total;
+                          $color = @App\Models\Color::find(@$cart['color_id'])->name ;
+                          $size = @App\Models\Size::find(@$cart['size_id'])->name;
                         @endphp
 
                         @if($total>0)
@@ -74,25 +78,33 @@
                                 <h3 class="product-title">
                                   <a href="{{route('product',[$cart['product']['slug']])}}">{{$cart['product']['name']}}</a>
                                 </h3><!-- End .product-title -->
-                                <input type="hidden" id="product_price{{$cart['product']['id']}}" data-price="{{$cart['product']['price']}}">
+                                <input type="hidden" id="product_price{{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}}" data-price="{{$cart['product']['price'].@$cart['color_id'].@$cart['size_id']}}">
                               </div><!-- End .product -->
                             </td>
-                            <td class="price-col">&#8377; {{$cart['product']['price']}}</td>
+                            <td>    
+                                {{ $color }}   
+                                <input type="hidden" id="product_{{@$cart['color_id']}}" data-value="{{@$cart['color_id']}}">
+                            </td>
+                            <td >    
+                                {{ $size }}        
+                                <input type="hidden" id="product_{{@$cart['size_id']}}" data-value="{{@$cart['size_id']}}">                     
+                            </td>
+                            <td class="price-col">&#8377; {{$cart['product']['discounted_amt']}}</td>
                             <td class="quantity-col">
                               <div class="e-pro-qty-block"> 
                                 @if($cart['quantity']>1)
-                                  <span wire:click="removeToCart({{$cart['product']['id'] }})" class="input-number-increment" >-</span>
+                                  <span wire:click="removeToCart({{$cart['product']['id']}},{{@$cart['color_id']}},{{@$cart['size_id']}})" class="input-number-increment" >-</span>
                                 @else                                    
                                   <span wire:click="alertConfirmDelete({{$cart['product']['id']}})" class="input-number-increment"><i class="fas fa-trash-alt"></i> X </span>
                                 @endif      
-                                <input style="width:50px;" name="quant[{{$cart['product']['id']}}]" class="input-number" data-product_id="{{$cart['product']['id']}}" id="cart_item_count{{$cart['product']['id']}}" type="number" value="{{$cart['quantity']}}" min="{{@$cart['product']['min_qty']}}" max="{{@$cart['product']['max_qty']}}" >
-                                <span wire:click="addToCart({{$cart['product']['id'] }})" class="input-number-increment" >+</span>   
+                                <input style="width:50px;" name="quant[{{$cart['product']['id']}}]" class="input-number" data-product_id="{{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}}" id="cart_item_count{{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}}" type="number" value="{{$cart['quantity']}}" min="{{@$cart['product']['min_qty']}}" max="{{@$cart['product']['max_qty']}}" >
+                                <span wire:click="addToCart({{$cart['product']['id']}},{{@$cart['color_id']}},{{@$cart['size_id']}})" class="input-number-increment" >+</span>   
                               </div>
                             </td>
-                            <td class="total-col">&#8377; <span class="product_total{{$cart['product']['id']}}">{{$total }}</span></td>
+                            <td class="total-col">&#8377; <span class="product_total{{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}}">{{$total }}</span></td>
                             <td class="remove-col">
                               <div class="e-pro-remove-block trash_btn" id="">
-                                  <button type="button" class="btn-remove dltBtn" wire:click="alertConfirmDelete({{$cart['product']['id']}})" style="height:30px; border-radius:50%" title="Delete"><i class="fas fa-trash-alt"></i>X</button>
+                                  <button type="button" class="btn-remove dltBtn" wire:click="alertConfirmDelete({{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}})" style="height:30px; border-radius:50%" title="Delete"><i class="fas fa-trash-alt"></i>X</button>
                               </div>
                             </td>
                           </tr>

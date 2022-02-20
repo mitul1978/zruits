@@ -79,7 +79,7 @@
 
                 $(".add_to_wishlist_img"+product_id).hide();
                 $(".add_to_wishlist_msg"+product_id).show();
-                $(".add_to_wishlist_msg"+product_id).text('Please Wait');
+                $(".add_to_wishlist_msg"+product_id).text('Adding');
 
                 $.ajax({
                     url: "{{route('add-to-wishlist')}}",
@@ -132,6 +132,54 @@
             var toEmail =  $('#gift_card_to').val();
             var fromName = $('#gift_card_from').val();
             var message = $('#giftcard_message').val();
+            var prodType = $('#productType').val();
+            var colorId = '';
+            var sizeId = '';
+            
+            $('.colorOptions' + product_id).each(function() {
+                var isChecked = $(this).prop('checked')?true:false; 
+               
+                if(isChecked)
+                {
+                    colorId = $(this).val();
+                }
+            });
+
+            if(colorId == '')
+            {
+                Swal.fire({
+                                    icon: "error",
+                                    text: 'Please Select Color ',
+                                    toast: true,
+                                    position: 'top-right',
+                                    timer: 5000,
+                                    showConfirmButton:false,
+                                    title: "Select Color!",
+                                    })
+                return false;                    
+            }
+
+            $('.sizeOptions' + product_id).each(function() {
+                var isChecked = $(this).prop('checked')?true:false; 
+                if(isChecked)
+                {
+                    sizeId = $(this).val();
+                }
+            });
+
+            if(sizeId == '')
+            {
+                Swal.fire({
+                                    icon: "error",
+                                    text: 'Please Select Size ',
+                                    toast: true,
+                                    position: 'top-right',
+                                    timer: 5000,
+                                    showConfirmButton:false,
+                                    title: "Select Size!",
+                                    })
+                return false;                    
+            }
 
             var loopTime = 0;
             if(qty != undefined)
@@ -139,50 +187,67 @@
                 loopTime = qty;
             }
            
-           $('.product'+product_id).text('Please Wait...');
+           $('.product'+product_id).text('Adding');            
 
-           if(loopTime == 0)
-           {
+           if(loopTime == 0 || prodType != 0)
+           {   
+                for(var i = 0; i < loopTime; i++)
+                {
                          $.ajax({
                             url: "{{route('ajax-add-to-cart')}}",
                             type: 'post',
                             data:{
                                 _token:"{{csrf_token()}}",
                                 product_id,
+                                colorId,
+                                sizeId
                             },
-                            success: function(response) {
-                                if(response.add_to_cart)
-                                {
-                                    var res = response.msg;
-                                    Swal.fire({
-                                        icon: "success",
-                                        text: res,
-                                        toast: true,
-                                        position: 'top-right',
-                                        timer: 5000,
-                                        showConfirmButton:false,
-                                        title: response.add_to_cart+"!",
-                                    })
+                            success: function(response) 
+                            {
+                                // if(response.add_to_cart)
+                                // {
+                                    //var res = response.msg;
+                                    // Swal.fire({
+                                    //     icon: "success",
+                                    //     text: res,
+                                    //     toast: true,
+                                    //     position: 'top-right',
+                                    //     timer: 5000,
+                                    //     showConfirmButton:false,
+                                    //     title: response.add_to_cart+"!",
+                                    // })
 
-                                   $('.cart-count').text(response.cart_count);
+                                     $('.cart-count').text(response.cart_count);
+                                // }
+                                // else
+                                // {
+                                    // Swal.fire({
+                                    // icon: "error",
+                                    // text: res,
+                                    // toast: true,
+                                    // position: 'top-right',
+                                    // timer: 5000,
+                                    // showConfirmButton:false,
+                                    // title: response.error+"!",
+                                    // })
+                               // }
 
-                                }
-                                else
-                                {
-                                    Swal.fire({
-                                    icon: "error",
-                                    text: res,
-                                    toast: true,
-                                    position: 'top-right',
-                                    timer: 5000,
-                                    showConfirmButton:false,
-                                    title: response.error+"!",
-                                    })
-                                }
-
-                                $('.product'+product_id).text('Added');
+                                
                             }
                         });
+                }  
+
+                Swal.fire({
+                            icon: "success",
+                            text: "Added to Cart",
+                            toast: true,
+                            position: 'top-right',
+                            timer: 5000,
+                            showConfirmButton:false,
+                            title: "Added!",
+                        });
+
+                $('.product'+product_id).text('Added');      
            }
            else
            {
@@ -433,11 +498,11 @@
         //     });
         // });
 
-        $('.customFilterData').change(function() {
-            $("input:checkbox[class=customFilterData]:checked").each(function () {
-                alert("Id: " + $(this).attr("id") + " Value: " + $(this).val());
-            });
-        });
+       // $('.customFilterData').change(function() {
+        //     $("input:checkbox[class=customFilterData]:checked").each(function () {
+        //         alert("Id: " + $(this).attr("id") + " Value: " + $(this).val());
+        //     });
+        // });
     </script>
 
 </body>

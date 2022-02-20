@@ -15,13 +15,18 @@ class Product extends Model
     protected $attributes = ['in_cart' => false];
 
     protected $fillable=['category_id','name','design','hsn','fabric','orientation','related_products','min_qty','is_featured','is_new','is_bestsellers','is_offer','offer','price','stock_quantity','description','additional_information','discount','slug','a4sheet_view','fullsheet_view','room_view','meta_title','meta_description','meta_image','meta_keyword','status','sort_order','tags','tag'];
-
+    protected $appends = ['discounted_amt'];
 
     public function toArray()
     {
         $array = parent::toArray();
         $array['in_cart'] = $this->in_cart;
         return $array;
+    }
+
+    public function  getDiscountedAmtAttribute()
+    {   
+        return $this->price - ($this->price * $this->discount)/100;
     }
     
     public function category(){

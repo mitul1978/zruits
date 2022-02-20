@@ -12,9 +12,17 @@ class UserAddressController extends Controller
     public function removeUserAddress($address_id){
        $address =  UserAddress::where('user_id',auth()->user()->id)->find($address_id);
 
-       if($address){
+       if($address)
+       {
            $address->delete();
-           return 1;
+        //    if($request->ajax())
+        //    {
+
+        //    }
+        Alert::success("Address updated successfully");
+
+        return redirect()->back();
+           //return 1;
        }else{
            return 0;
        }
@@ -39,6 +47,37 @@ class UserAddressController extends Controller
         
         $address->update( $requestData);
         Alert::success("Address updated successfully");
+
+        return redirect()->back();
+
+     }
+
+     public function createUserAddress(Request $request)
+     {
+        $requestData = $request->except('_token');
+        
+        if($request->is_primary)
+        {
+           UserAddress::where('user_id',auth()->user()->id)->update(['is_primary' => 0]);
+        }
+
+        $address = new UserAddress();
+        
+        $address->mobile = @$request->mobile;
+        $address->email = @$request->email;
+        $address->first_name = @$request->first_name;
+        $address->address = @$request->address;
+        $address->address2 = @$request->address1;
+        $address->state_id = @$request->state_id;
+        $address->city_id = @$request->city_id;
+        $address->pincode = @$request->pincode;
+        //$address->dnd = @(int)$data['dnd'];
+        $address->is_primary =  @$request->is_primary;
+        $address->pincode = @$request->pincode;
+        $address->user_id = @auth()->user()->id;
+        $address->save();
+
+        Alert::success("New Address Added successfully");
 
         return redirect()->back();
 
