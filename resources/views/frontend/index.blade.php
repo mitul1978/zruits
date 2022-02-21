@@ -49,18 +49,7 @@
                     <a href="{{url('categories/' . $category->slug)}}"><img src="{{url(@$category->photo)}}" alt="{{$category->title}}">{{$category->title}}</a>
                 </div>
             @endforeach  
-            {{-- <div class="col-6 col-md-3">
-                <a href="{{url('categories')}}"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-elegant-tops-women-online_1.jpg" alt="View All"></a>
-            </div>   --}}
-            {{-- <div class="col-6 col-md-3">
-                <a href="#"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-chic-trendy-_dresses-women-online.jpg" alt=""></a>
-            </div>
-            <div class="col-6 col-md-3">
-                <a href="#"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211005-gd-d-trendy-kurtas-women-online.jpg" alt=""></a>
-            </div>
-            <div class="col-6 col-md-3">
-                <a href="#"><img src="https://www.globaldesi.in/media/homepage_content/2/0/20211006-gd-d-stylish-sets-kurtas-women-online.jpg" alt=""></a>
-            </div> --}}
+          
         </div>
     </div>
 
@@ -133,7 +122,7 @@
                                             @foreach($availableColors as $color)     
                                                     <div class="radio has-color">
                                                         <label>
-                                                            <input type="radio" name="color" value="{{@$color->color_id}}" class="p-cradio colorOptions">
+                                                            <input type="radio" name="color" value="{{@$color->color_id}}" class="p-cradio">
                                                             <div class="custom-color"><span style="background-color:{{@$color->productColor->code}}" ></span></div>
                                                         </label>
                                                     </div>
@@ -142,11 +131,11 @@
                                     @endif
                                     <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
-                                        ₹ {{$product->price }} <small>(MRP incl Taxes)</small>
+                                        <span class="new-price">₹ {{$product->discounted_amt }}</span>  <span class="old-price">₹ {{$product->price}}</span>  <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
                                     <div class="atc-container">                                        
                                         <div class="mb-0">                                    
-                                            <a href="javascript:void(0);" class="btn-cart add_to_cart" data-id="{{$product->id}}"><span class="product{{$product->id}}">Add to cart</span></a>
+                                            <a href="{{route('product',$product->slug)}}" class="btn-cart" data-id="{{$product->id}}"><span class="product{{$product->id}}">Add to cart</span></a>
                                         </div>
                                     </div>
                                 </div><!-- End .product-body -->
@@ -228,7 +217,7 @@
                                             @foreach($availableColors as $color)     
                                                     <div class="radio has-color">
                                                         <label>
-                                                            <input type="radio" name="color" value="{{@$color->color_id}}" class="p-cradio colorOptions">
+                                                            <input type="radio" name="color" value="{{@$color->color_id}}" class="p-cradio colorOptions-{{$product->id}}">
                                                             <div class="custom-color"><span style="background-color:{{@$color->productColor->code}}" ></span></div>
                                                         </label>
                                                     </div>
@@ -237,11 +226,11 @@
                                     @endif
                                     <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
-                                        ₹ {{$product->price }} <small>(MRP incl Taxes)</small>
+                                        <span class="new-price">₹ {{$product->discounted_amt }}</span>  <span class="old-price">₹ {{$product->price}}</span>  <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
                                     <div class="atc-container">                                        
                                         <div class="mb-0">                                    
-                                            <a href="javascript:void(0);" class="btn-cart add_to_cart" data-id="{{$product->id}}"><span class="product{{$product->id}}">Add to cart</span></a>
+                                            <a href="{{route('product',$product->slug)}}" class="btn-cart" ><span class="product{{$product->id}}">Add to cart</span></a>
                                         </div>
                                     </div>
                                 </div><!-- End .product-body -->
