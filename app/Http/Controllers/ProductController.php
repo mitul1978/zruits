@@ -297,12 +297,11 @@ class ProductController extends Controller
              'discount'=>'required',             
         ]);
 
-
         $data['is_featured']=$request->input('is_featured',0);
         $data['is_new']=$request->input('is_new',0);
         $data['is_bestsellers']=$request->input('is_bestsellers',0);
         $data['related_products']=@$request->related_products && count($request->related_products) ? serialize($request->related_products) :null;
-        $data['orientation']=@$request->orientation && count($request->orientation) ? serialize($request->orientation,true) :null;
+        $data['orientation']=@$request->orientation && count($request->orientation) ? serialize($request->orientation) :null;
 
         if($request->offer)
         {

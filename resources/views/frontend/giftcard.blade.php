@@ -44,7 +44,7 @@
                                     </div><!-- End .row -->
                                 </div><!-- End .product-gallery -->
                             </div><!-- End .col-md-6 -->
-
+                            <input type="hidden" name="productType" id="productType" value="0">
                             <div class="col-md-6">
                                 <h3>Gift Card</h3>
                                 <div class="product-details">

@@ -11,7 +11,8 @@ use App\Models\Pincode;
 use App\Models\Product;
 
 // use Auth;
-class Helper{
+class Helper
+{
     public static function messageList()
     {
         return Message::whereNull('read_at')->orderBy('created_at', 'desc')->get();

@@ -231,7 +231,7 @@ body {
 
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Issue Date:</span> {{date('d F Y',strtotime($order->created_at))}}</div>
 
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge {{$order->order_status->class}} badge-pill px-25">{{$order->order_status->name}}</span></div>
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge {{@$order->order_status->class}} badge-pill px-25">{{@$order->order_status->name}}</span></div>
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Payment Method:</span> {{strtoupper($order->payment_method)}}</div>
                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Payment Status:</span> {{$order->payment_status}}</div>
                         </div>

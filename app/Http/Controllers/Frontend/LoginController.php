@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Session;
 use App\User;
 use Auth,Illuminate\Support\Facades\Redirect,RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Mail;
 use Str;
 class LoginController extends Controller
 {
@@ -40,18 +41,19 @@ class LoginController extends Controller
         $data= $request->all();
 
         $redirectTo = preg_match('(login|register)', session()->get('custome_intended')) == 1  ? '/user' : session()->get('custome_intended');
-        
+       
         if(Auth::attempt(['email' => $data['email'], 'password' => $data['password'],'status'=>'active','role'=>'user']))
         {  
             Session::put('user',$data['email']);
 
             Alert::success('Hello '. Auth::user()->name, 'You have been logged in successfully');
             add_to_cart_session_cart_item();
-
             if($request->popup==1)
                 return redirect()->back();
-            else            
+            else if($redirectTo)            
                 return redirect( $redirectTo);
+            else
+                return  redirect()->back();
         }
         else
         {
@@ -109,9 +111,12 @@ class LoginController extends Controller
             {
                 Session::put('user', $user->email);
                 add_to_cart_session_cart_item();
-
+                $email =$user->email;
                 Alert::success('Hello '. Auth::user()->name, 'You have been registered and logged in successfully');
-
+                Mail::send('mail.new-account-cus', ['user' => $user], function ($message) use ($email) {
+                    $message->to($email);
+                    $message->subject('Welcome To Zehna');
+                });
                 if($request->popup==1)
                 return redirect()->back();
                 else

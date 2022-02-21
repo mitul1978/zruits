@@ -45,10 +45,10 @@ class CartList extends Component
     }
 
 
-    public function removeToCart($product_id)
+    public function removeToCart($product_id,$colorId,$sizeId)
     {
         $product = Product::find($product_id);
-        removeToCart_live($product);
+        removeToCart_live($product,$colorId,$sizeId);
         $freight_charge =  Session::get('freight_charge');
         if($freight_charge)
         {
@@ -82,9 +82,9 @@ class CartList extends Component
     }
 
     
-    public function addToCart($product_id){
+    public function addToCart($product_id,$colorId,$sizeId){
         $product = Product::find($product_id);
-        addToCart_live($product);
+        addToCart_live($product,$colorId,$sizeId);
         $freight_charge =  Session::get('freight_charge');
 
         if($freight_charge){

@@ -21,8 +21,8 @@ class Order extends Model
     public bool $logOnlyDirty = true;
 
     protected $fillable=[
-        'user_id','order_number','sub_total','quantity','delivery_charge','status','total_amount','first_name','last_name','country','pincode','address','address2','phone','email','payment_method','payment_status','shipping_id'
-        ,'coupon_code','coupon_value'
+        'user_id','order_number','sub_total','quantity','delivery_charge','status','total_amount','total_discount','first_name','last_name','country','pincode','address','address2','phone','email','payment_method','payment_status','shipping_id'
+        ,'coupon_id','coupon_code','coupon_value','giftcard_id','giftcard_code','giftcard_value'
         ,'freight_charge','state_id'	,'city_id',	'contact_information'
     ];
 

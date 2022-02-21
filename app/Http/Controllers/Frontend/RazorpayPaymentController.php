@@ -6,6 +6,7 @@ use Razorpay\Api\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
+use Illuminate\Support\Facades\Mail;
 
 class RazorpayPaymentController extends Controller
 {
@@ -19,7 +20,7 @@ class RazorpayPaymentController extends Controller
         $receiptId = $order->order_number;      
         // Create an object of razorpay
         $payment = new Payment();
-        $api = new Api('rzp_test_s5TGcz0ngvlIio', 'lu3HcCQFxAQCblTKv84qv1YZ');
+        $api = new Api('rzp_test_AUZM3pIm1dTRB7', 'CsQzqnGwJdgAdBRtoiKOFCa9');
         // In razorpay you have to convert rupees into paise we multiply by 100
         // Currency will be INR
         // Creating order
@@ -34,7 +35,7 @@ class RazorpayPaymentController extends Controller
         // Return response on payment page
         $response = [
             'razerpay_order_id' => $razerpay_order['id'],
-            'razorpay_key' => 'rzp_test_s5TGcz0ngvlIio',
+            'razorpay_key' => 'rzp_test_AUZM3pIm1dTRB7',
             'amount' => $order->total_amount * 100,
             'name' => $order->address->name,
             'currency' => 'INR',
@@ -60,25 +61,23 @@ class RazorpayPaymentController extends Controller
      * @return response()
      */
 
-     public function payment_initiate($order_number){
-
-
+     public function payment_initiate($order_number)
+     {
         $order = Order::where('payment_status','process')->where('user_id',auth()->user()->id)->where('order_number',$order_number)->first();
 
         if($order):
             $response =json_decode( $order->razerpay_order,true);
-            return view('frontend.pages.payment_initiate',compact('order','response'));
+            return view('payment_initiate',compact('order','response'));
         else:
-            Alert::error("Payment faild..");
+            Alert::error("Payment failed..");
             return redirect('/');
-        endif;
-        
+        endif;        
      }
 
 
 
-    function payment_response(Request $request){
-
+    function payment_response(Request $request)
+    {
         // Now verify the signature is correct . We create the private function for verify the signature
         $signatureStatus = $this->SignatureVerify(
           $request->all()['rzp_signature'],
@@ -95,39 +94,64 @@ class RazorpayPaymentController extends Controller
       // If Signature status is true We will save the payment response in our database
       // In this tutorial we send the response to Success page if payment successfully made
       
-      if($signatureStatus == true)
-      {
-          $payment->payment_status ='paid';
-          $order->payment_status='paid';
-          $order->save();
-          $payment->save();
-          Alert::success("Payment done successfully");
+        if($signatureStatus == true)
+        {
+            $payment->payment_status ='paid';
+            $order->payment_status='paid';
+            $order->save();
+            $payment->save();
+            Alert::success("Payment done successfully");
 
-          return redirect('/user');
+            try
+            {
+              $email = @auth()->user()->email;
+              $user = @auth()->user();
+              $orderDetails = $order;
 
-        //   return view('payment-success-page');
-      }
-      else{
-          $payment->status ='failed';
-          $order->payment_status='failed';
-          $order->save();
-          $payment->save();
-          Alert::error("Payment faild..");
+              Mail::send('mail.complete-order-cus', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email) {
+                  $message->to($email);
+                  $message->subject('Thanks for shopping with us');
+              });
 
-          return redirect('/');
+              $orderId = $order->order_number;
+              Mail::send('mail.invoice-order-details-cus', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email,$orderId) {
+                $message->to($email);
+                $message->subject('Invoice for order ' . $orderId);
+            });
 
-        //   return view('payment-failed-page');
-      }
-  
-      }
+              $adminUser = User::where('role','admin')->first();
+              $email = $adminUser->email;
+              Mail::send('mail.new-order-admin', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email) {
+                $message->to($email);
+                $message->subject('New order received!');
+              });
+            }
+            catch(exception $e)
+            {
+                dd($e);
+            }
+
+            return redirect('/user');
+            //   return view('payment-success-page');
+        }
+        else
+        {
+            $payment->status ='failed';
+            $order->payment_status='failed';
+            $order->save();
+            $payment->save();
+            Alert::error("Payment failed..");
+            return redirect('/');
+        }  
+    }
 
 
-      private function SignatureVerify($_signature,$_paymentId,$_orderId)
-  {
+    private function SignatureVerify($_signature,$_paymentId,$_orderId)
+    {
       try
       {
           // Create an object of razorpay class
-          $api = new Api('rzp_test_s5TGcz0ngvlIio','lu3HcCQFxAQCblTKv84qv1YZ');
+          $api = new Api('rzp_test_AUZM3pIm1dTRB7','CsQzqnGwJdgAdBRtoiKOFCa9');
           $attributes  = array('razorpay_signature'  => $_signature,  'razorpay_payment_id'  => $_paymentId ,  'razorpay_order_id' => $_orderId);
           $order  = $api->utility->verifyPaymentSignature($attributes);
           return true;
@@ -137,6 +161,6 @@ class RazorpayPaymentController extends Controller
           // If Signature is not correct its give a excetption so we use try catch
           return false;
       }
-  }
+    }
      
 }

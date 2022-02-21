@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
-    protected $fillable=['user_id','product_id','order_id','quantity','amount','price','status','email','name','message','image','from_name'];
+    protected $fillable=['cart','user_id','product_id','order_id','quantity','amount','price','color_id','size_id','status','email','name','message','image','from_name'];
 
     // public function product(){
     //     return $this->hasOne('App\Models\Product','id','product_id');

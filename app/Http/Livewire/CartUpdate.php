@@ -13,10 +13,10 @@ class CartUpdate extends Component
 
   
 
-    public function updateCart($product_id)
+    public function updateCart($product_id,$colorId,$sizeId)
     {  
         $product = Product::find($product_id);
-        addToCart_live($product);
+        addToCart_live($product,$colorId,$sizeId);
         $freight_charge =  Session::get('freight_charge');
 
         if($freight_charge)

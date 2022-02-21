@@ -43,7 +43,7 @@
 
                                                     </figure><!-- End .product-media -->
                                                     <?php
-                                                        $availableColors = $product->sizesstock()->groupBy('color_id')->get();
+                                                        $availableColors = $product->images()->groupBy('color_id')->get();
                                                         $availableSizes = $product->sizesstock()->groupBy('size_id')->get();
                                                     ?>
                                                     <div class="product-body">
@@ -64,11 +64,11 @@
                                                         @endif
                                                         <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                                         <div class="product-price">
-                                                            ₹ {{$product->price}}  <small>(MRP incl Taxes)</small>
+                                                            <span class="new-price">₹ {{$product->discounted_amt }}</span>  <span class="old-price">₹ {{$product->price}}</span>  <small>(MRP incl Taxes)</small>
                                                         </div><!-- End .product-price -->
                                                         <div class="atc-container">                                                            
                                                             <div class="mb-2">
-                                                                <a href="javascript:void(0);" class="btn-cart add_to_cart" data-id="{{$product->id}}"><span class="product{{$product->id}}">Add to cart</span></a>
+                                                                <a href="{{route('product',$product->slug)}}" class="btn-cart" ><span class="product{{$product->id}}">Add to cart</span></a>
                                                             </div>
                                                         </div>
                                                     </div><!-- End .product-body -->

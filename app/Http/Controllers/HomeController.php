@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Models\State;
 use App\Models\Order;
 use App\Models\ProductReview;
 use App\Models\PostComment;
 use App\Rules\MatchOldPassword;
 use App\Models\Category;
 use Hash,Str,View;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -35,8 +37,9 @@ class HomeController extends Controller
 
 
     public function index()
-    {
-        return view('user.pages.dashboard');
+    {   
+        $states = State::where('status',1)->get();
+        return view('user.pages.dashboard',compact('states'));
     }
 
     public function profile()
@@ -249,6 +252,13 @@ class HomeController extends Controller
         ]);
 
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+
+        $email = auth()->user()->email;
+        
+        Mail::send('mail.password-change-cus', ['user' => auth()->user()], function ($message) use ($email) {
+            $message->to($email);
+            $message->subject('Password Changed');
+        });
 
         return redirect()->route('user')->with('success','Password successfully changed');
     }

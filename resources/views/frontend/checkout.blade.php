@@ -18,10 +18,9 @@
 
             <div class="page-content">
             	<div class="checkout">
-	                <div class="container">
-            			
+	                <div class="container">            			
 						@php 
-							$addresses = @Auth()->user() ? Auth()->user()->addresses :[];
+							$addresses = @Auth()->user() ? Auth()->user()->addresses()->where('is_primary',1)->first() :[];
 							$user = @auth()->user();
 							$freight_details = Session::get('freight_charge');
 							$coupon_value = @Session::get('coupon') ? Session::get('coupon')['value'] :0;
@@ -29,6 +28,7 @@
 						@endphp
             			<form action="{{url('place-order')}}" class="place_order" method="POST">
 							@csrf
+							<input type="hidden" name="address_id" id="address_id" value={{@$addresses ?$addresses->id:'new'}}>
 		                	<div class="row">
 		                		<div class="col-lg-9">
 		                			<h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
@@ -38,10 +38,10 @@
 		                						<input type="text" class="form-control" name="first_name" value="{{@$user->name}}" required>
 		                					</div><!-- End .col-sm-6 -->
 
-										    <div class="col-sm-6">
+										    {{-- <div class="col-sm-6">
 												<label>Company Name (Optional)</label>
 												<input type="text" class="form-control" name="company">		
-											</div>	
+											</div>	 --}}
 		                				</div><!-- End .row -->
 
 										<div class="row">
@@ -56,8 +56,8 @@
 		                				</div><!-- End .row -->
 
 	            						<label>Address *</label>
-	            						<input type="text" class="form-control" name="address" placeholder="Address Line 1" value="{{@$address->address}}"  required>
-	            						<input type="text" class="form-control" name="address1" placeholder="Address Line 2" value="{{@$address->address}}">
+	            						<input type="text" class="form-control" name="address" placeholder="Address Line 1" value="{{@$addresses->address}}"  required>
+	            						<input type="text" class="form-control" name="address1" placeholder="Address Line 2" value="{{@$addresses->address2}}">
 
 	            						<div class="row">
 											<div class="col-sm-4">
@@ -65,7 +65,7 @@
 		                						<select  class="form-control state_id" name="state_id" required>
 													<option value="">Select State </option>
 													@foreach($states as $state)
-												    	<option value="{{$state->id}}">{{$state->name}}</option>
+												    	<option value="{{$state->id}} {{isset($addresses->state_id) && @$addresses->state_id = $state->id ? 'selected':''}}">{{$state->name}}</option>
 													@endforeach
 												</select>
 		                					</div><!-- End .col-sm-6 -->
@@ -77,7 +77,7 @@
 		                					</div><!-- End .col-sm-6 -->
 											<div class="col-sm-4">
 		                						<label>Postcode / ZIP *</label>
-		                						<input type="text" class="form-control" name="pincode" required>
+		                						<input type="text" class="form-control" name="pincode" value="{{@$addresses->pincode}}" required>
 		                					</div><!-- End .col-sm-6 -->
 		                					
 		                				</div><!-- End .row -->
@@ -111,24 +111,25 @@
 		                						</tr>
 		                					</thead>
 											@php
-												$taxable_amount =  get_cart_taxable_amount();												
+										    	$totalAmt = get_cart_total_amount();			
+												$taxable_amount = get_cart_taxable_amount();																					
 												$tax = 0;// get_tax_total($taxable_amount);										  
 												$freight_charge = 0;//  @$freight_details['freight_charge'] ? $freight_details['freight_charge'] :0;
 												$offerDiscount = get_offer_discount_amount();			
-												$grand_total =  $tax + $taxable_amount+$freight_charge - $offerDiscount - $giftcard_value - $coupon_value;		
+												$grand_total =  $tax + $taxable_amount + $freight_charge - $offerDiscount - $giftcard_value - $coupon_value;		
 												$isGiftCard = 0;
 											@endphp
 		                					<tbody>
 												@foreach (get_cart() as $cart)
 													@php
-													   $total  =  $cart['product']['price'] *$cart['quantity'];
+													   $total  =  $cart['product']['price'] * $cart['quantity'];
 													   if($cart['product']['is_giftcard'] == 1)
 													   {
 														  $isGiftCard = 1;
 													   }
 													@endphp
 													<tr>
-														<td><a href="#">{{$cart['product']['name']}}</a></td>
+														<td> {{$cart['quantity']}} - <a href="#">{{$cart['product']['name']}}</a></td>
 														<td> {!! $rupee !!} {{$total }}</td>
 													</tr>
 												@endforeach
@@ -152,7 +153,11 @@
 												
 		                						<tr class="summary-subtotal">
 		                							<td>Subtotal:</td>
-		                							<td>{!! $rupee !!} {{ $taxable_amount}}</td>
+		                							<td>{!! $rupee !!} {{ $totalAmt}}</td>
+		                						</tr><!-- End .summary-subtotal -->
+												<tr class="summary-subtotal">
+		                							<td>Discount:</td>
+		                							<td>{!! $rupee !!} {{ $totalAmt - $taxable_amount }}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">
 		                							<td>Offer Discount:</td>
@@ -183,7 +188,7 @@
 										        <div class="card-header" id="heading-4">
 										            <h2 class="card-title">
 										                <a role="button" aria-expanded="false" aria-controls="collapse-4">
-										                    Razor Pay
+										                    Pay Online
 										                </a>
 										            </h2>
 										        </div><!-- End .card-header -->
@@ -194,12 +199,12 @@
 										</div><!-- End .accordion -->
 										<div class="disc-sec">
 											<input type="text" class="form-control mb-0"  id="checkout-gift-discount-input" name="giftcard"  placeholder="Gift card number" value="{{@Session::get('giftcard')['code']}}">
-											<span id="error1" class="error" style="color:red">Invalid</span>                         
+											<span id="error1" class="error" style="color:red">Invalid Gift Card Code</span>                         
 												<button class="btn bg-primary text-white w-100 mt-1" type="button" id="applyGiftcard">{{@Session::get('giftcard')['code'] ? 'Remove Gift Card' :'Apply Gift Card'}}</button> 
 											<hr class="my-3">
 											@if($offerDiscount == 0)
 												<input type="text" class="form-control mb-0"  id="checkout-discount-input" name="code" placeholder="Coupon Code" value="{{@Session::get('coupon')['code']}}">                                 
-												<span id="error2" class="error" style="color:red">Invalid</span>
+												<span id="error2" class="error" style="color:red">Invalid Coupon Code</span>
 												<button class="btn bg-primary text-white w-100 mt-1 mb-1" type="button" id="applyCoupon">{{@Session::get('coupon')['code'] ? 'Remove Coupon' :'Apply Coupon'}}</button>  		
 											@endif
 										</div>

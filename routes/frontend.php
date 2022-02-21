@@ -37,6 +37,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/contact','HomeController@contact');
     Route::get('/offers/{slug?}','HomeController@offers');
     Route::post('filter-product', 'ProductController@filterProduct');
+    Route::post('filter-single-product', 'ProductController@filterSingleProduct');
     // Wishlist
 
     // Route::get('/offers',function(){
@@ -95,6 +96,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('remove-user-address/{id}','UserAddressController@removeUserAddress')->name('remove-user-address')->middleware('user');
     Route::post('edit-user-address/{id}','UserAddressController@editUserAddress')->name('edit-user-address')->middleware('user');
     Route::post('update-user-address/{id}','UserAddressController@updateUserAddress')->name('update-user-address')->middleware('user');
+    Route::post('create-user-address','UserAddressController@createUserAddress')->name('create-user-address')->middleware('user');
 
 
     //Route::post('/ajax-add-to-cart','CartController@ajax_addToCart')->name('ajax-add-to-cart');

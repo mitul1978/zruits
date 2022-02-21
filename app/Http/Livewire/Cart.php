@@ -35,10 +35,10 @@ class Cart extends Component
     }
 
 
-    public function removeToCart($product_id){
+    public function removeToCart($product_id,$colorId,$sizeId){
 
         $product = Product::find($product_id);
-        removeToCart_live($product);
+        removeToCart_live($product,$colorId,$sizeId);
         $freight_charge =  Session::get('freight_charge');
         if($freight_charge){
             update_fright_charge($freight_charge['pincode']);
@@ -52,10 +52,12 @@ class Cart extends Component
 
         if (is_user_logged_in())
         {
-            $cart = DBCart::where('user_id',auth()->user()->id)->where('product_id',$product_id)->whereNull('order_id')->first();
+            $cart = DBCart::where('user_id',auth()->user()->id)->where('code',$product_id)->whereNull('order_id')->first();
             $cart->delete();
            
-        }else{
+        }
+        else
+        {
             $carts = Session::get('carts');
             unset( $carts[$product_id] );
             Session::put('carts',$carts );
@@ -65,9 +67,9 @@ class Cart extends Component
 
     }
 
-    public function addToCart($product_id){
+    public function addToCart($product_id,$colorId,$sizeId){
         $product = Product::find($product_id);
-        addToCart_live($product);
+        addToCart_live($product,$colorId,$sizeId);
         $freight_charge =  Session::get('freight_charge');
 
         if($freight_charge){
