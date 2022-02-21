@@ -71,8 +71,8 @@
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
-            <option value="active" {{(($coupon->status=='active') ? 'selected' : '')}}>Active</option>
-            <option value="inactive" {{(($coupon->status=='inactive') ? 'selected' : '')}}>Inactive</option>
+            <option value="1" {{(($coupon->status=='active') ? 'selected' : '')}}>Active</option>
+            <option value="0" {{(($coupon->status=='inactive') ? 'selected' : '')}}>Inactive</option>
           </select>
           @error('status')
           <span class="text-danger">{{$message}}</span>

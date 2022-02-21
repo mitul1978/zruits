@@ -44,7 +44,7 @@ class CategoryController extends Controller
             'title'=>'string|required',
             'summary'=>'string|nullable',
             'photo'=>'mimes:jpeg,jpg,png,gif|nullable',
-            'status'=>'required|in:active,inactive',
+            'status'=>'required',
             'is_parent'=>'sometimes|in:1',
             'parent_id'=>'nullable|exists:categories,id',
         ]);
@@ -121,7 +121,7 @@ class CategoryController extends Controller
                 'title'=>'string|required',
                 'summary'=>'string|nullable',
                 // 'photo'=>'mimes:jpeg,jpg,png,gif|nullable',
-                'status'=>'required|in:active,inactive',
+                'status'=>'required',
                 'is_parent'=>'sometimes|in:1',
                 'parent_id'=>'nullable|exists:categories,id',
             ]);

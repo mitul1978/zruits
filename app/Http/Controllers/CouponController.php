@@ -50,7 +50,7 @@ class CouponController extends Controller
             'value'=>'required|numeric',
             'start_date'=>'required',
             'end_date'=>'required',
-            'status'=>'required|in:active,inactive'
+            'status'=>'required'
         ]);
 
         $data=$request->all();
@@ -117,7 +117,7 @@ class CouponController extends Controller
             'value'=>'required|numeric',
             'start_date'=>'required',
             'end_date'=>'required',
-            'status'=>'required|in:active,inactive'
+            'status'=>'required'
         ]);
 
         $data=$request->all();
@@ -167,7 +167,7 @@ class CouponController extends Controller
     public function couponStore(Request $request)
     {
         $coupon=Coupon::where('code',$request->code)->first();
-        dd($coupon);
+        // dd($coupon);
         if(!$coupon){
             request()->session()->flash('error','Invalid coupon code, Please try again');
             return back();
