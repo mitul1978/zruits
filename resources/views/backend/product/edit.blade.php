@@ -191,34 +191,104 @@
           </div>                
         </div>  
 
-          <div class="parentColorDiv">
-            <div id="multipleColorImage">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="colorsImages">Colors </label>
-                        <select name="colorsImages[]" id="colorsImages" class="form-control">
-                              <option value ="">Select Color</option>
-                            @foreach($colors as $key=>$attribute)
-                                <option value='{{$attribute->id}}'>{{$attribute->name}}</option>
-                            @endforeach
-                        </select>
+        <h5 class="mt-2">Assign Images to colors (Optional)</h5>
+
+        <div class="parentColorDiv">
+          <div id="multipleColorImage">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                      <label for="colorsImages">Colors </label>
+                      <select name="colorsImages[]" id="colorsImages" class="form-control">
+                            <option value ="">Select Color</option>
+                          @foreach($colors as $key=>$attribute)
+                              <option value='{{$attribute->id}}'>{{$attribute->name}}</option>
+                          @endforeach
+                      </select>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="images" class="col-form-label">Images </label>
+                    <div class="input-group">
+                      <input class="form-control imageUploader" type="file" id="images" name="images[0][]" value="{{old('images')}}" multiple>
                     </div>
                   </div>
+                </div> 
+              </div>
+          </div>
+        </div> 
 
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="images" class="col-form-label">Images </label>
-                      <div class="input-group">
-                        <input class="form-control imageUploader" type="file" id="images" name="images[0][]" value="{{old('images')}}" multiple>
-                      </div>
-                    </div>
-                  </div> 
-                </div>
+        <div class="d-flex">
+          <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
+              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
+              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
             </div>
-        </div>   
+            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
+              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
+              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
+            </div>
+            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
+              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
+              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
+            </div>
+            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
+              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
+              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
+            </div>          
+        </div><hr>
+
+        <div class="parentColorDiv">
+          <div id="multipleColorImage">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                      <label for="colorsImages">Colors </label>
+                      <select name="colorsImages[]" id="colorsImages" class="form-control">
+                            <option value="">Select Color</option>
+                                                        <option value="1">color 1</option>
+                                                        <option value="2">color 2</option>
+                                                        <option value="3">color 3</option>
+                                                        <option value="4">color 4</option>
+                                                        <option value="5">color 5</option>
+                                                </select>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="images" class="col-form-label">Images </label>
+                    <div class="input-group">
+                      <input class="form-control imageUploader" type="file" id="images" name="images[0][]" value="" multiple="">
+                    </div>
+                  </div>
+                </div> 
+              </div>
+          </div>
+        </div>
+
+        <div class="d-flex">
+          <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
+              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
+              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
+            </div>
+            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
+              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
+              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
+            </div>
+            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
+              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
+              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
+            </div>
+            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
+              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
+              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
+            </div>          
+        </div><hr>
+        
         <div class="form-group mb-3">
-          <button class="btn btn-primary" id="addNewProductImages" type="button">Add New Images</button>
+          <button class="btn btn-primary" id="addNewProductImages" type="button">Add New Color Images</button>
         </div>
         <br> 
        
@@ -230,6 +300,8 @@
             @endif
         </div>
        
+        <h5 class="mt-5">Variation</h5>
+
         <div class="parentDiv">
           @if(count($product->sizesstock) > 0 )
             @foreach($product->sizesstock as $key => $stock)

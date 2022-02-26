@@ -24,57 +24,57 @@
 <div class="products mb-3">
     <div class="row justify-content-center">
         @if(isset($products) && $products->isNotEmpty())
-                                        @foreach($products as $product)
-                                            <div class="col-6 col-md-4 col-lg-4">
-                                                <div class="product product-7 text-center">
-                                                    <figure class="product-media">
-                                                        <span class="product-label label-new">{{$product->tag}}</span>
-                                                        <a href="{{route('product',$product->slug)}}">
-                                                            <img src="{{url(@$product->images()->first()->image)}}" alt="{{$product->name}}" class="product-image">
-                                                        </a>
+            @foreach($products as $product)
+                <div class="col-6 col-md-4 col-lg-4">
+                    <div class="product product-7 text-center">
+                        <figure class="product-media">
+                            <span class="product-label label-new">{{$product->tag}}</span>
+                            <a href="{{route('product',$product->slug)}}">
+                                <img src="{{url(@$product->images()->first()->image)}}" alt="{{$product->name}}" class="product-image">
+                            </a>
 
-                                                        <div class="product-action-vertical">
-                                                            @if(is_user_logged_in())
-                                                                <a href="javascript:void(0);" class="btn-product-icon btn-wishlist btn-expandable add_to_wishlist" data-id="{{$product->id}}" id="wishlist{{$product->id}}"><span class="add_to_wishlist_msg{{$product->id}}">add to wishlist</span></a>
-                                                            @else
-                                                                <a href="#signin-modal" data-toggle="modal" class="btn-product-icon btn-wishlist btn-expandable" data-id="{{$product->id}}" id="wishlist{{$product->id}}"></a>
-                                                            @endif
-                                                        </div><!-- End .product-action-vertical -->
+                            <div class="product-action-vertical">
+                                @if(is_user_logged_in())
+                                    <a href="javascript:void(0);" class="btn-product-icon btn-wishlist btn-expandable add_to_wishlist" data-id="{{$product->id}}" id="wishlist{{$product->id}}"><span class="add_to_wishlist_msg{{$product->id}}">add to wishlist</span></a>
+                                @else
+                                    <a href="#signin-modal" data-toggle="modal" class="btn-product-icon btn-wishlist btn-expandable" data-id="{{$product->id}}" id="wishlist{{$product->id}}"></a>
+                                @endif
+                            </div><!-- End .product-action-vertical -->
 
-                                                    </figure><!-- End .product-media -->
-                                                    <?php
-                                                        $availableColors = $product->images()->groupBy('color_id')->get();
-                                                        $availableSizes = $product->sizesstock()->groupBy('size_id')->get();
-                                                    ?>
-                                                    <div class="product-body">
-                                                        <div class="product-cat">
-                                                            <a href="{{route('product',$product->category->slug)}}">{{$product->category->title}}</a>
-                                                        </div><!-- End .product-cat -->
-                                                        @if(isset($availableColors) && $availableColors->isNotEmpty())
-                                                            <div class="product-color row justify-content-center">  
-                                                                @foreach($availableColors as $color)     
-                                                                        <div class="radio has-color">
-                                                                            <label>
-                                                                                <input type="radio" name="color" value="{{@$color->color_id}}" class="p-cradio colorOptions">
-                                                                                <div class="custom-color"><span style="background-color:{{@$color->productColor->code}}" ></span></div>
-                                                                            </label>
-                                                                        </div>
-                                                                @endforeach 
-                                                            </div><!-- End .product-cat -->
-                                                        @endif
-                                                        <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
-                                                        <div class="product-price">
-                                                            <span class="new-price">₹ {{$product->discounted_amt }}</span>  <span class="old-price">₹ {{$product->price}}</span>  <small>(MRP incl Taxes)</small>
-                                                        </div><!-- End .product-price -->
-                                                        <div class="atc-container">                                                            
-                                                            <div class="mb-2">
-                                                                <a href="{{route('product',$product->slug)}}" class="btn-cart" ><span class="product{{$product->id}}">Add to cart</span></a>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- End .product-body -->
-                                                </div><!-- End .product -->
-                                            </div><!-- End .col-sm-6 col-lg-4 -->
-                                        @endforeach  
+                        </figure><!-- End .product-media -->
+                        <?php
+                            $availableColors = $product->images()->groupBy('color_id')->get();
+                            $availableSizes = $product->sizesstock()->groupBy('size_id')->get();
+                        ?>
+                        <div class="product-body">
+                            <div class="product-cat">
+                                <a href="{{route('product',$product->category->slug)}}">{{$product->category->title}}</a>
+                            </div><!-- End .product-cat -->
+                            @if(isset($availableColors) && $availableColors->isNotEmpty())
+                                <div class="product-color row justify-content-center">  
+                                    @foreach($availableColors as $color)     
+                                            <div class="radio has-color">
+                                                <label>
+                                                    <input type="radio" name="color" value="{{@$color->color_id}}" class="p-cradio colorOptions">
+                                                    <div class="custom-color"><span style="background-color:{{@$color->productColor->code}}" ></span></div>
+                                                </label>
+                                            </div>
+                                    @endforeach 
+                                </div><!-- End .product-cat -->
+                            @endif
+                            <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
+                            <div class="product-price">
+                                <span class="new-price">₹ {{$product->discounted_amt }}</span>  <span class="old-price">₹ {{$product->price}}</span>  <small>(MRP incl Taxes)</small>
+                            </div><!-- End .product-price -->
+                            <div class="atc-container">                                                            
+                                <div class="mb-2">
+                                    <a href="{{route('product',$product->slug)}}" class="btn-cart" ><span class="product{{$product->id}}">Add to cart</span></a>
+                                </div>
+                            </div>
+                        </div><!-- End .product-body -->
+                    </div><!-- End .product -->
+                </div><!-- End .col-sm-6 col-lg-4 -->
+            @endforeach  
 @endif      
 </div><!-- End .row -->
 </div><!-- End .products -->

@@ -156,11 +156,12 @@
 		                							<td>{!! $rupee !!} {{ $totalAmt}}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">
-		                							<td>Discount:</td>
+		                							<td>Discount <small>(5%)</small>:</td>
 		                							<td>{!! $rupee !!} {{ $totalAmt - $taxable_amount }}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">
-		                							<td>Offer Discount:</td>
+		                							<td>Offer Discount:<br>
+												<small>(Buy 1 get 2nd at 20% off)</small></td>
 		                							<td>{!! $rupee !!} {{ $offerDiscount }}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">

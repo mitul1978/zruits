@@ -44,12 +44,40 @@
     </div><!-- End .container -->
     <div class="container">
         <div class="row" style="font-size: 14px; font-weight: 600; text-align: center;">
-            @foreach($categories as $category)
-                <div class="col-6 col-md-3">
-                    <a href="{{url('categories/' . $category->slug)}}"><img src="{{url(@$category->photo)}}" alt="{{$category->title}}">{{$category->title}}</a>
-                </div>
-            @endforeach  
-          
+            <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                data-owl-options='{
+                    "nav": false, 
+                    "dots": true,
+                    "margin": 20,
+                    "loop": false,
+                    "responsive": {
+                        "0": {
+                            "items":2
+                        },
+                        "480": {
+                            "items":2
+                        },
+                        "768": {
+                            "items":3
+                        },
+                        "992": {
+                            "items":4
+                        },
+                        "1200": {
+                            "items":4
+                        },
+                        "1600": {
+                            "items":5,
+                            "nav": true
+                        }
+                    }
+                }'>
+                @foreach($categories as $category)
+                    <div class="cat-slide">
+                        <a href="{{url('categories/' . $category->slug)}}"><img src="{{url(@$category->photo)}}" alt="{{$category->title}}">{{$category->title}}</a>
+                    </div>
+                @endforeach 
+            </div><!-- End .owl-carousel -->          
         </div>
     </div>
 

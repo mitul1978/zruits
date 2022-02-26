@@ -150,7 +150,13 @@
                                         <div class="widget-body">
                                             <div class="filter-colors">
                                                 @foreach ($colors as $item)
-                                                   <input style="background: {{$item->code}}" type="radio" id="color-{{$item->id}}"  name="color-{{$item->id}}" class="customFilterData" value="{{$item->id}}">
+                                                    <div class="radio has-color">
+                                                        <label>
+                                                        <input style="background: {{$item->code}}" type="radio" id="color-{{$item->id}}"  name="color-{{$item->id}}" class="customFilterData p-cradio" value="{{$item->id}}">
+                                                            <div class="custom-color"><span style="background-color:{{$item->code}}"></span></div>
+                                                        </label>
+                                                    </div>
+                                                   <!-- <input style="background: {{$item->code}}" type="radio" id="color-{{$item->id}}"  name="color-{{$item->id}}" class="customFilterData" value="{{$item->id}}"> -->
                                                    {{-- <a href="javascript:void(0);" class="customFilterData" style="background: {{$item->code}}" id="color-{{$item->id}}" name="color-{{$item->id}}" value="{{$item->id}}"></a> --}}
                                                 @endforeach
                                                 
