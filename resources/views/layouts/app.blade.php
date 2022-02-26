@@ -488,6 +488,90 @@
                     }else{
                     }
                 });
+
+                $('#submit-newsletter-button').on('click',function()
+                {                    
+                   var newsletterEmail = $('#newsletter-email').val();
+                   var EmailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+
+                   if(!EmailPattern.test(newsletterEmail))
+                   {
+                       Swal.fire({
+                                    icon: "error",
+                                    text: 'Please Enter Valid Email',
+                                    toast: true,
+                                    position: 'top-right',
+                                    timer: 5000,
+                                    showConfirmButton:false,
+                                    title: "Valid Email!",
+                                });  
+
+                        return false;
+                   }
+
+                   
+                    if(newsletterEmail != '')
+                    {
+                        $.ajax({
+                        url:"/submit-newsletter",
+                        data:{_token:"{{csrf_token()}}",newsletterEmail},
+                        type:"POST",
+                        success:function(response)
+                        {                    
+                            if(response == 1)
+                            {
+                                Swal.fire({
+                                        icon: "success",
+                                        text: "You have subscribed to our newsletter",
+                                        toast: true,
+                                        position: 'top-right',
+                                        timer: 5000,
+                                        showConfirmButton:false,
+                                        title: "Subscribed!",
+                                    });
+                            }   
+                            else if(response == 2)
+                            {
+                                Swal.fire({
+                                    icon: "alert",
+                                    text: 'You have already subscribed to our newsletter',
+                                    toast: true,
+                                    position: 'top-right',
+                                    timer: 5000,
+                                    showConfirmButton:false,
+                                    title: "Already Subscribed!",
+                                });  
+                            }   
+                            else
+                            { 
+                                Swal.fire({
+                                    icon: "error",
+                                    text: 'Something went wrong !',
+                                    toast: true,
+                                    position: 'top-right',
+                                    timer: 5000,
+                                    showConfirmButton:false,
+                                    title: "Error !",
+                                });  
+
+                            } 
+                            $('#newsletter-email').val('');            
+                        }
+                      });
+                    }
+                    else
+                    {
+                        Swal.fire({
+                                    icon: "error",
+                                    text: 'Please Add Email',
+                                    toast: true,
+                                    position: 'top-right',
+                                    timer: 5000,
+                                    showConfirmButton:false,
+                                    title: "Require Email!",
+                             });
+                    }
+                });
             });
     </script>
 

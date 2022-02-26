@@ -26,6 +26,9 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Console\Input\Input;
+use App\Models\Contact;
+use Spatie\Newsletter\Newsletter;
+use App\Models\SubscribeNewsletter;
 
 class HomeController extends Controller
 {   
@@ -80,6 +83,33 @@ class HomeController extends Controller
 
     public function contact(){
         return view('frontend.contact');
+    }
+
+    public function submitContact(Request $request)
+    {   
+        $data['name'] = @$request->name;
+        $data['email'] = @$request->email;
+        $data['mobile'] = @$request->mobile;
+        $data['subject'] = @$request->subject;
+        $data['message'] = @$request->message;
+        Contact::create($data);
+        return redirect()->back()->with('success', 'Thank you for your details! Our team will get in touch with you.');
+    }
+
+    public function submitNewsletter(Request $request){
+
+        $isAvailable = SubscribeNewsletter::where('email',$request->newsletterEmail)->first();
+
+        if($isAvailable)
+        {
+            return 2;
+        }
+        else
+        {
+            $data['email'] = $request->newsletterEmail;
+            SubscribeNewsletter::create($data);
+            return 1;
+        }
     }
 
     public function notFound()

@@ -9,9 +9,9 @@
                         </div>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-lg" placeholder="Email Adress" aria-label="Email Adress" aria-describedby="button-addon2">
+                                <input type="text" class="form-control form-control-lg" placeholder="Email Adress" aria-label="Email Adress" id="newsletter-email" name="newsletter-email" aria-describedby="button-addon2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-dark sub-btn" type="button" id="button-addon2">
+                                    <button class="btn btn-dark sub-btn" type="button" id="submit-newsletter-button">
                                         <i class="icon-angle-right"></i>
                                     </button>
                                 </div>

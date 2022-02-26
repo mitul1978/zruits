@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Frontend;
 use Alert;
+use App\User;
 use App\Models\Order;
 use Razorpay\Api\Api;
 use Illuminate\Http\Request;

@@ -118,4 +118,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 
     Route::get('/invoice/{order_id}','InvoiceController@invoice')->name('invoice')->middleware('admin');
 
+    Route::resource('/contact','ContactController');
+    Route::resource('/subscription','SubscriptionController');
+
 });

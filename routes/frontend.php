@@ -35,9 +35,11 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/coming-soon','HomeController@comingSoon');
     Route::get('/dashboard','HomeController@dashboard');
     Route::get('/contact','HomeController@contact');
+    Route::post('/submit-contact','HomeController@submitContact')->name('submit-contact');;
     Route::get('/offers/{slug?}','HomeController@offers');
     Route::post('filter-product', 'ProductController@filterProduct');
     Route::post('filter-single-product', 'ProductController@filterSingleProduct');
+    Route::post('submit-newsletter', 'HomeController@submitNewsletter');
     // Wishlist
 
     // Route::get('/offers',function(){

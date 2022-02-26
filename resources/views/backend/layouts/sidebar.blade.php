@@ -211,6 +211,19 @@
                   <span>Sellers</span></a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('contact.index')}}">
+                <i class="fas fa-handshake"></i>
+                <span>Contact Form Enquiry</span></a>
+          </li>
+
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('subscription.index')}}">
+                <i class="fas fa-handshake"></i>
+                <span>Newsletter Subscribed</span></a>
+          </li>
+
           <hr class="sidebar-divider d-none d-md-block">
             {{-- <div class="sidebar-heading">
               Settings

@@ -66,40 +66,47 @@
                 		<div class="col-lg-6">
                 			<h2 class="title mb-1">Got Any Questions?</h2><!-- End .title mb-2 -->
                 			<p class="mb-2">Use the form below to get in touch with the sales team</p>
+							@if(session('success'))
+                              <div style="text-align: center;color:green">
+                                        {!! \Session::get('success') !!}
+							  </div>
+							@endif
 
-                			<form action="#" class="contact-form mb-3">
+                			<form action="{{url('submit-contact')}}" class="contact-form mb-3" method="post">
+								@csrf
                 				<div class="row">
                 					<div class="col-sm-6">
-                                        <label for="cname" class="sr-only">Name</label>
-                						<input type="text" class="form-control" id="cname" placeholder="Name *" required>
+                                        <label for="name" class="sr-only">Name</label>
+                						<input type="text" class="form-control" id="name" name="name" placeholder="Name *" required>
                 					</div><!-- End .col-sm-6 -->
 
                 					<div class="col-sm-6">
-                                        <label for="cemail" class="sr-only">Email</label>
-                						<input type="email" class="form-control" id="cemail" placeholder="Email *" required>
+                                        <label for="email" class="sr-only">Email</label>
+                						<input type="email" class="form-control" id="email" name="email" placeholder="Email *" required>
                 					</div><!-- End .col-sm-6 -->
                 				</div><!-- End .row -->
 
                 				<div class="row">
                 					<div class="col-sm-6">
-                                        <label for="cphone" class="sr-only">Phone</label>
-                						<input type="tel" class="form-control" id="cphone" placeholder="Phone">
+                                        <label for="mobile" class="sr-only">Phone</label>
+                						<input type="tel" class="form-control" id="mobile" name="mobile" placeholder="Phone *" required>
                 					</div><!-- End .col-sm-6 -->
 
                 					<div class="col-sm-6">
-                                        <label for="csubject" class="sr-only">Subject</label>
-                						<input type="text" class="form-control" id="csubject" placeholder="Subject">
+                                        <label for="subject" class="sr-only">Subject</label>
+                						<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
                 					</div><!-- End .col-sm-6 -->
                 				</div><!-- End .row -->
 
-                                <label for="cmessage" class="sr-only">Message</label>
-                				<textarea class="form-control" cols="30" rows="4" id="cmessage" required placeholder="Message *"></textarea>
+                                <label for="message" class="sr-only">Message</label>
+                				<textarea class="form-control" cols="30" rows="4" id="message" name="message" required placeholder="Message *"></textarea>
 
                 				<button type="submit" class="btn btn-outline-primary-2 btn-minwidth-sm">
                 					<span>SUBMIT</span>
             						<i class="icon-long-arrow-right"></i>
                 				</button>
                 			</form><!-- End .contact-form -->
+							
                 		</div><!-- End .col-lg-6 -->
                 	</div><!-- End .row -->
 
