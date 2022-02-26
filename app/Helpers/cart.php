@@ -246,6 +246,55 @@ function add_to_cart_session_cart_item()
     }
   }
 
+  function get_offer_type()
+  {
+    if(is_user_logged_in())
+    {
+        $carts = Cart::where('user_id',auth()->user()->id)->where('order_id',null)->get();
+        $totalAmt = $carts->sum('amount');
+    }
+    else
+    {
+        $carts = Session::get('carts');
+        $totalAmt = array_sum(array_column(@$carts,'amount'));
+    }
+        $countOffer1 = 0;
+        $productIdsOffer1 = [];
+        $finalAmtOffer1 = 0;  
+        $remainingAmtOffer1 = 0;   
+        $offer1Qty = 3;  
+        $countOffer2 = 0;
+        $productIdsOffer2 = [];
+        $finalAmtOffer2= 0;
+        $discountAmtOffer2 = 0;
+        $remainingAmtOffer2 = 0;
+        $offer2Qty = 2;
+
+        foreach($carts as $v)
+        {
+           if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 1)
+           {
+              $countOffer1 = $countOffer1 + $v['quantity'];
+           }
+           else if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 2)
+           {
+              $countOffer2 = $countOffer2 + $v['quantity'];
+           }
+        }
+
+        if($countOffer1 >= 3)
+        {   
+           return 1;
+        }
+
+        if($countOffer2 >= 2)
+        {    
+           return 2;
+        }
+
+        return 0;    
+  }
+
   function get_offer_discount_amount()
   {
         if(is_user_logged_in())
@@ -395,7 +444,7 @@ function add_to_cart_session_cart_item()
                 return $discountAmtOffer2 ;
             }
 
-            return 0;        
+        return 0;        
   }
 
   function get_tax_total($taxable_amount)

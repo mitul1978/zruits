@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<style>
+   <style>
     .spinner-wrapper 
              { 
                position: fixed; 
@@ -152,8 +152,8 @@
                                                 @foreach ($colors as $item)
                                                     <div class="radio has-color">
                                                         <label>
-                                                        <input style="background: {{$item->code}}" type="radio" id="color-{{$item->id}}"  name="color-{{$item->id}}" class="customFilterData p-cradio" value="{{$item->id}}">
-                                                            <div class="custom-color"><span style="background-color:{{$item->code}}"></span></div>
+                                                            <input style="background: {{$item->code}}" type="radio" id="color-{{$item->id}}"  name="color-{{$item->id}}" class="p-cradio customFilterData " value="{{$item->id}}">
+                                                            <div class="custom-color"><span style="background-color:{{$item->code}}" ></span></div>
                                                         </label>
                                                     </div>
                                                    <!-- <input style="background: {{$item->code}}" type="radio" id="color-{{$item->id}}"  name="color-{{$item->id}}" class="customFilterData" value="{{$item->id}}"> -->
@@ -222,9 +222,9 @@
                                         <div class="widget-body">
                                             <div class="filter-price">
                                                 <div class="filter-price-text">
-                                                        <input type="text" id="amount" readonly style="border:0; color:#5b34e7; font-weight:bold;">                                                 
+                                                     <input type="text" id="amount" readonly style="border:0; color:#5b34e7; font-weight:bold;">                                                 
                                                        
-                                                    <div id="slider-range"></div>
+                                                     <div id="slider-range"></div>
                                                     {{-- <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="custom-control-input" id="price-1">
                                                         <label class="custom-control-label" for="price-1">Price < 500</label>
@@ -265,7 +265,76 @@
                         values: [ 0, {{$maxValue}} ],
                         slide: function( event, ui ) 
                         {
-                        $( "#amount" ).val( "₹" + ui.values[ 0 ] + " - ₹" + ui.values[ 1 ] );
+                            $( "#amount" ).val( "₹" + ui.values[ 0 ] + " - ₹" + ui.values[ 1 ] );
+                            $('.spinner-wrapper').show();
+
+                            var sizes = [];
+                            var colors = [];
+                            var fabrics = [];
+                            var orientations = [];
+                            var pageType = $('#pageType').val();
+                            var min = ui.values[0];
+                            var max = ui.values[1];
+
+                            $('*[id*=size-]:visible').each(function() 
+                            {   
+                                console.log($(this).is(':checked'));                    
+                                if($(this).is(':checked'))
+                                {  
+                                    sizes.push( $(this).data('id'));
+                                    //$(this).trigger("change");
+                                }
+                            });
+
+                            $('*[id*=color-]').each(function() 
+                            {       
+                                var isChecked = $(this).is(':checked')?true:false; 
+                                console.log(isChecked);                 
+                                if(isChecked)
+                                {  
+                                    colors.push($(this).val());
+                                    //$(this).trigger("change");
+                                }
+                            });
+
+                            $('*[id*=fabric-]:visible').each(function() 
+                            {   
+                                console.log('fabric' ,$(this).is(':checked'));                    
+                                if($(this).is(':checked'))
+                                {  
+                                    fabrics.push( $(this).data('id'));
+                                    //$(this).trigger("change");
+                                }
+                            });
+
+                            $('*[id*=orientation-]:visible').each(function() 
+                            {   
+                                console.log('o',$(this).is(':checked'));                    
+                                if($(this).is(':checked'))
+                                {  
+                                    orientations.push( $(this).data('id'));
+                                    //$(this).trigger("change");
+                                }
+                            });
+
+                            $.ajax({
+                                    url:"/filter-product",
+                                    data:{
+                                        sizes:sizes,
+                                        colors:colors,
+                                        fabrics:fabrics,
+                                        min:min,
+                                        max:max,
+                                        orientations:orientations,
+                                        pageType:pageType
+                                    },
+                                    type:"POST",
+                                    success:function(response)
+                                    {  
+                                        $('#productListings').empty().append(response);
+                                        $('.spinner-wrapper').hide();
+                                    }
+                            }); 
                         }
                     });
 
@@ -276,16 +345,16 @@
         <script>
          $(document).ready(function() 
           {  
-              $('.spinner-wrapper').hide();
-              $(document).on('click','.customFilterData', function()
-              {  
-                  $('.spinner-wrapper').show();
-                  var sizes = [];
-                  var colors = [];
-                  var fabrics = [];
-                  var orientations = [];
-                  var price = [];
-                  var pageType = $('#pageType').val();
+               $('.spinner-wrapper').hide();
+               $(document).on('click','.customFilterData', function()
+               {  
+                    $('.spinner-wrapper').show();
+                    var sizes = [];
+                    var colors = [];
+                    var fabrics = [];
+                    var orientations = [];
+                    var price = [];
+                    var pageType = $('#pageType').val();
 
                     $('*[id*=size-]:visible').each(function() 
                     {   
@@ -297,9 +366,9 @@
                         }
                     });
 
-                    $('*[id*=color-]:visible').each(function() 
-                    {     
-                        var isChecked = $(this).prop('checked')?true:false; 
+                    $('*[id*=color-]').each(function() 
+                    {       
+                        var isChecked = $(this).is(':checked')?true:false; 
                         console.log(isChecked);                 
                         if(isChecked)
                         {  
@@ -347,7 +416,7 @@
                });
 
                $(document).on('change','.filterBySort', function()
-              {  
+               {  
                    $('.spinner-wrapper').show();
                    var value = $(this).val();                   
                    var flag = 1;
@@ -368,6 +437,7 @@
                         }
                     });              
                });
+
                $('.spinner-wrapper').hide();
           });
         </script>

@@ -111,13 +111,21 @@
 		                						</tr>
 		                					</thead>
 											@php
+											    $offer = 0;
 										    	$totalAmt = get_cart_total_amount();			
 												$taxable_amount = get_cart_taxable_amount();																					
 												$tax = 0;// get_tax_total($taxable_amount);										  
 												$freight_charge = 0;//  @$freight_details['freight_charge'] ? $freight_details['freight_charge'] :0;
-												$offerDiscount = get_offer_discount_amount();			
+												$offerDiscount = get_offer_discount_amount();	
+												$offer = get_offer_type();
 												$grand_total =  $tax + $taxable_amount + $freight_charge - $offerDiscount - $giftcard_value - $coupon_value;		
 												$isGiftCard = 0;
+												$discountRs = $totalAmt - $taxable_amount;
+												$discountPer = 0;
+												if($discountRs != 0)
+												{
+													$discountPer = (100 * ($discountRs)) / $totalAmt;
+												}
 											@endphp
 		                					<tbody>
 												@foreach (get_cart() as $cart)
@@ -156,12 +164,17 @@
 		                							<td>{!! $rupee !!} {{ $totalAmt}}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">
-		                							<td>Discount <small>(5%)</small>:</td>
+		                							<td>Discount <small>({{$discountPer}}%)</small>:</td>
 		                							<td>{!! $rupee !!} {{ $totalAmt - $taxable_amount }}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">
 		                							<td>Offer Discount:<br>
-												<small>(Buy 1 get 2nd at 20% off)</small></td>
+														@if($offer == 1)
+														<small>(Buy 3 flat at 6500)</small>
+														@elseif($offer == 2)
+														<small>(Buy 1 get 2nd at 20% off)</small>
+														@endif
+													</td>
 		                							<td>{!! $rupee !!} {{ $offerDiscount }}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">

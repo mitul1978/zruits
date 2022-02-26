@@ -31,6 +31,7 @@
     {{-- <link rel="stylesheet" href="{{URL::asset('assets/css/demos/demo-2.css')}}"> --}}
     {{-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> --}}
     <link rel="stylesheet" href="{{URL::asset('assets/css/plugins/nouislider/nouislider.css')}}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     @livewireStyles
 </head>
 
@@ -58,7 +59,7 @@
 
         @yield('content')
 
-    <!-- Footer -->
+        <!-- Footer -->
    
     @include('layouts.footer2')
     
@@ -321,8 +322,8 @@
         });
     </script>
 
-        <script src="{{asset('backend/js/sweetalert.min.js')}}"></script>
-        <script type="text/javascript">
+    <script src="{{asset('backend/js/sweetalert.min.js')}}"></script>
+    <script type="text/javascript">
 
             $(document).ready(function() 
             {
@@ -485,7 +486,9 @@
                         }
                         
                         });
-                    }else{
+                    }
+                    else
+                    {
                     }
                 });
 
@@ -574,7 +577,6 @@
                 });
             });
     </script>
-
     <script>
         // $(".customFilterData").live("click", function () {
         //     $("input:checkbox[class=customFilterData]:checked").each(function () {
@@ -590,5 +592,4 @@
     </script>
 
 </body>
-
 </html>

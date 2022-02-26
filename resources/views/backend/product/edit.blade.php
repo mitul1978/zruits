@@ -191,7 +191,7 @@
           </div>                
         </div>  
 
-        <h5 class="mt-2">Assign Images to colors (Optional)</h5>
+        <h5 class="mt-2">Upload Image Color Wise (Optional If already Images are uploaded)</h5>
 
         <div class="parentColorDiv">
           <div id="multipleColorImage">
@@ -220,85 +220,43 @@
           </div>
         </div> 
 
-        <div class="d-flex">
-          <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
-              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
-              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
-            </div>
-            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
-              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
-              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
-            </div>
-            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
-              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
-              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
-            </div>
-            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
-              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
-              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
-            </div>          
-        </div><hr>
-
-        <div class="parentColorDiv">
-          <div id="multipleColorImage">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                      <label for="colorsImages">Colors </label>
-                      <select name="colorsImages[]" id="colorsImages" class="form-control">
-                            <option value="">Select Color</option>
-                                                        <option value="1">color 1</option>
-                                                        <option value="2">color 2</option>
-                                                        <option value="3">color 3</option>
-                                                        <option value="4">color 4</option>
-                                                        <option value="5">color 5</option>
-                                                </select>
-                  </div>
-                </div>
-
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="images" class="col-form-label">Images </label>
-                    <div class="input-group">
-                      <input class="form-control imageUploader" type="file" id="images" name="images[0][]" value="" multiple="">
-                    </div>
-                  </div>
-                </div> 
-              </div>
-          </div>
-        </div>
-
-        <div class="d-flex">
-          <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
-              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
-              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
-            </div>
-            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
-              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
-              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
-            </div>
-            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
-              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
-              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
-            </div>
-            <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
-              <img src="http://localhost:8000/images/products/15638862241.jpg" style="max-width:70px; margin-bottom:5px;">
-              <a class="btn btn-sm btn-danger p-1 " href=" http://localhost:8000/admin/deleteimage/1">Delete</a>
-            </div>          
-        </div><hr>
         
         <div class="form-group mb-3">
-          <button class="btn btn-primary" id="addNewProductImages" type="button">Add New Color Images</button>
+          <button class="btn btn-primary" id="addNewProductImages" type="button">Add New Color + Images</button>
         </div>
         <br> 
-       
-        <div class="row">
-            @if(isset($product->images))
-               @foreach($product->images as $i)
-                  <img src="{{asset($i->image)}}" height="50" width="50"> &nbsp;&nbsp;<a href=" {{url('/admin/deleteimage/'.$i->id)}}" >Delete</a>
-               @endforeach
-            @endif
-        </div>
+
+        
+          @if(isset($product->images))  
+             <?php
+                $colId = 0; 
+             ?>            
+              @foreach($product->images as $key => $i) 
+                  @if($key == 0)
+                   <label>{{$i->productColor->name}} Images</label>
+                   <div class="row">
+                    <div class="d-flex">
+                    <?php $colId = $i->color_id; ?>
+                  @endif
+                  @if($colId != $i->color_id)
+                    </div>
+                    </div>
+                    <br>
+                    <label>{{$i->productColor->name}} Images</label>
+                    <div class="row">
+                    <div class="d-flex">
+                    <?php $colId = $i->color_id; ?>
+                  @endif
+                      <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
+                        <img src="{{asset($i->image)}}" style="max-width:70px; margin-bottom:5px;">
+                        <a class="btn btn-sm btn-danger p-1 " href="{{url('/admin/deleteimage/'.$i->id)}}">Delete</a>                      
+                      </div>       
+              @endforeach
+            </div>
+          </div>
+          <br>
+            <hr>
+          @endif
        
         <h5 class="mt-5">Variation</h5>
 

@@ -245,6 +245,8 @@ class ProductController extends Controller
         $toPrice = isset($request->toPrice) ? $request->toPrice : null;
         $value = isset($request->value) ? $request->value : null;
         $pageType = isset($request->pageType) ? $request->pageType : null;
+        $min = isset($request->min) ? $request->min : null;
+        $max = isset($request->max) ? $request->max : null;
 
         //$flag = $request->flag ? $request->flag:null;
 
@@ -342,14 +344,14 @@ class ProductController extends Controller
                     $products->where('orientation','like', '%' . $orientations .'%' );
                 }
 
-                if($fromPrice)
+                if($min)
                 {
-                    $products->where('price', '>=', $fromPrice);
+                    $products->where('price', '>=', $min);
                 }
 
-                if($toPrice)
+                if($max)
                 {
-                    $products->where('price', '<=', $toPrice);
+                    $products->where('price', '<=', $max);
                 }
 
                 $products =  $products->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);    

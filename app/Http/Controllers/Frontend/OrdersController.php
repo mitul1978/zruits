@@ -20,13 +20,10 @@ use Notification,Auth,Session;
 use Illuminate\Support\Facades\Mail;
 class OrdersController extends Controller
 {
-
- 
-
     function place_order(Request $request)
     {
         $requestData = $request->all();
-        
+
         if(count(get_cart()))
         {
             if($request->address_id =='new' || $request->address_id == null)
@@ -88,8 +85,8 @@ class OrdersController extends Controller
                     }
                 }
 
-                $requestData['state_id'] = 1;
-                $requestData['city_id'] = 1;
+                //$requestData['state_id'] = 1;
+                //$requestData['city_id'] = 1;
                 $total_amount = 0;
                 $total_discount = 0;
                 $order = new Order();
@@ -102,12 +99,12 @@ class OrdersController extends Controller
                 }           
 
                 $order->status=0;
-                    $order->payment_method='razorpay';
-                    $order->payment_status='process';
+                $order->payment_method='razorpay';
+                $order->payment_status='process';
               
 
-                $order->state_id =(int)$requestData['state_id'];
-                $order->city_id = (int)$requestData['city_id'];
+                $order->state_id =$requestData['state_id'];
+                $order->city_id = $requestData['city_id'];
                 $order->freight_charge = 0;// Helper::getPincodeFreightCharge($requestData['pincode']);;
 
                 // $total_amount = $order->freight_charge;
@@ -127,7 +124,6 @@ class OrdersController extends Controller
                 $sub_total = 0;
                 $quantity = 0;
                 $discount = 0;
-                 
                 foreach($cart_items as $item)
                 {
                     $order_list = new OrderProductList();
