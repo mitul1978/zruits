@@ -300,7 +300,7 @@ function add_to_cart_session_cart_item()
                             else if($offer1Qty > 0 && $offer1Qty < $v['quantity'])
                             {
                                 $difference = $v['quantity'] - $offer1Qty;
-                                $remainingAmtOffer1 = $remainingAmtOffer1 + $difference * $v['price'];
+                                $remainingAmtOffer1 = $remainingAmtOffer1 + $difference * $v['product']['price'];
                             }
                             else
                             {
@@ -321,28 +321,69 @@ function add_to_cart_session_cart_item()
             if($countOffer2 >= 2)
             {    
                 $offerCycle2 = (int) ($countOffer2 / $offer2Qty);
+                $interval = $offerCycle2;
                 $cartOrderByAmt = collect($carts)->sortBy('price')->toArray();
 
                 foreach($cartOrderByAmt as $v)
                 { 
                     if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 2)
-                    { 
-                        if($offer2Qty > 0 && $offer2Qty >= $v['quantity'])
+                    {  
+                        if($interval > 0 )
                         { 
-                           $discountAmtOffer2 = $discountAmtOffer2 + (20 * ( $v['quantity'] * $v['price'] ))/100; 
-                           $offer2Qty = $offer2Qty - $v['quantity'];
-                        }
-                        else if($offer2Qty > 0 && $offer2Qty < $v['quantity'])
-                        {
-                            $difference = $v['quantity'] - $offer2Qty;
-                            $discountAmt = 0;
-                            if($offer2Qty != 0)
+                            // $reminder = (int) fmod($v['quantity'], $offer2Qty);
+
+                            // if($reminder == 0)
+                            // {
+                            //    $cycle =  (int) ($v['quantity'] / $offer2Qty);
+                            // }
+                            // else
+                            // {
+                            //    $cycle = (int) ($v['quantity'] / $offer2Qty);
+                            // }
+
+                            if($interval <= $v['quantity'])
                             {
-                                $discountAmtOffer2 =  $discountAmtOffer2 + 20 * ($offer2Qty * $v['price'])/100;
+                                $cycle = $interval;
                             }
-                           
-                            $remainingAmtOffer2 = $remainingAmtOffer2 + $difference * $v['price'];
-                        }
+                            else if($interval > $v['quantity'])
+                            {
+                                $cycle = $v['quantity'];
+                            }
+                            else
+                            {
+                                $reminder = (int) fmod($v['quantity'], $offer2Qty);
+
+                                if($reminder == 0)
+                                {
+                                   $cycle =  (int) ($v['quantity'] / $offer2Qty);
+                                }
+                                else
+                                {
+                                   $cycle = (int) ($v['quantity'] / $offer2Qty);
+                                }
+                            }
+
+                            // $discountAmtOffer2 = $discountAmtOffer2 + ( (20/$cycle) *  $v['price'] )/100;
+                            $discountAmtOffer2 = $discountAmtOffer2 + ( $cycle * ( 20 *  $v['product']['price'] )/100);
+                            $interval = $interval - $cycle;
+
+                            // if($offer2Qty > 0 && $offer2Qty >= $v['quantity'])
+                            // {                                 
+                            //     $discountAmtOffer2 = $discountAmtOffer2 + ((20/$v['quantity']) * ( $v['quantity'] * $v['price'] ))/100; 
+                            //     $offer2Qty = $offer2Qty - $v['quantity'];
+                            // }
+                            // else if($offer2Qty > 0 && $offer2Qty < $v['quantity'])
+                            // {
+                            //     $difference = $v['quantity'] - $offer2Qty;
+                            //     $discountAmt = 0;
+                            //     if($offer2Qty != 0)
+                            //     {
+                            //         $discountAmtOffer2 =  $discountAmtOffer2 + 20 * ($offer2Qty * $v['price'])/100;
+                            //     }
+                            
+                            //     $remainingAmtOffer2 = $remainingAmtOffer2 + $difference * $v['price'];
+                            // }
+                        }    
                     }    
                     else
                     {
@@ -351,7 +392,7 @@ function add_to_cart_session_cart_item()
                 }    
 
                 // dd($totalAmt,$remainingAmtOffer2,$discountAmtOffer2);   $finalAmtOffer2 = $totalAmt - $remainingAmtOffer2;
-                return $offerCycle2 * $discountAmtOffer2;
+                return $discountAmtOffer2 ;
             }
 
             return 0;        
