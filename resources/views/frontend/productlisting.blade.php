@@ -64,7 +64,7 @@
                             @endif
                             <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                             <div class="product-price">
-                                <span class="new-price">₹ {{$product->discounted_amt }}</span>  <span class="old-price">₹ {{$product->price}}</span>  <small>(MRP incl Taxes)</small>
+                                <span class="new-price">₹ {{$product->discounted_amt }}</span>  @if($product->discounted_amt != $product->price) <span class="old-price">₹ {{$product->price}}</span> @endif  <small>(MRP incl Taxes)</small>
                             </div><!-- End .product-price -->
                             <div class="atc-container">                                                            
                                 <div class="mb-2">
