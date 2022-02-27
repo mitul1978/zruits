@@ -99,7 +99,7 @@ class LoginController extends Controller
         ]);
 
          $user =  User::create([
-                //'name' => $request->name,
+                'name' => $request->name,
                 'email' => $request->email,
                // 'mobile' => $request->mobile,
                 'password' => bcrypt($request->password),

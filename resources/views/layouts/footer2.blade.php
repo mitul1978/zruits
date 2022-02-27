@@ -177,6 +177,10 @@
                                 <form method="post" action="{{route('register.submit')}}" >
                                     @csrf
                                     <div class="form-group">
+                                        <label for="name">Your Full Name *</label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                    </div><!-- End .form-group -->
+                                    <div class="form-group">
                                         <label for="register-email">Your email address *</label>
                                         <input type="email" class="form-control" id="email" name="email" required>
                                     </div><!-- End .form-group -->

@@ -220,7 +220,7 @@
 														    $addresses = auth()->user()->addresses; 
 														 ?>
 														  @foreach($addresses as $key => $address)
-														    <h3 class="card-title">Address {{++$key}} <span>{{$address->is_primary ? '(DEFAULT ADDRESS)':''}}</span></h3> <form method="POST" action="{{route('remove-user-address',$address->id)}}"> @csrf <button type="submit">X</button> </form>
+														    <h3 class="card-title">Address {{++$key}} <span>{{$address->is_primary ? '(DEFAULT ADDRESS)':''}}</span></h3> <form method="POST" action="{{route('remove-user-address',$address->id)}}"> @csrf <button type="submit">X</button> </form><button class="updateClickButton" id="{{$address->id}}" type="button">Edit</button>
 														     <div class="addresses">
 																  <span>{{$address->first_name}}</span> <br>
 																  <span>{{$address->mobile}}</span> - <span>{{$address->email}}</span><br>
@@ -229,63 +229,130 @@
 															 </div>	 
 														   <br>															  	
 														  @endforeach
-														 <h3 class="card-title">Add New</h3> 
-														 <form action="{{url('create-user-address')}}" class="place_order" method="POST">
-															@csrf
-															<div class="singleRecord">
-																<div class="row">
-																	<div class="col-sm-6">
-																		<label>Full Name *</label>
-																		<input type="text" class="form-control" name="first_name" value="" required>
+														  @foreach($addresses as $key => $address)
+														   <div id="updateAddress{{$address->id}}" class="updateAddress" style="display:none;">
+															<form action="{{url('create-user-address')}}" class="place_order" method="POST">
+																@csrf
+																<input type="hidden" name="flag" value="{{$address->id}}">
+																<div class="singleRecord">
+																	<div class="row">
+																		<div class="col-sm-6">
+																			<label>Full Name *</label>
+																			<input type="text" class="form-control" name="first_name" value="{{$address->first_name}}" required>
+																		</div>
 																	</div>
+																	<div class="row">	
+																		<div class="col-sm-6">
+																			<label>Phone *</label>
+																			<input type="tel" class="form-control" name="mobile" value="{{$address->mobile}}"  required>
+																		</div>
+																		<div class="col-sm-6">	
+																			<label>Email Address *</label>
+																			<input type="text" class="form-control" name="email" value="{{$address->email}}"  required>
+																		</div>
+																	</div>
+																	<label>Address Line 1*</label>
+																	<input type="text" class="form-control" name="address" value="{{$address->address}}"  required>
+																	<label>Address Line 2</label>
+																	<input type="text" class="form-control" name="address1" value="{{$address->address2}}" >
+																	<div class="row">
+																		<div class="col-sm-4">
+																			<label>State *</label>
+																			<select  class="form-control state_id" data-id="{{$address->id}}" name="state_id" required>
+																				<option value="">Select State </option>
+																				@foreach($states as $state)
+																					<option value="{{$state->id}}" {{isset($address->state_id) && $address->state_id == $state->id ? 'selected':''}}>{{$state->name}}</option>
+																				@endforeach
+																			</select>
+																		</div>	
+																		<?php
+																		    $cities = App\Models\City::where('state_id',$address->state_id)->get(); 
+																		?>
+																		<div class="col-sm-4">	
+																			<label>Town / City *</label>
+																			<select  class="form-control city{{$address->id}}" name="city_id" id="city{{$address->id}}" required>
+																				<option value="">Select City </option>
+																				@foreach($cities as $city)
+																				   <option value="{{$city->id}}" {{isset($address->city_id) && @$address->city_id == $city->id ? 'selected':''}}>{{$city->name}}</option>
+																				@endforeach
+																			</select>	
+																		</div>	
+																		<div class="col-sm-4">
+																			<label>Postcode / ZIP *</label>
+																			<input type="text" class="form-control" name="pincode" value="{{$address->pincode}}" required>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<input type="checkbox" id="is_primary" name="is_primary" value="1" {{$address->is_primary == 1 ? 'checked':''}}>
+																		<label for="is_primary" >Set as Primary Address ?</label>
+																	</div>		
 																</div>
-																<div class="row">	
-																	<div class="col-sm-6">
-																		<label>Phone *</label>
-																		<input type="tel" class="form-control" name="mobile" value=""  required>
+																<br>
+																<button type="submit" class="btn btn-outline-primary-2">
+																	<span>Update Address</span>
+																</button>
+															</form>	
+														  </div>
+														 @endforeach
+
+														 <button id="addNewAddress">Add New Address</button>  <br>
+														 <div id="newAddresForm"  class="AddAddress" style="display:none;">
+															<form action="{{url('create-user-address')}}" class="place_order" method="POST">
+																@csrf
+																<input type="hidden" name="flag" value="0">
+																<div class="singleRecord">
+																	<div class="row">
+																		<div class="col-sm-6">
+																			<label>Full Name *</label>
+																			<input type="text" class="form-control" name="first_name" value="" required>
+																		</div>
 																	</div>
-																	<div class="col-sm-6">	
-																		<label>Email Address *</label>
-																		<input type="text" class="form-control" name="email" value=""  required>
+																	<div class="row">	
+																		<div class="col-sm-6">
+																			<label>Phone *</label>
+																			<input type="tel" class="form-control" name="mobile" value=""  required>
+																		</div>
+																		<div class="col-sm-6">	
+																			<label>Email Address *</label>
+																			<input type="text" class="form-control" name="email" value=""  required>
+																		</div>
 																	</div>
+																	<label>Address Line 1*</label>
+																	<input type="text" class="form-control" name="address" value=""  required>
+																	<label>Address Line 2</label>
+																	<input type="text" class="form-control" name="address1" value="" >
+																	<div class="row">
+																		<div class="col-sm-4">
+																			<label>State *</label>
+																			<select  class="form-control state_id" name="state_id" data-id="0" required>
+																				<option value="">Select State </option>
+																				@foreach($states as $state)
+																					<option value="{{$state->id}}">{{$state->name}}</option>
+																				@endforeach
+																			</select>
+																		</div>	
+																		<div class="col-sm-4">	
+																			<label>Town / City *</label>
+																			<select  class="form-control city0" name="city_id" required>
+																				<option value="">Select City </option>
+																			</select>	
+																		</div>	
+																		<div class="col-sm-4">
+																			<label>Postcode / ZIP *</label>
+																			<input type="text" class="form-control" name="pincode" value="" required>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<input type="checkbox" id="is_primary" name="is_primary" value="1">
+																		<label for="is_primary" >Set as Primary Address ?</label>
+																	</div>		
 																</div>
-																<label>Address Line 1*</label>
-																<input type="text" class="form-control" name="address" value=""  required>
-																<label>Address Line 2</label>
-																<input type="text" class="form-control" name="address1" value="" >
-																<div class="row">
-																	<div class="col-sm-4">
-																		<label>State *</label>
-																		<select  class="form-control state_id" name="state_id" required>
-																			<option value="">Select State </option>
-																			@foreach($states as $state)
-																				<option value="{{$state->id}} {{isset($addresses->state_id) && @$addresses->state_id = $state->id ? 'selected':''}}">{{$state->name}}</option>
-																			@endforeach
-																		</select>
-																	</div>	
-																	<div class="col-sm-4">	
-																		<label>Town / City *</label>
-																		<select  class="form-control city" name="city_id" required>
-																			<option value="">Select City </option>
-																		</select>	
-																	</div>	
-																	<div class="col-sm-4">
-																		<label>Postcode / ZIP *</label>
-																		<input type="text" class="form-control" name="pincode" value="" required>
-																	</div>
-																</div>
-																<div class="row">
-																	<input type="checkbox" id="is_primary" name="is_primary" value="1">
-																	<label for="is_primary" >Set as Primary Address ?</label>
-																</div>		
-															</div>
-															<br>
-															<button type="submit" class="btn btn-outline-primary-2">
-																<span>Add New</span>
-															</button>
-														</form>	
-														
-														
+																<br>
+																<button type="submit" class="btn btn-outline-primary-2">
+																	<span>Add New</span>
+																</button>
+															</form>	
+														  </div>														
 								    				</div><!-- End .card-body -->
 								    			</div><!-- End .card-dashboard -->
 								    		</div><!-- End .col-lg-6 -->
@@ -351,7 +418,9 @@
 <script>
 	 $('body').on('change','.state_id',function()
 			  {
-				  var state_id = $(this).val();				  
+				  var state_id = $(this).val();	
+				  var id = $(this).data('id');	
+				  console.log(id);		  
 				  if(state_id)
 				  {
 					  $.ajax({
@@ -370,7 +439,7 @@
 								  html_option +="<option  value='"+id+"'>"+title+"</option>"
 		  
 							  });
-							  $('.city').html(html_option);
+							  $('.city'+ id).html(html_option);
 						  }
 					  });
 				  }
@@ -378,6 +447,25 @@
 				  {
 					  $('.city').html('');
 				  }
+			  });
+
+			  $('body').on('click','.updateClickButton',function()
+			  {
+				  $('.updateAddress').hide();
+				  $('.AddAddress').hide();
+				  $('#updateAddress' + $(this).attr('id')).show(); 
+				  $("html, body").animate({
+						scrollTop: $("#updateAddress" + $(this).attr("id")).offset().top
+					}, 500);				   
+			  });
+
+			  $('body').on('click','#addNewAddress',function()
+			  {
+				  $('.updateAddress').hide();
+				  $('.AddAddress').show();	
+				  $("html, body").animate({
+						scrollTop: $(".AddAddress").offset().top
+					}, 500);				   
 			  });
 </script>
 @endsection

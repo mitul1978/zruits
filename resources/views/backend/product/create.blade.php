@@ -183,6 +183,8 @@
                   </div>
                 </div>                
               </div>  
+
+              <h5 class="mt-2">Upload Image Color Wise</h5>
               <div class="parentColorDiv">
                   <div id="multipleColorImage">
                       <div class="row">

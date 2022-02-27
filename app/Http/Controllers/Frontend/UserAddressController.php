@@ -55,31 +55,54 @@ class UserAddressController extends Controller
      public function createUserAddress(Request $request)
      {
         $requestData = $request->except('_token');
-        
-        if($request->is_primary)
-        {
-           UserAddress::where('user_id',auth()->user()->id)->update(['is_primary' => 0]);
-        }
 
-        $address = new UserAddress();
-        
-        $address->mobile = @$request->mobile;
-        $address->email = @$request->email;
-        $address->first_name = @$request->first_name;
-        $address->address = @$request->address;
-        $address->address2 = @$request->address1;
-        $address->state_id = @$request->state_id;
-        $address->city_id = @$request->city_id;
-        $address->pincode = @$request->pincode;
-        //$address->dnd = @(int)$data['dnd'];
-        $address->is_primary =  @$request->is_primary;
-        $address->pincode = @$request->pincode;
-        $address->user_id = @auth()->user()->id;
-        $address->save();
+        $flag = $request->flag;
 
-        Alert::success("New Address Added successfully");
+        if($flag == 0)
+         {         
+            if($request->is_primary)
+            {
+               UserAddress::where('user_id',auth()->user()->id)->update(['is_primary' => 0]);
+            }
+
+            $address = new UserAddress();         
+            $address->mobile = @$request->mobile;
+            $address->email = @$request->email;
+            $address->first_name = @$request->first_name;
+            $address->address = @$request->address;
+            $address->address2 = @$request->address1;
+            $address->state_id = @$request->state_id;
+            $address->city_id = @$request->city_id;
+            $address->pincode = @$request->pincode;
+            //$address->dnd = @(int)$data['dnd'];
+            $address->is_primary = (int) @$request->is_primary;
+            $address->pincode = @$request->pincode;
+            $address->user_id = @auth()->user()->id;
+            $address->save();
+            Alert::success("New Address Added successfully");
+         }
+         else
+         {
+            $address = UserAddress::where('id',$flag)->first();
+            if($address)
+            {
+               $address->mobile = @$request->mobile;
+               $address->email = @$request->email;
+               $address->first_name = @$request->first_name;
+               $address->address = @$request->address;
+               $address->address2 = @$request->address1;
+               $address->state_id = @$request->state_id;
+               $address->city_id = @$request->city_id;
+               $address->pincode = @$request->pincode;
+               $address->is_primary = (int) @$request->is_primary;
+               $address->pincode = @$request->pincode;
+               $address->user_id = @auth()->user()->id;
+               $address->update();
+            }
+
+            Alert::success("Address Updated successfully");
+         }       
 
         return redirect()->back();
-
      }
 }
