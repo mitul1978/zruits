@@ -219,18 +219,29 @@
                                                          <?php
 														    $addresses = auth()->user()->addresses; 
 														 ?>
+														 
+														 <div class="row">
 														  @foreach($addresses as $key => $address)
-														    <h3 class="card-title">Address {{++$key}} <span>{{$address->is_primary ? '(DEFAULT ADDRESS)':''}}</span></h3> <form method="POST" action="{{route('remove-user-address',$address->id)}}"> @csrf <button type="submit">X</button> </form><button class="updateClickButton" id="{{$address->id}}" type="button">Edit</button>
+														  <div class="col-sm-6 mb-2">
+															  	<div class="d-flex flex-row">
+																	<h5 class="add-h6">Address {{++$key}} <span>{{$address->is_primary ? '(DEFAULT ADDRESS)':''}}</span></h3>
+																	<button class="btn-link p-0 bg-transparent ml-3 lh-0 updateClickButton" id="{{$address->id}}" type="button">Edit</button>
+																	<form method="POST" action="{{route('remove-user-address',$address->id)}}"> @csrf 
+																	<button class="btn-link p-0 bg-transparent ml-3 lh-0" type="submit">Delete</button>
+																	</form>
+																</div>
 														     <div class="addresses">
 																  <span>{{$address->first_name}}</span> <br>
 																  <span>{{$address->mobile}}</span> - <span>{{$address->email}}</span><br>
 																  <span>{{$address->address}}</span> , <span>{{$address->address1}}</span><br>
 																  <span>{{$address->get_state->name}}</span> - <span>{{$address->get_city->name}}</span> -<span>{{$address->pincode}}</span><br>
-															 </div>	 
-														   <br>															  	
+															 </div>	
+														  </div> 														  	
 														  @endforeach
+														  </div>
+
 														  @foreach($addresses as $key => $address)
-														   <div id="updateAddress{{$address->id}}" class="updateAddress" style="display:none;">
+														   <div id="updateAddress{{$address->id}}" class="updateAddress mt-2" style="display:none;">
 															<form action="{{url('create-user-address')}}" class="place_order" method="POST">
 																@csrf
 																<input type="hidden" name="flag" value="{{$address->id}}">
@@ -288,15 +299,16 @@
 																	</div>		
 																</div>
 																<br>
-																<button type="submit" class="btn btn-outline-primary-2">
+																<button type="submit" class="btn btn-outline-primary-2 mb-2">
 																	<span>Update Address</span>
 																</button>
 															</form>	
 														  </div>
 														 @endforeach
 
-														 <button id="addNewAddress">Add New Address</button>  <br>
-														 <div id="newAddresForm"  class="AddAddress" style="display:none;">
+														 <button id="addNewAddress">Add New Address</button> 
+														  <br>
+														 <div id="newAddresForm"  class="AddAddress mt-2" style="display:none;">
 															<form action="{{url('create-user-address')}}" class="place_order" method="POST">
 																@csrf
 																<input type="hidden" name="flag" value="0">
@@ -348,7 +360,7 @@
 																	</div>		
 																</div>
 																<br>
-																<button type="submit" class="btn btn-outline-primary-2">
+																<button type="submit" class="btn btn-outline-primary-2 mb-2">
 																	<span>Add New</span>
 																</button>
 															</form>	
@@ -384,7 +396,7 @@
 											<label>Mobile Number *</label>
 		        							<input type="tel" class="form-control" name="mobile" value="{{auth()->user()->mobile}}" placeholder="Enter your 10 digit mobile"  required>
 
-		                					<button type="submit" class="btn btn-outline-primary-2">
+		                					<button type="submit" class="btn btn-outline-primary-2 mb-2">
 			                					<span>SAVE CHANGES</span>
 			            						<i class="icon-long-arrow-right"></i>
 			                				</button>
@@ -402,7 +414,7 @@
 		            						<label>Confirm new password</label>
 		            						<input type="password" class="form-control mb-2" name="new_confirm_password" required>
 
-		                					<button type="submit" class="btn btn-outline-primary-2">
+		                					<button type="submit" class="btn btn-outline-primary-2 mb-2">
 			                					<span>SAVE CHANGES</span>
 			            						<i class="icon-long-arrow-right"></i>
 			                				</button>

@@ -34,7 +34,8 @@
                     <td>{{$contact->id}}</td>
                     <td>{{$contact->name}}</td>
                     <td>{{$contact->email}}</td>
-                    <td>{{$contact->mobile==1}}</td>
+                    {{-- <td>{{$contact->mobile==1}}</td>--}} 
+                    <td>{{$contact->mobile}}</td> 
                     <td>{{$contact->subject}}</td>
                     <td>{{$contact->message}}</td>
                     <td>{{date("d-m-Y", strtotime($contact->created_at))}}</td>                    
