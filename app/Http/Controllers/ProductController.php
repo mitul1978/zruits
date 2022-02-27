@@ -389,7 +389,7 @@ class ProductController extends Controller
                                         $filename=$icon.$image->getClientOriginalName();
                                         $image->move(base_path('public/images/products'), $filename); 
                                         $prodImage = new ProductImage;
-                                        $prodImage->product_id=$status->id;
+                                        $prodImage->product_id=$id;
                                         $prodImage->color_id = $color;
                                         $prodImage->image = '/images/products/'.$filename;
                                         $prodImage->save();
