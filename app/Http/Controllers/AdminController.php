@@ -8,22 +8,38 @@ use App\User;
 use App\Rules\MatchOldPassword;
 use Hash;
 use Carbon\Carbon;
+use App\Models\Order;
+use App\Models\Category;
+use App\Models\Product;
 use Spatie\Activitylog\Models\Activity;
 class AdminController extends Controller
 {
-    public function index(){
-        $data = User::select(\DB::raw("COUNT(*) as count"), \DB::raw("DAYNAME(created_at) as day_name"), \DB::raw("DAY(created_at) as day"))
-        ->where('created_at', '>', Carbon::today()->subDay(6))
-        ->groupBy('day_name','day')
-        ->orderBy('day')
-        ->get();
-     $array[] = ['Name', 'Number'];
-     foreach($data as $key => $value)
-     {
-       $array[++$key] = [$value->day_name, $value->count];
-     }
-    //  return $data;
-     return view('backend.index')->with('users', json_encode($array));
+    public function index()
+    {
+        // $data = User::select(\DB::raw("COUNT(*) as count"), \DB::raw("DAYNAME(created_at) as day_name"), \DB::raw("DAY(created_at) as day"))
+        // ->where('created_at', '>', Carbon::today()->subDay(6))
+        // ->groupBy('day_name','day')
+        // ->orderBy('day')
+        // ->get();
+        // $array[] = ['Name', 'Number'];
+        // foreach($data as $key => $value)
+        // {
+        //    $array[++$key] = [$value->day_name, $value->count];
+        // }
+        // dd($array);
+        //  return $data;
+
+        $cumulativeSales  = Order::where('payment_status','paid')->sum('total_amount');
+        $totalUsers = User::where('role','user')->count();
+        // $lastFiveCategory = Order::whre('')
+        $lastSevenDaysSales = Order::where('payment_status','paid')->whereDate('created_at', '>=', date('Y-m-d', strtotime("-7 days")))->whereDate('created_at','<=',date('Y-m-d'))->sum('total_amount');
+        $lastFourteenDaysSales = Order::where('payment_status','paid')->whereDate('created_at', '>=', date('Y-m-d', strtotime("-14 days")))->whereDate('created_at','<=',date('Y-m-d'))->sum('total_amount');
+        $lastSixtyDaysSales = Order::where('payment_status','paid')->whereDate('created_at', '>=', date('Y-m-d', strtotime("-60 days")))->whereDate('created_at','<=',date('Y-m-d'))->sum('total_amount');
+        $lastNintyDaysSales = Order::where('payment_status','paid')->whereDate('created_at', '>=', date('Y-m-d', strtotime("-90 days")))->whereDate('created_at','<=',date('Y-m-d'))->sum('total_amount');
+        $totalCategories = Category::where('status',1)->count();
+        $totalProducts = Product::where('status',1)->count();
+        $totalOrders  = Order::where('payment_status','paid')->count();
+     return view('backend.index',compact('cumulativeSales','totalUsers','lastSevenDaysSales','lastFourteenDaysSales','lastSixtyDaysSales','lastNintyDaysSales','totalCategories','totalProducts','totalOrders'));
     }
 
     public function profile(){

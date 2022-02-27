@@ -18,7 +18,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                         Total Cumulative Sales</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">400</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{round($cumulativeSales,2)}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-list fa-2x text-gray-300"></i>
@@ -35,7 +35,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                         Total Users</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">1000</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalUsers}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-list fa-2x text-gray-300"></i>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">505</div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$lastSevenDaysSales}}</div>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Sales Last 14 Days
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">4500</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$lastFourteenDaysSales}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-chart-area fa-2x text-gray-300"></i>
@@ -127,7 +127,7 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">35055</div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$lastSixtyDaysSales}}</div>
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Sales Last 90 Days
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">45700</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$lastNintyDaysSales}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-chart-area fa-2x text-gray-300"></i>
@@ -163,8 +163,8 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Category</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">{{\App\Models\Category::countActiveCategory()}}</div>
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Categories</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalCategories}}</div>
               </div>
               <div class="col-auto">
                 <i class="fas fa-sitemap fa-2x text-gray-300"></i>
@@ -181,7 +181,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Products</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">{{\App\Models\Product::countActiveProduct()}}</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalProducts}}</div>
               </div>
               <div class="col-auto">
                 <i class="fas fa-cubes fa-2x text-gray-300"></i>
@@ -197,10 +197,10 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Order</div>
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Orders</div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{\App\Models\Order::countActiveOrder()}}</div>
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$totalOrders}}</div>
                   </div>
 
                 </div>
@@ -230,40 +230,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
-
-      <!-- Area Chart -->
-      <div class="col-xl-8 col-lg-7">
-        <div class="card shadow mb-4">
-          <!-- Card Header - Dropdown -->
-          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-
-          </div>
-          <!-- Card Body -->
-          <div class="card-body">
-            <div class="chart-area">
-              <canvas id="myAreaChart"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Pie Chart -->
-      <div class="col-xl-4 col-lg-5">
-        <div class="card shadow mb-4">
-          <!-- Card Header - Dropdown -->
-          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Users</h6>
-          </div>
-          <!-- Card Body -->
-          <div class="card-body" style="overflow:hidden">
-            <div id="pie_chart" style="width:350px; height:320px;">
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Content Row -->
+    
 
   </div>
 @endsection
@@ -273,7 +240,7 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 {{-- pie chart --}}
 <script type="text/javascript">
-  var analytics = <?php echo $users; ?>
+  var analytics = <?php echo @$users; ?>
 
   google.charts.load('current', {'packages':['corechart']});
   google.charts.setOnLoadCallback(drawChart);
