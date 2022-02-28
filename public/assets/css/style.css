@@ -13273,7 +13273,8 @@ button:focus {
 		flex: 0 0 20%;
 		max-width: 20%;
 		margin-left: 0;
-		margin-right: 0
+		margin-right: 0;
+		display:block;
 	}
 	
 	.product-gallery-vertical .product-gallery-item {
@@ -19889,8 +19890,9 @@ background-color: rgba(0, 0, 0, 0.04);
 	}
 }
 input[type=checkbox], input[type=radio] {
-    box-sizing: border-box;
-    padding: 0;
     margin-top: 8px;
     margin-right: 8px;
+}
+.spinner {
+    width: 4rem !important
 }
