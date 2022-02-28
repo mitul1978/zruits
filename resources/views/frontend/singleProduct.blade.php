@@ -18,7 +18,7 @@
                                     ?>
                                     <div class="row">
                                         <figure class="product-main-image">                                            
-                                            <img id="product-zoom" src="{{asset(@$priImage)}}" data-zoom-image="{{asset(@$priImage)}}" alt="product image">
+                                            <img id="product-zoom" src="{{asset(@$priImage)}}" data-zoom-image="{{asset(@$priImage)}}" alt="{!! @$product->meta_description !!}">
                                             <a href="javascript:void(0);" id="btn-product-gallery" class="btn-product-gallery">
                                                 <i class="icon-arrows"></i>
                                             </a>
@@ -68,8 +68,7 @@
                                                      </label>
                                                 </div>
                                                @endforeach 
-                                            @endif
-                                            
+                                            @endif                                            
                                         </div>
                                     </div>
 
@@ -77,20 +76,33 @@
                                         <div class="label text-underline fw-400 mr-4">Size</div>
                                         @if(isset($availableSizes) && $availableSizes->isNotEmpty())  
                                             <div id="" class="d-flex">                                           
-                                                @foreach($availableSizes as $size)              
-                                                    <div class="radio has-image">
-                                                        <label>
-                                                            <input type="radio" name="size" value="{{@$size->size_id}}" class="p-cradio changeProduct sizeOptions{{$product->id}}">
-                                                            <div class="custom-size"><span>{{@$size->productSize->name}}</span></div>
-                                                        </label>
-                                                    </div>
-                                                    @endforeach
+                                                @foreach($availableSizes as $size) 
+                                                   @if($size->stock_qty > 0) 
+                                                        <div class="radio has-image">
+                                                            <label>
+                                                                <input type="radio" name="size" value="{{@$size->size_id}}" data-id="{{$size->id}}" class="p-cradio changeProductSize sizeOptions{{$product->id}}">
+                                                                <div class="custom-size"><span>{{@$size->productSize->name}}</span></div>
+                                                            </label>
+                                                        </div>                                                        
+                                                   @endif
+                                                @endforeach
                                             </div>
                                             <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
                                         @else
                                           <div class="label fw-400 mr-4">Out of Stock</div>
                                         @endif     
                                     </div>
+                                    @if(isset($availableSizes) && $availableSizes->isNotEmpty())  
+                                        @foreach($availableSizes as $size)
+                                           @if($size->stock_qty <= 2 && $size->stock_qty > 0)     
+                                            <div class="product-price stockLabel" style="display:none;" id="dispalyAlert{{$size->id}}">
+                                                <small>Only {{$size->stock_qty}} Left In stock</small>    
+                                            </div>
+                                            @else if()
+                                           @endif
+                                        @endforeach
+                                    @endif                                       
+                                   
 
                                     <div id="displayProdCount">                           
                                     </div><!-- End .details-filter-row -->

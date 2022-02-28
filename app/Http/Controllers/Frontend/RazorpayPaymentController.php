@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Mail;
-use Session;
+use Session,Auth;
+use App\Models\ProductStock;
 
 class RazorpayPaymentController extends Controller
 {
@@ -109,6 +110,12 @@ class RazorpayPaymentController extends Controller
               $email = @auth()->user()->email;
               $user = @auth()->user();
               $orderDetails = $order;
+
+              foreach($order->order_list as $orderList)
+              {
+                 $stock = ProductStock::where('product_id',$orderList->product_id)->where('color_id',$orderList->color_id)->where('size_id',$orderList->size_id)->first();
+                 $stock->decrement('stock_qty', $orderList->quantity);
+              }
 
               Mail::send('mail.complete-order-cus', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email) {
                   $message->to($email);

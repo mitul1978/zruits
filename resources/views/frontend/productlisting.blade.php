@@ -28,9 +28,9 @@
                 <div class="col-6 col-md-4 col-lg-4">
                     <div class="product product-7 text-center">
                         <figure class="product-media">
-                            <span class="product-label label-new">{{$product->tag}}</span>
+                            @if($product->tag != '')<span class="product-label label-new">{{$product->tag}}</span>@endif
                             <a href="{{route('product',$product->slug)}}">
-                                <img src="{{url(@$product->images()->first()->image)}}" alt="{{$product->name}}" class="product-image">
+                                <img src="{{url(@$product->images()->first()->image)}}" alt="{!! @$product->meta_description !!}" class="product-image">
                             </a>
 
                             <div class="product-action-vertical">

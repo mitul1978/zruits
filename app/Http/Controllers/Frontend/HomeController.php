@@ -115,7 +115,7 @@ class HomeController extends Controller
 
     public function viewOrderDetails()
     {
-        $orderId = 42;// Session::get('orderId');
+        $orderId = Session::get('orderId');
         $order = Order::where('id',$orderId)->first();
         session()->forget('orderId');
         return view('user.viewOrderDetails',compact('order'));

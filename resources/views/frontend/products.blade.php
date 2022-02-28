@@ -421,7 +421,14 @@
                    var value = $(this).val();                   
                    var flag = 1;
                    var pageType = $('#pageType').val();
-                   
+                   $("#slider-range").slider({
+                        range: true,
+                        min: 0,
+                        max: {{$maxValue}},
+                        values: [ 0, {{$maxValue}} ]
+                    });   
+                    $( "#amount" ).val( "₹" + 0 + " - ₹" + {{$maxValue}} ); 
+                         //    $( "#amount" ).val( "₹" + $( "#slider-range" ).slider( "values", 0 ) + " - ₹" + $( "#slider-range" ).slider( "values", 1 ) );
                     $.ajax({
                         url:"/filter-product",
                         data:{

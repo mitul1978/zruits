@@ -440,6 +440,23 @@ class ProductController extends Controller
             return 0;
         }
     }
+
+    public function deleteVariation(Request $request)
+    {
+        $id = $request->id;
+
+        $prodVariation = ProductStock::findOrFail($id);
+        $status = $prodVariation->delete();
+
+        if($status)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
     
     public function destroy($id)
     {
@@ -460,6 +477,12 @@ class ProductController extends Controller
     {
         $product=Product::findOrFail($id);
         return view('backend.product.edit-characteristics',compact('product'));
+    }
+
+    public function viewStock($id)
+    {
+        $product=Product::findOrFail($id);
+        return view('backend.product.viewstock',compact('product'));
     }
 
     public function update_characteristics(Request $request, $product_id)

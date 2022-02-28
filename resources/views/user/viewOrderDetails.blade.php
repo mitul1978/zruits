@@ -1,190 +1,103 @@
+@extends('layouts.app')
+@section('content')
+	<!-- <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="padding: 0;"> -->
+		<div id="wrapper" dir="ltr" style="background-color: #f7f7f7; margin: 0; padding: 70px 0; width: 100%; -webkit-text-size-adjust: none;">
+			<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+				<tr>
+					<td align="center" valign="top">
+						<div id="template_header_image">
+							{{-- <p style="margin-top: 0;"><img src="https://zehna.netlify.app/static/media/brand-logo.f9600df5.png" alt="Zehna" style="border: none; display: inline-block; font-size: 14px; font-weight: bold; height: 50px; outline: none; text-decoration: none; text-transform: capitalize; vertical-align: middle; max-width: 100%; margin-left: 0; margin-right: 0;"></p>						</div> --}}
+						<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container" style="background-color: #ffffff; border: 1px solid #dedede; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); border-radius: 3px;">
+							
+							<tr>
+								<td align="center" valign="top">
+									<!-- Body -->
+									<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_body">
+										<tr>
+											<td valign="top" id="body_content" style="background-color: #ffffff;">
+												<!-- Content -->
+												<table border="0" cellpadding="20" cellspacing="0" width="100%">
+													<tr>
+														<td valign="top" style="padding: 48px 48px 32px;">
+															<div id="body_content_inner" style='color: #636363; font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; font-size: 14px; line-height: 150%; text-align: left;'>
+																{{-- <p style="margin: 0 0 16px;">Hi bhola,</p>
+																<p style="margin: 0 0 16px;">Just to let you know — we've received your order #2956, and it is now being processed:</p>
+																<p style="margin: 0 0 16px;">Pay with cash upon delivery.</p> --}}
+																<h2 style='color: #000000; display: block; font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;'>[Order #{{$order->order_number}}] ({{$order->created_at->format('D d M, Y')}})</h2>
+																<div style="margin-bottom:40px">
+																	<table cellspacing="0" cellpadding="6" border="1" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;width:100%;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
+																		<thead>
+																			<tr>
+																				<th scope="col" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Product</th>
+																				<th scope="col" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Quantity</th>
+																				<th scope="col" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Price</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			@foreach ($order->order_list as $key => $list)
+																				<tr>
+																					<td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif;word-wrap:break-word">{{$list->product->name}}
+																						@if($list->product->is_giftcard == 0)
+																							<ul style="font-size:small;margin:1em 0 0;padding:0;list-style:none">
+																								<li style="margin:0.5em 0 0;padding:0">
+																									<strong style="float:left;margin-right:.25em;clear:both">Color:</strong> <p style="margin:0">{{$list->color->name}}</p>
+																								</li>
+																								<li style="margin:0.5em 0 0;padding:0">
+																								<strong style="float:left;margin-right:.25em;clear:both">Size:</strong> <p style="margin:0">{{$list->size->name}}</p>
+																								</li>
+																							</ul>
+																						@endif	
+																					</td>
+																					<td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
+																						{{$list->quantity}}		</td>
+																					<td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
+																						<span><span>₹</span>{{number_format($list->taxable_amount,2)}}</span></td>
+																				</tr>
+																			@endforeach
+																		</tbody>
+																		<tfoot>
+																			<tr>
+																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px">Subtotal:</th>
+																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px"><span><span>₹</span>{{number_format($order->total_amount,2)}}</span></td>
+																			</tr>
+																			<tr>
+																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Shipping:</th>
+																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Free shipping</td>
+																			</tr>
+																			<tr>
+																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Payment method:</th>
+																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Online</td>
+																			</tr>
+																			<tr>
+																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Total:</th>
+																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{number_format($order->total_amount,2)}}</span></td>
+																			</tr>
+																			<tr>
+																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Note:</th>
+																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">{{$order->order_note}}</td>
+																			</tr>
+																		</tfoot>
+																	</table>
+																	<br>
+																	<p style="margin:0 0 16px">Thanks for using Zehna.</p>
+																</div>
+															</div>
+														</td>
+													</tr>
+												</table>
+												<!-- End Content -->
+											</td>
+										</tr>
+									</table>
+									<!-- End Body -->
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
 
-@extends('user.layouts.master')
+			</table>
+		{{-- {{-- </div> --}}
+	{{-- </body> --}}
 
-
-@section('title','Order Detail')
-
-@section('main-content')
-
-@section('title','Order Detail')
-
-
-<div class="card">
-<h5 class="card-header">Order Details
-  </h5>
-  <div class="card-body">
-    @if($order)
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-            <th>Order No.</th>
-            <th>Name</th>
-            <th>Mobile </th>
-            <th>Email </th>
-            <th>Total Amount</th>
-            <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-            @php
-                $shipping_charge = 0;//DB::table('shippings')->where('id',$order->shipping_id)->pluck('price');
-            @endphp
-            <td>{{$order->order_number}}</td>
-            <td>{{@$order->address->first_name}} {{@$order->address->last_name}} </td>
-            <td>{{$order->address->mobile}}</td>
-            <td>{{$order->address->email}}</td>
-            <td>{{number_format($order->total_amount,2)}}</td>            <td>
-              <span class="badge {{@$order->order_status->class}}">{{@$order->order_status->name}} In Process</span>
-            </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <section class="confirmation_part section_padding">
-      <div class="order_boxes">
-        <div class="row">
-          <div class="col-lg-6 col-lx-4">
-            <div class="order-info">
-              <h4 class="text-center pb-4">ORDER INFORMATION</h4>
-              <table class="table">             
-                    <tr>
-                        <td>Order Date</td>
-                        <td> : {{$order->created_at->format('D d M, Y')}} at {{$order->created_at->format('g : i a')}} </td>
-                    </tr>
-                    <tr>
-                        <td>Quantity</td>
-                        <td> : {{$order->quantity}}</td>
-                    </tr>
-                    <tr>
-                      <td>Coupon Code</td>
-                      <td> : {{$order->coupon_code ? $order->coupon_code :'NA'}}</td>
-                    </tr>
-                    <tr>
-                      <td>Gift Card</td>
-                      <td> : {{$order->giftcard_code ? $order->giftcard_code :'NA'}}</td>
-                    </tr>                 
-            
-                    <tr>
-                      <td>Actual Amount</td>
-                      <td> :  &#x20B9; {{number_format($order->sub_total,2)}}</td>
-                    </tr>
-
-                    <tr>
-                      <td>Discount</td>
-                      <td> : &#x20B9;  {{number_format($order->total_discount,2)}}</td>
-                    </tr>
-
-                    <tr>
-                      <td>Coupon Discount</td>
-                      <td> : &#x20B9;  {{$order->coupon_value}}</td>
-                    </tr>
-
-                    <tr>
-                      <td>Gift Card Discount</td>
-                      <td> : &#x20B9;  {{$order->giftcard_value}}</td>
-                    </tr>
-       
-                    <tr>
-                        <td>Total Amount</td>
-                        <td> : &#x20B9;  {{number_format($order->total_amount,2)}}</td>
-                    </tr>
-                    <tr>
-                      <td>Payment Method</td>
-                      <td> : {{strtoupper($order->payment_method)}}</td>
-                    </tr>
-                    <tr>
-                        <td>Payment Status</td>
-                        <td> : {{$order->payment_status}}</td>
-                    </tr>
-              </table>
-            </div>
-          </div>
-
-          <div class="col-lg-6 col-lx-4">
-            <div class="shipping-info">
-              <h4 class="text-center pb-4">SHIPPING INFORMATION</h4>
-              <table class="table">
-                    <tr class="">
-                        <td>Full Name</td>
-                        <td> : {{@$order->address->first_name}} {{@$order->address->last_name}}</td>
-                    </tr>
-                   
-                    <tr>
-                        <td>Address</td>
-                        <td> : {{@$order->address->address}}</td>
-                    </tr>
-                    <tr>
-                        <td>State</td>
-                        <td> : {{@$order->state->name}}</td>
-                    </tr>
-                    <tr>
-                        <td>City</td>
-                        <td> : {{@$order->city->name}}</td>
-                    </tr>
-                    <tr>
-                      <td>Pincode</td>
-                      <td> : {{@$order->address->pincode}}</td>
-                  </tr>
-              </table>
-            </div>
-          </div>
-          <div class="col-lg-12 col-lx-12">
-            <div class="shipping-info">
-              <h4 class="text-center pb-4">Order List</h4>
-              <table class="table">
-                <thead>
-                  <tr>
-                  </tr>
-                  <th>Sr No</th>
-                  <th>Image</th>
-                  <th>Product Name</th>
-                  <th>Color</th>
-                  <th>Size</th>
-                  <th>Quantity</th>
-                  <th>Price</th>
-                  <th>Discount</th>      
-                  <th>Sub Total</th>
-                </thead>
-                <tbody>
-                  @foreach ($order->order_list as $key => $list)
-                    <tr>
-                      <td>{{++$key}}</td>
-                      <td> <img alt=""
-                        src="@if(!empty($list->product->images()->first()->image)){{@$list->product->images()->first()->image}}@else {{@$list->product->images()->first()->image}} @endif"
-                         style="height:70px;width:70px;"
-                        class="active grid-item__visuals-blue"></td>
-                      <td>{{$list->product->name}}</td>
-                      <td>{{$list->color->name}}</td>
-                      <td>{{$list->size->name}}</td>
-                      <td>{{$list->quantity}}</td>
-                      <td>{{$list->price}}</td>
-                      <td>{{$list->discount}}</td>
-                      <td>{{$list->taxable_amount}}</td>
-                    </tr>
-                  @endforeach
-
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    @endif
-
-  </div>
-</div>
-@endsection
-@push('styles')
-<style>
-    .order-info,.shipping-info{
-        background:#ECECEC;
-        padding:20px;
-    }
-    .order-info h4,.shipping-info h4{
-        text-decoration: underline;
-    }
-
-</style>
-@endpush
+	@endsection

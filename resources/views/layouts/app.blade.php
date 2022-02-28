@@ -162,6 +162,7 @@
 
             $('.sizeOptions' + product_id).each(function() {
                 var isChecked = $(this).prop('checked')?true:false; 
+                console.log(isChecked);
                 if(isChecked)
                 {
                     sizeId = $(this).val();

@@ -156,9 +156,9 @@
                             @foreach ($relatedProducts as $product)
                                 <div class="product product-7 text-center">
                                         <figure class="product-media">
-                                            <span class="product-label label-new">{{$product->tag}}</span>
+                                            @if($product->tag != '')<span class="product-label label-new">{{$product->tag}}</span>@endif
                                             <a href="{{url('product/' .$product->slug)}}">
-                                                <img src="{{asset(@$product->images()->first()->image)}}" alt="Product image" class="product-image">
+                                                <img src="{{asset(@$product->images()->first()->image)}}" alt="{!! @$product->meta_description !!}" class="product-image">
                                             </a>
 
                                             <div class="product-action-vertical">
@@ -275,9 +275,14 @@
                                });
                             }
                 }); 
-            });  
+           }); 
 
-            
+
+           $(document).on('click','.changeProductSize', function()
+           {  
+                var id = $(this).data('id');
+                $('.stockLabel').hide();
+                $('#dispalyAlert'+ id).show();
+           });              
     </script>  
-
 @endsection

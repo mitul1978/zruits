@@ -9,57 +9,50 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Product Lists</h6>
-      <a href="{{route('product.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Product</a>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Order Status Lists</h6>
+      <a href="{{route('orderstatus.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add Order Status"><i class="fas fa-plus"></i> Add Order Status</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        @if(count($products)>0)
-        <table class="table table-bordered" id="product-dataTable" width="100%" cellspacing="0">
+        @if(count($orderStatuses)>0)
+        <table class="table table-bordered" id="banner-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
               <th>S.N.</th>
-              <th>Category</th>
               <th>Name</th>
-              <th>Design</th>
-              <th>Product Price</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
-         
           <tbody>
-            @foreach($products as $product)
+
+            @foreach($orderStatuses as $orderStatus)
+            
                 <tr>
-                    <td>{{$product->id}}</td>
-                    <td>{{$product->category->title}}</td>
-                    <td>{{$product->name}}</td>
-                    <td>{{$product->design}}</td>
-                    <td>Rs. {{$product->price}} /-</td>
+                    <td>{{$orderStatus->id}}</td>
+                    <td>{{$orderStatus->name}}</td>
                     <td>
-                        @if($product->status == '1')
+                        @if($orderStatus->status==1)
                             <span class="badge badge-success">Active</span>
                         @else
                             <span class="badge badge-warning">Inactive</span>
                         @endif
                     </td>
                     <td>
-                        <a href="{{route('product.edit',$product->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <form method="POST" action="{{route('product.destroy',[$product->id])}}">
+                        <a href="{{route('orderstatus.edit',$orderStatus->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <form method="POST" action="{{route('orderstatus.destroy',[$orderStatus->id])}}">
                           @csrf
                           @method('delete')
-                          <button class="btn btn-danger btn-sm dltBtn" data-id={{$product->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                          <button class="btn btn-danger btn-sm dltBtn" data-id={{$orderStatus->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </form>
-
-                        <a href="{{url('admin/product/viewStock',$product->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="View Stock" data-placement="bottom"><i class="fas fa-eye"></i></a>
-                    </td>
+                    </td>                   
                 </tr>
             @endforeach
           </tbody>
         </table>
-        <span style="float:right">{{$products->links()}}</span>
+        <span style="float:right">{{$orderStatuses->links()}}</span>
         @else
-          <h6 class="text-center">No Products found!!! Please create Product</h6>
+          {{-- <h6 class="text-center">No Categories found!!! Please create Category</h6> --}}
         @endif
       </div>
     </div>
@@ -72,13 +65,6 @@
   <style>
       div.dataTables_wrapper div.dataTables_paginate{
           display: none;
-      }
-      .zoom {
-        transition: transform .2s; /* Animation */
-      }
-
-      .zoom:hover {
-        transform: scale(5);
       }
   </style>
 @endpush
@@ -94,12 +80,11 @@
   <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
   <script>
 
-      $('#product-dataTable').DataTable( {
-        "scrollX": false
+      $('#banner-dataTable').DataTable( {
             "columnDefs":[
                 {
                     "orderable":false,
-                    "targets":[10,11,12]
+                    "targets":[3,4,5]
                 }
             ]
         } );
@@ -109,7 +94,7 @@
         function deleteData(id){
 
         }
-  </script> 
+  </script>
   <script>
       $(document).ready(function(){
         $.ajaxSetup({

@@ -263,7 +263,8 @@
         <div class="parentDiv">
           @if(count($product->sizesstock) > 0 )
             @foreach($product->sizesstock as $key => $stock)
-                 <div id="multiple">
+                 <div id="multiple" class="multiple{{$stock->id}}">
+                  <a class="btn btn-sm btn-danger p-1 " href="javascript:void(0);" onClick="deleteVariationFunc({{$stock->id}});">Delete</a>
                     <div class="row">
                         <div class="col-md-4">
                           <div class="form-group">
@@ -460,8 +461,8 @@
 
 </script>
 <script type="text/javascript">
-  function deleteImageFunc(id)
-       {
+      function deleteImageFunc(id)
+     {
         let text = "Are you sure ?";
         if (confirm(text) == true) 
         {
@@ -486,10 +487,34 @@
                   }
                });
         } 
-        else 
-        {
-           
-        }
+      }
+
+      function deleteVariationFunc(id)
+       {
+         let text = "Are you sure ?";
+         if (confirm(text) == true) 
+         {
+            $.ajax({
+                  url:"/admin/product/deleteVariation",
+                  data:{
+                    _token:"{{csrf_token()}}",
+                    id:id
+                  },
+                  type:"POST",
+                  success:function(response)
+                  {
+                      if(response == 1)
+                      {
+                        alert('Variation Deleted from product');
+                        $('.multiple'+id).remove();
+                      }
+                      else
+                      {
+                        alert('something went wrong !!!');
+                      }
+                  }
+               });
+         }  
        }
 </script>
 

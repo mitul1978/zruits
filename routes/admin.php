@@ -46,6 +46,8 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     // Brand
     Route::resource('brand','BrandController');
 
+    Route::resource('/orderstatus','OrderStatusController');
+
     // Profile
     Route::get('/profile','AdminController@profile')->name('admin-profile');
     Route::post('/profile/{id}','AdminController@profileUpdate')->name('profile-update');
@@ -79,10 +81,12 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 
     // Product
     Route::get('/product/edit/characteristics/{id}','ProductController@edit_characteristics');
+    Route::get('/product/viewStock/{id}','ProductController@viewStock');
     Route::post('/product/update/characteristics/{id}','ProductController@update_characteristics');
     Route::get('/color_palette_preview/{id}', 'ProductController@color_palette_preview');
     Route::resource('/product','ProductController');
     Route::post('/product/deleteImage','ProductController@deleteImage');
+    Route::post('/product/deleteVariation','ProductController@deleteVariation');
 
 
 
