@@ -423,6 +423,23 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function deleteImage(Request $request)
+    {
+        $id = $request->id;
+
+        $prodImage = ProductImage::findOrFail($id);
+        $status = $prodImage->delete();
+
+        if($status)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
     
     public function destroy($id)
     {

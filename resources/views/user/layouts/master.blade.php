@@ -20,7 +20,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        @include('user.layouts.header')
+        {{-- @include('user.layouts.header') --}}
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->

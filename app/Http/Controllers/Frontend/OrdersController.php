@@ -25,9 +25,11 @@ class OrdersController extends Controller
         $requestData = $request->all();
 
         if(count(get_cart()))
-        {
+        {   
             if($request->address_id =='new' || $request->address_id == null)
-            {
+            {   
+                Session::put('flag',1);
+                
                 $this->validate($request,[
                     'mobile'=>'required',
                     //'last_name'=>'required',
@@ -46,7 +48,7 @@ class OrdersController extends Controller
             {
                $address =  UserAddress::find($request->address_id)->toArray();
                $request_address = new Request($address);
-
+               Session::put('flag',0);
                $this->validate($request_address,[
                 'mobile'=>'required',
                 //'last_name'=>'required',

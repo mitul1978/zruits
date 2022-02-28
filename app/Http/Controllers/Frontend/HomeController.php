@@ -15,6 +15,7 @@ use App\Models\Texture;
 use App\Models\Laminate;
 use App\Models\Product;
 use App\Models\Catalogue;
+use App\Models\Order;
 use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\Banner;
@@ -110,6 +111,14 @@ class HomeController extends Controller
             SubscribeNewsletter::create($data);
             return 1;
         }
+    }
+
+    public function viewOrderDetails()
+    {
+        $orderId = 42;// Session::get('orderId');
+        $order = Order::where('id',$orderId)->first();
+        session()->forget('orderId');
+        return view('user.viewOrderDetails',compact('order'));
     }
 
     public function notFound()

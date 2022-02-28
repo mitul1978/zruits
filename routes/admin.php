@@ -51,6 +51,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::post('/profile/{id}','AdminController@profileUpdate')->name('profile-update');
     // Category
     Route::resource('/category','CategoryController');
+    Route::resource('/offer','OfferController');
 
     // Application
     Route::resource('/application','ApplicationController');
@@ -81,6 +82,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::post('/product/update/characteristics/{id}','ProductController@update_characteristics');
     Route::get('/color_palette_preview/{id}', 'ProductController@color_palette_preview');
     Route::resource('/product','ProductController');
+    Route::post('/product/deleteImage','ProductController@deleteImage');
 
 
 

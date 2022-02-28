@@ -247,9 +247,9 @@
                     <div class="d-flex">
                     <?php $colId = $i->color_id; ?>
                   @endif
-                      <div class="img-prev" style="display: grid; margin:0 10px 10px 0;">
+                      <div class="img-prev" style="display: grid; margin:0 10px 10px 0;" id="imageDiv{{$i->id}}">
                         <img src="{{asset($i->image)}}" style="max-width:70px; margin-bottom:5px;">
-                        <a class="btn btn-sm btn-danger p-1 " href="{{url('/admin/deleteimage/'.$i->id)}}">Delete</a>                      
+                        <a class="btn btn-sm btn-danger p-1 " href="javascript:void(0);" onClick="deleteImageFunc({{$i->id}});">Delete</a>                      
                       </div>       
               @endforeach
             </div>
@@ -443,11 +443,13 @@
     });
 
     $(document).ready(function() {
+
       $('#description').summernote({
         placeholder: "Write detail description.....",
           tabsize: 2,
           height: 150
       });
+
       $('#additional_information').summernote({
         placeholder: "Write detail information.....",
           tabsize: 2,
@@ -456,6 +458,39 @@
     });
     // $('select').selectpicker();
 
+</script>
+<script type="text/javascript">
+  function deleteImageFunc(id)
+       {
+        let text = "Are you sure ?";
+        if (confirm(text) == true) 
+        {
+          $.ajax({
+                  url:"/admin/product/deleteImage",
+                  data:{
+                    _token:"{{csrf_token()}}",
+                    id:id
+                  },
+                  type:"POST",
+                  success:function(response)
+                  {
+                      if(response == 1)
+                      {
+                        alert('Image Deleted from product');
+                        $('#imageDiv'+id).remove();
+                      }
+                      else
+                      {
+                        alert('something went wrong !!!');
+                      }
+                  }
+               });
+        } 
+        else 
+        {
+           
+        }
+       }
 </script>
 
 <script>

@@ -21,14 +21,14 @@
 		        <div class="container">
 		            <div class="row">
 		                <div class="col-sm-6 mb-2">
-		                    <a href="{{url('offers/' . encrypt('offer1'))}}">
+		                    <a href="{{url('offers/' . encrypt('offer2'))}}">
 		                        <div class="overflow-hidden rounded-lg">
 		                            <img src="{{url('assets/images/home/offer-2.jpeg')}}" alt="Buy 3 Get 2"  class="scale-11">
 		                        </div>
 		                    </a>
 		                </div>
 		                <div class="col-sm-6">
-		                    <a href="{{url('offers/' . encrypt('offer2'))}}">
+		                    <a href="{{url('offers/' . encrypt('offer1'))}}">
 		                        <div class="overflow-hidden rounded-lg">
 		                            <img src="{{url('assets/images/home/offer-1.jpeg')}}" alt="Buy 3 Get 2" class="scale-11">
 		                        </div>

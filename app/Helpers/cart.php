@@ -2,6 +2,7 @@
 use App\Models\Cart;
 use App\Models\Wishlist;
 use App\Models\Product;
+use App\Models\Offer;
 use Illuminate\Support\Facades\Auth;
 
 function addToCart($product,$colorId,$sizeId)
@@ -334,8 +335,9 @@ function add_to_cart_session_cart_item()
 
             if($countOffer1 >= 3)
             {   
+                $offer = Offer::where('offer_type',1)->where('status',1)->first();
                 $offerCycle1 =  (int) ( $countOffer1 / $offer1Qty);
-                if( $totalAmt > 6500)
+                if( $totalAmt > $offer->offer_value)
                 {
                     $cartOrderByAmt = collect($carts)->sortBy('price')->toArray();
                     foreach($cartOrderByAmt as $v)
@@ -362,13 +364,14 @@ function add_to_cart_session_cart_item()
                         }
                     }
 
-                    $finalAmtOffer1 = 6500 + $remainingAmtOffer1;
+                    $finalAmtOffer1 = $offer->offer_value + $remainingAmtOffer1;
                     return $offerCycle1 * ( $totalAmt - $finalAmtOffer1);
                 }    
             }
 
             if($countOffer2 >= 2)
-            {    
+            {   
+                $offer = Offer::where('offer_type',2)->where('status',1)->first();
                 $offerCycle2 = (int) ($countOffer2 / $offer2Qty);
                 $interval = $offerCycle2;
                 $cartOrderByAmt = collect($carts)->sortBy('price')->toArray();
@@ -413,7 +416,7 @@ function add_to_cart_session_cart_item()
                             }
 
                             // $discountAmtOffer2 = $discountAmtOffer2 + ( (20/$cycle) *  $v['price'] )/100;
-                            $discountAmtOffer2 = $discountAmtOffer2 + ( $cycle * ( 20 *  $v['product']['price'] )/100);
+                            $discountAmtOffer2 = $discountAmtOffer2 + ( $cycle * ( $offer->offer_value *  $v['product']['price'] )/100);
                             $interval = $interval - $cycle;
 
                             // if($offer2Qty > 0 && $offer2Qty >= $v['quantity'])

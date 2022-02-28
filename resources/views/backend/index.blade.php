@@ -18,7 +18,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                         Total Cumulative Sales</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{round($cumulativeSales,2)}}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">&#x20B9; {{$cumulativeSales}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-list fa-2x text-gray-300"></i>
@@ -51,8 +51,8 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Last 5 Order Category</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">4560</div>
+                            Last 5 Order Sales</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$lastFiveOrderSales}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-list fa-2x text-gray-300"></i>
@@ -62,7 +62,7 @@
         </div>
     </div>
 
-    <div class="col-xl-3 col-md-6 mb-4">
+    {{-- <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-info shadow h-100 py-2">
@@ -88,7 +88,7 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$lastSevenDaysSales}}</div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">&#x20B9; {{$lastSevenDaysSales}}</div>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Sales Last 14 Days
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$lastFourteenDaysSales}}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">&#x20B9; {{$lastFourteenDaysSales}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-chart-area fa-2x text-gray-300"></i>
@@ -127,7 +127,7 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$lastSixtyDaysSales}}</div>
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">&#x20B9; {{$lastSixtyDaysSales}}</div>
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Sales Last 90 Days
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$lastNintyDaysSales}}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">&#x20B9; {{$lastNintyDaysSales}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-chart-area fa-2x text-gray-300"></i>
@@ -180,7 +180,7 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Products</div>
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Products</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalProducts}}</div>
               </div>
               <div class="col-auto">

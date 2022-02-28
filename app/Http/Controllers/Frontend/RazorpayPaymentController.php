@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Mail;
+use Session;
 
 class RazorpayPaymentController extends Controller
 {
@@ -131,8 +132,20 @@ class RazorpayPaymentController extends Controller
             {
                 dd($e);
             }
+           
+            $flag = Session::get('flag');
 
-            return redirect('/user');
+            if($flag == 0)
+            {
+                return redirect('/user');
+            }
+            else
+            {   
+                Session::put('orderId',$order->id);
+                Session::forget('user');
+                Auth::logout();
+                return  redirect('/viewOrderDetails');
+            }
             //   return view('payment-success-page');
         }
         else

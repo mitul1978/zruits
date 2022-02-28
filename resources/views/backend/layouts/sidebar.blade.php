@@ -191,6 +191,11 @@
               <i class="fas fa-gift"></i>
               <span>Coupon</span></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('offer.index')}}">
+              <i class="fas fa-gift"></i>
+              <span>Offer</span></a>
+        </li>
 
           <hr class="sidebar-divider d-none d-md-block">
           <!-- Heading -->
