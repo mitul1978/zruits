@@ -60,7 +60,7 @@ class OfferController extends Controller
             request()->session()->flash('error','Error occurred, Please try again!');
         }
 
-        return redirect()->route('offers.index');
+        return redirect()->route('offer.index');
     }
 
     /**
@@ -125,7 +125,7 @@ class OfferController extends Controller
             dd($e);
         }    
 
-        return redirect()->route('offers.index');
+        return redirect()->route('offer.index');
     }
 
     /**
