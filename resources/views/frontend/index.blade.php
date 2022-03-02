@@ -2,6 +2,18 @@
 @section('content')
 
 <main class="main">
+    <div class="home-menu-section">
+        <ul>
+            @foreach($categories as $category)
+            <li>
+                <a href="{{url('categories/' . $category->slug)}}">
+                    <img src="{{url(@$category->photo)}}" alt="{{$category->slug}}">
+                    <span class="first-slider-title">{{$category->title}}</span>
+                </a>
+            </li>
+            @endforeach 
+        </ul>
+    </div>
     <div class="intro-slider-container">
         <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false}'>
             @foreach ($banners as $item)

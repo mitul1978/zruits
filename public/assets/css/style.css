@@ -19935,3 +19935,55 @@ input[type=checkbox], input[type=radio] {
   top: 2px;
   left: 2px;
 }
+
+@media (min-width:1024px) {
+	.home-menu-section {
+		display:none !important;
+	}
+}
+.home-menu-section {
+    width: 100%;
+    padding: 10px 0px 0px 10px;
+    display: inline-block;
+    overflow: hidden;
+}
+.home-menu-section ul {
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-left: 0px;
+    scroll-behavior: smooth;
+    will-change: transform;
+    transform: translateZ(0px);
+    margin-bottom: 2px;
+}
+.home-menu-section li {
+    /* width: 20%; */
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 2%;
+    text-align: center;
+    margin-bottom: 0px;
+}
+.home-menu-section li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.home-menu-section li img {
+	float: left;
+    margin-bottom: 5px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.home-menu-section li .first-slider-title {
+    font-size: 10px;
+    width: 100%;
+    display: inline-block;
+    float: left;
+    color: #343333;
+    font-weight: bold;
+}
