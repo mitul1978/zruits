@@ -93,15 +93,18 @@ Route::get('payment/success', 'PayPalController@success')->name('payment.success
 
 // User section start
 Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
-  // dd('test');
+
     Route::get('/','HomeController@index')->name('user');
+
      // Profile
      Route::get('/profile','HomeController@profile')->name('user-profile');
      Route::post('/profile/{id}','HomeController@profileUpdate')->name('user-profile-update');
+
     //  Order
     Route::get('/order',"HomeController@orderIndex")->name('user.order.index');
     Route::get('/order/show/{id}',"HomeController@orderShow")->name('user.order.show');
     Route::delete('/order/delete/{id}','HomeController@userOrderDelete')->name('user.order.delete');
+
     // Product Review
     Route::get('/user-review','HomeController@productReviewIndex')->name('user.productreview.index');
     Route::delete('/user-review/delete/{id}','HomeController@productReviewDelete')->name('user.productreview.delete');
@@ -120,6 +123,7 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
 
 });
 
+Route::post('reset-user-password','UsersController@resetPassword');
 // Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
 //     \UniSharp\LaravelFilemanager\Lfm::routes();
 // });

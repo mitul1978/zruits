@@ -105,7 +105,7 @@
                                                                 <label for="toggle"></label>
                                                                 <span class="ml-3 font-weight-bold">CM</span>	
                                                             </div>
-                                                            <img class="sg-img" src="http://localhost:8000/images/products/size-cm.jpg">
+                                                            <img class="sg-img" src="{{URL::asset('images/products/size-cm.jpg')}}">
                                                         </div>
                                                     </div>
                                                 </div>

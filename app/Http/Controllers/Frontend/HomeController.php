@@ -30,6 +30,7 @@ use Symfony\Component\Console\Input\Input;
 use App\Models\Contact;
 use Spatie\Newsletter\Newsletter;
 use App\Models\SubscribeNewsletter;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {   
@@ -109,6 +110,12 @@ class HomeController extends Controller
         {
             $data['email'] = $request->newsletterEmail;
             SubscribeNewsletter::create($data);
+            $email = $request->newsletterEmail;
+        
+            Mail::send('mail.email-subs',[], function ($message) use ($email) {
+                $message->to($email);
+                $message->subject('Welcome to Our Community');
+            });
             return 1;
         }
     }
@@ -366,8 +373,6 @@ class HomeController extends Controller
 
     }
 
-
-
     public function careers()
     {
         if(Auth::check()){
@@ -380,36 +385,33 @@ class HomeController extends Controller
     }
 
 
+    public function save_careers_page_form(Request $request){
 
-public function save_careers_page_form(Request $request){
+        $this->validate($request,
+        [
+            'name'=>'string|required|max:30',
+            'contact'=>'string|required|max:10|min:10',
+            'email'=>'email',
+            'city'=>'string|required|max:30',
 
+        ]);
 
+        $rand= rand();
+        $requestData = $request->all();
 
-    $this->validate($request,
-    [
-        'name'=>'string|required|max:30',
-        'contact'=>'string|required|max:10|min:10',
-        'email'=>'email',
-        'city'=>'string|required|max:30',
+        if ($request->hasFile('resume')) {
+            $filename=Str::slug($requestData['name']).$request->file('resume')->getClientOriginalName();
+            $request->resume->move(base_path('public/frontend/uploads'), $filename);
+            $requestData['resume'] ='/frontend/uploads/'.$filename;
 
-    ]);
-
-    $rand= rand();
-    $requestData = $request->all();
-
-    if ($request->hasFile('resume')) {
-        $filename=Str::slug($requestData['name']).$request->file('resume')->getClientOriginalName();
-        $request->resume->move(base_path('public/frontend/uploads'), $filename);
-        $requestData['resume'] ='/frontend/uploads/'.$filename;
-
-    }
+        }
         $career=CareerFormLead::create($requestData);
-    if(isset($career)){
-        return redirect()->back()->with('success', 'Thank you for your details! Our team will get in touch with you.');
+        if(isset($career)){
+            return redirect()->back()->with('success', 'Thank you for your details! Our team will get in touch with you.');
 
-    }else{
-      return response('Something went wrong.', 500);
-    }
+        }else{
+        return response('Something went wrong.', 500);
+        }
 
     }
 
@@ -432,7 +434,6 @@ public function save_careers_page_form(Request $request){
     {
         return view('corporatevideo');
     }
-
 
     public function guide(Request $request){
 
@@ -466,10 +467,7 @@ public function save_careers_page_form(Request $request){
 
         $applications = Application::where('status',1)->get();
         return view('frontend.pages.guide_applications',compact('applications'));
-    }
-
-
-  
+    }  
 
     public function contactus()
     {

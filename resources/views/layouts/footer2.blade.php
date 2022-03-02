@@ -168,7 +168,7 @@
                                             <label class="custom-control-label" for="signin-remember">Remember Me</label>
                                         </div><!-- End .custom-checkbox -->
 
-                                        <a href="#" class="forgot-link">Forgot Your Password?</a>
+                                        <a href="{{ route('password.request') }}" class="forgot-link">Forgot Your Password?</a>
                                     </div><!-- End .form-footer -->
                                 </form>
 
