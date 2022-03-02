@@ -19896,3 +19896,42 @@ input[type=checkbox], input[type=radio] {
 .spinner {
     width: 4rem !important
 }
+
+.size-toggle input[type=checkbox] {
+  visibility: hidden;
+  width:0px;
+}
+.size-toggle input[type=checkbox]:checked + label {
+    background-color: #000;
+    transition-delay: 0.5s;
+}
+.size-toggle input[type=checkbox]:checked + label:before {
+  transform: translateX(25px);
+  background-color: #fff;
+}
+
+.size-toggle label {
+  margin-bottom: 0px;
+  display: flex;
+  width: 50px;
+  height: 25px;
+  border: 3px solid;
+  border-radius: 99em;
+  position: relative;
+  transition: transform 0.75s ease-in-out;
+  transform-origin: 50% 50%;
+  cursor: pointer;
+}
+.size-toggle label:before {
+  transition: transform 0.75s ease;
+  transition-delay: 0.5s;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #000;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+}
