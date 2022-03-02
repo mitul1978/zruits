@@ -87,7 +87,29 @@
                                                    @endif
                                                 @endforeach
                                             </div>
-                                            <a href="#" class="size-guide"><i class="icon-th-list"></i>size guide</a>
+                                            <a href="#" class="size-guide" data-toggle="modal" data-target="#exampleModal"><i class="icon-th-list"></i>Size Guide</a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Size Guide</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body p-4">
+                                                            <div class="size-toggle mb-2 d-flex justify-content-center align-items-center">
+                                                              <span class="mr-1 font-weight-bold">IN</span>
+                                                                <input type="checkbox" id="toggle"/>
+                                                                <label for="toggle"></label>
+                                                                <span class="ml-3 font-weight-bold">CM</span>	
+                                                            </div>
+                                                            <img class="sg-img" src="http://localhost:8000/images/products/size-cm.jpg">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @else
                                           <div class="label fw-400 mr-4">Out of Stock</div>
                                         @endif     
