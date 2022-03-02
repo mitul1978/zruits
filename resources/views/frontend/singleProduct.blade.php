@@ -98,7 +98,6 @@
                                             <div class="product-price stockLabel" style="display:none;" id="dispalyAlert{{$size->id}}">
                                                 <small>Only {{$size->stock_qty}} Left In stock</small>    
                                             </div>
-                                            @else if()
                                            @endif
                                         @endforeach
                                     @endif                                       
