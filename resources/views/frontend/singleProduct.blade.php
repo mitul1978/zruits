@@ -100,10 +100,10 @@
                                                         </div>
                                                         <div class="modal-body p-4">
                                                             <div class="size-toggle mb-2 d-flex justify-content-center align-items-center">
-                                                              <span class="mr-1 font-weight-bold">IN</span>
+                                                              <span class="mr-0 text-dark">IN</span>
                                                                 <input type="checkbox" id="toggle"/>
                                                                 <label for="toggle"></label>
-                                                                <span class="ml-3 font-weight-bold">CM</span>	
+                                                                <span class="ml-2 text-dark">CM</span>	
                                                             </div>
                                                             <img class="sg-img" src="http://localhost:8000/images/products/size-cm.jpg">
                                                         </div>
