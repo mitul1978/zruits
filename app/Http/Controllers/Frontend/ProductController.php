@@ -11,7 +11,7 @@ use App\Models\Size;
 use App\Models\Fabric;
 use App\Models\Color;
 use App\Models\ColorPalette;
-
+use App\Models\SizeChart;
 Use Alert;
 use App\Models\Orientation;
 use DB;
@@ -80,13 +80,14 @@ class ProductController extends Controller
     {   
         $slug = $request->slug;
         $product = Product::withCount('user_wishlist')->where('slug',$slug)->first();
+        $sizeCharts = SizeChart::where('status',1)->take(2)->get();
         // $color_palette_products = Product::with('color_palettes')->whereHas('color_palettes',function($query) use($product){
         //     $query->where('color_palette_id',$product->color_palettes->pluck('id')->toArray());
         // })->get();
         if($request->ajax())
         {   
             $colorId =  $request->colorId;
-            return view('frontend.singleProduct', ['product'=> $product,'colorId' => $colorId]); 
+            return view('frontend.singleProduct', ['product'=> $product,'colorId' => $colorId,'sizeCharts' => $sizeCharts]); 
             // $html = '';
 
             // $availableColors = $product->sizesstock()->groupBy('color_id')->get();
@@ -229,7 +230,7 @@ class ProductController extends Controller
                 $relatedProducts = Product::whereIn('id',$relatedProducts)->where('status',1)->get();
             }
            
-            return view('frontend.product',compact('product','relatedProducts'));
+            return view('frontend.product',compact('product','relatedProducts','sizeCharts'));
         }       
     }
 

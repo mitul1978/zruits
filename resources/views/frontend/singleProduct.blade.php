@@ -105,7 +105,11 @@
                                                                 <label for="toggle"></label>
                                                                 <span class="ml-3 font-weight-bold">CM</span>	
                                                             </div>
-                                                            <img class="sg-img" src="{{URL::asset('images/products/size-cm.jpg')}}">
+                                                            @if($sizeCharts && $sizeCharts->isNotEmpty())
+                                                              @foreach($sizeCharts as $chart)
+                                                                 <img class="sg-img" src="{{URL::asset($chart->image)}}">
+                                                              @endforeach
+                                                            @endif                                                            
                                                         </div>
                                                     </div>
                                                 </div>
