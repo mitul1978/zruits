@@ -105,7 +105,7 @@
                                                                 <label for="toggle"></label>
                                                                 <span class="ml-2 text-dark">CM</span>	
                                                             </div>
-                                                            <img class="sg-img" src="http://localhost:8000/images/products/size-cm.jpg">
+                                                            <img class="sg-img" src="{{URL::asset('images/products/size-cm.jpg')}}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -120,7 +120,6 @@
                                             <div class="product-price stockLabel" style="display:none;" id="dispalyAlert{{$size->id}}">
                                                 <small>Only {{$size->stock_qty}} Left In stock</small>    
                                             </div>
-                                            @else if()
                                            @endif
                                         @endforeach
                                     @endif                                       

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\User;
 use Str;
+use Illuminate\Support\Facades\Mail;
+use Alert;
 class UsersController extends Controller
 {
     /**
@@ -150,5 +152,34 @@ class UsersController extends Controller
             request()->session()->flash('error','There is an error while deleting users');
         }
         return redirect()->route('users.index');
+    }
+
+    public function resetPassword(Request $request){
+        $request->validate([
+            'email' => ['required'],
+            'password' => ['required'],
+            'password_confirmation' => ['same:password'],
+        ]);
+
+        User::where('email',$request->email)->update(['password'=> Hash::make($request->password)]);
+         
+        $user = User::where('email',$request->email)->first();
+        $email = $user->email;
+        
+        Mail::send('mail.password-change-cus', ['user' => $user], function ($message) use ($email) {
+            $message->to($email);
+            $message->subject('Password Changed');
+        });
+       
+        Alert::success("Password changed successfully");
+
+        if($user->role == 'user')
+        {  
+            return view('frontend.login');
+        }
+        else
+        {
+            return view('auth.login');
+        }
     }
 }

@@ -47,7 +47,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="{{route('user.login')}}">Already have an account? Login!</a>
+                    <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
                   </div>
                 </div>
               </div>
