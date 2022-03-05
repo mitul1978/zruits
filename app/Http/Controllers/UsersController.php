@@ -7,6 +7,9 @@ use App\User;
 use Str;
 use Illuminate\Support\Facades\Mail;
 use Alert;
+use App\Exports\UsersExport;
+// use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 class UsersController extends Controller
 {
     /**
@@ -181,5 +184,9 @@ class UsersController extends Controller
         {
             return view('auth.login');
         }
+    }
+
+    public function export(){
+        return Excel::download(new UsersExport, 'UsersData.xlsx');
     }
 }

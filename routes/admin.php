@@ -18,6 +18,9 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     // user route
     Route::resource('users','UsersController');
 
+    //export User
+    Route::get('exportUsers', 'UsersController@export');
+
     //distributor
     Route::resource('distributor','DistributorController');
 
@@ -126,7 +129,13 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 
     Route::get('/invoice/{order_id}','InvoiceController@invoice')->name('invoice')->middleware('admin');
 
-    Route::resource('/contact','ContactController');
-    Route::resource('/subscription','SubscriptionController');
+    Route::resource('/contact','ContactController');    
+    //export Contacts
+    Route::get('exportContacts', 'ContactController@export');
+
+    Route::resource('/subscription','SubscriptionController');    
+    //export Newsletter Subscribers
+    Route::get('exportSubscribers', 'HomeController@export');
+
 
 });

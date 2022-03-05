@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use Illuminate\Support\Str;
+use App\Exports\ContactsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ContactController extends Controller
 {
@@ -192,5 +194,9 @@ class ContactController extends Controller
         //     request()->session()->flash('error','Error while deleting category');
         // }
         // return redirect()->route('category.index');
+    }
+
+    public function export(){
+        return Excel::download(new ContactsExport, 'ContactsData.xlsx');
     }
 }

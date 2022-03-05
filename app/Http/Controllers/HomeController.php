@@ -12,6 +12,8 @@ use App\Rules\MatchOldPassword;
 use App\Models\Category;
 use Hash,Str,View;
 use Illuminate\Support\Facades\Mail;
+use App\Exports\SubscribersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HomeController extends Controller
 {
@@ -261,5 +263,9 @@ class HomeController extends Controller
         });
 
         return redirect()->route('user')->with('success','Password successfully changed');
+    }
+
+    public function export(){
+        return Excel::download(new SubscribersExport, 'SubscribersData.xlsx');
     }
 }

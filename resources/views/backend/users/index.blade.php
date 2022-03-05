@@ -12,7 +12,12 @@
       <h6 class="m-0 font-weight-bold text-primary float-left">Users List</h6>
       <a href="{{route('users.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add User</a>
     </div>
+    <div class="card-header py-3">
+      <a href="{{url('admin/exportUsers')}}" class="btn btn-primary btn-sm float-left" data-toggle="tooltip" data-placement="bottom" title="Export Data"><i class="fas fa-file"></i> Export Data</a>
+    </div>
+
     <div class="card-body">
+      <div id="Bfrtip" class="Bfrtip"></div>
       <div class="table-responsive">
         <table class="table table-bordered" id="user-dataTable" width="100%" cellspacing="0">
           <thead>
@@ -107,21 +112,30 @@
 
   <!-- Page level custom scripts -->
   <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
-  <script>
+  <script type="text/javascript">
 
-      $('#user-dataTable').DataTable( {
-            "columnDefs":[
+      $('#user-dataTable').DataTable({
+          // dom: 'Bfrtip',
+          // buttons: [
+          //     'excel',
+          //   ],
+          "columnDefs":[
                 {
                     "orderable":false,
                     "targets":[6,7]
                 }
-            ]
-        } );
+          ]
+          // dom: 'Bfrtip',
+          // columnDefs: [{
+          //        "type": "date-uk", "orderable":false
+          //   }],
+          // buttons: [
+          //       'excelHtml5'
+          //   ]
+        });
 
         // Sweet alert
-
         function deleteData(id){
-
         }
   </script>
   <script>
