@@ -2,7 +2,7 @@
 <div class="toolbox">
     <div class="toolbox-left">
         <div class="toolbox-info">
-            Showing <span>{{@$products->count() > 9 ? 9 : @$products->count()}}  of {{@$products->count()}}</span> Products
+            Showing <span>{{@$products->count() > 9 ? 9 : @$products->count()}}  of {{@$products->total()}}</span> Products
         </div><!-- End .toolbox-info -->
     </div><!-- End .toolbox-left -->
 
@@ -81,7 +81,7 @@
 
 <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
-        <span style="float:right">{{$products->links()}}</span>
+        <span style="float:right">{!! $products->links() !!}</span>
         {{-- <li class="page-item disabled">
             <a class="page-link page-link-prev" href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
                 <span aria-hidden="true"><i class="icon-long-arrow-left"></i></span>Prev

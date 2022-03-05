@@ -283,6 +283,22 @@
                 var id = $(this).data('id');
                 $('.stockLabel').hide();
                 $('#dispalyAlert'+ id).show();
-           });              
+           });    
+
+           $(document).on('click','#toggle', function()
+           {  
+              var stats = $(this).is(':checked');
+              console.log(stats);
+              if(stats)
+              {   
+                  $('#sizeImage0').hide();
+                  $('#sizeImage1').show();
+              }
+              else
+              {
+                  $('#sizeImage1').hide();
+                  $('#sizeImage0').show();
+              }
+           });           
     </script>  
 @endsection

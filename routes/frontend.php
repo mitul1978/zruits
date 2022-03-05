@@ -28,7 +28,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     // Route::post('/save_careers_page_form', 'HomeController@save_careers_page_form')->name('save_careers_page_form');
 
     // Products routes
-    Route::get('products', 'ProductController@products')->name('products');
+    Route::match(array('GET','POST'),'products', 'ProductController@products')->name('products');
     Route::get('product/{slug}', 'ProductController@product')->name('product');   
     Route::get('/collabration','CartController@collabration')->name('collabration');
     Route::get('/single','HomeController@getProduct');

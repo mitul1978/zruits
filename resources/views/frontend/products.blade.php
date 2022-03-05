@@ -445,7 +445,107 @@
                     });              
                });
 
-               $('.spinner-wrapper').hide();
+               $(document).on('click', '.pagination a', function(ev) {
+                   
+                    ev.preventDefault();
+                    $('.spinner-wrapper').show();
+                    var url = $(this).attr('href');   
+                
+                    var sizes = [];
+                    var colors = [];
+                    var fabrics = [];
+                    var orientations = [];
+                    var price = [];
+                    var pageType = $('#pageType').val();
+                    var min = 0;
+                    var max = "{{@$maxValue}}";
+                    var flag = 0;
+
+                    var value = $('.filterBySort').val(); 
+
+                    if(value != '')
+                    {
+                        $("#slider-range").slider({
+                            range: true,
+                            min: 0,
+                            max: {{$maxValue}},
+                            values: [ 0, {{$maxValue}} ]
+                        });   
+                        $( "#amount" ).val( "₹" + 0 + " - ₹" + {{$maxValue}} ); 
+
+                        flag = 1;
+                    }
+                    else
+                    {
+                        min = $("#slider-range").slider("values")[0];;
+                        max = $("#slider-range").slider("values")[1];
+                    }                  
+
+                    $('*[id*=size-]:visible').each(function() 
+                    {   
+                        console.log($(this).is(':checked'));                    
+                        if($(this).is(':checked'))
+                        {  
+                            sizes.push( $(this).data('id'));
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    $('*[id*=color-]').each(function() 
+                    {       
+                        var isChecked = $(this).is(':checked')?true:false; 
+                        console.log(isChecked);                 
+                        if(isChecked)
+                        {  
+                            colors.push($(this).val());
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    $('*[id*=fabric-]:visible').each(function() 
+                    {   
+                        console.log('fabric' ,$(this).is(':checked'));                    
+                        if($(this).is(':checked'))
+                        {  
+                            fabrics.push( $(this).data('id'));
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    $('*[id*=orientation-]:visible').each(function() 
+                    {   
+                        console.log('o',$(this).is(':checked'));                    
+                        if($(this).is(':checked'))
+                        {  
+                            orientations.push( $(this).data('id'));
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    $.ajax({
+                        url:url,
+                        data:{
+                            '_token':"{{ csrf_token() }}",
+                            sizes:sizes,
+                            colors:colors,
+                            fabrics:fabrics,
+                            orientations:orientations,
+                            pageType:pageType,
+                            value:value,
+                            min:min,
+                            max:max,
+                            flag:flag
+                        },
+                        type:"POST",
+                        success:function(response)
+                        {  
+                           $('#productListings').empty().append(response);
+                           $('.spinner-wrapper').hide();
+                        }
+                    }); 
+                }); 
+
+                                
           });
         </script>
 @endsection

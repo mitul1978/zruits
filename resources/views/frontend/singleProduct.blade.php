@@ -106,8 +106,12 @@
                                                                 <span class="ml-2 text-dark">CM</span>	
                                                             </div>
                                                             @if($sizeCharts && $sizeCharts->isNotEmpty())
-                                                              @foreach($sizeCharts as $chart)
-                                                                 <img class="sg-img" src="{{URL::asset($chart->image)}}">
+                                                              @foreach($sizeCharts as $k => $chart)
+                                                                 @if($k == 0)
+                                                                   <img class="sg-img" id="sizeImage{{$k}}"  src="{{URL::asset($chart->image)}}">
+                                                                 @else
+                                                                   <img class="sg-img" id="sizeImage{{$k}}" style="display:none;" src="{{URL::asset($chart->image)}}">
+                                                                 @endif
                                                               @endforeach
                                                             @endif                                                            
                                                         </div>

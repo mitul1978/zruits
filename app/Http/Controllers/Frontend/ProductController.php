@@ -24,6 +24,7 @@ class ProductController extends Controller
             $requestData = $request->all();
             $keyword  = $request->get('search');
             $flag = $request->flag ? $request->flag:null;
+            $value = isset($request->value) ? $request->value : null;
 
             // $laminates=Laminate::where('status','1')->get();
             // $applications=Application::where('status','1')->get();
@@ -64,8 +65,9 @@ class ProductController extends Controller
             $orientations = Orientation::where('status',1)->get();  
 
             if ($request->ajax()) 
-            {
-                return response()->json($products);
+            {   
+                return view('frontend.productlisting',['products'=> $products,'value' => $value]);
+                //return response()->json($products);
             }
             else
             {  
@@ -249,37 +251,7 @@ class ProductController extends Controller
         $min = isset($request->min) ? $request->min : null;
         $max = isset($request->max) ? $request->max : null;
 
-        //$flag = $request->flag ? $request->flag:null;
-
-        // $laminates=Laminate::where('status','1')->get();
-        // $applications=Application::where('status','1')->get();
-        // $textures=Texture::where('status','1')->get();
-        // $selected_lam=[];
-        // $selected_apps=[];
-        // $selected_text=[];
-
-        // if(count( $requestData)){
-        //     $selected_lam = @$requestData['laminates'] ? explode(',',$requestData['laminates'] ) : [];
-        //     $selected_apps = @$requestData['applications'] ? explode(',',$requestData['applications'] ) : [];
-        //     $selected_text = @$requestData['textures'] ? explode(',',$requestData['textures'] ) : [];
-        // }
-
-
         $products = Product::withCount('user_wishlist');
-        // ->where(function($r) use( $selected_apps){
-        //     if(count($selected_apps))
-        //     $r->whereHas('applications',function($application) use( $selected_apps){
-        //         if(count($selected_apps))
-        //         $application->whereIn('name', $selected_apps);
-        //     });
-
-        // })        
-
-        // ->where(function($t) use( $keyword){
-        //     if(@$keyword)
-        //     $t->where('name', 'LIKE', "%$keyword%")
-        //     ->orWhere('slug', 'LIKE', "%$keyword%");
-        // });
 
         if($flag == 1)
         {   
