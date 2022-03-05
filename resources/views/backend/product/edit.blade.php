@@ -264,7 +264,7 @@
           @if(count($product->sizesstock) > 0 )
             @foreach($product->sizesstock as $key => $stock)
                  <div id="multiple" class="multiple{{$stock->id}}">
-                  <a class="btn btn-sm btn-danger p-1 " href="javascript:void(0);" onClick="deleteVariationFunc({{$stock->id}});">Delete</a>
+                  <!-- <a class="btn btn-sm btn-danger p-1 " href="javascript:void(0);" onClick="deleteVariationFunc({{$stock->id}});">Delete</a> -->
                     <div class="row">
                         <div class="col-md-4">
                           <div class="form-group">
@@ -290,7 +290,7 @@
                           </div>
                         </div>
                       
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                           <div class="form-group">
                               <label for="stock_quantities">Stock Quantity <span class="text-danger">*</span></label>
                               <input id="stock_quantities[]" type="number" name="stock_quantities[]" min="0" placeholder="Enter Stock quantity"  value="{{ old('stock_quantities') ? old('stock_quantities') : $stock->stock_qty}}" class="form-control" required>
@@ -298,7 +298,14 @@
                                 <span class="text-danger">{{$message}}</span>
                               @enderror
                           </div>
-                        </div>      
+                        </div>
+
+                        <div class="col-md-1">
+                          <div class="form-group" style="display: grid;">
+                              <label for="stock_quantities">Action</label>
+                              <a class="btn btn-sm btn-danger p-1 " href="javascript:void(0);" onClick="deleteVariationFunc({{$stock->id}});">Delete</a>      
+                          </div>
+                        </div>
                      </div>     
                   </div>
             @endforeach 
