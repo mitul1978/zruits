@@ -349,104 +349,16 @@
                $(document).on('click','.customFilterData', function()
                {  
                     $('.spinner-wrapper').show();
-                    var sizes = [];
-                    var colors = [];
-                    var fabrics = [];
-                    var orientations = [];
-                    var price = [];
-                    var pageType = $('#pageType').val();
-
-                    $('*[id*=size-]:visible').each(function() 
-                    {   
-                        console.log($(this).is(':checked'));                    
-                        if($(this).is(':checked'))
-                        {  
-                            sizes.push( $(this).data('id'));
-                            //$(this).trigger("change");
-                        }
-                    });
-
-                    $('*[id*=color-]').each(function() 
-                    {       
-                        var isChecked = $(this).is(':checked')?true:false; 
-                        console.log(isChecked);                 
-                        if(isChecked)
-                        {  
-                            colors.push($(this).val());
-                            //$(this).trigger("change");
-                        }
-                    });
-
-                    $('*[id*=fabric-]:visible').each(function() 
-                    {   
-                        console.log('fabric' ,$(this).is(':checked'));                    
-                        if($(this).is(':checked'))
-                        {  
-                            fabrics.push( $(this).data('id'));
-                            //$(this).trigger("change");
-                        }
-                    });
-
-                    $('*[id*=orientation-]:visible').each(function() 
-                    {   
-                        console.log('o',$(this).is(':checked'));                    
-                        if($(this).is(':checked'))
-                        {  
-                            orientations.push( $(this).data('id'));
-                            //$(this).trigger("change");
-                        }
-                    });
-
-                    $.ajax({
-                            url:"/filter-product",
-                            data:{
-                                sizes:sizes,
-                                colors:colors,
-                                fabrics:fabrics,
-                                orientations:orientations,
-                                pageType:pageType
-                            },
-                            type:"POST",
-                            success:function(response)
-                            {  
-                               $('#productListings').empty().append(response);
-                               $('.spinner-wrapper').hide();
-                            }
-                    });              
+                    filterData();                             
                });
 
                $(document).on('change','.filterBySort', function()
                {  
                    $('.spinner-wrapper').show();
-                   var value = $(this).val();                   
-                   var flag = 1;
-                   var pageType = $('#pageType').val();
-                   $("#slider-range").slider({
-                        range: true,
-                        min: 0,
-                        max: {{$maxValue}},
-                        values: [ 0, {{$maxValue}} ]
-                    });   
-                    $( "#amount" ).val( "₹" + 0 + " - ₹" + {{$maxValue}} ); 
-                         //    $( "#amount" ).val( "₹" + $( "#slider-range" ).slider( "values", 0 ) + " - ₹" + $( "#slider-range" ).slider( "values", 1 ) );
-                    $.ajax({
-                        url:"/filter-product",
-                        data:{
-                           value:value,
-                           flag:flag,
-                           pageType:pageType
-                        },
-                        type:"POST",
-                        success:function(response)
-                        {  
-                           $('#productListings').empty().append(response);
-                           $('.spinner-wrapper').hide();
-                        }
-                    });              
+                   filterData();           
                });
 
-               $(document).on('click', '.pagination a', function(ev) {
-                   
+               $(document).on('click', '.pagination a', function(ev) {                   
                     ev.preventDefault();
                     $('.spinner-wrapper').show();
                     var url = $(this).attr('href');   
@@ -460,26 +372,7 @@
                     var min = 0;
                     var max = "{{@$maxValue}}";
                     var flag = 0;
-
-                    var value = $('.filterBySort').val(); 
-
-                    if(value != '')
-                    {
-                        $("#slider-range").slider({
-                            range: true,
-                            min: 0,
-                            max: {{$maxValue}},
-                            values: [ 0, {{$maxValue}} ]
-                        });   
-                        $( "#amount" ).val( "₹" + 0 + " - ₹" + {{$maxValue}} ); 
-
-                        flag = 1;
-                    }
-                    else
-                    {
-                        min = $("#slider-range").slider("values")[0];;
-                        max = $("#slider-range").slider("values")[1];
-                    }                  
+                    var value = $('.filterBySort').val();                  
 
                     $('*[id*=size-]:visible').each(function() 
                     {   
@@ -521,6 +414,25 @@
                             //$(this).trigger("change");
                         }
                     });
+
+                    if(value != '')
+                    {
+                        $("#slider-range").slider({
+                            range: true,
+                            min: 0,
+                            max: {{$maxValue}},
+                            values: [ 0, {{$maxValue}} ]
+                        });   
+                        
+                        $( "#amount" ).val( "₹" + 0 + " - ₹" + {{$maxValue}} ); 
+
+                        flag = 1;
+                    }
+                    else
+                    {
+                        min = $("#slider-range").slider("values")[0];;
+                        max = $("#slider-range").slider("values")[1];
+                    } 
 
                     $.ajax({
                         url:url,
@@ -546,6 +458,97 @@
                 }); 
 
                                 
+             function filterData()
+             {
+                    var sizes = [];
+                    var colors = [];
+                    var fabrics = [];
+                    var orientations = [];
+                    var pageType = $('#pageType').val();
+                    var value = $('.filterBySort').val(); 
+                    var min = 0;
+                    var max = "{{@$maxValue}}";
+
+                    $('*[id*=size-]:visible').each(function() 
+                    {   
+                        console.log($(this).is(':checked'));                    
+                        if($(this).is(':checked'))
+                        {  
+                            sizes.push( $(this).data('id'));
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    $('*[id*=color-]').each(function() 
+                    {       
+                        var isChecked = $(this).is(':checked')?true:false; 
+                        console.log(isChecked);                 
+                        if(isChecked)
+                        {  
+                            colors.push($(this).val());
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    $('*[id*=fabric-]:visible').each(function() 
+                    {   
+                        console.log('fabric' ,$(this).is(':checked'));                    
+                        if($(this).is(':checked'))
+                        {  
+                            fabrics.push( $(this).data('id'));
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    $('*[id*=orientation-]:visible').each(function() 
+                    {   
+                        console.log('o',$(this).is(':checked'));                    
+                        if($(this).is(':checked'))
+                        {  
+                            orientations.push( $(this).data('id'));
+                            //$(this).trigger("change");
+                        }
+                    });
+
+                    if(value != '')
+                    {
+                        $("#slider-range").slider({
+                            range: true,
+                            min: 0,
+                            max: {{$maxValue}},
+                            values: [ 0, {{$maxValue}} ]
+                        });   
+
+                        $( "#amount" ).val( "₹" + 0 + " - ₹" + {{$maxValue}} ); 
+                        // flag = 1;
+                    }
+                    else
+                    {
+                        min = $("#slider-range").slider("values")[0];;
+                        max = $("#slider-range").slider("values")[1];
+                    }   
+
+                    $.ajax({
+                            url:"/filter-product",
+                            data:{
+                                sizes:sizes,
+                                colors:colors,
+                                fabrics:fabrics,
+                                orientations:orientations,
+                                pageType:pageType,
+                                value:value,
+                                min:min,
+                                max:max,
+                            },
+                            type:"POST",
+                            success:function(response)
+                            {  
+                               $('#productListings').empty().append(response);
+                               $('.spinner-wrapper').hide();
+                            }
+                    });    
+             }
+          
           });
         </script>
 @endsection

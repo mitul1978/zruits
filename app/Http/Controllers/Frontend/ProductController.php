@@ -57,7 +57,7 @@ class ProductController extends Controller
                 ->orWhere('slug', 'LIKE', "%$keyword%");
             })
 
-            ->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);
+            ->where('status','1')->where('is_giftcard',0)->latest()->paginate(2);
 
             $sizes = Size::where('status',1)->get();
             $colors = Color::where('status',1)->get();
@@ -253,37 +253,8 @@ class ProductController extends Controller
 
         $products = Product::withCount('user_wishlist');
 
-        if($flag == 1)
-        {   
-            if($pageType != 0)
-            {
-                $products->where('category_id',$pageType);
-            }
-
-            if($value == 'latest')
-            {
-                $products =  $products->where('status','1')->where('is_giftcard',0)->latest()->paginate(9); 
-            }
-            else if($value == 'discount')
-            {
-                $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('discount','DESC')->paginate(9); 
-            }
-            else if($value == 'high')
-            {
-                $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('price','DESC')->paginate(9); 
-            }
-            else if($value == 'low')
-            {
-                $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('price','ASC')->paginate(9); 
-            }           
-        }
-        else
-        {   
-                if($pageType != 0)
-                {
-                    $products->where('category_id',$pageType);
-                }
-                
+        // if($flag == 1)
+        // {              
                 if($sizes)
                 {
                     $products->where(function($r) use( $sizes)
@@ -327,8 +298,84 @@ class ProductController extends Controller
                     $products->where('price', '<=', $max);
                 }
 
-                $products =  $products->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);    
-        }        
+                if($pageType != 0)
+                {
+                    $products->where('category_id',$pageType);
+                }
+    
+                if($value == 'latest')
+                {
+                    $products =  $products->where('status','1')->where('is_giftcard',0)->latest()->paginate(2); 
+                }
+                else if($value == 'discount')
+                {
+                    $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('discount','DESC')->paginate(9); 
+                }
+                else if($value == 'high')
+                {
+                    $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('price','DESC')->paginate(9); 
+                }
+                else if($value == 'low')
+                {
+                    $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('price','ASC')->paginate(9); 
+                }  
+                else
+                {
+                    $products =  $products->where('status','1')->where('is_giftcard',0)->paginate(9); 
+                }
+        // }
+        // else
+        // {   
+        //         if($pageType != 0)
+        //         {
+        //             $products->where('category_id',$pageType);
+        //         }
+                
+        //         if($sizes)
+        //         {
+        //             $products->where(function($r) use( $sizes)
+        //             {
+        //                 $r->whereHas('sizesstock',function($size) use( $sizes)
+        //                 {
+        //                     $size->whereIn('size_id', $sizes);
+        //                 });   
+        //             });
+        //         }
+
+        //         if($colors)
+        //         {
+        //             $products->where(function($r) use( $colors)
+        //             {
+        //                 $r->whereHas('sizesstock',function($color) use( $colors)
+        //                 {
+        //                     $color->whereIn('color_id', $colors);
+        //                 });   
+        //             });
+        //         }
+
+        //         if($fabric)
+        //         {
+        //             $products->whereIn('fabric',$fabric);
+        //         }
+
+        //         if($orientations)
+        //         {  
+        //             $orientations = serialize($orientations);
+        //             $products->where('orientation','like', '%' . $orientations .'%' );
+        //         }
+
+        //         if($min)
+        //         {
+        //             $products->where('price', '>=', $min);
+        //         }
+
+        //         if($max)
+        //         {
+        //             $products->where('price', '<=', $max);
+        //         }
+
+        //         $products =  $products->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);    
+        // }        
 
       
       

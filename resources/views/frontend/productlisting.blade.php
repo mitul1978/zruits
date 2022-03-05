@@ -11,6 +11,7 @@
             <label for="sortby">Sort by:</label>
             <div class="select-custom">
                 <select name="sortby" id="sortby" class="form-control filterBySort">
+                    <option value="">Select Options</option>
                     <option value="latest" {{isset($value) && $value=='latest' ? 'selected':''}}>What's New</option>
                     <option value="discount"  {{isset($value) && $value=='discount' ? 'selected':''}}>Better Discount</option>
                     <option value="high"  {{isset($value) && $value=='high' ? 'selected':''}}>Price: High to Low</option>
