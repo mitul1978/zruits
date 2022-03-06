@@ -425,6 +425,7 @@
 
     $(document).ready(function() 
     {  
+      var count = 1;
       $('#addNewProduct').on('click',function(e)
       {
         var copyContent = $("#multiple").clone();
