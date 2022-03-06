@@ -56,7 +56,7 @@ class BannerController extends Controller
         if(@$request->photo)
         {
             $fileName = 'images/banners/'.rand().time().'.'.$request->photo->getClientOriginalExtension();
-            $request->photo->move(base_path('public/images/banners/'), $fileName);
+            $request->photo->move(public_path('/images/banners/'), $fileName);
             $data['photo']= $fileName;
         }
 
@@ -125,7 +125,7 @@ class BannerController extends Controller
         if(@$request->photo)
         {
             $fileName = 'images/banners/'.rand().time().'.'.$request->photo->getClientOriginalExtension();
-            $request->photo->move(base_path('public/images/banners/'), $fileName);
+            $request->photo->move(public_path('/images/banners/'), $fileName);
             $data['photo']= $fileName;
         }
 

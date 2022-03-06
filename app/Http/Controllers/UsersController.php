@@ -57,7 +57,7 @@ class UsersController extends Controller
 
         if(@$request->photo){
             $fileName = Str::slug($request->name).time().'.'.$request->photo->getClientOriginalExtension();
-            $request->photo->move(base_path('public/images/users/'), $fileName);
+            $request->photo->move(public_path('/images/users/'), $fileName);
             $data['photo']= $fileName;
         }
 

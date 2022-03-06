@@ -40,7 +40,7 @@ class SizeChartController extends Controller
         if($request->image)
         {
             $fileName = 'images/charts/'.rand().time().'.'.$request->image->getClientOriginalExtension();
-            $request->image->move(base_path('public/images/charts/'), $fileName);
+            $request->image->move(public_path('/images/charts/'), $fileName);
             $data['image']= $fileName;
         }       
         SizeChart::create($data);
@@ -65,9 +65,9 @@ class SizeChartController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function edit(SizeChart $sizeChart)
+    public function edit(SizeChart $sizeChart,$id)
     { 
-        $sizeChart = SizeChart::find($sizeChart->id);
+        $sizeChart = SizeChart::find($id);
         return view('backend.sizescharts.edit',compact('sizeChart'));
     }
 
@@ -86,7 +86,7 @@ class SizeChartController extends Controller
         if($request->image)
         {
             $fileName = 'images/charts/'.rand().time().'.'.$request->image->getClientOriginalExtension();
-            $request->image->move(base_path('public/images/charts/'), $fileName);
+            $request->image->move(public_path('/images/charts/'), $fileName);
             $data['image']= $fileName;
         }   
 
