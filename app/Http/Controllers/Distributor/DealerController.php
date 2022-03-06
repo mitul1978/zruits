@@ -72,7 +72,7 @@ class DealerController extends Controller
 
         if(@$request->photo){
             $fileName = Str::slug($request->name).time().'.'.$request->photo->getClientOriginalExtension();
-            $request->photo->move(base_path('public/images/dealers/'), $fileName);
+            $request->photo->move(public_path('/images/dealers/'), $fileName);
             $data['photo']= $fileName;
         }
 
@@ -153,7 +153,7 @@ class DealerController extends Controller
 
         if(@$request->photo){
             $fileName = rand().time().'.'.$request->photo->getClientOriginalExtension();
-            $request->photo->move(base_path('public/images/dealers/'), $fileName);
+            $request->photo->move(public_path('/images/dealers/'), $fileName);
             $data['photo']= $fileName;
         }
         $data['distributor_id']=Auth::guard('distributor')->user()->id;
