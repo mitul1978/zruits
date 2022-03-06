@@ -93,6 +93,13 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::post('/product/deleteImage','ProductController@deleteImage');
     Route::post('/product/deleteVariation','ProductController@deleteVariation');
 
+    Route::get('/importProducts','ProductController@importProducts');
+    Route::get('/importProductImages','ProductController@importProductImages');
+    Route::get('/importProductStocks','ProductController@importProductStocks');
+
+    Route::post('/importProducts','ProductController@storeImportProducts');
+    Route::post('/importProductImages','ProductController@storeImportProductImages');
+    Route::post('/importProductStocks','ProductController@storeImportProductStocks');
 
 
     // Ajax for sub category

@@ -67,6 +67,9 @@
                 <h6 class="collapse-header">Product Options:</h6>
                 <a class="collapse-item" href="{{route('product.index')}}">Products</a>
                 <a class="collapse-item" href="{{route('product.create')}}">Add Product</a>
+                <a class="collapse-item" href="{{url('admin/importProducts')}}">Import Products</a>                
+                <a class="collapse-item" href="{{url('admin/importProductImages')}}">Import Product Images</a>
+                <a class="collapse-item" href="{{url('admin/importProductStocks')}}">Import Product Stocks</a>
               </div>
             </div>
         </li>

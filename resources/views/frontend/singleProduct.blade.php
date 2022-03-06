@@ -53,7 +53,7 @@
                                         {!! $product->title !!}
                                     </div><!-- End .product-content -->
                                      <?php
-                                        $availableColors = $product->images()->groupBy('color_id')->get();
+                                        $availableColors = $product->sizesstock()->groupBy('color_id')->get();
                                         $availableSizes = $product->sizesstock()->where('color_id',$colorId)->groupBy('size_id')->get();
                                      ?>
                                     <div class="table-cell radio-cell">
