@@ -171,7 +171,7 @@ class ProductController extends Controller
                         {                 
                                 $icon=mt_rand();
                                 $filename=$icon.$image->getClientOriginalName();
-                                $image->move(base_path('public/images/products'), $filename); 
+                                $image->move(public_path('/images/products'), $filename); 
                                 $prodImage = new ProductImage;
                                 $prodImage->product_id=$status->id;
                                 $prodImage->color_id = $color;
@@ -391,7 +391,7 @@ class ProductController extends Controller
                                 {                 
                                         $icon=mt_rand();
                                         $filename=$icon.$image->getClientOriginalName();
-                                        $image->move(base_path('public/images/products'), $filename); 
+                                        $image->move(public_path('/images/products'), $filename); 
                                         $prodImage = new ProductImage;
                                         $prodImage->product_id=$id;
                                         $prodImage->color_id = $color;
@@ -646,7 +646,7 @@ class ProductController extends Controller
                 $baseName = $baseName['basename'];
                 $icon = mt_rand();
                 $filename = $icon . $baseName;
-                File::copy($v[2], public_path('images/products/'.$filename));  
+                File::copy($v[2], public_path('/images/products/'.$filename));  
 
                 $data['image']       = '/images/products/'.$filename;                
                 ProductImage::create($data);

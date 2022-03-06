@@ -57,7 +57,7 @@ class ProductController extends Controller
                 ->orWhere('slug', 'LIKE', "%$keyword%");
             })
 
-            ->where('status','1')->where('is_giftcard',0)->latest()->paginate(2);
+            ->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);
 
             $sizes = Size::where('status',1)->get();
             $colors = Color::where('status',1)->get();
@@ -305,7 +305,7 @@ class ProductController extends Controller
     
                 if($value == 'latest')
                 {
-                    $products =  $products->where('status','1')->where('is_giftcard',0)->latest()->paginate(2); 
+                    $products =  $products->where('status','1')->where('is_giftcard',0)->latest()->paginate(9); 
                 }
                 else if($value == 'discount')
                 {

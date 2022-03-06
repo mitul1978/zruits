@@ -3,7 +3,7 @@
 @section('main-content')
 
 <div class="card">
-    <h5 class="card-header">Edit Sixe Chart</h5>
+    <h5 class="card-header">Edit Size Chart</h5>
     <div class="card-body">
       <form method="post" action="{{route('sizescharts.update',$sizeChart->id)}}">
         @csrf
@@ -18,7 +18,7 @@
         </div>  
 
         <div class="form-group">
-          <a target="_blank" href="{{ asset($category->photo) }}">
+          <a target="_blank" href="{{ asset($sizeChart->image) }}">
             <img src="{{ asset($sizeChart->image) }}" class="img-fluid" style="max-width:200px" alt="{{$sizeChart->image}}">
           </a>
         </div> 

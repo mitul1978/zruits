@@ -63,7 +63,7 @@ class CategoryController extends Controller
         if($request->photo)
         {
             $fileName = 'images/category/'.rand().time().'.'.$request->photo->getClientOriginalExtension();
-            $request->photo->move(base_path('public/images/category/'), $fileName);
+            $request->photo->move(public_path('/images/category/'), $fileName);
             $data['photo']= $fileName;
         }
 
@@ -145,7 +145,7 @@ class CategoryController extends Controller
             if(@$request->photo)
             {
                 $fileName = 'images/category/'.rand().time().'.'.$request->photo->getClientOriginalExtension();
-                $request->photo->move(base_path('public/images/category/'), $fileName);
+                $request->photo->move(public_path('/images/category/'), $fileName);
                 $data['photo']= $fileName;
             }
 

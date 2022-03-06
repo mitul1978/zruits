@@ -401,7 +401,7 @@ class HomeController extends Controller
 
         if ($request->hasFile('resume')) {
             $filename=Str::slug($requestData['name']).$request->file('resume')->getClientOriginalName();
-            $request->resume->move(base_path('public/frontend/uploads'), $filename);
+            $request->resume->move(public_path('/frontend/uploads'), $filename);
             $requestData['resume'] ='/frontend/uploads/'.$filename;
 
         }

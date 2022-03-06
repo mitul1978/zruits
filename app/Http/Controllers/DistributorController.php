@@ -67,7 +67,7 @@ class DistributorController extends Controller
 
         if(@$request->photo){
             $fileName = Str::slug($request->name).time().'.'.$request->photo->getClientOriginalExtension();
-            $request->photo->move(base_path('public/images/distributors/'), $fileName);
+            $request->photo->move(public_path('/images/distributors/'), $fileName);
             $data['photo']= $fileName;
         }
 
@@ -145,7 +145,7 @@ class DistributorController extends Controller
 
         if(@$request->photo){
             $fileName = rand().time().'.'.$request->photo->getClientOriginalExtension();
-            $request->photo->move(base_path('public/images/distributors/'), $fileName);
+            $request->photo->move(public_path('/images/distributors/'), $fileName);
             $data['photo']= $fileName;
         }
 
