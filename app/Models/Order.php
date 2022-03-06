@@ -18,7 +18,7 @@ class Order extends Model
 
     protected  $logName = 'order';
 
-    public bool $logOnlyDirty = true;
+    // public bool $logOnlyDirty = true;
 
     protected $fillable=[
         'user_id','order_number','sub_total','quantity','delivery_charge','status','total_amount','total_discount','first_name','last_name','country','pincode','address','address2','phone','email','payment_method','payment_status','shipping_id'
