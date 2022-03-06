@@ -99,7 +99,7 @@
             <div class="col-md-3">
               <div class="form-group">
                   <label for="discount" class="col-form-label">Discount(%) <span class="text-danger">*</span></label>
-                  <input id="discount" type="number" name="discount" min="0" placeholder="Enter discount" value="{{old('discount') ? old('discount') : $product->discount}}" class="form-control">
+                  <input id="discount" type="number" name="discount" min="0" placeholder="Enter discount" value="{{old('discount') ? old('discount') : @$product->discount}}" class="form-control">
                     @error('discount')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
@@ -109,7 +109,7 @@
             <div class="col-md-3">
               <div class="form-group">
                   <label for="min_qty">Minimum Order Quantity <span class="text-danger">*</span></label>
-                  <input id="min_qty" type="number" name="min_qty" min="0" placeholder="Enter Minimum Order Quantity"  value="{{ old('min_qty') ? old('min_qty') : $product->min_qty}}" class="form-control">
+                  <input id="min_qty" type="number" name="min_qty" min="0" placeholder="Enter Minimum Order Quantity"  value="{{ old('min_qty') ? old('min_qty') : @$product->min_qty}}" class="form-control">
                   @error('min_qty')
                   <span class="text-danger">{{$message}}</span>
                   @enderror
@@ -119,7 +119,7 @@
             <div class="col-md-3">
               <div class="form-group">
                   <label for="tag">Tag <span class="text-danger">*</span></label>
-                  <input id="tag" type="text" name="tag" placeholder="Enter tag"  value="{{ old('tag') ? old('tag') : $product->tag}}" class="form-control">
+                  <input id="tag" type="text" name="tag" placeholder="Enter tag"  value="{{ old('tag') ? old('tag') : @$product->tag}}" class="form-control">
                   @error('tag')
                   <span class="text-danger">{{$message}}</span>
                   @enderror
@@ -425,6 +425,7 @@
 
     $(document).ready(function() 
     {  
+      var count = 1;
       $('#addNewProduct').on('click',function(e)
       {
         var copyContent = $("#multiple").clone();
