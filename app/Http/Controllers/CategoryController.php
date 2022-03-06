@@ -145,7 +145,6 @@ class CategoryController extends Controller
             if(@$request->photo)
             {
                 $fileName = 'images/category/'.rand().time().'.'.$request->photo->getClientOriginalExtension();
-                dd(base_path());
                 $request->photo->move(public_path('/images/category/'), $fileName);
                 $data['photo']= $fileName;
             }
