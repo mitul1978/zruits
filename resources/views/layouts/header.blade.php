@@ -2,11 +2,20 @@
     <header class="header zehna-header">
 
         <div class="header-middle sticky-header">
-            <div class="coupon-ticker covid">
+        <div class="topbar-content">
+                    <div class="top-bar-left p-3">                        
+                        <ul class="lqd-custom-menu reset-ul inline-nav">
+                            <li><a href="#" target="_self">Great Craftmanship</a></li>
+                            <li><a href="#" target="_self">Curated Designs</a></li>
+                            <li><a href="#" target="_self">Pan India Free Shipping</a></li>
+                        </ul>
+                    </div>
+                </div>
+            <!-- <div class="coupon-ticker covid">
                 <span class="ticker-content">
-                    <a href="/">AMAZING DEALS ON THIS SEASON'S FAVOURITES.</a><!-- <a href="#">*T&amp;C Apply.</a> -->
+                    <a href="/">AMAZING DEALS ON THIS SEASON'S FAVOURITES.</a> <a href="#">*T&amp;C Apply.</a>
                 </span>
-            </div>
+            </div> -->
 
             <div class="container main-header">
                 <div class="header-left">
