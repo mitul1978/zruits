@@ -307,6 +307,46 @@
     </script>
     <script>
         $(document).ready(function() {
+            $('.keyup-email').keyup(function() {
+                $('span.error-keyup-7').remove();
+                var inputVal = $(this).val();
+                var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+                if(!emailReg.test(inputVal)) {
+                    $(this).after('<span class="error error-keyup-7">Invalid Email Format.</span>');
+                }
+            });
+
+            $(".keyup-mobile").keypress(function (e) {
+                var mobilePattern = /^\d{9}$/;
+                var mobile = $(this).val();
+
+                $('span.error-keyup-8').remove();
+                if(!mobilePattern.test(mobile))
+                {
+                    $(this).after('<span class="error error-keyup-8">Invalid Mobile Number.</span>');
+                }
+                else
+                {
+                    $('span.error-keyup-8').remove();
+                }
+                // var keyCode = e.keyCode || e.which;
+    
+                // $(this).after('');
+    
+                // //Regex for Valid Characters i.e. Numbers.
+                // var regex = /^[0-9]+$/;
+    
+                // //Validate TextBox value against the Regex.
+                // var isValid = regex.test(String.fromCharCode(keyCode));
+                // if (!isValid) 
+                // {
+                //     $(this).after('<span class="error error-keyup-7">Invalid Mobile Number.</span>');
+                // }
+    
+                // return isValid;
+            });
+
+
             $('#product').on('change', function() {
                var prodId = $(this).val();
                if(prodId != "")

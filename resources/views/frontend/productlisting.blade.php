@@ -31,7 +31,7 @@
                         <figure class="product-media">
                             @if($product->tag != '')<span class="product-label label-new">{{$product->tag}}</span>@endif
                             <a href="{{route('product',$product->slug)}}">
-                                <img src="{{url(@$product->images()->first()->image)}}" alt="{!! @$product->meta_description !!}" class="product-image">
+                                <img src="{{url(@$product->images()->first()->image)}}" alt="{!! $product->meta_description !!}" class="product-image">
                             </a>
 
                             <div class="product-action-vertical">
@@ -76,7 +76,7 @@
                     </div><!-- End .product -->
                 </div><!-- End .col-sm-6 col-lg-4 -->
             @endforeach  
-@endif      
+        @endif      
 </div><!-- End .row -->
 </div><!-- End .products -->
 

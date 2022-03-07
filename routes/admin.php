@@ -30,7 +30,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     //size master
     Route::resource('sizes','SizeController');
     //size chart master
-    Route::resource('sizescharts','SizeChartController');
+    Route::resource('sizecharts','SizeChartController');
 
     //fabric master
     Route::resource('fabrics','FabricController');

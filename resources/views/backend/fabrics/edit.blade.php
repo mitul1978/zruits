@@ -11,7 +11,7 @@
 
         <div class="form-group">
           <label for="name" class="col-form-label">Name <span class="text-danger">*</span></label>
-          <input id="name" type="text" name="name" placeholder="Enter Size"  value="{{$fabric->name}}" class="form-control">
+          <input id="name" type="text" name="name" placeholder="Enter Fabric"  value="{{$fabric->name}}" class="form-control">
             @error('name')
               <span class="text-danger">{{$message}}</span>
             @enderror

@@ -61,7 +61,7 @@ class FabricController extends Controller
      */
     public function edit(Fabric $fabric)
     { 
-        $fabric = Fabric::find($size->id);
+        $fabric = Fabric::find($fabric->id);
         return view('backend.fabrics.edit',compact('fabric'));
     }
 
@@ -89,7 +89,7 @@ class FabricController extends Controller
      */
     public function destroy(Fabric $fabric)
     {
-        $fabric=Fabric::findOrFail($size->id);
+        $fabric=Fabric::findOrFail($fabric->id);
         $status=$fabric->delete();
 
         if($status){
