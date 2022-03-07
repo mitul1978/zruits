@@ -8,6 +8,7 @@ node_modules/
 /storage/*.key
 /vendor
 .env
+/public
 public/images
 public/frontend/fonts
 public/frontend/icons
