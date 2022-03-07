@@ -276,7 +276,7 @@
                   <a class="collapse-item" href="{{route('orientations.index')}}"><span>Orientations</span></a>  
                   <a class="collapse-item" href="{{route('pincodes.index')}}"><span>Pincodes</span></a>  
                   <a class="collapse-item" href="{{route('sizes.index')}}">Sizes</a>                
-                  <a class="collapse-item" href="{{route('sizescharts.index')}}">Size Chart</a>                  
+                  <a class="collapse-item" href="{{route('sizecharts.index')}}">Size Chart</a>                  
                   <a class="collapse-item" href="{{route('states.index')}}"><span>States</span></a>
                   
                   

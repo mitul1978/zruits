@@ -98,7 +98,11 @@ class OrdersController extends Controller
                 if(session('order_note'))
                 {
                     $order->order_note=session('order_note');
-                }           
+                } 
+                else
+                {
+                    $order->order_note=$request->order_notes;
+                }          
 
                 $order->status=0;
                 $order->payment_method='razorpay';

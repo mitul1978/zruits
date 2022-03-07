@@ -5,7 +5,7 @@
 <div class="card">
     <h5 class="card-header">Edit Size Chart</h5>
     <div class="card-body">
-      <form method="post" action="{{route('sizescharts.update',$sizeChart->id)}}">
+      <form method="post" action="{{route('sizecharts.update',$sizeChart->id)}}" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 

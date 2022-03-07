@@ -83,8 +83,12 @@
                                                                 <input type="radio" name="size" value="{{@$size->size_id}}" data-id="{{$size->id}}" class="p-cradio changeProductSize sizeOptions{{$product->id}}">
                                                                 <div class="custom-size"><span>{{@$size->productSize->name}}</span></div>
                                                             </label>
-                                                        </div>                                                        
-                                                   @endif
+                                                        </div>
+                                                    @else                                                       
+                                                        @if(count($availableSizes) == 1)
+                                                           <div class="label fw-400 mr-4">Out of Stock</div>
+                                                        @endif                                                           
+                                                    @endif
                                                 @endforeach
                                             </div>
                                             <a href="#" class="size-guide" data-toggle="modal" data-target="#exampleModal"><i class="icon-th-list"></i>Size Guide</a>

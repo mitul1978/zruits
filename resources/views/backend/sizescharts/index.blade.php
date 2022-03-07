@@ -10,7 +10,7 @@
      </div>
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary float-left">Size Chart List</h6>
-      <a href="{{route('sizescharts.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add Size Chart"><i class="fas fa-plus"></i> Add Size  Chart</a>
+      <a href="{{route('sizecharts.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add Size Chart"><i class="fas fa-plus"></i> Add Size  Chart</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -42,8 +42,8 @@
                         @endif
                     </td>
                     <td>
-                        <a href="{{route('sizescharts.edit',$size->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                        <form method="POST" action="{{route('sizescharts.destroy',[$size->id])}}">
+                        <a href="{{route('sizecharts.edit',$size->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <form method="POST" action="{{route('sizecharts.destroy',[$size->id])}}">
                           @csrf
                           @method('delete')
                               <button class="btn btn-danger btn-sm dltBtn" data-id={{$size->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>

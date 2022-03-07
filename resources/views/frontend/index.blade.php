@@ -17,7 +17,7 @@
     <div class="">
         <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false}'>
             @foreach ($banners as $item)
-                <a href="/products" class="w-100">
+                <a href="{{$item->link}}" class="w-100">
                     <img src="{{$item->photo}}">
                     <!-- <div class="intro-slide" style="background-image: url({{$item->photo}});">
                         <div class="container intro-content">

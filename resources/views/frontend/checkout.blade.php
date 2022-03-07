@@ -26,7 +26,7 @@
 							$coupon_value = @Session::get('coupon') ? Session::get('coupon')['value'] :0;
 							$giftcard_value =  @Session::get('giftcard') ? Session::get('giftcard')['value'] :0;
 						@endphp
-            			<form action="{{url('place-order')}}" class="place_order" method="POST">
+            			<form id="checkoutForm" action="{{url('place-order')}}" class="place_order" method="POST">
 							@csrf
 							<input type="hidden" name="address_id" id="address_id" value={{@$addresses ?$addresses->id:'new'}}>
 		                	<div class="row">
@@ -47,11 +47,11 @@
 										<div class="row">
 		                					<div class="col-sm-6">
 		                						<label>Phone *</label>
-		                						<input type="tel" class="form-control" name="mobile" value="{{@$user->mobile}}" required>
+		                						<input type="tel" class="form-control keyup-mobile" name="mobile" value="{{@$user->mobile}}" minlength="10" maxlength="10" required>
 		                					</div><!-- End .col-sm-6 -->
 											<div class="col-sm-6" >
 												<label>Email address *</label>
-												<input type="email" class="form-control" name="email" value="{{@$user->email}}" required>
+												<input type="email" class="form-control keyup-email" name="email" value="{{@$user->email}}" required>
 											</div>
 		                				</div><!-- End .row -->
 
@@ -240,6 +240,30 @@
 			{  
 				$('#error1').hide();
 				$('#error2').hide();
+
+				// $(document).on('click', 'form button[type=submit]', function(e) {
+				// $('#checkoutForm').on('before-submit',function(){
+				// 	alert('test');
+				// 	return false;
+				// 	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+				// 	var mobilePattern = /^\d{9}$/;
+				// 	var inputVal = $('.keyup-email').val();
+
+				// 	if(!emailReg.test(inputVal)) 
+				// 	{
+				// 		$('.keyup-email').after('<span class="error error-keyup-7">Invalid Email Format.</span>');
+				// 		e.preventDefault();
+				// 		return false;
+				// 	}
+
+				// 	var mobile = $('.keyup-mobile').val();
+				// 	if(!mobilePattern.test(mobile))
+				// 	{
+				// 		$('.keyup-mobile').after('<span class="error error-keyup-8">Invalid Mobile Number.</span>');
+				// 		e.preventDefault();
+				// 		return false;
+				// 	}
+				// });
 
 			    $('.address_action_btn').on('click',function(e){
 			    	$('.new_address_block').addClass('hide');

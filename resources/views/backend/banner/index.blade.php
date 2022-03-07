@@ -23,6 +23,7 @@
               <th>Slug</th>
               <th>Photo</th>
               <th>Description</th>
+              <th>Link</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -44,6 +45,7 @@
                       @endif
                   </td>
                     <td>{{$banner->description}}</td>
+                    <td>{{$banner->link}}</td>
                     <td>
                         @if($banner->status=='active')
                             <span class="badge badge-success">{{$banner->status}}</span>
