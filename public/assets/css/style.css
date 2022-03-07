@@ -19671,15 +19671,18 @@ demo 2 css start here
 180deg);
     transform: rotate(
 180deg);
+top: 50%;
 }
 .footer .widget-title:after {
-    content: '';
+	content: '\f110';
+    font-family: 'molla';
     width: 12px;
     height: 7px;
-    background: url(https://www.sehatyoga.com/img/arrow-black-down.svg) no-repeat right center;
+    /* background: url(https://www.sehatyoga.com/img/arrow-black-down.svg) no-repeat right center; */
     position: absolute;
-    right: 10px;
-    top: 43%;
+    right: 15px;
+    top: 25%;
+	transition: all .25s ease;
 }
 .footer .widget-title {
     font-weight: 600;
@@ -19973,8 +19976,8 @@ input[type=checkbox], input[type=radio] {
 .home-menu-section li img {
 	float: left;
     margin-bottom: 5px;
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     object-fit: cover;
     border-radius: 50%;
 }

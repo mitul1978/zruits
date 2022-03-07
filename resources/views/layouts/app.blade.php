@@ -16,7 +16,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{URL::asset('assets/images/icons/favicon-16x16.png')}}">
     <link rel="manifest" href="{{URL::asset('assets/images/icons/site.html')}}">
     <link rel="mask-icon" href="{{URL::asset('assets/images/icons/safari-pinned-tab.svg')}}" color="#666666">
-    <link rel="shortcut icon" href="{{URL::asset('assets/images/icons/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{URL::asset('assets/images/icons/favicon.png')}}">
     <meta name="apple-mobile-web-app-title" content="Zehna">
     <meta name="application-name" content="Zehna">
     <meta name="msapplication-TileColor" content="#cc9966">

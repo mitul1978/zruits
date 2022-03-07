@@ -14,14 +14,15 @@
             @endforeach 
         </ul>
     </div>
-    <div class="intro-slider-container">
-        <div class="owl-carousel owl-simple owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false}'>
+    <div class="">
+        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow owl-light owl-nav-inside" data-toggle="owl" data-owl-options='{"nav": false}'>
             @foreach ($banners as $item)
-                <a href="/products">
-                    <div class="intro-slide" style="background-image: url({{$item->photo}});">
+                <a href="/products" class="w-100">
+                    <img src="{{$item->photo}}">
+                    <!-- <div class="intro-slide" style="background-image: url({{$item->photo}});">
                         <div class="container intro-content">
-                        </div><!-- End .container intro-content -->
-                    </div><!-- End .intro-slide -->
+                        </div>
+                    </div> -->
                 </a> 
             @endforeach
         </div><!-- End .owl-carousel owl-simple -->
@@ -55,7 +56,7 @@
         </div><!-- End .heading -->
     </div><!-- End .container -->
     <div class="container">
-        <div class="row" style="font-size: 14px; font-weight: 600; text-align: center;">
+        <div class="" style="font-size: 14px; font-weight: 600; text-align: center;">
             <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
                 data-owl-options='{
                     "nav": false, 
@@ -171,7 +172,9 @@
                                     @endif
                                     <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
-                                        <span class="new-price">₹ {{$product->discounted_amt }}</span>  @if($product->discounted_amt != $product->price) <span class="old-price">₹ {{$product->price}}</span> @endif  <small>(MRP incl Taxes)</small>
+                                        <div class="w-100">
+                                        <span class="new-price">₹ {{$product->discounted_amt }}</span> @if($product->discounted_amt != $product->price)<span class="old-price">₹ {{$product->price}}</span> @endif  </div>
+                                        <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
                                     <div class="atc-container">                                        
                                         <div class="mb-0">                                    
@@ -266,7 +269,9 @@
                                     @endif
                                     <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
-                                        <span class="new-price">₹ {{$product->discounted_amt }}</span> @if($product->discounted_amt != $product->price) <span class="old-price">₹ {{$product->price}}</span> @endif  <small>(MRP incl Taxes)</small>
+                                        <div class="w-100">
+                                        <span class="new-price">₹ {{$product->discounted_amt }}</span> @if($product->discounted_amt != $product->price)<span class="old-price">₹ {{$product->price}}</span> @endif  </div>
+                                        <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
                                     <div class="atc-container">                                        
                                         <div class="mb-0">                                    
@@ -305,10 +310,10 @@
                         <div class="col-3">
                             <div class="icon-box text-center">
                                 <span class="icon-box-icon text-dark mb-0">
-                                    <i class="icon-random"></i>
+                                    <i class="icon-star-o"></i>
                                 </span>
                                 <div class="icon-box-content">
-                                    <h3 class="icon-box-title">Easy Exchange</h3><!-- End .icon-box-title -->
+                                    <h3 class="icon-box-title">Curated Design</h3><!-- End .icon-box-title -->
                                 </div><!-- End .icon-box-content -->
                             </div><!-- End .icon-box -->
                         </div><!-- End .col-sm-6 col-lg-3 -->
@@ -325,7 +330,7 @@
                         <div class="col-3">
                             <div class="icon-box text-center">
                                 <span class="icon-box-icon text-dark mb-0">
-                                    <i class="icon-heart"></i>
+                                    <i class="icon-heart-o"></i>
                                 </span>
                                 <div class="icon-box-content">
                                     <h3 class="icon-box-title">Hand Picked</h3><!-- End .icon-box-title -->
