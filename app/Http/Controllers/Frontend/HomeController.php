@@ -179,7 +179,7 @@ class HomeController extends Controller
     public function viewOrderDetails()
     {
         $orderId = Session::get('orderId');
-        $order = Order::where('id',49)->first();
+        $order = Order::where('id',$orderId)->first();
         session()->forget('orderId');
         return view('user.viewOrderDetails',compact('order'));
     }
