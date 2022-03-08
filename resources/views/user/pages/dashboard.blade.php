@@ -78,14 +78,12 @@
 															<th>Order No.</th>
 															<th>Name</th>
 															<th>Quantity</th>
+															<th>Sub Total</th>
+															<th>Coupon Discount</th>
+															<th>Gift Card Discount</th>
 															<th>Taxable Amount</th>
 															<th>Tax </th>
-															<th>Sub Total</th>
-															<th>Gift Card Discount</th>
-															<th>Coupon Discount</th>
-															<th>Freight Charge</th>
 															<th>Total Amount</th>
-															<th>Payment Method</th>
 															<th>Payment Staus</th>
 															<th>Status</th>
 															<th>Action</th>
@@ -98,14 +96,28 @@
 																<td>{{$order->order_number}}</td>
 																<td>{{@$order->address->first_name}} {{@$order->address->last_name}}</td>
 																<td>{{$order->quantity}}</td>
-																<td>&#x20B9; {{$order->taxable_amount}}</td>
-																<td>&#x20B9; {{$order->tax}}</td>
 																<td>&#x20B9; {{$order->sub_total}}</td>
 																<td>&#x20B9; {{$order->coupon_value}}</td>
-																<td>&#x20B9; {{$order->coupon_value}}</td>
-																<td>&#x20B9; {{$order->freight_charge}}</td>
-																<td>&#x20B9; {{number_format($order->total_amount,2)}}</td>									  
-																<td>{{$order->payment_method}}</td>									  
+																<td>&#x20B9; {{$order->giftcard_value}}</td>	
+																<?php 
+																	$subtotal = 0;
+																	$tax = 0;
+																
+																	if($order->total_amount > 1000)
+																	{
+																		$taxPercent = 12;
+																	} 
+																	else 
+																	{
+																		$taxPercent = 5;
+																	}
+												
+																	$calculateGst = $order->taxable_amount - ( $order->taxable_amount * (100/(100 + $taxPercent)));
+																	$amtExclGst   = $order->taxable_amount - $calculateGst;
+																?>															
+																<td>&#x20B9; {{round($amtExclGst ,2)}}</td>
+																<td>&#x20B9; {{round($calculateGst,2)}}</td>
+																<td>&#x20B9; {{number_format($order->total_amount,2)}}</td>										  
 																<td>
 																	@if($order->payment_status=='paid')									  
 																		<span class="badge badge-success">{{$order->payment_status}}</span>

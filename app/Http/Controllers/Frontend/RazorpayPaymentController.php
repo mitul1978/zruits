@@ -102,6 +102,7 @@ class RazorpayPaymentController extends Controller
         {
             $payment->payment_status ='paid';
             $order->payment_status='paid';
+            $order->status=1;
             $order->save();
             $payment->save();
             Alert::success("Payment done successfully");
