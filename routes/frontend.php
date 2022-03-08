@@ -14,10 +14,28 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('user/register','LoginController@registerSubmit')->name('register.submit');
    // Route::post('user/update','LoginController@update')->name('register.submit');
     
+    Route::get('/giftcard','HomeController@giftcard')->name('giftcard');
     // Reset password
     Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset');
     Route::get('/giftcard','HomeController@giftcard')->name('giftcard');
-
+    Route::get('/faq','HomeController@faq');
+    Route::get('/contact','HomeController@contact');
+    Route::get('/about-us','HomeController@aboutus');
+    Route::get('/collaboration','HomeController@collaboration');
+    Route::get('/violation','HomeController@violation');
+    Route::get('/the-exactness-of-the-product','HomeController@exactnessOfProduct');
+    Route::get('/terms-and-conditions','HomeController@termsAndCondition');
+    Route::get('/service','HomeController@service');
+    Route::get('/returns','HomeController@returns');
+    Route::get('/privacy','HomeController@privacy');
+    Route::get('/pricing','HomeController@pricing');
+    Route::get('/payment','HomeController@payment');
+    Route::get('/order-status','HomeController@orderStatus');
+    Route::get('/when-received','HomeController@whenReceived');
+    Route::get('/incorrect-order-or-product-damaged','HomeController@incorrectOrder');
+    Route::get('/discounts-and-vouchers','HomeController@discountAndVouchers');
+    Route::get('/disclaimer-of-guarantee','HomeController@disclaimerOfGuarantee');
+    
 
     // Route::get('about-us','HomeController@aboutus')->name('aboutus');
     // Route::get('guide/{type}','HomeController@guide')->name('guide');
@@ -36,7 +54,6 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::match(array('GET','POST'),'/categories/{slug?}','HomeController@getCategoriesProducts');
     Route::get('/coming-soon','HomeController@comingSoon');
     Route::get('/dashboard','HomeController@dashboard');
-    Route::get('/contact','HomeController@contact');
     Route::post('/submit-contact','HomeController@submitContact')->name('submit-contact');;
     Route::get('/offers/{slug?}','HomeController@offers');
     Route::post('filter-product', 'ProductController@filterProduct');
