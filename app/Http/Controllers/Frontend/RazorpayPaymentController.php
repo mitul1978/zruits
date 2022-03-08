@@ -23,7 +23,7 @@ class RazorpayPaymentController extends Controller
         $receiptId = $order->order_number;      
         // Create an object of razorpay
         $payment = new Payment();
-        $api = new Api('rzp_test_AUZM3pIm1dTRB7', 'CsQzqnGwJdgAdBRtoiKOFCa9');
+        $api = new Api(env('RAZORPAY_CLIENT_ID'), env('RAZORPAY_CLIENT_SECRET'));
         // In razorpay you have to convert rupees into paise we multiply by 100
         // Currency will be INR
         // Creating order
@@ -38,7 +38,7 @@ class RazorpayPaymentController extends Controller
         // Return response on payment page
         $response = [
             'razerpay_order_id' => $razerpay_order['id'],
-            'razorpay_key' => 'rzp_test_AUZM3pIm1dTRB7',
+            'razorpay_key' => env('RAZORPAY_CLIENT_ID'),
             'amount' => $order->total_amount * 100,
             'name' => $order->address->name,
             'currency' => 'INR',
@@ -172,7 +172,7 @@ class RazorpayPaymentController extends Controller
       try
       {
           // Create an object of razorpay class
-          $api = new Api('rzp_test_AUZM3pIm1dTRB7','CsQzqnGwJdgAdBRtoiKOFCa9');
+          $api = new Api(env('RAZORPAY_CLIENT_ID'),env('RAZORPAY_CLIENT_SECRET'));
           $attributes  = array('razorpay_signature'  => $_signature,  'razorpay_payment_id'  => $_paymentId ,  'razorpay_order_id' => $_orderId);
           $order  = $api->utility->verifyPaymentSignature($attributes);
           return true;
