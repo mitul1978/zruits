@@ -6,8 +6,10 @@
         </div><!-- End .toolbox-info -->
     </div><!-- End .toolbox-left -->
 
-    <div class="toolbox-right">
+    <div class="toolbox-right">   
+    <div class="show-sidebar-btn"><span>Filter</span></div>     
         <div class="toolbox-sort">
+            
             <label for="sortby">Sort by:</label>
             <div class="select-custom">
                 <select name="sortby" id="sortby" class="form-control filterBySort">
