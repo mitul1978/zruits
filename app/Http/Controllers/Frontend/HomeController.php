@@ -203,7 +203,7 @@ class HomeController extends Controller
                         })
                         ->where('status','1')
                         ->where('category_id',$category->id)
-                        ->where('is_giftcard',0)->latest()->paginate(9);    
+                        ->where('is_giftcard',0)->latest()->paginate(12);    
         }
         else
         {
@@ -213,7 +213,7 @@ class HomeController extends Controller
                         $t->where('name', 'LIKE', "%$keyword%")
                         ->orWhere('slug', 'LIKE', "%$keyword%");
                         })
-                        ->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);
+                        ->where('status','1')->where('is_giftcard',0)->latest()->paginate(12);
         }
 
         if ($request->ajax()) 
