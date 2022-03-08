@@ -22,6 +22,8 @@
 		            <div class="row">
 		                <div class="col-sm-12">
 		                    <h6>About Zenha</h6>
+							<p>Lorem ipsum dolor sit amet. Ab reprehenderit officia id velit minima nam amet veritatis est ullam nostrum sed repellendus enim. Ut voluptates eveniet eum rerum officia At sequi Quis vel expedita nulla aut voluptatum tenetur. Sed error dolorem ad magni facilis et itaque odit hic optio laudantium nam numquam eius in reiciendis quam aut fuga quas. Est rerum consequatur ab molestiae exercitationem eum aperiam laboriosam sed ipsum labore et dignissimos accusamus id quia rerum.</p>
+							<br><p>Ea reprehenderit placeat nam nihil modi aut commodi aperiam id eius necessitatibus. Sit galisum pariatur qui tempora quibusdam et voluptatem totam est quaerat architecto vel internos architecto. Aut reiciendis velit At molestiae dignissimos sed ipsum qui illum consequatur est beatae autem rem laborum rerum et tempora dignissimos.</p>
 		                </div>
 		            </div>
 

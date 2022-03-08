@@ -22,6 +22,10 @@
 		            <div class="row">
 		                <div class="col-sm-12">
 		                    <h6>Terms & Conditions</h6>
+							<p>Access to and use of Zehna.in and the products and services available through the website are subject to the following terms, conditions, and notices (“Terms of Service”). By browsing through these Terms of Service and using the services provided by our website (www.zehna.in) you agree to all terms of Service along with the Privacy Policy on our website, which may be updated by us from time to time. Please check this page regularly to take notice of any changes we may have made to the Terms of Service.</p>
+							<br>
+							<p>We reserve the right to review and withdraw or amend the services without notice. We will not be liable if for any reason this Website is unavailable at any time or for any period. From time to time, we may restrict access to some parts or this entire website.<br>
+
 		                </div>
 		            </div>
 

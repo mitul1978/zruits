@@ -18,6 +18,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset');
     Route::get('/giftcard','HomeController@giftcard')->name('giftcard');
 
+
     // Route::get('about-us','HomeController@aboutus')->name('aboutus');
     // Route::get('guide/{type}','HomeController@guide')->name('guide');
     // Route::get('quality','HomeController@quality');
@@ -81,10 +82,10 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('/coupon-remove','CouponController@couponStore')->name('coupon-remove');    
 
     // Cart section
-    // Route::get('/cart',function()
-    // {
-    //     return view('frontend.cart');
-    // })->name('cart');
+    Route::get('/cart',function()
+    {
+        return view('frontend.cart');
+    })->name('cart');
 
     // Route::get('/cart',function(){
     //     return view('frontend.pages.cart2');
