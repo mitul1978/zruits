@@ -8,6 +8,7 @@ use Auth;
 use Exception;
 use App\User;
 use Session;
+use Illuminate\Support\Facades\Mail;
 class GoogleController extends Controller
 {
     /**
@@ -52,6 +53,12 @@ class GoogleController extends Controller
     
                 Auth::guard('web')->login($newUser);
                 Session::put('user',$newUser['email']);
+                 $user = $newUser;
+                 $email = $newUser->email;
+                Mail::send('mail.new-account-cus', ['user' => $user], function ($message) use ($email) {
+                    $message->to($email);
+                    $message->subject('Welcome To Zehna');
+                });
                 return redirect()->intended(); // redirect('/home');
             }
     
