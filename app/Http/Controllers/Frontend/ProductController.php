@@ -58,7 +58,7 @@ class ProductController extends Controller
                 ->orWhere('design', 'LIKE', "%$keyword%");
             })
 
-            ->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);
+            ->where('status','1')->where('is_giftcard',0)->latest()->paginate(12);
 
             $sizes = Size::where('status',1)->get();
             $colors = Color::where('status',1)->get();
@@ -306,23 +306,23 @@ class ProductController extends Controller
     
                 if($value == 'latest')
                 {
-                    $products =  $products->where('status','1')->where('is_giftcard',0)->latest()->paginate(9); 
+                    $products =  $products->where('status','1')->where('is_giftcard',0)->latest()->paginate(12); 
                 }
                 else if($value == 'discount')
                 {
-                    $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('discount','DESC')->paginate(9); 
+                    $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('discount','DESC')->paginate(12); 
                 }
                 else if($value == 'high')
                 {
-                    $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('price','DESC')->paginate(9); 
+                    $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('price','DESC')->paginate(12); 
                 }
                 else if($value == 'low')
                 {
-                    $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('price','ASC')->paginate(9); 
+                    $products =  $products->where('status','1')->where('is_giftcard',0)->orderBy('price','ASC')->paginate(12); 
                 }  
                 else
                 {
-                    $products =  $products->where('status','1')->where('is_giftcard',0)->paginate(9); 
+                    $products =  $products->where('status','1')->where('is_giftcard',0)->paginate(12); 
                 }
         // }
         // else
