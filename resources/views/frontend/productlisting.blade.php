@@ -31,7 +31,7 @@
                         <figure class="product-media">
                             @if($product->tag != '')<span class="product-label label-new">{{$product->tag}}</span>@endif
                             <a href="{{route('product',$product->slug)}}">
-                                <img src="{{url(@$product->images()->first()->image)}}" alt="{!! $product->meta_description !!}" class="product-image">
+                                <img src="{{asset(@$product->images()->first()->image )}}" alt="{!! $product->meta_description !!}" class="product-image">
                             </a>
 
                             <div class="product-action-vertical">
