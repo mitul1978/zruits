@@ -52,6 +52,18 @@
 																		<?php 
 																			$orderList = \App\Models\OrderProductList::where('order_id',$orderDetails->id)->get(); 
 																			$orderAddress = \App\Models\UserAddress::where('id',$orderDetails->address_id)->first(); 
+
+																			$subtotal = 0;
+																			$tax = 0;
+																				
+																			    if($order->total_amount > 1000)
+																				{
+																					$taxPercent = 12;
+																				} 
+																				else 
+																				{
+																					$taxPercent = 5;
+																				}
 																		?>
 																		<tbody>
 																			@foreach ($orderList as $item)
@@ -69,6 +81,13 @@
 																							</ul>
 																						@endif
 																					</td>
+																					<?php
+
+																							$calculateGst = $item->taxable_amount - ( $item->taxable_amount * (100/(100 + $taxPercent)));
+																							$amtExclGst = $item->taxable_amount - $calculateGst;
+																							$subtotal = $subtotal + $amtExclGst;
+																							$tax = $tax + $calculateGst;
+																						?> 
 																					<td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
 																						{{$item->quantity}}		</td>
 																					<td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
@@ -94,9 +113,24 @@
 																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Online</td>
 																			</tr>
 																			<tr>
-																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Total:</th>
-																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{$orderDetails->total_amount}}</span></td>
+																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Taxable Amount:</th>
+																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">{{number_format($subtotal,2)}}</td>
 																			</tr>
+																			@if($order->state_id == 22)
+																				<tr>
+																					<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">CGST ({{$taxPercent/2}} %):</th>
+																					<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{number_format($tax/2,2)}}</span></td>
+																				</tr>
+																				<tr>
+																					<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">SGST ({{$taxPercent/2}} %):</th>
+																					<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{number_format($tax/2,2)}}</span></td>
+																				</tr>
+																			@else
+																				<tr>
+																					<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">IGST ({{$taxPercent}} %):</th>
+																					<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{number_format($tax,2)}}</span></td>
+																				</tr>
+																			@endif
 																			<tr>
 																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Note:</th>
 																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">{{$orderDetails->order_note}}</td>

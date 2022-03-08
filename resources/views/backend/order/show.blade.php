@@ -69,22 +69,45 @@
                       <td>Coupon Code</td>
                       <td> : {{$order->coupon_code ? $order->coupon_code :'NA'}}</td>
                   </tr>
-                  
-            
-                  <tr>
-                    <td>Taxable Amount</td>
-                    <td> :  &#x20B9; {{number_format($order->taxable_amount,2)}}</td>
-                  </tr>
 
-                  <tr>
-                    <td>Tax</td>
-                    <td> : &#x20B9;  {{number_format($order->tax,2)}}</td>
-                  </tr>
-
+                
                   <tr>
                     <td>Sub Total</td>
                     <td> : &#x20B9;  {{number_format($order->sub_total,2)}}</td>
                   </tr>
+
+                  <tr>
+                    <td>Discount</td>
+                    <td> : &#x20B9;  {{number_format($order->total_discount,2)}}</td>
+                  </tr>
+                  
+                  <?php 
+                  $subtotal = 0;
+                  $tax = 0;
+                 
+                   if($order->total_amount > 1000)
+                 {
+                   $taxPercent = 12;
+                 } 
+                 else 
+                 {
+                   $taxPercent = 5;
+                 }
+
+                 $calculateGst = $order->taxable_amount - ( $order->taxable_amount * (100/(100 + $taxPercent)));
+                 $amtExclGst   = $order->taxable_amount - $calculateGst;
+               ?>
+                  <tr>
+                    <td>Taxable Amount</td>
+                    <td> :  &#x20B9; {{number_format($amtExclGst,2)}}</td>
+                  </tr>
+
+                  <tr>
+                    <td>Tax</td>
+                    <td> : &#x20B9;  {{number_format($calculateGst,2)}}</td>
+                  </tr>
+
+                 
 
                   <tr>
                     <td>Freight Charge</td>
@@ -96,6 +119,10 @@
                     <td> : &#x20B9;  {{$order->coupon_value}}</td>
                   </tr>
 
+                  <tr>
+                    <td>Gift Card Discount</td>
+                    <td> : &#x20B9;  {{$order->giftcard_value}}</td>
+                  </tr>
        
                     <tr>
                         <td>Total Amount</td>
@@ -103,7 +130,7 @@
                     </tr>
                     <tr>
                       <td>Payment Method</td>
-                      <td> : {{strtoupper($order->payment_method)}}</td>
+                      <td> : Prepaid</td>
                     </tr>
                     <tr>
                         <td>Payment Status</td>
@@ -147,16 +174,18 @@
               <table class="table">
                 <thead>
                   <tr>
-
                   </tr>
                   <th>Sr No</th>
                   <th>Image</th>
                   <th>Product Name</th>
                   <th>Price</th>
                   <th>Quantity</th>
+                  <th>Sub Total</th>
+                  <th>Discount</th>                  
                   <th>Taxable Amount</th>
                   <th>Tax</th>
-                  <th>Sub Total</th>
+                  <th>Total</th>
+
 
                 </thead>
                 <tbody>
@@ -170,9 +199,17 @@
                       <td>{{$list->product->name}}</td>
                       <td>{{$list->price}}</td>
                       <td>{{$list->quantity}}</td>
-                      <td>{{$list->taxable_amount}}</td>
-                      <td>{{$list->tax}}</td>
                       <td>{{$list->sub_total}}</td>
+                      <td>{{$list->discount}}</td>
+                     
+                        <?php 
+                            $calculateGst = $list->taxable_amount - ( $list->taxable_amount * (100/(100 + $taxPercent)));
+														$amtExclGst = $list->taxable_amount - $calculateGst;
+                         ?>                       
+                      <td>{{round($amtExclGst,2)}}</td>
+                      <td>{{round($calculateGst,2)}}</td>
+                      <td>{{$list->taxable_amount}}</td>
+                      
 
                       <td></td>
                     </tr>
