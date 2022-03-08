@@ -137,9 +137,19 @@
                        @foreach ($newArrivals as $product)
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
+                                    <?php 
+                                        $url = $product->images()->first();
+                                        if($url)
+                                        {
+                                            $url = $product->images()->first()->image;
+                                        }
+                                        else {
+                                            $url = '/images/no-image.jpg';
+                                        }
+                                    ?>
                                     @if($product->tag != '')<span class="product-label label-new">{{$product->tag}}</span>@endif
                                     <a href="{{url('product/' .$product->slug)}}">
-                                        <img src="{{asset(@$product->images()->first()->image)}}" alt="{!! @$product->meta_description !!}" class="product-image">
+                                        <img src="{{asset($url)}}" alt="{!! @$product->meta_description !!}" class="product-image">
                                     </a>
 
                                     <div class="product-action-vertical">
@@ -235,9 +245,19 @@
                        @foreach ($bestSellers as $product)
                            <div class="product product-7 text-center">
                                 <figure class="product-media">
+                                    <?php 
+                                        $url = $product->images()->first();
+                                        if($url)
+                                        {
+                                            $url = $product->images()->first()->image;
+                                        }
+                                        else {
+                                            $url = '/images/no-image.jpg';
+                                        }
+                                    ?>
                                     @if($product->tag != '')<span class="product-label label-new">{{$product->tag}}</span>@endif
                                     <a href="{{url('product/' .$product->slug)}}">
-                                        <img src="{{asset(@$product->images()->first()->image)}}" alt="{!! @$product->meta_description !!}" class="product-image">
+                                        <img src="{{asset($url)}}" alt="{!! @$product->meta_description !!}" class="product-image">
                                     </a>
 
                                     <div class="product-action-vertical">
