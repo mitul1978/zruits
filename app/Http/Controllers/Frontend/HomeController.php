@@ -141,7 +141,7 @@ class HomeController extends Controller
 
     public function aboutus()
     {
-        return view('frontend.about-us');
+        return view('frontend.aboutus');
     }
 
     public function collaboration(){
