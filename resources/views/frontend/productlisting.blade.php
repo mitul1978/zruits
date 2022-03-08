@@ -59,7 +59,7 @@
                         ?>
                         <div class="product-body">
                             <div class="product-cat">
-                                <a href="{{route('product',$product->category->slug)}}">{{$product->category->title}}</a>
+                                <a href="{{route('categories',$product->category->slug)}}">{{$product->category->title}}</a>
                             </div><!-- End .product-cat -->
                             @if(isset($availableColors) && $availableColors->isNotEmpty())
                                 <div class="product-color row justify-content-center">  

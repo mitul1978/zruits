@@ -28,7 +28,7 @@ function addToCart($product,$colorId,$sizeId)
         $cart->product_id = $product->id;
         // $cart->price = ($product->price-($product->price*$product->discount)/100);
         $cart->price = $product->discounted_amt ;
-        $cart->image = $product->images()->first()->image;
+        $cart->image = @$product->images()->first()->image;
         $cart->quantity = 1;
         $cart->amount=$cart->price*$cart->quantity;
         $cart->color_id = $colorId;
@@ -93,7 +93,7 @@ function addToCart($product,$colorId,$sizeId)
         $carts[$product->id.$colorId.$sizeId]['quantity'] = 1; // Dynamically add initial qty
         $carts[$product->id.$colorId.$sizeId]['amount'] = $product->discounted_amt*1;
         $carts[$product->id.$colorId.$sizeId]['price'] = $product->discounted_amt ;
-        $carts[$product->id.$colorId.$sizeId]['image'] = $product->images()->first()->image;
+        $carts[$product->id.$colorId.$sizeId]['image'] = @$product->images()->first()->image;
         $carts[$product->id.$colorId.$sizeId]['product'] = $product->toArray(); 
         $carts[$product->id.$colorId.$sizeId]['color_id'] = $colorId; 
         $carts[$product->id.$colorId.$sizeId]['size_id'] = $sizeId; 
@@ -160,7 +160,7 @@ function add_to_cart_session_cart_item()
                 $cart->product_id = $product->id;
                 // $cart->price = ($product->price-($product->price*$product->discount)/100);
                 $cart->price = $product->discounted_amt ;
-                $cart->image = $product->images()->first()->image;
+                $cart->image = @$product->images()->first()->image;
                 $cart->quantity = $attribute['quantity'];
                 $cart->color_id =$attribute['color_id'];
                 $cart->size_id = $attribute['size_id'];
@@ -488,7 +488,7 @@ function add_to_cart_session_cart_item()
             $cart->size_id = $sizeId;
             $cart->quantity = 1;
             $cart->amount=$cart->discounted_amt * $cart->quantity;
-            $cart->image = $product->images()->first()->image; 
+            $cart->image = @$product->images()->first()->image; 
             $cart->save();
             Wishlist::where(['user_id'=>Auth::id(),'cart_id'=>null,'product_id'=>$product->id])->update(['cart_id'=>$cart->id]);
         }
@@ -515,7 +515,7 @@ function add_to_cart_session_cart_item()
             $carts[$product->id.$colorId.$sizeId]['quantity'] = 1; 
             $carts[$product->id.$colorId.$sizeId]['amount'] = $product->discounted_amt*1;
             $carts[$product->id.$colorId.$sizeId]['price'] = $product->discounted_amt ;
-            $carts[$product->id.$colorId.$sizeId]['image'] = $product->images()->first()->image;
+            $carts[$product->id.$colorId.$sizeId]['image'] = @$product->images()->first()->image;
             $carts[$product->id.$colorId.$sizeId]['product'] = $product->toArray(); 
             $carts[$product->id.$colorId.$sizeId]['color_id'] = $colorId; 
             $carts[$product->id.$colorId.$sizeId]['size_id'] = $sizeId; 

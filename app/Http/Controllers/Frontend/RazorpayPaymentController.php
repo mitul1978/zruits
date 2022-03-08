@@ -180,7 +180,7 @@ class RazorpayPaymentController extends Controller
                     "shipping_charges" => 0,
                     "giftwrap_charges" => 0,
                     "transaction_charges" => 0,
-                    "total_discount" =>  @$order->total_discount,
+                    "total_discount" =>  0,
                     "sub_total" => @$order->total_amount,
                     "length" => 10,
                     "breadth" => 15,
@@ -194,7 +194,11 @@ class RazorpayPaymentController extends Controller
 
                 if($response)
                 {
-                    dd($response['order_id']);
+                    if(isset($response['order_id']));
+                    {
+                        $order->shiprocket_order_id=$response['order_id'];
+                        $order->save();
+                    }
                 }
             }
             catch(exception $e)

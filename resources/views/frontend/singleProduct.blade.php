@@ -10,7 +10,7 @@
                                             $images = $product->images()->where('color_id',$colorId)->get();
                                         }
                                         else 
-                                        {   
+                                        {  
                                             $colorId = @$product->sizesstock()->first()->color_id;
                                             $priImage = @$product->images()->first()->image;
                                             $images = $product->images()->where('color_id',$colorId)->get();
