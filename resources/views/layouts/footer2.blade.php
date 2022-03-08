@@ -88,9 +88,9 @@
     <div class="mobile-menu-wrapper">
         <span class="mobile-menu-close"><i class="icon-close"></i></span>
         
-        <form action="#" method="get" class="mobile-search">
+        <form action="/products" method="get" class="mobile-search">
             <label for="mobile-search" class="sr-only">Search</label>
-            <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search product ..." required>
+            <input type="search" class="form-control" name="search" id="search" placeholder="Search product ..." required>
             <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
         </form>
 
