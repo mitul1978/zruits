@@ -2,12 +2,14 @@
 <div class="toolbox">
     <div class="toolbox-left">
         <div class="toolbox-info">
-            Showing <span>{{@$products->count() > 9 ? 9 : @$products->count()}}  of {{@$products->total()}}</span> Products
+            Showing <span>{{@$products->count() > 12 ? 12 : @$products->count()}}  of {{@$products->total()}}</span> Products
         </div><!-- End .toolbox-info -->
     </div><!-- End .toolbox-left -->
 
-    <div class="toolbox-right">
+    <div class="toolbox-right">   
+    <div class="show-sidebar-btn"><span>Filter</span></div>     
         <div class="toolbox-sort">
+            
             <label for="sortby">Sort by:</label>
             <div class="select-custom">
                 <select name="sortby" id="sortby" class="form-control filterBySort">
@@ -59,7 +61,7 @@
                         ?>
                         <div class="product-body">
                             <div class="product-cat">
-                                <a href="{{route('product',$product->category->slug)}}">{{$product->category->title}}</a>
+                                <a href="{{route('categories',$product->category->slug)}}">{{$product->category->title}}</a>
                             </div><!-- End .product-cat -->
                             @if(isset($availableColors) && $availableColors->isNotEmpty())
                                 <div class="product-color row justify-content-center">  
@@ -76,7 +78,7 @@
                             <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                             <div class="product-price">
                                 <div class="w-100">
-                                <span class="new-price">₹ {{round($product->discounted_amt) }}</span>  @if($product->discounted_amt != $product->price) <span class="old-price">₹ {{round($product->price)}}</span> <div>@endif 
+                                <span class="new-price">₹ {{round($product->discounted_amt) }}</span>  @if($product->discounted_amt != $product->price) <span class="old-price">₹ {{round($product->price)}}</span> @endif </div> 
                                 <small>(MRP incl Taxes)</small>
                             </div><!-- End .product-price -->
                             <div class="atc-container">                                                            

@@ -31,7 +31,7 @@ use App\Models\Contact;
 use Spatie\Newsletter\Newsletter;
 use App\Models\SubscribeNewsletter;
 use Illuminate\Support\Facades\Mail;
-
+use Seshac\Shiprocket\Shiprocket;
 class HomeController extends Controller
 {   
     // public function __construct()
@@ -47,6 +47,64 @@ class HomeController extends Controller
     //     $this->categoriesHeader = Category::where('status',1)->where('show_on_header',1)->get();
     //     View::share('categoriesHeader', $this->categoriesHeader);
     // }
+
+    public function testShip(){
+        // $orderDetails = [
+        //     "order_id" => "224-449",
+        //     "order_date"  => "2022-02-24 11:11",
+        //     "pickup_location"  => "Primary",
+        //     "channel_id" => "",
+        //     "comment" =>"Reseller: M/s Goku",
+        //     "billing_customer_name" => "Naruto",
+        //     "billing_last_name" => "Uzumaki",
+        //     "billing_address" => "House 221B, Leaf Village",
+        //     "billing_address_2" => "Near Hokage House",
+        //     "billing_city" => "New Delhi",
+        //     "billing_pincode" => "110002",
+        //     "billing_state" => "Delhi",
+        //     "billing_country" => "India",
+        //     "billing_email" => "naruto@uzumaki.com",
+        //     "billing_phone" => "9876543210",
+        //     "shipping_is_billing" => false,
+        //     "shipping_customer_name"=> "Naruto",
+        //     "shipping_last_name"=> "Uzumaki",
+        //     "shipping_address" => "House 221B, Leaf Village",
+        //     "shipping_address_2" => "Near Hokage House",
+        //     "shipping_city"=> "New Delhi",
+        //     "shipping_pincode" => "110002",
+        //     "shipping_country" => "India",
+        //     "shipping_state" =>  "Delhi",
+        //     "shipping_email"  => "naruto@uzumaki.com",
+        //     "shipping_phone" => "9876543210",
+        //     "order_items" => [  
+        //         [            
+        //         "name" => "Kunai",
+        //         "sku" => "chakra123",
+        //         "units" => 10,
+        //         "selling_price" => "900",
+        //         "discount"=> "",
+        //         "tax" => "",
+        //         "hsn" => 441122 
+        //         ]        
+        //     ],
+        //     "payment_method" => "Prepaid",
+        //     "shipping_charges" => 0,
+        //     "giftwrap_charges" => 0,
+        //     "transaction_charges" => 0,
+        //     "total_discount" => 0,
+        //     "sub_total" => 9000,
+        //     "length" => 10,
+        //     "breadth" => 15,
+        //     "height"=> 20,
+        //     "weight"=> 2.5          
+        // ];
+
+        // // $orderDetails = json_encode($orderDetails);
+        // $token =  Shiprocket::getToken();
+        // $response =  Shiprocket::order($token)->create($orderDetails);
+       
+        //dd($response);
+    }
 
     public function index(Request $request)
     {
@@ -121,7 +179,7 @@ class HomeController extends Controller
     public function viewOrderDetails()
     {
         $orderId = Session::get('orderId');
-        $order = Order::where('id',$orderId)->first();
+        $order = Order::where('id',49)->first();
         session()->forget('orderId');
         return view('user.viewOrderDetails',compact('order'));
     }

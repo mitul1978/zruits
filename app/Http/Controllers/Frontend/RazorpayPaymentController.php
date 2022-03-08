@@ -10,6 +10,7 @@ use App\Models\Payment;
 use Illuminate\Support\Facades\Mail;
 use Session,Auth;
 use App\Models\ProductStock;
+use Seshac\Shiprocket\Shiprocket;
 
 class RazorpayPaymentController extends Controller
 {
@@ -110,11 +111,23 @@ class RazorpayPaymentController extends Controller
               $email = @auth()->user()->email;
               $user = @auth()->user();
               $orderDetails = $order;
+              $orderItems = [];
+              $subItem = [];
 
               foreach($order->order_list as $orderList)
               {
                  $stock = ProductStock::where('product_id',$orderList->product_id)->where('color_id',$orderList->color_id)->where('size_id',$orderList->size_id)->first();
                  $stock->decrement('stock_qty', $orderList->quantity);
+                 $subItem =  [            
+                    "name" => $orderList->product->name,
+                    "sku" => $orderList->product->slug,
+                    "units" => $orderList->quantity,
+                    "selling_price" => $orderList->price,
+                    "discount"=> $orderList->discount,
+                    "tax" => "",
+                    "hsn" => $orderList->product->hsn, 
+                  ];    
+                  array_push($orderItems,$subItem);
               }
 
               Mail::send('mail.complete-order-cus', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email) {
@@ -126,7 +139,7 @@ class RazorpayPaymentController extends Controller
               Mail::send('mail.invoice-order-details-cus', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email,$orderId) {
                 $message->to($email);
                 $message->subject('Invoice for order ' . $orderId);
-            });
+              });
 
               $adminUser = User::where('role','admin')->first();
               $email = $adminUser->email;
@@ -134,6 +147,59 @@ class RazorpayPaymentController extends Controller
                 $message->to($email);
                 $message->subject('New order received!');
               });
+
+                $orderDetails = [
+                    "order_id" => $order->order_number,
+                    "order_date"  => $order->created_at,
+                    "pickup_location"  => "Primary",
+                    "channel_id" => "",
+                    "comment" => $order->order_note,
+                    "billing_customer_name" => @$order->address->first_name,
+                    "billing_last_name" => "",
+                    "billing_address" => @$order->address->address,
+                    "billing_address_2" => @$order->address->address2,
+                    "billing_city" => @$order->address->get_city->name,
+                    "billing_pincode" => @$order->address->pincode,
+                    "billing_state" => @$order->address->get_state->name,
+                    "billing_country" => "India",
+                    "billing_email" => @$order->address->email,
+                    "billing_phone" => @$order->address->mobile,
+                    "shipping_is_billing" => true,
+                    "shipping_customer_name"=> "",
+                    "shipping_last_name"=> "",
+                    "shipping_address" => "",
+                    "shipping_address_2" => "",
+                    "shipping_city"=> "",
+                    "shipping_pincode" => "",
+                    "shipping_country" => "",
+                    "shipping_state" =>  "",
+                    "shipping_email"  => "",
+                    "shipping_phone" => "",
+                    "order_items" => $orderItems,
+                    "payment_method" => "Prepaid",
+                    "shipping_charges" => 0,
+                    "giftwrap_charges" => 0,
+                    "transaction_charges" => 0,
+                    "total_discount" =>  0,
+                    "sub_total" => @$order->total_amount,
+                    "length" => 10,
+                    "breadth" => 15,
+                    "height"=> 20,
+                    "weight"=> 2.5          
+                ];
+        
+                // $orderDetails = json_encode($orderDetails);
+                $token =  Shiprocket::getToken();
+                $response =  Shiprocket::order($token)->create($orderDetails);
+
+                if($response)
+                {
+                    if(isset($response['order_id']));
+                    {
+                        $order->shiprocket_order_id=$response['order_id'];
+                        $order->save();
+                    }
+                }
             }
             catch(exception $e)
             {

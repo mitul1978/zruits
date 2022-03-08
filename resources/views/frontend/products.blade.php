@@ -109,8 +109,10 @@
                         </div><!-- End .col-lg-9 -->
 
                         <!-- Filter Part Start Here -->
-                        <aside class="col-lg-3 order-lg-first">
+                        <aside class="col-lg-3 order-lg-first sidebar-container">
                             <div class="sidebar sidebar-shop">
+                                <div class="d-block d-lg-none text-right close-sidebar-btn"><span><i class="icon-times"></i> </span>
+                                </div>
                                 <div class="widget widget-clean">
                                     <label>Filters:</label>
                                     <a class="sidebar-filter-clear" href="javascript:void(0);" onClick="window.location.reload(true);" id="reset-filter">Clean All</a>
