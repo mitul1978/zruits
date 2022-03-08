@@ -181,6 +181,7 @@ class HomeController extends Controller
         $count = Product::where('status','1')->count();
         $pageType = 'Shop By Categories';
         $catId = null;
+        $value = isset($request->value) ? $request->value : null;
 
         $sizes = Size::where('status',1)->get();
         $colors = Color::where('status',1)->get();
@@ -215,7 +216,14 @@ class HomeController extends Controller
                         ->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);
         }
 
-        return view('frontend.products', compact('products','catId','pageType','sizes','colors','fabrics','orientations','maxValue'));
+        if ($request->ajax()) 
+        {
+            return view('frontend.productlisting', ['products'=> $products,'value' => $value]); 
+        }
+        else
+        {
+            return view('frontend.products', compact('products','catId','pageType','sizes','colors','fabrics','orientations','maxValue'));
+        }       
     }
 
     public function catalogues()

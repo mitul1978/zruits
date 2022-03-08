@@ -5,12 +5,12 @@
     <div class="home-menu-section">
         <ul>
             @foreach($categories as $category)
-            <li>
-                <a href="{{url('categories/' . $category->slug)}}">
-                    <img src="{{url(@$category->photo)}}" alt="{{$category->slug}}">
-                    <span class="first-slider-title">{{$category->title}}</span>
-                </a>
-            </li>
+                <li>
+                    <a href="{{url('categories/' . $category->slug)}}">
+                        <img src="{{url(@$category->photo)}}" alt="{{$category->slug}}">
+                        <span class="first-slider-title">{{$category->title}}</span>
+                    </a>
+                </li>
             @endforeach 
         </ul>
     </div>
@@ -173,7 +173,7 @@
                                     <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         <div class="w-100">
-                                        <span class="new-price">₹ {{$product->discounted_amt }}</span> @if($product->discounted_amt != $product->price)<span class="old-price">₹ {{$product->price}}</span> @endif  </div>
+                                        <span class="new-price">₹ {{round($product->discounted_amt) }}</span> @if($product->discounted_amt != $product->price)<span class="old-price">₹ {{round($product->price)}}</span> @endif  </div>
                                         <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
                                     <div class="atc-container">                                        
@@ -270,7 +270,7 @@
                                     <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
                                         <div class="w-100">
-                                        <span class="new-price">₹ {{$product->discounted_amt }}</span> @if($product->discounted_amt != $product->price)<span class="old-price">₹ {{$product->price}}</span> @endif  </div>
+                                        <span class="new-price">₹ {{round($product->discounted_amt) }}</span> @if($product->discounted_amt != $product->price)<span class="old-price">₹ {{round($product->price)}}</span> @endif  </div>
                                         <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
                                     <div class="atc-container">                                        

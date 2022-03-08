@@ -46,7 +46,7 @@
                                     <h1 class="product-title">{{$product->name}}</h1><!-- End .product-title -->
 
                                     <div class="product-price">
-                                        <span class="new-price">₹ {{$product->discounted_amt}}</span> @if($product->discounted_amt != $product->price) <span class="old-price">₹ {{$product->price}}</span> @endif  <small>(MRP incl Taxes)</small>
+                                        <span class="new-price">₹ {{round($product->discounted_amt)}}</span> @if($product->discounted_amt != $product->price) <span class="old-price">₹ {{round($product->price)}}</span> @endif  <small>(MRP incl Taxes)</small>
                                     </div><!-- End .product-price -->
 
                                     <div class="product-content">
