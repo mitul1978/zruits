@@ -391,11 +391,11 @@
 		            						<small class="form-text">This will be how your name will be displayed in the account section and in reviews</small> --}}
 
 		                					<label>Email address *</label>
-		        							<input type="email" class="form-control" name="email" value="{{auth()->user()->email}}" required>
+		        							<input type="email" class="form-control keyup-email" name="email" value="{{auth()->user()->email}}" required>
 
 											<label>Mobile Number *</label>
-		        							<input type="tel" class="form-control" name="mobile" value="{{auth()->user()->mobile}}" placeholder="Enter your 10 digit mobile"  required>
-
+		        							<input type="tel" class="form-control keyup-mobile" name="mobile" value="{{auth()->user()->mobile}}" minlength="10" maxlength="10" placeholder="Enter your 10 digit mobile"  required>
+                                            <br>
 		                					<button type="submit" class="btn btn-outline-primary-2 mb-2">
 			                					<span>SAVE CHANGES</span>
 			            						<i class="icon-long-arrow-right"></i>
@@ -480,4 +480,47 @@
 					}, 500);				   
 			  });
 </script>
+<script>
+	$(document).ready(function() {
+		$('.keyup-email').keyup(function() {
+			$('span.error-keyup-7').remove();
+			var inputVal = $(this).val();
+			var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			if(!emailReg.test(inputVal)) {
+				$(this).after('<span class="error error-keyup-7">Invalid Email Format.</span>');
+			}
+		});
+
+		$(".keyup-mobile").keypress(function (e) {
+			var mobilePattern = /^\d{9}$/;
+			var mobile = $(this).val();
+
+			$('span.error-keyup-8').remove();
+			if(!mobilePattern.test(mobile))
+			{
+				$(this).after('<span class="error error-keyup-8">Invalid Mobile Number.</span>');
+			}
+			else
+			{
+				$('span.error-keyup-8').remove();
+			}
+			// var keyCode = e.keyCode || e.which;
+
+			// $(this).after('');
+
+			// //Regex for Valid Characters i.e. Numbers.
+			// var regex = /^[0-9]+$/;
+
+			// //Validate TextBox value against the Regex.
+			// var isValid = regex.test(String.fromCharCode(keyCode));
+			// if (!isValid) 
+			// {
+			//     $(this).after('<span class="error error-keyup-7">Invalid Mobile Number.</span>');
+			// }
+
+			// return isValid;
+		});
+	});
+</script>		
+
 @endsection

@@ -5,7 +5,7 @@
 <div class="card">
     <h5 class="card-header">Add Size Chart</h5>
     <div class="card-body">
-      <form method="post" action="{{route('sizescharts.store')}}" enctype="multipart/form-data">
+      <form method="post" action="{{route('sizecharts.store')}}" enctype="multipart/form-data">
          {{csrf_field()}}
         <div class="form-group">
             <label for="image" class="col-form-label">Upload Chart<span class="text-danger">*</span></label>

@@ -45,7 +45,7 @@ class SizeChartController extends Controller
         }       
         SizeChart::create($data);
         request()->session()->flash('success','Size Chart Successfully Uploaded');
-        return redirect()->route('sizescharts.index');
+        return redirect()->route('sizecharts.index');
     }
 
     /**
@@ -54,10 +54,10 @@ class SizeChartController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function show(Color $color)
-    {
-        //
-    }
+    // public function show(Color $color)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -79,7 +79,7 @@ class SizeChartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, SizeChart $sizeChart)
-    {   
+    {
         $data = $request->all();
         $sizeChart=SizeChart::findOrFail($sizeChart->id);   
 
@@ -92,7 +92,7 @@ class SizeChartController extends Controller
 
         $sizeChart->update($data);
         request()->session()->flash('success','Size Chart Successfully updated');
-        return redirect()->route('sizescharts.index');
+        return redirect()->route('sizecharts.index');
     }
 
     /**
@@ -113,6 +113,6 @@ class SizeChartController extends Controller
         {
             request()->session()->flash('error','Error while deleting size chart');
         }
-        return redirect()->route('sizescharts.index');
+        return redirect()->route('sizecharts.index');
     }
 }

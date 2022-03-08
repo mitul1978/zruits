@@ -44,6 +44,14 @@
         </div>
 
         <div class="form-group">
+          <label for="link" class="col-form-label">Link <span class="text-danger">*</span></label>
+          <input id="link" type="text" name="link" placeholder="Enter link"  value="{{$banner->link}}" class="form-control">
+          @error('link')
+            <span class="text-danger">{{$message}}</span>
+          @enderror
+        </div>
+
+        <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
             <option value="active" {{(($banner->status=='active') ? 'selected' : '')}}>Active</option>

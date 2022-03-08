@@ -182,7 +182,7 @@
                                     </div><!-- End .form-group -->
                                     <div class="form-group">
                                         <label for="register-email">Your email address *</label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <input type="email" class="form-control keyup-email" id="email" name="email" required>
                                     </div><!-- End .form-group -->
 
                                     <div class="form-group">

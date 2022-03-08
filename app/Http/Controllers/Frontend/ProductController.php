@@ -54,7 +54,8 @@ class ProductController extends Controller
             ->where(function($t) use( $keyword){
                 if(@$keyword)
                 $t->where('name', 'LIKE', "%$keyword%")
-                ->orWhere('slug', 'LIKE', "%$keyword%");
+                ->orWhere('slug', 'LIKE', "%$keyword%")
+                ->orWhere('design', 'LIKE', "%$keyword%");
             })
 
             ->where('status','1')->where('is_giftcard',0)->latest()->paginate(9);
