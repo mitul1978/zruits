@@ -83,9 +83,7 @@ class HomeController extends Controller
         return view('frontend.dashboard');
     }
 
-    public function contact(){
-        return view('frontend.contact');
-    }
+  
 
     public function submitContact(Request $request)
     {   
@@ -133,9 +131,71 @@ class HomeController extends Controller
         return view('frontend.404');
     }
 
+    public function faq(){
+        return view('frontend.faq');
+    }
+
+    public function contact(){
+        return view('frontend.contact');
+    }
+
     public function aboutus()
     {
-        return view('frontend.pages.about-us');
+        return view('frontend.aboutus');
+    }
+
+    public function collaboration(){
+        return view('frontend.collaboration');
+    }
+
+    public function violation(){
+        return view('frontend.violation');
+    }
+
+    public function exactnessOfProduct(){
+        return view('frontend.exactnessOfProduct');
+    }
+
+    public function termsAndCondition(){
+        return view('frontend.termsAndCondition');
+    }
+
+    public function service(){
+        return view('frontend.service');
+    }
+    public function returns(){
+        return view('frontend.returns');
+    }
+    public function privacy(){
+        return view('frontend.privacy');
+    }
+
+    public function pricing(){
+        return view('frontend.pricing');
+    }
+
+    public function payment(){
+        return view('frontend.payment');
+    }
+
+    public function orderStatus(){
+        return view('frontend.orderStatus');
+    }
+
+    public function whenReceived(){
+        return view('frontend.whenReceived');
+    }
+
+    public function incorrectOrder(){
+        return view('frontend.incorrectOrder');
+    }
+
+    public function discountAndVouchers(){
+        return view('frontend.discountAndVouchers');
+    }
+
+    public function disclaimerOfGuarantee(){
+        return view('frontend.disclaimerOfGuarantee');
     }
 
     public function getProduct(){
@@ -543,6 +603,8 @@ class HomeController extends Controller
 
         
     }
+
+  
 
 
 }
