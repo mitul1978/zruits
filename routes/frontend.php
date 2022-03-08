@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Frontend'], function () {
-
+    
     Route::get('/','HomeController@index')->name('home');
+    Route::get('/testShipRocket','HomeController@testShip');
     Route::get('/viewOrderDetails','HomeController@viewOrderDetails');
     Route::get('/404','HomeController@notFound  ');
     Route::get('/user/login','LoginController@login')->name('user.login')    ;

@@ -2,7 +2,7 @@
 <div class="toolbox">
     <div class="toolbox-left">
         <div class="toolbox-info">
-            Showing <span>{{@$products->count() > 9 ? 9 : @$products->count()}}  of {{@$products->total()}}</span> Products
+            Showing <span>{{@$products->count() > 12 ? 12 : @$products->count()}}  of {{@$products->total()}}</span> Products
         </div><!-- End .toolbox-info -->
     </div><!-- End .toolbox-left -->
 
@@ -76,7 +76,8 @@
                             <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
                             <div class="product-price">
                                 <div class="w-100">
-                                <span class="new-price">₹ {{round($product->discounted_amt) }}</span>  @if($product->discounted_amt != $product->price) <span class="old-price">₹ {{round($product->price)}}</span> <div>@endif 
+                                <span class="new-price">₹ {{round($product->discounted_amt) }}</span>  @if($product->discounted_amt != $product->price) <span class="old-price">₹ {{round($product->price)}}</span> </div>@endif 
+
                                 <small>(MRP incl Taxes)</small>
                             </div><!-- End .product-price -->
                             <div class="atc-container">                                                            
