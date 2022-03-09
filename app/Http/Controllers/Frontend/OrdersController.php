@@ -72,18 +72,32 @@ class OrdersController extends Controller
             try 
             {   
                 if(!@auth()->user()->id)
-                {
-                    $user =  User::create([
-                        'name' => $request->first_name,
-                        'email' => $request->email,
-                        'mobile' => $request->mobile,
-                        'password' => bcrypt($request->mobile),
-                    ]);
+                {   
+                    $ifAvailable = User::where('email',$request->email)->first();
+                    
+                    if(!$ifAvailable)
+                    {
+                        $user =  User::create([
+                            'name' => $request->first_name,
+                            'email' => $request->email,
+                            'mobile' => $request->mobile,
+                            'password' => bcrypt($request->mobile),
+                        ]);
+                    }
+                    else
+                    {
+                        $user = $ifAvailable;
+                    }                    
     
                     if(Auth::attempt(['email' => $user->email, 'password' => $request->mobile,'status'=>'active','role'=>'user']))
                     {
                         Session::put('user',$request->email);
                         add_to_cart_session_cart_item();
+                    }
+                    else
+                    {
+                        Alert::error('Something is went wrong... Please try again');
+                        return redirect()->back();
                     }
                 }
 
