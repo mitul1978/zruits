@@ -243,7 +243,7 @@ class ProductController extends Controller
         $flag = isset($request->flag) ? $request->flag : null;
         $sizes = isset($request->sizes) ? $request->sizes : null;
         $colors = isset($request->colors) ? $request->colors : null;
-        $fabric = isset($request->fabric) ? $request->fabric : null;
+        $fabric = isset($request->fabrics) ? $request->fabrics : null;
         $orientations = isset($request->orientations) ? $request->orientations : null;
         $fromPrice = isset($request->fromPrice) ? $request->fromPrice : null;
         $toPrice = isset($request->toPrice) ? $request->toPrice : null;
