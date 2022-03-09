@@ -4,7 +4,7 @@
         <main class="main">
             <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
                 <div class="container">
-                    <h1 class="page-title">Collabration<span>Pages</span></h1>
+                    <h1 class="page-title">Collaboration<span>Pages</span></h1>
                 </div><!-- End .container -->
             </div>
             <nav aria-label="breadcrumb" class="breadcrumb-nav">
@@ -12,7 +12,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Collabration</li>
+                        <li class="breadcrumb-item active" aria-current="page">Collaboration</li>
                     </ol>
                 </div><!-- End .container -->
             </nav><!-- End .breadcrumb-nav -->
@@ -24,7 +24,8 @@
                             <img src="https://storage.sg.content-cdn.io/in-resources/11522abc-e6f2-479d-917e-4cc3e65cf24e/Images/userimages/benq.jpg">
                         </div><!-- End .col-lg-6 -->
                         <div class="col-lg-6 offset-lg-1">
-                            <h2 class="title mb-1">Business Enquiry</h2><!-- End .title mb-2 -->
+                            <h2 class="title mb-2">Business Enquiry</h2><!-- End .title mb-2 -->
+                            <p>Fill out this easy application and our team will get in touch with you within the next 24-48 hours.</p>
                             <form action="#" class="contact-form mb-3">
                                 <div class="row">
                                     <div class="col-sm-6">
