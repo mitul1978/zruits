@@ -23,7 +23,7 @@
                     <div class="social-icons ">
                         <a href="https://www.facebook.com/profile.php?id=100078794362634" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
                         <a href="https://www.instagram.com/Zehna_in/" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                        <a href="https://in.pinterest.com/sachhacreation/_saved/" class="social-icon" target="_blank" title="Pintrest"><i class="icon-pintrest"></i></a>
+                        <a href="https://in.pinterest.com/sachhacreation/_saved/" class="social-icon" target="_blank" title="Pintrest"><i class="icon-pinterest-p"></i></a>
 
 <!--                      <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a> -->
                     </div>
@@ -40,9 +40,10 @@
                         <h4 class="widget-title">COMPANY</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="/about">About</a></li>
+                            <li><a href="/about-us">About</a></li>
                             <li><a href="/contact">Contact</a></li>
-                            <li><a href="{{url('/collaboration')}}">Collaborations</a></li>
+                            <li><a href="/contact">Collaborations</a></li>
+                            <!-- <li><a href="{{url('/collaboration')}}">Collaborations</a></li> -->
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
@@ -52,8 +53,8 @@
                         <h4 class="widget-title">HELP</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="/privacy">Privacy Policy</a></li>
+                            <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
@@ -63,8 +64,8 @@
                         <h4 class="widget-title">Account</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Gift Card</a></li>
+                            <li><a href="/user/login">My Account</a></li>
+                            <li><a href="/giftcard">Gift Card</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
