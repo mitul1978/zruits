@@ -293,7 +293,7 @@
                         <div class="col-md-3">
                           <div class="form-group">
                               <label for="stock_quantities">Stock Quantity <span class="text-danger">*</span></label>
-                              <input id="stock_quantities[]" type="number" name="stock_quantities[]" min="0" placeholder="Enter Stock quantity"  value="{{ old('stock_quantities') ? old('stock_quantities') : $stock->stock_qty}}" class="form-control" required>
+                              <input id="stock_quantities[]" type="number" name="stock_quantities[]" min="0" placeholder="Enter Stock quantity"  value="{{ @$stock->stock_qty}}" class="form-control" required>
                               @error('stock_quantities')
                                 <span class="text-danger">{{$message}}</span>
                               @enderror
