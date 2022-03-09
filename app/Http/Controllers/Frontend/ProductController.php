@@ -288,8 +288,15 @@ class ProductController extends Controller
                     $orientations = serialize($orientations);
                     $products->where('orientation','like', '%' . $orientations .'%' );
                     // $products->map(function($i) use($orientations){
-                    //    $i->orientation = unserialize($i->orientation);
-                    //    if()
+                    //    if($i->orientation)
+                    //    {
+                    //     $i->orientation = unserialize($i->orientation);
+                    //    if (count(array_intersect($i->orientation, $orientations)) === 0) {
+                    //         // No values from array1 are in array 2
+                    //     } else {
+                    //         // There is at least one value from array1 present in array2
+                    //     }
+                    //    }
                     // });
                 }
 
