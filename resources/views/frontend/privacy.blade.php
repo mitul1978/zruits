@@ -22,6 +22,7 @@
 		            <div class="row">
 		                <div class="col-sm-12">
 		                    <h6>Privacy Policy</h6>
+							<p>Our Privacy Policy incorporated by reference in these Terms of Service sets out how we will use the personal information you provide to us. By using this Website, you agree to be bound by the Privacy Policy and warrant that all data provided by you is accurate and up to date.</p>
 		                </div>
 		            </div>
 
