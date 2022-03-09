@@ -10,7 +10,7 @@ var options = {
     "currency": "{{$response['currency']}}",
     "name": "{{$response['name']}}",
     "description": "{{$response['description']}}",
-    "image": "https://ik.imagekit.io/heccv5isbw/logo.png", // You can give your logo url
+    "image": "https://zehna.netlify.app/static/media/brand-logo.f9600df5.png", // You can give your logo url
     "order_id": "{{$response['razerpay_order_id']}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
     "handler": function (response){
         // After payment successfully made response will come here
