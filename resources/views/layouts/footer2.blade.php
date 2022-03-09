@@ -42,8 +42,7 @@
                         <ul class="widget-list">
                             <li><a href="/about-us">About</a></li>
                             <li><a href="/contact">Contact</a></li>
-                            <li><a href="/contact">Collaborations</a></li>
-                            <!-- <li><a href="{{url('/collaboration')}}">Collaborations</a></li> -->
+                            <li><a href="{{url('/collaboration')}}">Collaborations</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
