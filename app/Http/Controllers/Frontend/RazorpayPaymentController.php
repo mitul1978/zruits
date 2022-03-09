@@ -46,7 +46,7 @@ class RazorpayPaymentController extends Controller
             'email' => $order->address->email,
             'contactNumber' =>$order->address->mobile,
             'address' => $order->address->address,
-            'description' => 'Testing description',
+            'description' => 'Zehna',
         ];
 
         $payment->payment_order_id =  $razerpay_order['id'];
