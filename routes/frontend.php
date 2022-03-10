@@ -23,19 +23,21 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/contact','HomeController@contact');
     Route::get('/about-us','HomeController@aboutus');
     Route::get('/collaboration','HomeController@collaboration');
-    Route::get('/violation','HomeController@violation');
-    Route::get('/the-exactness-of-the-product','HomeController@exactnessOfProduct');
+
     Route::get('/terms-and-conditions','HomeController@termsAndCondition');
-    Route::get('/service','HomeController@service');
-    Route::get('/returns','HomeController@returns');
-    Route::get('/privacy','HomeController@privacy');
-    Route::get('/pricing','HomeController@pricing');
-    Route::get('/payment','HomeController@payment');
+    Route::get('/shipping-policy','HomeController@shipping');
+    Route::get('/returns-exchange-refund','HomeController@returns');
+    Route::get('/privacy-policy','HomeController@privacy');
+    Route::get('/cancellation-policy','HomeController@cancellation');
+    // Route::get('/payment','HomeController@payment');
+    // Route::get('/violation','HomeController@violation');
+    // Route::get('/the-exactness-of-the-product','HomeController@exactnessOfProduct');
+    // Route::get('/when-received','HomeController@whenReceived');
+    // Route::get('/incorrect-order-or-product-damaged','HomeController@incorrectOrder');
+    // Route::get('/discounts-and-vouchers','HomeController@discountAndVouchers');
+    // Route::get('/disclaimer-of-guarantee','HomeController@disclaimerOfGuarantee');
     Route::get('/order-status','HomeController@orderStatus');
-    Route::get('/when-received','HomeController@whenReceived');
-    Route::get('/incorrect-order-or-product-damaged','HomeController@incorrectOrder');
-    Route::get('/discounts-and-vouchers','HomeController@discountAndVouchers');
-    Route::get('/disclaimer-of-guarantee','HomeController@disclaimerOfGuarantee');
+
     
 
     // Route::get('about-us','HomeController@aboutus')->name('aboutus');

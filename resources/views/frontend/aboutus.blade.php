@@ -25,11 +25,11 @@
 						</div>
 		                <div class="col-sm-6">
 		                    <h6>Vision</h6>
-							<p class="text-dark mb-2 font-weight-normal">We would like to be the Most preferred Ethnic wear Brand for Modern Ladies and aspire that our Collection reaches every women’s Wardrobe for Any Reasons Being Wedding , Cocktail , Mehendi or Just Flaunt our great Ready to Wear Collection.</p>
+							<p>We would like to be the Most preferred Ethnic wear Brand for Modern Ladies and aspire that our Collection reaches every women’s Wardrobe for Any Reasons Being Wedding , Cocktail , Mehendi or Just Flaunt our great Ready to Wear Collection.</p>
 		                </div>
 						<div class="col-sm-6">
 							<h6>Mission</h6>
-							<p class="text-dark mb-2 font-weight-normal">We would like to provide high fashion Indian Ethnic Products at great Quality and At Great price. With Our Online First Approach we would like to reach Pan India with our Collection and hopefully as we gain traction be also available offline close to your Reach.  </p>
+							<p>We would like to provide high fashion Indian Ethnic Products at great Quality and At Great price. With Our Online First Approach we would like to reach Pan India with our Collection and hopefully as we gain traction be also available offline close to your Reach.  </p>
 						</div>
 						<br>
 					</div>
@@ -39,10 +39,10 @@
 						</div>
 						<div class="col-sm-6">
 							<h6>About Zehna</h6>
-							<p class="text-dark mb-2 font-weight-normal">The Word Zehna means Beautiful and that’s what we wish you be when you wear our Collection. As we take great Pride in our quality and craftsmanship and pay close attention to the design , fit , materials , hand embroideries which is our forte.</p>
-							<p class="text-dark mb-2 font-weight-normal">We want our Young and Modern Looking Women Who aspire for only the best and would like to stand out from the crowd with our awe aspiring collection because she is Unique , Sassy , Adventurous and a soul full of Zeal. </p>
-							<p class="text-dark mb-2 font-weight-normal">Step out with our collection and we bet people are going to call out as #ZehnaLooking.</p>  
-							<p class="text-dark mb-2 font-weight-normal">Now its no longer Beautiful Looking .. its ZEHNA Looking ! </p>
+							<p>The Word Zehna means Beautiful and that’s what we wish you be when you wear our Collection. As we take great Pride in our quality and craftsmanship and pay close attention to the design , fit , materials , hand embroideries which is our forte.</p>
+							<p>We want our Young and Modern Looking Women Who aspire for only the best and would like to stand out from the crowd with our awe aspiring collection because she is Unique , Sassy , Adventurous and a soul full of Zeal. </p>
+							<p>Step out with our collection and we bet people are going to call out as #ZehnaLooking.</p>  
+							<p>Now its no longer Beautiful Looking .. its ZEHNA Looking ! </p>
 						</div>
 		            </div>
 

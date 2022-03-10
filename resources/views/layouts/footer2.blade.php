@@ -43,6 +43,7 @@
                             <li><a href="/about-us">About</a></li>
                             <li><a href="/contact">Contact</a></li>
                             <li><a href="{{url('/collaboration')}}">Collaborations</a></li>
+                            <li><a href="/faq">FAQ</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
@@ -52,8 +53,11 @@
                         <h4 class="widget-title">HELP</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
-                            <li><a href="/privacy">Privacy Policy</a></li>
+                            <li><a href="/privacy-policy">Privacy Policy</a></li>
                             <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
+                            <li><a href="/returns-exchange-refund">Returns, Exchange & Refund</a></li>
+                            <li><a href="/shipping-policy">Shipping Policy</a></li>
+                            <li><a href="/cancellation-policy">Cancellation Policy</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
@@ -64,6 +68,7 @@
 
                         <ul class="widget-list">
                             <li><a href="/user/login">My Account</a></li>
+                            <li><a href="/user/login">My Order</a></li>
                             <li><a href="/giftcard">Gift Card</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
