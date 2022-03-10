@@ -86,7 +86,7 @@
             @else
              <input type="hidden" name="pageType" id="pageType" value="{{@$catId}}">
             @endif
-            <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+            <div class="page-header text-center" style="background-image: url('{{URL::asset('assets/images/page-header-bg.jpg')}}')">
                 <div class="container"> 
                     <h1 class="page-title">{{$pageType}}<span>Shop</span></h1>
                 </div><!-- End .container -->

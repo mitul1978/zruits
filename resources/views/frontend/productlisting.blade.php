@@ -124,3 +124,19 @@
     <input type="hidden" id="sort_column" value= "{{@$column}}">
     <input type="hidden" id="sort_order" value= "{{@$order}}">
 </div> --}}
+<script>
+        $(document).ready(function ()
+        {
+            $(".show-sidebar-btn").click(function ()
+            {
+                $("body").addClass("show-hidden-sidebar");
+                $(".sidebar-container").addClass("show-hidden-sidebar");
+            });
+            $(".close-sidebar-btn").click(function ()
+            {
+                $("body").removeClass("show-hidden-sidebar");
+                $(".sidebar-container").removeClass("show-hidden-sidebar");
+            });
+
+        });
+    </script>

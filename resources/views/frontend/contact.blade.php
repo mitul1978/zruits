@@ -34,11 +34,11 @@
 	                						</li>
                 							<li>
                 								<i class="icon-phone"></i>
-                								<a href="tel:#">+91 98423 56789</a>
+                								<a href="tel:#">+91 9876543210</a>
                 							</li>
                 							<li>
                 								<i class="icon-envelope"></i>
-                								<a href="mailto:#">info@zehna.in</a>
+                								<a href="mailto:#">zehnalynxx@gmail.in</a>
                 							</li>
                 						</ul><!-- End .contact-list -->
                 					</div><!-- End .contact-info -->

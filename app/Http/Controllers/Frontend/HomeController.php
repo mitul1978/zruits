@@ -218,8 +218,8 @@ class HomeController extends Controller
         return view('frontend.termsAndCondition');
     }
 
-    public function service(){
-        return view('frontend.service');
+    public function shipping(){
+        return view('frontend.shipping');
     }
     public function returns(){
         return view('frontend.returns');
@@ -228,8 +228,8 @@ class HomeController extends Controller
         return view('frontend.privacy');
     }
 
-    public function pricing(){
-        return view('frontend.pricing');
+    public function cancellation(){
+        return view('frontend.cancellation');
     }
 
     public function payment(){
