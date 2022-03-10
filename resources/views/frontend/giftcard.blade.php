@@ -76,7 +76,7 @@
 
                                     <div class="details-filter-row details-row-size">
                                         <label for="gift_card_to" >To</label>
-                                        <input type="text" id="gift_card_to" name="gift_card_to" class="form-control" placeholder="Enter an email address of recipient" value="" required>
+                                        <input type="email" id="gift_card_to" name="gift_card_to" class="form-control" placeholder="Enter an email address of recipient" value="" required>
                                         
                                     </div>
                                 

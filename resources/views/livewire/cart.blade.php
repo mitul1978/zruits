@@ -67,9 +67,11 @@
                             <td class="product-col">
                               <div class="product">
                                 <figure class="product-media">
-                                  <a href="{{route('product',[$cart['product']['slug']])}}">
-                                    <img src="{{asset(@$cart['image'])}}" alt="Product image">
-                                  </a>
+                                  @if($cart['product']['is_giftcard'] == 0)
+                                    <a href="{{route('product',[$cart['product']['slug']])}}">
+                                      <img src="{{asset(@$cart['image'])}}" alt="Product image">
+                                    </a>
+                                  @endif
                                 </figure>
                               </div> 
                             </td>
@@ -89,19 +91,23 @@
                                 {{ $size }}        
                                 <input type="hidden" id="product_{{@$cart['size_id']}}" data-value="{{@$cart['size_id']}}">                     
                             </td>
-                            <td class="price-col">&#8377; {{$cart['product']['discounted_amt']}}</td>
+                            <td class="price-col">&#8377; {{round($cart['product']['discounted_amt'])}}</td>
                             <td class="quantity-col">
                               <div class="e-pro-qty-block"> 
-                                @if($cart['quantity']>1)
-                                  <span wire:click="removeToCart({{$cart['product']['id']}},{{@$cart['color_id']}},{{@$cart['size_id']}})" class="input-number-increment" >-</span>
-                                @else                                    
-                                  <span wire:click="alertConfirmDelete({{$cart['product']['id']}})" class="input-number-increment"><i class="fas fa-trash-alt"></i> X </span>
-                                @endif      
+                                @if($cart['product']['is_giftcard'] == 0)
+                                  @if($cart['quantity']>1)
+                                    <span wire:click="removeToCart({{$cart['product']['id']}},{{@$cart['color_id']}},{{@$cart['size_id']}})" class="input-number-increment" >-</span>
+                                  @else                                    
+                                    <span wire:click="alertConfirmDelete({{$cart['product']['id']}})" class="input-number-increment"><i class="fas fa-trash-alt"></i> X </span>
+                                  @endif   
+                                @endif   
                                 <input style="width:50px;" name="quant[{{$cart['product']['id']}}]" class="input-number" data-product_id="{{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}}" id="cart_item_count{{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}}" type="number" value="{{$cart['quantity']}}" min="{{@$cart['product']['min_qty']}}" max="{{@$cart['product']['max_qty']}}" >
-                                <span wire:click="addToCart({{$cart['product']['id']}},{{@$cart['color_id']}},{{@$cart['size_id']}})" class="input-number-increment" >+</span>   
+                                @if($cart['product']['is_giftcard'] == 0)
+                                    <span wire:click="addToCart({{$cart['product']['id']}},{{@$cart['color_id']}},{{@$cart['size_id']}})" class="input-number-increment" >+</span> 
+                                @endif
                               </div>
                             </td>
-                            <td class="total-col">&#8377; <span class="product_total{{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}}">{{$total }}</span></td>
+                            <td class="total-col">&#8377; <span class="product_total{{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}}">{{round($total) }}</span></td>
                             <td class="remove-col">
                               <div class="e-pro-remove-block trash_btn" id="">
                                   <button type="button" class="btn-remove dltBtn" wire:click="alertConfirmDelete({{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}})" style="height:30px; border-radius:50%" title="Delete"><i class="fas fa-trash-alt"></i>X</button>
@@ -137,7 +143,7 @@
                   <tbody>
                     <tr class="summary-subtotal">
                       <td>Subtotal:</td>
-                      <td>&#8377; {{ $taxable_amount}}</td>
+                      <td>&#8377; {{ round($taxable_amount)}}</td>
                     </tr><!-- End .summary-subtotal -->
                    
                     {{-- <tr class="summary-shipping">
@@ -184,7 +190,7 @@
 
                     <tr class="summary-total">
                       <td>Total:</td>
-                      <td>&#8377; {{ $grand_total }}</td>
+                      <td>&#8377; {{ round($grand_total) }}</td>
                     </tr><!-- End .summary-total -->
                   </tbody>
                 </table><!-- End .table table-summary -->

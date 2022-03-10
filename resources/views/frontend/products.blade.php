@@ -79,6 +79,7 @@
         <div class="bounce3"></div>
       </div>
     </div>
+    <input type="hidden" name="productType" id="productType" value="1">
         <main class="main">
             @if($pageType == 'Shop By Products' || $pageType == 'Shop By Categories')
              <input type="hidden" name="pageType" id="pageType" value="0">

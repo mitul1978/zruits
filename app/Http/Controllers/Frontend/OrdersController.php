@@ -159,19 +159,16 @@ class OrdersController extends Controller
                     $order_list->taxable_amount = $item->product->discounted_amt * $order_list->quantity;
                     $order_list->tax = 0;//($order_list->tax_rate * $order_list->taxable_amount) / 100;
                     $order_list->sub_total = $item->product->price * $order_list->quantity;// +$order_list->tax ;
-                    $order_list->save();
                     
                     if($item->product->is_giftcard == 1)
                     {
-                        for($i=0; $i < $item->quantity; $i++)
-                        {
-                            $data['code'] = substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 16);
-                            $data['type'] = 'fixed';
-                            $data['value'] =  $order_list->price;
-                            $data['status'] = 'active';
-                            Coupon::create($data);
-                        }
+                        $order_list->name =  $item->name;
+                        $order_list->email =  $item->email;
+                        $order_list->message = $item->message;
+                        $order_list->from_name =  $item->from_name;
                     }
+
+                    $order_list->save();
 
                     $quantity += $order_list->quantity;
                     $tax += $order_list->tax;
@@ -202,7 +199,7 @@ class OrdersController extends Controller
                     // $total_discount += $order->giftcard_value;
                 }
 
-                $order->quantity = $quantity ;
+                $order->quantity = $quantity;
                 $order->tax = $tax ;
                 $order->taxable_amount = $taxable_amount;
                 $order->sub_total = $sub_total;
@@ -240,9 +237,7 @@ class OrdersController extends Controller
 
                 return redirect('payment-initiate/'.$order->order_number);
                
-                //   Alert::success('Your product successfully placed in order');
-
-                
+                //   Alert::success('Your product successfully placed in order');                
                 // return redirect()->route('user');
             }
             catch (\Exception $e) 
@@ -278,6 +273,7 @@ class OrdersController extends Controller
         $address->first_name = @$data['first_name'];
         //$address->last_name = @$data['last_name'];
         $address->address = @$data['address'];
+        $address->address2 =  @$data['address1'];
         $address->state_id = @$data['state_id'];
         $address->city_id = @$data['city_id'];
         $address->pincode = @$data['pincode'];

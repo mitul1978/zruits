@@ -65,11 +65,19 @@
 																					<td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
 																						{{$list->quantity}}		</td>
 																						<?php
-
-																							$calculateGst = $list->taxable_amount - ( $list->taxable_amount * (100/(100 + $taxPercent)));
-																							$amtExclGst = $list->taxable_amount - $calculateGst;
-																							$subtotal = $subtotal + $amtExclGst;
-																							$tax = $tax + $calculateGst;
+																							if($list->product->is_giftcard == 0)
+																							{
+																								$calculateGst = $list->taxable_amount - ( $list->taxable_amount * (100/(100 + $taxPercent)));
+																								$amtExclGst = $list->taxable_amount - $calculateGst;
+																								$subtotal = $subtotal + $amtExclGst;
+																								$tax = $tax + $calculateGst;
+																							}	
+																							else 
+																							{
+																								$amtExclGst =  $list->taxable_amount;
+																								$subtotal = $subtotal + $amtExclGst;
+																								$calculateGst = 0;
+																							}
 																						?> 
 																					<td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
 																						<span><span>₹</span>{{number_format($amtExclGst,2)}}</span></td>

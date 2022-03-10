@@ -136,6 +136,66 @@
             var prodType = $('#productType').val();
             var colorId = '';
             var sizeId = '';
+
+            if(prodType == 0)
+            {
+                var gProduct = $('#product').val();
+                if(gProduct == "")
+                {
+                    Swal.fire({
+                                    icon: "error",
+                                    text: 'Please Select Amount ',
+                                    toast: true,
+                                    position: 'top-right',
+                                    timer: 5000,
+                                    showConfirmButton:false,
+                                    title: "Select Amount!",
+                                    })
+                    return false;      
+                }
+
+                if(toName == "")
+                {
+                    Swal.fire({
+                                    icon: "error",
+                                    text: 'Please Add Receipient Name ',
+                                    toast: true,
+                                    position: 'top-right',
+                                    timer: 5000,
+                                    showConfirmButton:false,
+                                    title: "Empty Field!",
+                                    })
+                    return false;      
+                }
+
+                if(toEmail == "")
+                {
+                    Swal.fire({
+                                    icon: "error",
+                                    text: 'Please Add Receipient Email ',
+                                    toast: true,
+                                    position: 'top-right',
+                                    timer: 5000,
+                                    showConfirmButton:false,
+                                    title: "Empty Field!",
+                                    })
+                    return false;      
+                }
+
+                if(fromName == "")
+                {
+                    Swal.fire({
+                                    icon: "error",
+                                    text: 'Please Add Your Name ',
+                                    toast: true,
+                                    position: 'top-right',
+                                    timer: 5000,
+                                    showConfirmButton:false,
+                                    title: "Empty Field!",
+                                    })
+                    return false;      
+                }                
+            }
             
             $('.colorOptions' + product_id).each(function() {
                 var isChecked = $(this).prop('checked')?true:false; 
@@ -146,7 +206,7 @@
                 }
             });
 
-            if(colorId == '')
+            if(colorId == '' && prodType != 0)
             {
                 Swal.fire({
                                     icon: "error",
@@ -169,7 +229,7 @@
                 }
             });
 
-            if(sizeId == '')
+            if(sizeId == '' && prodType != 0)
             {
                 Swal.fire({
                                     icon: "error",
@@ -300,6 +360,8 @@
                                     })
                 $('#gift_card_to_name').val('');
                 $('#gift_card_to').val('');
+                $('#gift_card_from').val('');
+                $('#giftcard_from').html('');
                 $('.product'+product_id).text('Added');
            }            
         });
