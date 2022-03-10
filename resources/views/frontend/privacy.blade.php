@@ -26,7 +26,7 @@
 							<p>We seek to protect your rights of privacy on systems and the site (www.zehna.in). However, we would not be liable for any unauthorized or unlawful disclosures of your personal and confidential information made by you or any third parties who are not subject to our control.</p>
 							<p><h6>Cookies:</h6></p>
 							<p>Like many other transactional websites, we may use “cookies” to improve your experience on our website and to save your time. Cookies are little tags that we assign to your computer when you first visit our website to enable us to recognize you when you return to the website.</p>
-							<p><h6>Personal Information provided by You is used only:</h6</p>
+							<p><h6>Personal Information provided by You is used only:</h6></p>
 							<ul>
 							 <li style="margin-bottom: 15px;">to facilitate Your use of the Website;</li>
 							 <li style="margin-bottom: 15px;">to respond to Your inquiries or fulfill Your requests for information about the various services;</li>
