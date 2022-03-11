@@ -27,7 +27,7 @@
 							<p><h6>Cookies:</h6></p>
 							<p>Like many other transactional websites, we may use “cookies” to improve your experience on our website and to save your time. Cookies are little tags that we assign to your computer when you first visit our website to enable us to recognize you when you return to the website.</p>
 							<p><h6>Personal Information provided by You is used only:</h6></p>
-							<ul>
+							<ul style="list-style-type: disc;list-style-position: inside;">
 							 <li style="margin-bottom: 15px;">to facilitate Your use of the Website;</li>
 							 <li style="margin-bottom: 15px;">to respond to Your inquiries or fulfill Your requests for information about the various services;</li>
 							 <li style="margin-bottom: 15px;">to provide you with information about our products/services and to send You information, materials, and offers;</li>
