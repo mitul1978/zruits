@@ -118,6 +118,10 @@
 												$freight_charge = 0;//  @$freight_details['freight_charge'] ? $freight_details['freight_charge'] :0;
 												$offerDiscount = get_offer_discount_amount();	
 												$offer = get_offer_type();
+												if($offer != 0)
+												{
+													$offerValue = get_offer_value($offer);
+												}
 												$grand_total =  $tax + $taxable_amount + $freight_charge - $offerDiscount - $giftcard_value - $coupon_value;		
 												$isGiftCard = 0;
 												$discountRs = $totalAmt - $taxable_amount;
@@ -138,7 +142,7 @@
 													@endphp
 													<tr>
 														<td> {{$cart['quantity']}} - <a href="#">{{$cart['product']['name']}}</a></td>
-														<td> {!! $rupee !!} {{$total }}</td>
+														<td> {!! $rupee !!} {{round($total) }}</td>
 													</tr>
 												@endforeach
 												
@@ -161,29 +165,29 @@
 												
 		                						<tr class="summary-subtotal">
 		                							<td>Subtotal:</td>
-		                							<td>{!! $rupee !!} {{ $totalAmt}}</td>
+		                							<td>{!! $rupee !!} {{ round($totalAmt)}}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">
-		                							<td>Discount <small>({{$discountPer}}%)</small>:</td>
-		                							<td>{!! $rupee !!} {{ $totalAmt - $taxable_amount }}</td>
+		                							<td>Discount <small>({{round($discountPer,2)}}%)</small>:</td>
+		                							<td>{!! $rupee !!} {{ round($totalAmt - $taxable_amount) }}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">
 		                							<td>Offer Discount:<br>
 														@if($offer == 1)
-														<small>(Buy 3 flat at 6500)</small>
+														  <small>(Buy 3 flat at {{round($offerValue)}})</small>
 														@elseif($offer == 2)
-														<small>(Buy 1 get 2nd at 20% off)</small>
+														  <small>(Buy 1 get 2nd at {{round($offerValue)}}% off)</small>
 														@endif
 													</td>
-		                							<td>{!! $rupee !!} {{ $offerDiscount }}</td>
+		                							<td>{!! $rupee !!} {{ round($offerDiscount) }}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">
 		                							<td>Gift Card:</td>
-		                							<td>{!! $rupee !!} {{ @Session::get('giftcard')['value'] ? Session::get('giftcard')['value'] : '0.00' }}</td>
+		                							<td>{!! $rupee !!} {{ @Session::get('giftcard')['value'] ? round(Session::get('giftcard')['value']) : '0.00' }}</td>
 		                						</tr><!-- End .summary-subtotal -->	
 												<tr class="summary-subtotal">
 		                							<td>Coupon Code:</td>
-		                							<td>{!! $rupee !!} {{ @Session::get('coupon')['value'] ? Session::get('coupon')['value'] : '0.00' }}</td>
+		                							<td>{!! $rupee !!} {{ @Session::get('coupon')['value'] ? round(Session::get('coupon')['value']) : '0.00' }}</td>
 		                						</tr><!-- End .summary-subtotal -->												
 		                						<tr>
 		                							<td>Shipping:</td>
@@ -191,7 +195,7 @@
 		                						</tr>
 		                						<tr class="summary-total">
 		                							<td>Total:</td>
-		                							<td>{!! $rupee !!}  {{ $grand_total }}</td>
+		                							<td>{!! $rupee !!}  {{ round($grand_total) }}</td>
 		                						</tr><!-- End .summary-total -->
 		                					</tbody>
 		                				</table><!-- End .table table-summary -->

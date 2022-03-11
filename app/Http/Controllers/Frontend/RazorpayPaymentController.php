@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use Session,Auth;
 use App\Models\ProductStock;
 use Seshac\Shiprocket\Shiprocket;
+use App\Models\Coupon;
 
 class RazorpayPaymentController extends Controller
 {
@@ -103,6 +104,19 @@ class RazorpayPaymentController extends Controller
             $payment->payment_status ='paid';
             $order->payment_status='paid';
             $order->status=1;
+            if($order->giftcard_id != 0)
+            {
+                $coupon = Coupon::where('id',$order->giftcard_id)->first();
+                if($coupon->is_giftcard == 1)
+                {
+                    $coupon->is_used = 1;
+                    $coupon->save();
+                }
+                else
+                {
+                    $coupon->decrement('max_use', 1);
+                }
+            }
             $order->save();
             $payment->save();
             Alert::success("Payment done successfully");
@@ -115,92 +129,150 @@ class RazorpayPaymentController extends Controller
               $orderItems = [];
               $subItem = [];
 
+              $flag = 0;
+
               foreach($order->order_list as $orderList)
               {
-                 $stock = ProductStock::where('product_id',$orderList->product_id)->where('color_id',$orderList->color_id)->where('size_id',$orderList->size_id)->first();
-                 $stock->decrement('stock_qty', $orderList->quantity);
-                 $subItem =  [            
-                    "name" => $orderList->product->name,
-                    "sku" => $orderList->product->slug,
-                    "units" => $orderList->quantity,
-                    "selling_price" => $orderList->price,
-                    "discount"=> $orderList->discount,
-                    "tax" => "",
-                    "hsn" => $orderList->product->hsn, 
-                  ];    
-                  array_push($orderItems,$subItem);
+                if($orderList->product->is_giftcard == 0)
+                {                    
+                    $stock = ProductStock::where('product_id',$orderList->product_id)->where('color_id',$orderList->color_id)->where('size_id',$orderList->size_id)->first();
+                    $stock->decrement('stock_qty', $orderList->quantity);
+                    $subItem =  [            
+                        "name" => $orderList->product->name,
+                        "sku" => $orderList->product->slug.substr($orderList->color->name, 0, 1).$orderList->size->name,
+                        "units" => $orderList->quantity,
+                        "selling_price" => $orderList->price,
+                        "discount"=> $orderList->discount,
+                        "tax" => "",
+                        "hsn" => $orderList->product->hsn, 
+                    ];    
+                    array_push($orderItems,$subItem);
+                }  
+                else
+                {  
+                    $flag =1;
+                    for($i=0; $i < $orderList->quantity; $i++)
+                    {
+                            $data['code'] = substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 16);
+                            $code = $data['code'];
+                            $data['type'] = 'fixed';
+                            $data['is_used'] = 0;
+                            $data['value'] =  $orderList->price;
+                            $data['status'] = '1';
+                            Coupon::create($data);
+
+                            $name = $orderList->name;
+                            $email = $orderList->email;
+                            $messageP = $orderList->message;
+                            $fromName = $orderList->from_name;
+
+                            try
+                            {                                
+                                Mail::send('mail.email-giftcard', ['name' => $name,'fromName' => $fromName,'messagep' => $messageP,'code' => $code], function ($message) use ($email) {
+                                    $message->to($email);
+                                    $message->subject('Your Gift Card Is Here');
+                                });
+                            }
+                            catch(\Exception $e)
+                            {
+                            }
+                    }
+                }
               }
 
-              Mail::send('mail.complete-order-cus', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email) {
-                  $message->to($email);
-                  $message->subject('Thanks for shopping with us');
-              });
+              $email = @auth()->user()->email;
+
+              try
+              { 
+                Mail::send('mail.complete-order-cus', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email) {
+                    $message->to($email);
+                    $message->subject('Thanks for shopping with us');
+                });
+              }
+              catch(\Exception $e)
+              {
+              }  
 
               $orderId = $order->order_number;
-              Mail::send('mail.invoice-order-details-cus', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email,$orderId) {
-                $message->to($email);
-                $message->subject('Invoice for order ' . $orderId);
-              });
+              try
+              {
+                Mail::send('mail.invoice-order-details-cus', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email,$orderId) {
+                    $message->to($email);
+                    $message->subject('Invoice for order ' . $orderId);
+                });
+              }
+              catch(\Exception $e)
+              {
+              }  
 
               $adminUser = User::where('role','admin')->first();
               $email = $adminUser->email;
-              Mail::send('mail.new-order-admin', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email) {
-                $message->to($email);
-                $message->subject('New order received!');
-              });
+              try
+              {
+                Mail::send('mail.new-order-admin', ['user' => $user,'orderDetails' => $orderDetails], function ($message) use ($email) {
+                    $message->to($email);
+                    $message->subject('New order received!');
+                });
+              }
+              catch(\Exception $e)
+              {
+              }  
 
-                $orderDetails = [
-                    "order_id" => $order->order_number,
-                    "order_date"  => $order->created_at,
-                    "pickup_location"  => "Primary",
-                    "channel_id" => "",
-                    "comment" => $order->order_note,
-                    "billing_customer_name" => @$order->address->first_name,
-                    "billing_last_name" => "",
-                    "billing_address" => @$order->address->address,
-                    "billing_address_2" => @$order->address->address2,
-                    "billing_city" => @$order->address->get_city->name,
-                    "billing_pincode" => @$order->address->pincode,
-                    "billing_state" => @$order->address->get_state->name,
-                    "billing_country" => "India",
-                    "billing_email" => @$order->address->email,
-                    "billing_phone" => @$order->address->mobile,
-                    "shipping_is_billing" => true,
-                    "shipping_customer_name"=> "",
-                    "shipping_last_name"=> "",
-                    "shipping_address" => "",
-                    "shipping_address_2" => "",
-                    "shipping_city"=> "",
-                    "shipping_pincode" => "",
-                    "shipping_country" => "",
-                    "shipping_state" =>  "",
-                    "shipping_email"  => "",
-                    "shipping_phone" => "",
-                    "order_items" => $orderItems,
-                    "payment_method" => "Prepaid",
-                    "shipping_charges" => 0,
-                    "giftwrap_charges" => 0,
-                    "transaction_charges" => 0,
-                    "total_discount" =>  0,
-                    "sub_total" => @$order->total_amount,
-                    "length" => 10,
-                    "breadth" => 15,
-                    "height"=> 20,
-                    "weight"=> 2.5          
-                ];
-        
-                // $orderDetails = json_encode($orderDetails);
-                $token =  Shiprocket::getToken();
-                $response =  Shiprocket::order($token)->create($orderDetails);
+              if($flag == 1)
+              {
+                    $orderDetails = [
+                        "order_id" => $order->order_number,
+                        "order_date"  => $order->created_at,
+                        "pickup_location"  => "Primary",
+                        "channel_id" => "",
+                        "comment" => $order->order_note,
+                        "billing_customer_name" => @$order->address->first_name,
+                        "billing_last_name" => "",
+                        "billing_address" => @$order->address->address,
+                        "billing_address_2" => @$order->address->address2,
+                        "billing_city" => @$order->address->get_city->name,
+                        "billing_pincode" => @$order->address->pincode,
+                        "billing_state" => @$order->address->get_state->name,
+                        "billing_country" => "India",
+                        "billing_email" => @$order->address->email,
+                        "billing_phone" => @$order->address->mobile,
+                        "shipping_is_billing" => true,
+                        "shipping_customer_name"=> "",
+                        "shipping_last_name"=> "",
+                        "shipping_address" => "",
+                        "shipping_address_2" => "",
+                        "shipping_city"=> "",
+                        "shipping_pincode" => "",
+                        "shipping_country" => "",
+                        "shipping_state" =>  "",
+                        "shipping_email"  => "",
+                        "shipping_phone" => "",
+                        "order_items" => $orderItems,
+                        "payment_method" => "Prepaid",
+                        "shipping_charges" => 0,
+                        "giftwrap_charges" => 0,
+                        "transaction_charges" => 0,
+                        "total_discount" =>  0,
+                        "sub_total" => @$order->total_amount,
+                        "length" => 10,
+                        "breadth" => 15,
+                        "height"=> 20,
+                        "weight"=> 2.5          
+                    ];
+            
+                    // $orderDetails = json_encode($orderDetails);
+                    $token =  Shiprocket::getToken();
+                    $response =  Shiprocket::order($token)->create($orderDetails);
 
-                if($response)
-                {
-                    if(isset($response['order_id']));
+                    if($response)
                     {
-                        $order->shiprocket_order_id=$response['order_id'];
-                        $order->save();
+                        if(isset($response['order_id']));
+                        {
+                            $order->shiprocket_order_id=$response['order_id'];
+                            $order->save();
+                        }
                     }
-                }
+                } 
             }
             catch(exception $e)
             {

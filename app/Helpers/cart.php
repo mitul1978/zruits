@@ -134,43 +134,83 @@ function add_to_cart_session_cart_item()
 {
     if(Session::get('carts') && count(Session::get('carts')))
     {
-
         $carts = Session::get('carts');
+        //dd($carts); 
         foreach(Session::get('carts') as $product_id =>$attribute)
         {
-            $product = Product::find($attribute['product']['id']);
+                $product = Product::find($attribute['product']['id']);
 
-            $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->where('product_id', $product->id)->where('color_id', $attribute['color_id'])->where('size_id', $attribute['size_id'])->first();
-            //  return $already_cart;
+                if($product->is_giftcard == 0)
+                {
+                    $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->where('product_id', $product->id)->where('color_id', $attribute['color_id'])->where('size_id', $attribute['size_id'])->first();
+                }
+                else
+                {
+                    $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->where('product_id', $product->id)->where('email', $attribute['email'])->first();
+                }
 
-            if($already_cart) 
+                if($already_cart) 
+                {
+                    // dd($already_cart);
+                    if($product->is_giftcard == 0)
+                    {
+                        $already_cart->quantity += $attribute['quantity'];
+                        $already_cart->amount +=  $product->discounted_amt * $attribute['quantity'];
+                        // return $already_cart->quantity;
+                        // if ($already_cart->product->stock < $already_cart->quantity || $already_cart->product->stock <= 0) return back()->with('error','Stock not sufficient!.');
+                        $already_cart->save();
+                    }
+                }
+                else
+                {  
+                    if($product->is_giftcard == 0)
+                    {
+                        $cart = new Cart;
+                        $cart->user_id = auth()->user()->id;
+                        $cart->code = $product->id.$attribute['color_id'].$attribute['size_id'];
+                        $cart->product_id = $product->id;
+                        // $cart->price = ($product->price-($product->price*$product->discount)/100);
+                        $cart->price = $product->discounted_amt ;
+                        $cart->image = @$product->images()->first()->image;
+                        $cart->quantity = $attribute['quantity'];
+                        $cart->color_id =$attribute['color_id'];
+                        $cart->size_id = $attribute['size_id'];
+                        $cart->amount = $cart->price * $cart->quantity;
+                        // if ($cart->product->stock < $cart->quantity || $cart->product->stock <= 0) return back()->with('error','Stock not sufficient!.');
+                        $cart->save();
+                        Wishlist::where(['user_id'=>Auth::id(),'cart_id'=>null,'product_id'=>$product->id])->update(['cart_id'=>$cart->id]);
+                    }
+                    else
+                    {
+                        $cart = new Cart;
+                        $cart->user_id = auth()->user()->id;
+                        $cart->code = $product->id;
+                        $cart->product_id = $product->id;
+                        // $cart->price = ($product->price-($product->price*$product->discount)/100);
+                        $cart->price = $product->discounted_amt ;
+                        $cart->image = null;
+                        $cart->quantity = $attribute['quantity'];
+                        $cart->color_id =0;
+                        $cart->size_id = 0;
+                        $cart->amount = $cart->price * $cart->quantity;
+                        $cart->email = $attribute['email'];
+                        $cart->name = $attribute['name'];
+                        $cart->message = $attribute['message'];
+                        $cart->from_name = $attribute['from_name'];
+                        $cart->save();
+                        Wishlist::where(['user_id'=>Auth::id(),'cart_id'=>null,'product_id'=>$product->id])->update(['cart_id'=>$cart->id]);
+                    }
+                
+                }
+
+            if($product->is_giftcard == 0)
             {
-                // dd($already_cart);
-                $already_cart->quantity += $attribute['quantity'];
-                $already_cart->amount +=  $product->discounted_amt * $attribute['quantity'];
-                // return $already_cart->quantity;
-                // if ($already_cart->product->stock < $already_cart->quantity || $already_cart->product->stock <= 0) return back()->with('error','Stock not sufficient!.');
-                $already_cart->save();
+              unset($carts[ $attribute['product']['id'] . $attribute['color_id'] . $attribute['size_id'] ]);
             }
             else
             {
-                $cart = new Cart;
-                $cart->user_id = auth()->user()->id;
-                $cart->code = $product->id.$attribute['color_id'].$attribute['size_id'];
-                $cart->product_id = $product->id;
-                // $cart->price = ($product->price-($product->price*$product->discount)/100);
-                $cart->price = $product->discounted_amt ;
-                $cart->image = @$product->images()->first()->image;
-                $cart->quantity = $attribute['quantity'];
-                $cart->color_id =$attribute['color_id'];
-                $cart->size_id = $attribute['size_id'];
-                $cart->amount = $cart->price * $cart->quantity;
-                // if ($cart->product->stock < $cart->quantity || $cart->product->stock <= 0) return back()->with('error','Stock not sufficient!.');
-                $cart->save();
-                Wishlist::where(['user_id'=>Auth::id(),'cart_id'=>null,'product_id'=>$product->id])->update(['cart_id'=>$cart->id]);
-            }
-
-            unset($carts[ $attribute['product']['id'] . $attribute['color_id'] . $attribute['size_id'] ]);
+                unset($carts[ $attribute['product']['id']]);
+            }  
             Session::put('carts', count($carts) ? $carts :null);
         }
     }
@@ -294,6 +334,11 @@ function add_to_cart_session_cart_item()
         }
 
         return 0;    
+  }
+  function get_offer_value($offer)
+  {
+     $offerValue = Offer::where('offer_type',$offer)->where('status',1)->first()->offer_value;
+     return $offerValue;
   }
 
   function get_offer_discount_amount()
