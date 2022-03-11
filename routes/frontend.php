@@ -102,10 +102,10 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('/coupon-remove','CouponController@couponStore')->name('coupon-remove');    
 
     // Cart section
-    Route::get('/cart',function()
-    {
-        return view('frontend.cart');
-    })->name('cart');
+    // Route::get('/cart',function()
+    // {
+    //     return view('frontend.cart');
+    // })->name('cart');
 
     // Route::get('/cart',function(){
     //     return view('frontend.pages.cart2');

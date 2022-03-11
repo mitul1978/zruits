@@ -82,11 +82,13 @@
 																						@endif
 																					</td>
 																					<?php
-
-																							$calculateGst = $item->taxable_amount - ( $item->taxable_amount * (100/(100 + $taxPercent)));
-																							$amtExclGst = $item->taxable_amount - $calculateGst;
-																							$subtotal = $subtotal + $amtExclGst;
-																							$tax = $tax + $calculateGst;
+																							if($item->product->is_giftcard == 0)
+																							{
+																								$calculateGst = $item->taxable_amount - ( $item->taxable_amount * (100/(100 + $taxPercent)));
+																								$amtExclGst = $item->taxable_amount - $calculateGst;
+																								$subtotal = $subtotal + $amtExclGst;
+																								$tax = $tax + $calculateGst;
+																							}																							
 																						?> 
 																					<td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
 																						{{$item->quantity}}		</td>
@@ -131,6 +133,10 @@
 																					<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{number_format($tax,2)}}</span></td>
 																				</tr>
 																			@endif
+																			<tr>
+																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Total Payable Amount:</th>
+																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">{{number_format($orderDetails->total_amount,2)}}</td>
+																			</tr>
 																			<tr>
 																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Note:</th>
 																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">{{$orderDetails->order_note}}</td>
