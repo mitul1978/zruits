@@ -106,8 +106,22 @@ class OrdersController extends Controller
                 $total_amount = 0;
                 $total_discount = 0;
                 $order = new Order();
-                $order->order_number = 'O-'.@auth()->user()->id.'-'.strtoupper(time());
+                //$order->order_number = 'O-'.@auth()->user()->id.'-'.strtoupper(time());
+                // $order->user_id = @auth()->user()->id;
+                if (date('m') < 4) 
+                {
+                    $financial_year = (date('y')-1) . '-' . date('y');
+                } 
+                else 
+                {
+                    $financial_year = date('y') . '-' . (date('y') + 1);
+                }
+                $lastOrderNumber = Order::latest()->first()->order_sequence + 1;
+                $lastOrderNumber = str_pad($lastOrderNumber,4,"0",STR_PAD_LEFT);
+                $todaysDate = date('d/m/y');
+                $order->order_number = 'ZE / '. $financial_year .' / '. $lastOrderNumber . ' ' . $todaysDate;
                 $order->user_id = @auth()->user()->id;
+                $order->order_sequence = $lastOrderNumber;
                     
                 if(session('order_note'))
                 {
@@ -234,8 +248,9 @@ class OrdersController extends Controller
                 $order->razerpay_order = json_encode($response );
                 $order->save();
                 DB::commit();
-
-                return redirect('payment-initiate/'.$order->order_number);
+                 $orderNumberString = str_replace(' ','_',$order->order_number);
+                 $orderNumberString = str_replace('/','O',$orderNumberString);
+                return redirect('payment-initiate/'.$orderNumberString);
                
                 //   Alert::success('Your product successfully placed in order');                
                 // return redirect()->route('user');

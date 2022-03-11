@@ -21,7 +21,7 @@ class RazorpayPaymentController extends Controller
      * @return response()
      */
     public function create_razorpay_order($order)
-    {        
+    {   
         $receiptId = $order->order_number;      
         // Create an object of razorpay
         $payment = new Payment();
@@ -68,7 +68,9 @@ class RazorpayPaymentController extends Controller
 
      public function payment_initiate($order_number)
      {
-        $order = Order::where('payment_status','process')->where('user_id',auth()->user()->id)->where('order_number',$order_number)->first();
+        $orderNumberString = str_replace('_',' ',$order_number);
+        $orderNumberString = str_replace('O','/',$orderNumberString);
+        $order = Order::where('payment_status','process')->where('user_id',auth()->user()->id)->where('order_number',$orderNumberString)->first();
 
         if($order):
             $response =json_decode( $order->razerpay_order,true);
@@ -150,9 +152,9 @@ class RazorpayPaymentController extends Controller
                 }  
                 else
                 {  
-                    $flag =1;
+                    $flag = 1;
                     for($i=0; $i < $orderList->quantity; $i++)
-                    {
+                    {   
                             $data['code'] = substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 16);
                             $code = $data['code'];
                             $data['type'] = 'fixed';
@@ -218,7 +220,7 @@ class RazorpayPaymentController extends Controller
               {
               }  
 
-              if($flag == 1)
+              if($flag == 0)
               {
                     $orderDetails = [
                         "order_id" => $order->order_number,
@@ -263,20 +265,18 @@ class RazorpayPaymentController extends Controller
                     // $orderDetails = json_encode($orderDetails);
                     $token =  Shiprocket::getToken();
                     $response =  Shiprocket::order($token)->create($orderDetails);
-
                     if($response)
                     {
                         if(isset($response['order_id']));
                         {
                             $order->shiprocket_order_id=$response['order_id'];
                             $order->save();
-                        }
+                        }                        
                     }
                 } 
             }
             catch(exception $e)
             {
-                dd($e);
             }
            
             $flag = Session::get('flag');
