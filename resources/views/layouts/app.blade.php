@@ -361,7 +361,7 @@
                 $('#gift_card_to_name').val('');
                 $('#gift_card_to').val('');
                 $('#gift_card_from').val('');
-                $('#giftcard_from').html('');
+                $('#giftcard_message').text('');
                 $('.product'+product_id).text('Added');
            }            
         });

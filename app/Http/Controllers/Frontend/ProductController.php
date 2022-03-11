@@ -285,8 +285,8 @@ class ProductController extends Controller
 
                 if($orientations)
                 {  
-                    $orientations = serialize($orientations);
-                    $products->where('orientation','like', '%' . $orientations .'%' );
+                    $length = strlen((string)$orientations);
+                    $products->where('orientation','like', '%;s:'.$length .':"'.$orientations.'";%' );
                     // $products->map(function($i) use($orientations){
                     //    if($i->orientation)
                     //    {

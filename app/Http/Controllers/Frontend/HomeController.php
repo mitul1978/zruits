@@ -180,7 +180,7 @@ class HomeController extends Controller
     {
         $orderId = Session::get('orderId');
         $order = Order::where('id',$orderId)->first();
-        session()->forget('orderId');
+        //session()->forget('orderId');
         return view('user.viewOrderDetails',compact('order'));
     }
 

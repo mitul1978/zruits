@@ -203,9 +203,9 @@
                                             <div class="filter-items">
                                                 @foreach ($orientations as $item)
                                                     <div class="filter-item">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input customFilterData" id="orientation-{{$item->id}}" data-id="{{$item->id}}">
-                                                            <label class="custom-control-label" for="orientation-{{$item->id}}">{{$item->name}}</label>
+                                                        <div class="custom-control">
+                                                            <input type="radio" class=" customFilterData" id="orientation-{{$item->id}}" data-id="{{$item->id}}" name="customOrientation">
+                                                            <label class="" for="orientation-{{$item->id}}">{{$item->name}}</label>
                                                         </div><!-- End .custom-checkbox -->
                                                     </div><!-- End .filter-item -->
                                                 @endforeach
@@ -274,7 +274,7 @@
                             var sizes = [];
                             var colors = [];
                             var fabrics = [];
-                            var orientations = [];
+                            var orientations = null;
                             var pageType = $('#pageType').val();
                             var min = ui.values[0];
                             var max = ui.values[1];
@@ -315,7 +315,7 @@
                                 console.log('o',$(this).is(':checked'));                    
                                 if($(this).is(':checked'))
                                 {  
-                                    orientations.push( $(this).data('id'));
+                                    orientations = $(this).data('id');
                                     //$(this).trigger("change");
                                 }
                             });
@@ -369,7 +369,7 @@
                     var sizes = [];
                     var colors = [];
                     var fabrics = [];
-                    var orientations = [];
+                    var orientations = null;
                     var price = [];
                     var pageType = $('#pageType').val();
                     var min = 0;
@@ -413,7 +413,7 @@
                         console.log('o',$(this).is(':checked'));                    
                         if($(this).is(':checked'))
                         {  
-                            orientations.push( $(this).data('id'));
+                            orientations = $(this).data('id');
                             //$(this).trigger("change");
                         }
                     });
@@ -466,7 +466,7 @@
                     var sizes = [];
                     var colors = [];
                     var fabrics = [];
-                    var orientations = [];
+                    var orientations = null;
                     var pageType = $('#pageType').val();
                     var value = $('.filterBySort').val(); 
                     var min = 0;
@@ -508,7 +508,7 @@
                         console.log('o',$(this).is(':checked'));                    
                         if($(this).is(':checked'))
                         {  
-                            orientations.push( $(this).data('id'));
+                            orientations = $(this).data('id');
                             //$(this).trigger("change");
                         }
                     });
