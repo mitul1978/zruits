@@ -38,7 +38,7 @@
 															<div id="body_content_inner" style='color: #636363; font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; font-size: 14px; line-height: 150%; text-align: left;'>
 																<p style="margin: 0 0 16px;">Hi admin,</p>
 																<p style="margin: 0 0 16px;">You have received order on Zehna. There are more details below for your reference:</p>
-																<h2 style='color: #000000; display: block; font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;'>[Order #2956] (February 10, 2022)</h2>
+																<h2 style='color: #000000; display: block; font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 0 0 18px; text-align: left;'>[Order #{{$orderDetails->order_number}}] ({{date('d-m-Y', strtotime($orderDetails->created_at))}})</h2>
 																<div style="margin-bottom:40px">
 																	<table cellspacing="0" cellpadding="6" border="1" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;width:100%;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
 																		<thead>

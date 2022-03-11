@@ -88,7 +88,7 @@
 																								$amtExclGst = $item->taxable_amount - $calculateGst;
 																								$subtotal = $subtotal + $amtExclGst;
 																								$tax = $tax + $calculateGst;
-																							}																							
+																							}																						
 																						?> 
 																					<td style="color:#636363;border:1px solid #e5e5e5;padding:12px;text-align:left;vertical-align:middle;font-family:'Helvetica Neue',Helvetica,Roboto,Arial,sans-serif">
 																						{{$item->quantity}}		</td>
