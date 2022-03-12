@@ -217,7 +217,7 @@ class OrdersController extends Controller
                 $order->tax = $tax ;
                 $order->taxable_amount = $taxable_amount;
                 $order->sub_total = $sub_total;
-                $order->total_discount =  $discount + get_offer_discount_amount();
+                $order->total_discount =  $discount + get_offer_discount_amount1() + get_offer_discount_amount2();
                 $total_amount =  $sub_total - $order->total_discount - $order->coupon_value - $order->giftcard_value; 
                 $order->total_amount =  $total_amount;
                 $order->save();

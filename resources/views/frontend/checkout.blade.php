@@ -116,13 +116,15 @@
 												$taxable_amount = get_cart_taxable_amount();																					
 												$tax = 0;// get_tax_total($taxable_amount);										  
 												$freight_charge = 0;//  @$freight_details['freight_charge'] ? $freight_details['freight_charge'] :0;
-												$offerDiscount = get_offer_discount_amount();	
-												$offer = get_offer_type();
-												if($offer != 0)
-												{
-													$offerValue = get_offer_value($offer);
-												}
-												$grand_total =  $tax + $taxable_amount + $freight_charge - $offerDiscount - $giftcard_value - $coupon_value;		
+												$offerDiscount1 = get_offer_discount_amount1();	
+												$offerDiscount2 = get_offer_discount_amount2();	
+												//$offer = get_offer_type();
+												// if($offer != 0)
+												// {
+													$offerValue1 = get_offer_value(1);
+													$offerValue2 = get_offer_value(2);
+												//}
+												$grand_total =  $tax + $taxable_amount + $freight_charge - $offerDiscount1 - $offerDiscount2 - $giftcard_value - $coupon_value;		
 												$isGiftCard = 0;
 												$discountRs = $totalAmt - $taxable_amount;
 												$discountPer = 0;
@@ -153,7 +155,7 @@
 												<tr class="summary-subtotal">  
 												   <td> <button class="btn" type="button" id="applyGiftcard">{{@Session::get('giftcard')['code'] ? 'Remove Gift Card' :'Apply Gift Card'}}</button> </td>  
 												</tr>
-												@if($offerDiscount == 0)
+												
 													<tr class="summary-subtotal"> 
 													<td> <input type="text" class="form-control"  id="checkout-discount-input" name="code" placeholder="Coupon Code" value="{{@Session::get('coupon')['code']}}"></td>                                 
 													<td><span id="error2" class="error" style="color:red">Invalid</span></td> 
@@ -161,7 +163,7 @@
 													<tr class="summary-subtotal">  
 														<td> <button class="btn" type="button" id="applyCoupon">{{@Session::get('coupon')['code'] ? 'Remove Coupon' :'Apply Coupon'}}</button> </td>  
 													</tr> 
-												@endif -->
+												-->
 												
 		                						<tr class="summary-subtotal">
 		                							<td>Subtotal:</td>
@@ -173,13 +175,14 @@
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">
 		                							<td>Offer Discount:<br>
-														@if($offer == 1)
-														  <small>(Buy 3 flat at {{round($offerValue)}})</small>
-														@elseif($offer == 2)
-														  <small>(Buy 1 get 2nd at {{round($offerValue)}}% off)</small>
+														@if($offerDiscount1 != 0)
+														  <small>(Buy 3 flat at {{round($offerValue1)}})</small><br>
+														@endif
+														@if($offerDiscount2 != 0)
+														  <small>(Buy 1 get 2nd at {{round($offerValue2)}}% off)</small>
 														@endif
 													</td>
-		                							<td>{!! $rupee !!} {{ round($offerDiscount) }}</td>
+		                							<td>{!! $rupee !!} {{ round($offerDiscount1 + $offerDiscount2) }}</td>
 		                						</tr><!-- End .summary-subtotal -->
 												<tr class="summary-subtotal">
 		                							<td>Gift Card:</td>

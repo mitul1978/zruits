@@ -100,7 +100,7 @@
 																		<tfoot>
 																			<tr>
 																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px">Subtotal:</th>
-																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px"><span><span>₹</span>{{$orderDetails->sub_total}}</span></td>
+																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px"><span><span>₹</span>{{$orderDetails->taxable_amount}}</span></td>
 																			</tr>
 																			<tr>
 																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left;border-top-width:4px">Discount:</th>
@@ -114,23 +114,26 @@
 																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Payment method:</th>
 																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Online</td>
 																			</tr>
+																			<?php
+																			       $taxAmt = $orderDetails->total_amount - ( $orderDetails->total_amount * (100/(100 + $taxPercent))); 
+																			?>
 																			<tr>
 																				<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">Taxable Amount:</th>
-																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">{{number_format($subtotal,2)}}</td>
+																				<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">{{number_format($orderDetails->total_amount - $taxAmt,2)}}</td>
 																			</tr>
 																			@if($orderDetails->state_id == 22)
 																				<tr>
 																					<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">CGST ({{$taxPercent/2}} %):</th>
-																					<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{number_format($tax/2,2)}}</span></td>
+																					<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{number_format($taxAmt/2,2)}}</span></td>
 																				</tr>
 																				<tr>
 																					<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">SGST ({{$taxPercent/2}} %):</th>
-																					<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{number_format($tax/2,2)}}</span></td>
+																					<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{number_format($taxAmt/2,2)}}</span></td>
 																				</tr>
 																			@else
 																				<tr>
 																					<th scope="row" colspan="2" style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left">IGST ({{$taxPercent}} %):</th>
-																					<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{number_format($tax,2)}}</span></td>
+																					<td style="color:#636363;border:1px solid #e5e5e5;vertical-align:middle;padding:12px;text-align:left"><span><span>₹</span>{{number_format($taxAmt,2)}}</span></td>
 																				</tr>
 																			@endif
 																			<tr>
