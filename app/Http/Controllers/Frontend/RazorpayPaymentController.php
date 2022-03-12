@@ -141,7 +141,7 @@ class RazorpayPaymentController extends Controller
                     $stock->decrement('stock_qty', $orderList->quantity);
                     $subItem =  [            
                         "name" => $orderList->product->name,
-                        "sku" => $orderList->product->slug.substr($orderList->color->name, 0, 1).$orderList->size->name,
+                        "sku" => $orderList->product->design.substr($orderList->color->name, 0, 1).$orderList->size->name,
                         "units" => $orderList->quantity,
                         "selling_price" => $orderList->price,
                         "discount"=> $orderList->discount,
