@@ -341,7 +341,7 @@ function add_to_cart_session_cart_item()
      return $offerValue;
   }
 
-  function get_offer_discount_amount()
+  function get_offer_discount_amount1()
   {
         if(is_user_logged_in())
         {
@@ -359,22 +359,18 @@ function add_to_cart_session_cart_item()
             $finalAmtOffer1 = 0;  
             $remainingAmtOffer1 = 0;   
             $offer1Qty = 3;  
-            $countOffer2 = 0;
-            $productIdsOffer2 = [];
-            $finalAmtOffer2= 0;
-            $discountAmtOffer2 = 0;
-            $remainingAmtOffer2 = 0;
-            $offer2Qty = 2;
+            // $countOffer2 = 0;
+            // $productIdsOffer2 = [];
+            // $finalAmtOffer2= 0;
+            // $discountAmtOffer2 = 0;
+            // $remainingAmtOffer2 = 0;
+            // $offer2Qty = 2;
 
             foreach($carts as $v)
             {
                if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 1)
                {
                   $countOffer1 = $countOffer1 + $v['quantity'];
-               }
-               else if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 2)
-               {
-                  $countOffer2 = $countOffer2 + $v['quantity'];
                }
             }
 
@@ -412,6 +408,42 @@ function add_to_cart_session_cart_item()
                     $finalAmtOffer1 = $offer->offer_value + $remainingAmtOffer1;
                     return $offerCycle1 * ( $totalAmt - $finalAmtOffer1);
                 }    
+            }
+
+        return 0;        
+  }
+
+  function get_offer_discount_amount2()
+  {
+        if(is_user_logged_in())
+        {
+            $carts = Cart::where('user_id',auth()->user()->id)->where('order_id',null)->get();
+            $totalAmt = $carts->sum('amount');
+           // $totalAmt  $amount;
+        }
+        else
+        {
+            $carts = Session::get('carts');
+            $totalAmt = array_sum(array_column(@$carts,'amount'));
+        }
+            // $countOffer1 = 0;
+            // $productIdsOffer1 = [];
+            // $finalAmtOffer1 = 0;  
+            // $remainingAmtOffer1 = 0;   
+            // $offer1Qty = 3;  
+            $countOffer2 = 0;
+            $productIdsOffer2 = [];
+            $finalAmtOffer2= 0;
+            $discountAmtOffer2 = 0;
+            $remainingAmtOffer2 = 0;
+            $offer2Qty = 2;
+
+            foreach($carts as $v)
+            {
+               if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 2)
+               {
+                  $countOffer2 = $countOffer2 + $v['quantity'];
+               }
             }
 
             if($countOffer2 >= 2)
