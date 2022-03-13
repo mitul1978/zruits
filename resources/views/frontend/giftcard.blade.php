@@ -21,24 +21,24 @@
                                 <div class="product-gallery product-gallery-vertical">
                                     <div class="row">
                                         <figure class="product-main-image">
-                                            <img id="product-zoom" src="assets/images/zehna-gift.jpg" data-zoom-image="assets/images/products/single/1-big.jpg" alt="product image">                                            
+                                            <img id="product-zoom" src="assets/images/zehna-gift.jpg" data-zoom-image="assets/images/zehna-gift.jpg" alt="product image">                                            
                                         </figure><!-- End .product-main-image -->
 
                                         {{-- <div id="product-zoom-gallery" class="product-image-gallery">
                                             <a class="product-gallery-item active" href="#" data-image="assets/images/products/single/1.jpg" data-zoom-image="assets/images/products/single/1-big.jpg">
-                                                <img src="assets/images/products/single/1-small.jpg" alt="product side">
+                                                <img src="assets/images/zehna-gift.jpg" alt="product side">
                                             </a>
 
                                             <a class="product-gallery-item" href="#" data-image="assets/images/products/single/2.jpg" data-zoom-image="assets/images/products/single/2-big.jpg">
-                                                <img src="assets/images/products/single/2-small.jpg" alt="product cross">
+                                                <img src="assets/images/zehna-gift.jpg" alt="product cross">
                                             </a>
 
                                             <a class="product-gallery-item" href="#" data-image="assets/images/products/single/3.jpg" data-zoom-image="assets/images/products/single/3-big.jpg">
-                                                <img src="assets/images/products/single/3-small.jpg" alt="product with model">
+                                                <img src="assets/images/zehna-gift.jpg" alt="product with model">
                                             </a>
 
                                             <a class="product-gallery-item" href="#" data-image="assets/images/products/single/4.jpg" data-zoom-image="assets/images/products/single/4-big.jpg">
-                                                <img src="assets/images/products/single/4-small.jpg" alt="product back">
+                                                <img src="assets/images/zehna-gift.jpg" alt="product back">
                                             </a>
                                         </div><!-- End .product-image-gallery --> --}}
                                     </div><!-- End .row -->

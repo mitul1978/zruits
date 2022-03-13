@@ -1983,7 +1983,7 @@ blockquote.text-white cite span {
 }
 
 .menu>li>a {
-	color: #000 !important;
+	color: #fff !important;
 	font-weight: 500;
 	font-size: 1.4rem;
 	letter-spacing: -.01em;
@@ -19469,8 +19469,8 @@ button:focus {
 }
 
 .header-middle.sticky-header {
-	background-color: #fff;
-	color: #000;
+	background-color: rgb(25, 118, 210);
+	color: rgb(255, 255, 255);
 
 }
 .header-right a {
