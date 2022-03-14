@@ -21,11 +21,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-4 mb-2 mb-lg-0">
-                            <img src="https://storage.sg.content-cdn.io/in-resources/11522abc-e6f2-479d-917e-4cc3e65cf24e/Images/userimages/benq.jpg">
+                            <img src="assets/images/coll.jpg">
                         </div><!-- End .col-lg-6 -->
                         <div class="col-lg-6 offset-lg-1">
                             <h2 class="title mb-2">Business Enquiry</h2><!-- End .title mb-2 -->
-                            <p>Fill out this easy application and our team will get in touch with you within the next 24-48 hours.</p>
+                            <p class="mb-2">Fill out this easy application and our team will get in touch with you within the next 24-48 hours.</p>
                             <form action="#" class="contact-form mb-3">
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -67,8 +67,8 @@
                                     </div><!-- End .col-sm-6 -->
                                 </div><!-- End .row -->
 
-                                <label for="cstores" class="sr-only">Retail Stores</label>
-                                <input type="text" class="form-control" id="cstores" placeholder="State *" required>
+                                <label for="cstores" class="sr-only">GST Number</label>
+                                <input type="text" class="form-control" id="cstores" placeholder="GST Number *" required>
 
                                 <label for="cmessage" class="sr-only">Message</label>
                                 <textarea class="form-control" cols="30" rows="4" id="cmessage" required placeholder="Message *"></textarea>
