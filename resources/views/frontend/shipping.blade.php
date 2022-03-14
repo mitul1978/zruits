@@ -47,27 +47,7 @@
                             </tbody>
                             </table>
                             <p>&nbsp;</p>
-                            <p><strong><span style="text-decoration: underline;">Shipping Charges are as follows</span>:</strong>&nbsp;</p>
-                            <table style="width: 65%;" border="1">
-                            <tbody>
-                            <tr>
-                            <td style="width: 19.1492%;"><strong>Value of Order</strong></td>
-                            <td style="width: 21.8508%;"><strong>Shipping Charges</strong></td>
-                            </tr>
-                            <tr>
-                            <td style="width: 19.1492%;">Below Rs. 750</td>
-                            <td style="width: 21.8508%;">Rs. 50</td>
-                            </tr>
-                            <tr>
-                            <td style="width: 19.1492%;">Rs. 751-1299</td>
-                            <td style="width: 21.8508%;">Rs. 100</td>
-                            </tr>
-                            <tr>
-                            <td style="width: 19.1492%;">Rs. 1300 &amp; Above</td>
-                            <td style="width: 21.8508%;">Free</td>
-                            </tr>
-                            </tbody>
-                            </table>
+ 
                             <p>&nbsp;</p>
                             <p>*If you don't receive your order in 7-10 Days, please email us with all the details or you may contact us on +91 9876543210 between 10.30 - 06.00 on Monday to Saturday.</p>
 

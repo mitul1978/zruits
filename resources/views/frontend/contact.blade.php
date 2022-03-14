@@ -30,14 +30,17 @@
                 						<ul class="contact-list">
                 							<li>
                 								<i class="icon-map-marker"></i>
-	                							Sachha CreationGala No 201-202 Kanorita Hub, Jogeshwari East, Mumbai-400060, Maharashtra, India
+	                							<b>Sachha Creation</b><br> 
+												Gala No 201-202 Kanorita Hub, Jogeshwari East, Mumbai-400060, Maharashtra, India
 	                						</li>
                 							<li>
                 								<i class="icon-phone"></i>
-                								<a href="tel:#">+91 9876543210</a>
+												<b>Call or Whatsapp on</b> <br>
+												<a href="tel:#">+91 9876543210</a>
                 							</li>
                 							<li>
                 								<i class="icon-envelope"></i>
+												<b>Mail us</b><br>
                 								<a href="mailto:#">zehnalynxx@gmail.in</a>
                 							</li>
                 						</ul><!-- End .contact-list -->
