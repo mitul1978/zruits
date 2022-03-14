@@ -31,14 +31,14 @@
                 <div class="header-center">
                     <nav class="main-nav">
                         <ul class="menu sf-arrows">
+                            <li>
+                                <a href="/products" class="">New Arrivals</a>
+                            </li>
                             @foreach ($categoriesHeader as $category)
                                 <li>
                                     <a href="{{url('/categories/'.$category->slug)}}" class="">{{$category->title}}</a>
                                 </li>
                             @endforeach
-                            <li>
-                                <a href="/products" class="">New Arrivals</a>
-                            </li>
                             <li>
                                 <a href="/offers" class="">Offers</a>
                             </li>
