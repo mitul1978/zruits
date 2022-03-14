@@ -30,7 +30,7 @@
                 						<ul class="contact-list">
                 							<li>
                 								<i class="icon-map-marker"></i>
-	                							<b>Sachha Creation</b><br> 
+	                							<b>Satthiya Fashions</b><br> 
 												Gala No 201-202 Kanorita Hub, Jogeshwari East, Mumbai-400060, Maharashtra, India
 	                						</li>
                 							<li>
