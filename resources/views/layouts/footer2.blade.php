@@ -37,13 +37,13 @@
 
                 <div class="col-sm-6 col-lg-4">
                     <div class="widget">
-                        <h4 class="widget-title">COMPANY</h4><!-- End .widget-title -->
+                        <h4 class="widget-title">About Us</h4><!-- End .widget-title -->
 
                         <ul class="widget-list">
                             <li><a href="/about-us">About</a></li>
                             <li><a href="/contact">Contact</a></li>
                             <li><a href="{{url('/collaboration')}}">Collaborations</a></li>
-                            <li><a href="/faq">FAQ</a></li>
+
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
@@ -58,6 +58,7 @@
                             <li><a href="/returns-exchange-refund">Returns, Exchange & Refund</a></li>
                             <li><a href="/shipping-policy">Shipping Policy</a></li>
                             <li><a href="/cancellation-policy">Cancellation Policy</a></li>
+                            <li><a href="/faq">FAQ</a></li>
                         </ul><!-- End .widget-list -->
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
