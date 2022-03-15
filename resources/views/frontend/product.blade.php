@@ -80,6 +80,7 @@
       </div>
     </div>
 <main class="main">
+    <input type="hidden" name="pageValue" id="pageValue" value="{{ request()->has('offerValue') ? decrypt(request()->query('offerValue')) : 0 }}">
             <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
                 <div class="container d-flex align-items-center">
                     <ol class="breadcrumb">

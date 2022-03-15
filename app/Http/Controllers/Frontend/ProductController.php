@@ -251,6 +251,7 @@ class ProductController extends Controller
         $pageType = isset($request->pageType) ? $request->pageType : null;
         $min = isset($request->min) ? $request->min : null;
         $max = isset($request->max) ? $request->max : null;
+        $pageValue = isset($request->pageValue) ? $request->pageValue : null;
 
         $products = Product::withCount('user_wishlist');
 
@@ -314,6 +315,11 @@ class ProductController extends Controller
                 {
                     $products->where('category_id',$pageType);
                 }
+
+                if($pageValue != 0)
+                {
+                    $products->whereIn('offer',[$pageValue,3]);
+                }
     
                 if($value == 'latest')
                 {
@@ -335,6 +341,8 @@ class ProductController extends Controller
                 {
                     $products =  $products->where('status','1')->where('is_giftcard',0)->paginate(12); 
                 }
+
+                
         // }
         // else
         // {   
@@ -394,7 +402,7 @@ class ProductController extends Controller
         // if ($request->ajax()) 
         // {
             //$returnHTML = view('frontend.productlisting',[' products'=> $products])->render();// or method that you prefere to return data + RENDER is the key here
-            return view('frontend.productlisting', ['products'=> $products,'value' => $value]); //response()->json( array('success' => true, 'html'=>$returnHTML) );
+            return view('frontend.productlisting', ['products'=> $products,'value' => $value,'pageValue' => $pageValue]); //response()->json( array('success' => true, 'html'=>$returnHTML) );
         // }
         // else
         // {  

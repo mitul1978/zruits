@@ -5,10 +5,10 @@ use App\Models\Product;
 use App\Models\Offer;
 use Illuminate\Support\Facades\Auth;
 
-function addToCart($product,$colorId,$sizeId)
+function addToCart($product,$colorId,$sizeId,$pageValue)
 {
 
-    $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->where('product_id', $product->id)->where('color_id', $colorId)->where('size_id', $sizeId)->first();
+    $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->where('product_id', $product->id)->where('color_id', $colorId)->where('size_id', $sizeId)->where('page_value', $pageValue)->first();
     //  return $already_cart;
     if($already_cart) 
     {
@@ -33,6 +33,7 @@ function addToCart($product,$colorId,$sizeId)
         $cart->amount=$cart->price*$cart->quantity;
         $cart->color_id = $colorId;
         $cart->size_id = $sizeId;
+        $cart->page_value = $pageValue;
         // if ($cart->product->stock < $cart->quantity || $cart->product->stock <= 0) return back()->with('error','Stock not sufficient!.');
         $cart->save();
 
@@ -78,14 +79,14 @@ function addToCart($product,$colorId,$sizeId)
  }
 
 
- function addToCartForGuestInSession($product,$colorId,$sizeId){
+ function addToCartForGuestInSession($product,$colorId,$sizeId,$pageValue){
 
     $carts = Session::get('carts');
     /*
      * If product already exist into the cart then update QTY of product
      * Othewise add new product into the cart
      */
-    if(isset($carts[$product->id.$colorId.$sizeId]) && @$carts[$product->id.$colorId.$sizeId]['color_id'] == $colorId && @$carts[$product->id.$colorId.$sizeId]['size_id'] == $sizeId):
+    if(isset($carts[$product->id.$colorId.$sizeId]) && @$carts[$product->id.$colorId.$sizeId]['color_id'] == $colorId && @$carts[$product->id.$colorId.$sizeId]['size_id'] == $sizeId && @$carts[$product->id.$colorId.$sizeId]['page_value'] == $pageValue):
         $carts[$product->id.$colorId.$sizeId]['quantity'] += 1;
         $carts[$product->id.$colorId.$sizeId]['amount'] = $product->discounted_amt  * $carts[$product->id.$colorId.$sizeId]['quantity'];
 
@@ -97,6 +98,7 @@ function addToCart($product,$colorId,$sizeId)
         $carts[$product->id.$colorId.$sizeId]['product'] = $product->toArray(); 
         $carts[$product->id.$colorId.$sizeId]['color_id'] = $colorId; 
         $carts[$product->id.$colorId.$sizeId]['size_id'] = $sizeId; 
+        $carts[$product->id.$colorId.$sizeId]['page_value'] = $pageValue; 
 
     endif;
 
@@ -312,12 +314,12 @@ function add_to_cart_session_cart_item()
         $offer2Qty = 2;
 
         foreach($carts as $v)
-        {
-           if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 1)
+        { 
+           if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 1 && $v['page_value'] == 1)
            {
               $countOffer1 = $countOffer1 + $v['quantity'];
            }
-           else if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 2)
+           else if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 2 && $v['page_value'] == 2)
            {
               $countOffer2 = $countOffer2 + $v['quantity'];
            }
@@ -368,7 +370,7 @@ function add_to_cart_session_cart_item()
 
             foreach($carts as $v)
             {
-               if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 1)
+               if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 1 && $v['page_value'] == 1)
                {
                   $countOffer1 = $countOffer1 + $v['quantity'];
                }
@@ -440,7 +442,7 @@ function add_to_cart_session_cart_item()
 
             foreach($carts as $v)
             {
-               if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 2)
+               if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 2 && $v['page_value'] == 2)
                {
                   $countOffer2 = $countOffer2 + $v['quantity'];
                }
@@ -540,12 +542,12 @@ function add_to_cart_session_cart_item()
   }
 
 
-  function addToCart_live($product,$colorId,$sizeId)
+  function addToCart_live($product,$colorId,$sizeId,$pageValue)
   {
     if (is_user_logged_in())
     {
     
-        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->where('product_id', $product->id)->where('color_id', $colorId)->where('size_id', $sizeId)->first();
+        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->where('product_id', $product->id)->where('color_id', $colorId)->where('size_id', $sizeId)->where('page_value', $pageValue)->first();
 
         if($already_cart) 
         {
@@ -563,6 +565,7 @@ function add_to_cart_session_cart_item()
             $cart->price = $product->discounted_amt;
             $cart->color_id = $colorId;
             $cart->size_id = $sizeId;
+            $cart->page_value = $pageValue;
             $cart->quantity = 1;
             $cart->amount=$cart->discounted_amt * $cart->quantity;
             $cart->image = @$product->images()->first()->image; 
@@ -579,7 +582,7 @@ function add_to_cart_session_cart_item()
          * Othewise add new product into the cart
          */
 
-        if(isset($carts[$product->id.$colorId.$sizeId]) && @$carts[$product->id.$colorId.$sizeId]['color_id'] == $colorId && @$carts[$product->id.$colorId.$sizeId]['size_id'] == $sizeId):
+        if(isset($carts[$product->id.$colorId.$sizeId]) && @$carts[$product->id.$colorId.$sizeId]['color_id'] == $colorId && @$carts[$product->id.$colorId.$sizeId]['size_id'] == $sizeId && @$carts[$product->id.$colorId.$sizeId]['page_value'] == $pageValue):
             $carts[$product->id.$colorId.$sizeId]['quantity'] += 1;
             $carts[$product->id.$colorId.$sizeId]['amount'] = $product->discounted_amt  * $carts[$product->id.$colorId.$sizeId]['quantity'];
     
@@ -596,6 +599,7 @@ function add_to_cart_session_cart_item()
             $carts[$product->id.$colorId.$sizeId]['product'] = $product->toArray(); 
             $carts[$product->id.$colorId.$sizeId]['color_id'] = $colorId; 
             $carts[$product->id.$colorId.$sizeId]['size_id'] = $sizeId; 
+            $carts[$product->id.$colorId.$sizeId]['page_value'] = $pageValue; 
     
         endif;
     
@@ -606,11 +610,11 @@ function add_to_cart_session_cart_item()
 
 
 
- function removeToCart_live($product,$colorId,$sizeId)
+ function removeToCart_live($product,$colorId,$sizeId,$pageValue)
  {
     if (is_user_logged_in())
     {    
-        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->where('product_id', $product->id)->where('color_id', $colorId)->where('size_id', $sizeId)->first();
+        $already_cart = Cart::where('user_id', auth()->user()->id)->where('order_id',null)->where('product_id', $product->id)->where('color_id', $colorId)->where('size_id', $sizeId)->where('page_value', $pageValue)->first();
 
         if($already_cart) 
         { 

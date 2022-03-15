@@ -132,6 +132,7 @@
 												{
 													$discountPer = (100 * ($discountRs)) / $totalAmt;
 												}
+												// dd(get_cart());
 											@endphp
 		                					<tbody>
 												@foreach (get_cart() as $cart)

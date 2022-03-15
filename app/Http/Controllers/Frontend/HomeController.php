@@ -268,14 +268,16 @@ class HomeController extends Controller
             if($slug == 'offer1')
             {
                 $pageType = 'Buy 3 flat at Rs. 6500';
+                $pageValue = '1';
                 $products = Product::withCount('user_wishlist')
-                ->where('status','1')->where('is_giftcard',0)->where('is_offer',1)->where('offer',1)->latest()->paginate(9);
+                ->where('status','1')->where('is_giftcard',0)->where('is_offer',1)->whereIn('offer',[1,3])->latest()->paginate(9);
             }
             else if($slug == 'offer2')
             {
                 $pageType = 'Buy 2 and get the 3rd at 20% OFF';
+                $pageValue = '2';
                 $products = Product::withCount('user_wishlist')
-                ->where('status','1')->where('is_giftcard',0)->where('is_offer',1)->where('offer',2)->latest()->paginate(9);
+                ->where('status','1')->where('is_giftcard',0)->where('is_offer',1)->whereIn('offer',[2,3])->latest()->paginate(9);
             }
 
             $sizes = Size::where('status',1)->get();
@@ -284,7 +286,7 @@ class HomeController extends Controller
             $orientations = Orientation::where('status',1)->get();   
             $maxValue = Product::where('is_giftcard',0)->max('price');                           
 
-            return view('frontend.products', compact('products','pageType','sizes','colors','fabrics','orientations','maxValue'));
+            return view('frontend.products', compact('products','pageType','pageValue','sizes','colors','fabrics','orientations','maxValue'));
         }
         else
         {

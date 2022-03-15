@@ -67,6 +67,7 @@ class CartController extends Controller
         $product = Product::where('id',  $request->product_id)->first();
         $colorId = $request->colorId;
         $sizeId = $request->sizeId;
+        $pageValue = isset($request->pageValue)?$request->pageValue:0;
 
         if (empty($product)) 
         {
@@ -77,11 +78,11 @@ class CartController extends Controller
         {
             if (is_user_logged_in())
             {
-                addToCart($product,$colorId,$sizeId);
+                addToCart($product,$colorId,$sizeId,$pageValue);
             }
             else
             {
-                addToCartForGuestInSession($product,$colorId,$sizeId);
+                addToCartForGuestInSession($product,$colorId,$sizeId,$pageValue);
             }
         }    
         else
@@ -114,7 +115,7 @@ class CartController extends Controller
 
 
         $product = Product::where('slug', $request->slug)->first();
-        if($product->stock <$request->quant[1]){
+        if($product->stock < $request->quant[1]){
             return back()->with('error','Out of stock, You can add other products.');
         }
         if ( ($request->quant[1] < 1) || empty($product) ) {

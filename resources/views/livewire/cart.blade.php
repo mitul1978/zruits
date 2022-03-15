@@ -52,7 +52,7 @@
                   <form class="cart_update_form" action="{{route('cart.update')}}" method="POST">
                     @csrf
                     @php
-                        $sub_total = 0;       
+                        $sub_total = 0;   
                     @endphp
                     @foreach(get_cart() as $cart)
                         @php
@@ -96,14 +96,14 @@
                               <div class="e-pro-qty-block"> 
                                 @if($cart['product']['is_giftcard'] == 0)
                                   @if($cart['quantity']>1)
-                                    <span wire:click="removeToCart({{$cart['product']['id']}},{{@$cart['color_id']}},{{@$cart['size_id']}})" class="input-number-increment" >-</span>
+                                    <span wire:click="removeToCart({{$cart['product']['id']}},{{@$cart['color_id']}},{{@$cart['size_id']}},{{@$cart['page_value']}})" class="input-number-increment" >-</span>
                                   @else                                    
                                     <span wire:click="alertConfirmDelete({{$cart['product']['id']}})" class="input-number-increment"><i class="fas fa-trash-alt"></i> X </span>
                                   @endif   
                                 @endif   
                                 <input style="width:50px;" name="quant[{{$cart['product']['id']}}]" class="input-number" data-product_id="{{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}}" id="cart_item_count{{$cart['product']['id'].@$cart['color_id'].@$cart['size_id']}}" type="number" value="{{$cart['quantity']}}" min="{{@$cart['product']['min_qty']}}" max="{{@$cart['product']['max_qty']}}" >
                                 @if($cart['product']['is_giftcard'] == 0)
-                                    <span wire:click="addToCart({{$cart['product']['id']}},{{@$cart['color_id']}},{{@$cart['size_id']}})" class="input-number-increment" >+</span> 
+                                    <span wire:click="addToCart({{$cart['product']['id']}},{{@$cart['color_id']}},{{@$cart['size_id']}},{{@$cart['page_value']}})" class="input-number-increment" >+</span> 
                                 @endif
                               </div>
                             </td>
