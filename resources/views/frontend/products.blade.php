@@ -157,7 +157,7 @@
                                                     <div class="radio has-color">
                                                         <label>
                                                             <input style="background: {{$item->code}}" type="radio" id="color-{{$item->id}}"  name="color-{{$item->id}}" class="p-cradio customFilterData " value="{{$item->id}}">
-                                                            <div class="custom-color"><span style="background-color:{{$item->code}}" ></span></div>
+                                                            <div class="custom-color" data-toggle="tooltip" title="{{$item->name}}"><span style="background-color:{{$item->code}}" ></span></div>
                                                         </label>
                                                     </div>
                                                    <!-- <input style="background: {{$item->code}}" type="radio" id="color-{{$item->id}}"  name="color-{{$item->id}}" class="customFilterData" value="{{$item->id}}"> -->
