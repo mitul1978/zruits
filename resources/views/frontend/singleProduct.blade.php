@@ -14,8 +14,9 @@
                                             $colorId = @$product->sizesstock()->first()->color_id;
                                             $priImage = @$product->images()->first()->image;
                                             $images = $product->images()->where('color_id',$colorId)->get();
-                                        }                                     
-                                    ?>
+                                        }                     
+                                    ?>                                    
+                                   
                                     <div class="row">
                                         <figure class="product-main-image">                                            
                                             <img id="product-zoom" src="{{asset(@$priImage)}}" data-zoom-image="{{asset(@$priImage)}}" alt="{!! @$product->meta_description !!}">

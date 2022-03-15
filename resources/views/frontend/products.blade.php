@@ -80,6 +80,7 @@
       </div>
     </div>
     <input type="hidden" name="productType" id="productType" value="1">
+    <input type="hidden" name="pageValue" id="pageValue" value="{{ isset($pageValue)?$pageValue:0 }}">
         <main class="main">
             @if($pageType == 'Shop By Products' || $pageType == 'Shop By Categories')
              <input type="hidden" name="pageType" id="pageType" value="0">
@@ -352,6 +353,17 @@
                $(document).on('click','.customFilterData', function()
                {  
                     $('.spinner-wrapper').show();
+                    if($(this).hasClass("imChecked"))
+                    {
+                        $(this).removeClass("imChecked");
+                        $(this).prop('checked', false);
+                    }
+                    else
+                    {
+                        $(this).prop('checked', true);
+                        $(this).addClass("imChecked");
+                        //colors.push($(this).val());
+                    }    
                     filterData();                             
                });
 
@@ -366,6 +378,7 @@
                     $('.spinner-wrapper').show();
                     var url = $(this).attr('href');   
                 
+                    var pageValue = $('#pageValue').val();
                     var sizes = [];
                     var colors = [];
                     var fabrics = [];
@@ -449,7 +462,8 @@
                             value:value,
                             min:min,
                             max:max,
-                            flag:flag
+                            flag:flag,
+                            pageValue:pageValue
                         },
                         type:"POST",
                         success:function(response)
@@ -471,6 +485,7 @@
                     var value = $('.filterBySort').val(); 
                     var min = 0;
                     var max = "{{@$maxValue}}";
+                    var pageValue = $('#pageValue').val();
 
                     $('*[id*=size-]:visible').each(function() 
                     {   
@@ -488,7 +503,19 @@
                         console.log(isChecked);                 
                         if(isChecked)
                         {  
-                            colors.push($(this).val());
+                            if($(this).hasClass("imChecked"))
+                            {
+                                colors.push($(this).val());
+                                // $(this).removeClass("imChecked");
+                                // $(this).prop('checked', false);
+                            }
+                            else
+                            {
+                                        $(this).prop('checked', true);
+                                        $(this).addClass("imChecked");
+                                        colors.push($(this).val());
+                            }    
+                            
                             //$(this).trigger("change");
                         }
                     });
@@ -542,6 +569,7 @@
                                 value:value,
                                 min:min,
                                 max:max,
+                                pageValue:pageValue
                             },
                             type:"POST",
                             success:function(response)
