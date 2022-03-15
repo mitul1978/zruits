@@ -136,6 +136,7 @@
             var prodType = $('#productType').val();
             var colorId = '';
             var sizeId = '';
+            var pageValue = $('#pageValue').val();
 
             if(prodType == 0)
             {
@@ -262,7 +263,8 @@
                                 _token:"{{csrf_token()}}",
                                 product_id,
                                 colorId,
-                                sizeId
+                                sizeId,
+                                pageValue
                             },
                             success: function(response) 
                             {

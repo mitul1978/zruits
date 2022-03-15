@@ -1,4 +1,17 @@
-
+<?php
+    $appendingString = '';
+    if(@$pageValue)
+    {
+       if($pageValue == 1)
+       {
+          $appendingString = '?offerValue='.encrypt('1');
+       }
+       else
+       {
+         $appendingString = '?offerValue='.encrypt('2');
+       }                                   
+    } 
+?>
 <div class="toolbox">
     <div class="toolbox-left">
         <div class="toolbox-info">
@@ -75,7 +88,7 @@
                                     @endforeach 
                                 </div><!-- End .product-cat -->
                             @endif
-                            <h3 class="product-title"><a href="{{route('product',$product->slug)}}">{{$product->name}}</a></h3><!-- End .product-title -->
+                            <h3 class="product-title"><a href="{{route('product',$product->slug) . $appendingString }}">{{$product->name}}</a></h3><!-- End .product-title -->
                             <div class="product-price">
                                 <div class="w-100">
                                 <span class="new-price">₹ {{round($product->discounted_amt) }}</span>  @if($product->discounted_amt != $product->price) <span class="old-price">₹ {{round($product->price)}}</span> @endif </div> 
@@ -83,7 +96,7 @@
                             </div><!-- End .product-price -->
                             <div class="atc-container">                                                            
                                 <div class="mb-2">
-                                    <a href="{{route('product',$product->slug)}}" class="btn-cart" ><span class="product{{$product->id}}">Add to cart</span></a>
+                                    <a href="{{route('product',$product->slug) . $appendingString}}" class="btn-cart" ><span class="product{{$product->id}}">Add to cart</span></a>
                                 </div>
                             </div>
                         </div><!-- End .product-body -->

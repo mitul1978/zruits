@@ -383,6 +383,7 @@
                 <option value=""> Select Offer if any </option>
                 <option value="1" {{$product->offer == 1 ? 'selected' : ''}}>Buy 3 flat at 6500</option>
                 <option value="2" {{$product->offer == 2 ? 'selected' : ''}}>Buy 1 get 2nd at 20%</option>
+                <option value="3" {{$product->offer == 3 ? 'selected' : ''}}>All</option>
             </select>
             @error('offer')
             <span class="text-danger">{{$message}}</span>
