@@ -30,7 +30,7 @@ function addToCart($product,$colorId,$sizeId,$pageValue)
         $cart->price = $product->discounted_amt ;
         $cart->image = @$product->images()->first()->image;
         $cart->quantity = 1;
-        $cart->amount=$cart->price*$cart->quantity;
+        $cart->amount = $cart->price * $cart->quantity;
         $cart->color_id = $colorId;
         $cart->size_id = $sizeId;
         $cart->page_value = $pageValue;
@@ -315,11 +315,11 @@ function add_to_cart_session_cart_item()
 
         foreach($carts as $v)
         { 
-           if($v['product']['is_offer'] == 1 && $v['page_value'] == 1 && $v['product']['offer'] == 1 || $v['product']['offer'] == 3 )
+           if($v['product']['is_offer'] == 1 && $v['page_value'] == 1 && ($v['product']['offer'] == 1 || $v['product']['offer'] == 3) )
            {
               $countOffer1 = $countOffer1 + $v['quantity'];
            }
-           else if($v['product']['is_offer'] == 1  && $v['page_value'] == 2 && $v['product']['offer'] == 2 || $v['product']['offer'] == 3)
+           else if($v['product']['is_offer'] == 1  && $v['page_value'] == 2 && ($v['product']['offer'] == 2 || $v['product']['offer'] == 3))
            {
               $countOffer2 = $countOffer2 + $v['quantity'];
            }
@@ -370,7 +370,7 @@ function add_to_cart_session_cart_item()
 
             foreach($carts as $v)
             {
-               if($v['product']['is_offer'] == 1 && $v['page_value'] == 1 && $v['product']['offer'] == 1 || $v['product']['offer'] == 3)
+               if($v['product']['is_offer'] == 1 && $v['page_value'] == 1 && ($v['product']['offer'] == 1 || $v['product']['offer'] == 3))
                {
                   $countOffer1 = $countOffer1 + $v['quantity'];
                }
@@ -385,7 +385,7 @@ function add_to_cart_session_cart_item()
                     $cartOrderByAmt = collect($carts)->sortBy('price')->toArray();
                     foreach($cartOrderByAmt as $v)
                     {  
-                        if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 1)
+                        if($v['product']['is_offer'] == 1 && $v['page_value'] == 1 && ($v['product']['offer'] == 1 || $v['product']['offer'] == 3))
                         { 
                             if($offer1Qty > 0 && $offer1Qty >= $v['quantity'])
                             { 
@@ -442,7 +442,7 @@ function add_to_cart_session_cart_item()
 
             foreach($carts as $v)
             {
-               if($v['product']['is_offer'] == 1 && $v['page_value'] == 2 && $v['product']['offer'] == 2 || $v['product']['offer'] == 3)
+               if($v['product']['is_offer'] == 1 && $v['page_value'] == 2 && ( $v['product']['offer'] == 2 || $v['product']['offer'] == 3))
                {
                   $countOffer2 = $countOffer2 + $v['quantity'];
                }
@@ -457,7 +457,7 @@ function add_to_cart_session_cart_item()
 
                 foreach($cartOrderByAmt as $v)
                 { 
-                    if($v['product']['is_offer'] == 1 && $v['product']['offer'] == 2)
+                    if($v['product']['is_offer'] == 1 && $v['page_value'] == 2 && ($v['product']['offer'] == 2 || $v['product']['offer'] == 3))
                     {  
                         if($interval > 0 )
                         { 
