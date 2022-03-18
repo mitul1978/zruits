@@ -11,6 +11,9 @@
 <div class="card-header py-3">
   <a href="{{asset('sample/ProductStocks.xlsx')}}" class="btn btn-primary btn-sm float-left" data-toggle="tooltip" data-placement="bottom" title="Download Sample File"><i class="fas fa-download"></i> Download Sample File</a>
 </div>
+<div class="card-header py-3">
+  <a href="{{url('admin/exportProductStocks')}}" class="btn btn-primary btn-sm float-left" data-toggle="tooltip" data-placement="bottom" title="Download Data File"><i class="fas fa-download"></i> Export File</a>
+</div>
 <br>
 
 <div class="card">

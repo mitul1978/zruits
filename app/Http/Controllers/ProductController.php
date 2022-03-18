@@ -25,6 +25,8 @@ use Illuminate\Support\Facades\DB;
 use App\Imports\ProductsImport;
 use App\Imports\ProductImagesImport;
 use App\Imports\ProductStocksImport;
+use App\Exports\ProductStocksExport;
+use App\Exports\ProductImagesExport;
 use Maatwebsite\Excel\Facades\Excel;
 use File;
 class ProductController extends Controller
@@ -549,63 +551,125 @@ class ProductController extends Controller
             if($k != 0)
             { 
                 if($v[0] != '')
-                {                    
-                    $data['name']        = $v[1];
-                    $data['category_id'] = Category::where('title',$v[0])->first()->id;
-                    $data['title']       = $v[1];
+                {   
+                    $product = Product::where('design',$v[2])->first();
+                    if(!$product)
+                    {               
+                        $data['name']        = $v[1];
+                        $data['category_id'] = Category::where('title',$v[0])->first()->id;
+                        $data['title']       = $v[1];
 
-                    $slug=Str::slug($v[1]);
-                    $count= Product::where('slug',$slug)->count();
-                    if($count>0)
-                    {
-                        $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
-                    }
-            
-                    $data['slug']        = $slug;
-                    $data['design']      = $v[2];
-                    $data['hsn']         = $v[3];
-                    $data['fabric']      = Fabric::where('name',$v[4])->first()->id;
+                        $slug=Str::slug($v[1]);
+                        $count= Product::where('slug',$slug)->count();
+                        if($count>0)
+                        {
+                            $slug=$slug.'-'.date('ymdis').'-'.rand(0,999);
+                        }
+                
+                        $data['slug']        = $slug;
+                        $data['design']      = $v[2];
+                        $data['hsn']         = $v[3];
+                        $data['fabric']      = Fabric::where('name',$v[4])->first()->id;
 
-                    $orientations = Orientation::whereIn('name',explode(',',$v[5]))->get()->pluck('id')->toArray();
-                    if(count($orientations) > 0)
-                    {
-                        $orientations = serialize($orientations);
-                    }
+                        $orientations = Orientation::whereIn('name',explode(',',$v[5]))->get()->pluck('id')->toArray();
+                        if(count($orientations) > 0)
+                        {
+                            $orientations = serialize($orientations);
+                        }
+                        else
+                        {
+                            $orientations = null;
+                        }
+
+                        $data['orientation'] = $orientations;
+                        $data['price']       = $v[6];
+                        $data['discount']    = $v[7];                
+                        $data['min_qty']     = $v[8];
+                        $data['tag']         = $v[9];
+                        $data['description'] = $v[10];
+                        $data['additional_information']     = $v[11];
+                        $data['meta_title']   = $v[12];
+                        $data['meta_keyword'] = $v[13];
+                        $data['meta_description'] = $v[14];
+
+                        $relatedProducts = Product::whereIn('name',explode(',',$v[15]))->get()->pluck('id')->toArray();
+                        if(count($relatedProducts) > 0)
+                        {
+                            $relatedProducts = serialize($relatedProducts);
+                        }
+                        else
+                        {
+                            $relatedProducts = null;
+                        }
+
+                        $data['related_products'] = $relatedProducts;
+                        $data['is_featured']      = $v[16];
+                        $data['is_new']           = $v[17];
+                        $data['is_bestsellers']   = $v[18];
+                        $data['is_offer']         = $v[19];
+                        $data['offer']            = $v[20];
+                        $data['status']           = $v[21];
+
+                        Product::create($data);
+                    }    
                     else
                     {
-                        $orientations = null;
+                        $product->name       = $v[1];
+                        $product->category_id = Category::where('title',$v[0])->first()->id;
+                        $product->title       = $v[1];
+
+                        $slug=Str::slug($v[1]);
+                        $count= Product::where('slug',$slug)->where('id','<>',$product->id)->count();
+                        if($count > 0)
+                        {
+                            $slug = $slug.'-'.date('ymdis').'-'.rand(0,999);
+                        }
+                
+                        $product->slug        = $slug;
+                        $product->design      = $v[2];
+                        $product->hsn         = $v[3];
+                        $product->fabric      = Fabric::where('name',$v[4])->first()->id;
+
+                        $orientations = Orientation::whereIn('name',explode(',',$v[5]))->get()->pluck('id')->toArray();
+                        if(count($orientations) > 0)
+                        {
+                            $orientations = serialize($orientations);
+                        }
+                        else
+                        {
+                            $orientations = null;
+                        }
+
+                        $product->orientation = $orientations;
+                        $product->price      = $v[6];
+                        $product->discount    = $v[7];                
+                        $product->min_qty     = $v[8];
+                        $product->tag        = $v[9];
+                        $product->description = $v[10];
+                        $product->additional_information     = $v[11];
+                        $product->meta_title   = $v[12];
+                        $product->meta_keyword = $v[13];
+                        $product->meta_description = $v[14];
+
+                        $relatedProducts = Product::whereIn('name',explode(',',$v[15]))->get()->pluck('id')->toArray();
+                        if(count($relatedProducts) > 0)
+                        {
+                            $relatedProducts = serialize($relatedProducts);
+                        }
+                        else
+                        {
+                            $relatedProducts = null;
+                        }
+
+                        $product->related_products = $relatedProducts;
+                        $product->is_featured      = $v[16];
+                        $product->is_new          = $v[17];
+                        $product->is_bestsellers   = $v[18];
+                        $product->is_offer         = $v[19];
+                        $product->offer            = $v[20];
+                        $product->status          = $v[21];
+                        $product->update();
                     }
-
-                    $data['orientation'] = $orientations;
-                    $data['price']       = $v[6];
-                    $data['discount']    = $v[7];                
-                    $data['min_qty']     = $v[8];
-                    $data['tag']         = $v[9];
-                    $data['description'] = $v[10];
-                    $data['additional_information']     = $v[11];
-                    $data['meta_title']   = $v[12];
-                    $data['meta_keyword'] = $v[13];
-                    $data['meta_description'] = $v[14];
-
-                    $relatedProducts = Product::whereIn('name',explode(',',$v[15]))->get()->pluck('id')->toArray();
-                    if(count($relatedProducts) > 0)
-                    {
-                        $relatedProducts = serialize($relatedProducts);
-                    }
-                    else
-                    {
-                        $relatedProducts = null;
-                    }
-
-                    $data['related_products'] = $relatedProducts;
-                    $data['is_featured']      = $v[16];
-                    $data['is_new']           = $v[17];
-                    $data['is_bestsellers']   = $v[18];
-                    $data['is_offer']         = $v[19];
-                    $data['offer']            = $v[20];
-                    $data['status']           = $v[21];
-
-                    Product::create($data);
                 }    
             }            
         }
@@ -666,5 +730,11 @@ class ProductController extends Controller
         return redirect('/admin/importProductImages');
     }
 
+    public function exportStocks(){
+        return Excel::download(new ProductStocksExport, 'ProductStocks.xlsx');
+    }
 
+    public function exportImages(){
+        return Excel::download(new ProductImagesExport, 'ProductImages.xlsx');
+    }
 }

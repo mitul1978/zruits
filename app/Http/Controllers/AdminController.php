@@ -9,6 +9,7 @@ use App\Rules\MatchOldPassword;
 use Hash;
 use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\OrderProductList;
 use App\Models\Category;
 use App\Models\Product;
 use Spatie\Activitylog\Models\Activity;
@@ -32,15 +33,19 @@ class AdminController extends Controller
         $cumulativeSales  = Order::where('payment_status','paid')->sum('total_amount');
         $totalUsers = User::where('role','user')->count();
         $lastFiveOrderSales = Order::where('payment_status','paid')->latest()->take(5)->get()->sum('total_amount');
+        $orderList = Order::where('payment_status','paid')->pluck('id')->toArray();
+        $totalStockSold = OrderProductList::whereIn('order_id',$orderList)->get()->sum('quantity');
         // $lastFiveCategory = Order::whre('')
         $lastSevenDaysSales = Order::where('payment_status','paid')->whereDate('created_at', '>=', date('Y-m-d', strtotime("-7 days")))->whereDate('created_at','<=',date('Y-m-d'))->sum('total_amount');
         $lastFourteenDaysSales = Order::where('payment_status','paid')->whereDate('created_at', '>=', date('Y-m-d', strtotime("-14 days")))->whereDate('created_at','<=',date('Y-m-d'))->sum('total_amount');
+        $lastThirtyDaysSales = Order::where('payment_status','paid')->whereDate('created_at', '>=', date('Y-m-d', strtotime("-30 days")))->whereDate('created_at','<=',date('Y-m-d'))->sum('total_amount');
         $lastSixtyDaysSales = Order::where('payment_status','paid')->whereDate('created_at', '>=', date('Y-m-d', strtotime("-60 days")))->whereDate('created_at','<=',date('Y-m-d'))->sum('total_amount');
         $lastNintyDaysSales = Order::where('payment_status','paid')->whereDate('created_at', '>=', date('Y-m-d', strtotime("-90 days")))->whereDate('created_at','<=',date('Y-m-d'))->sum('total_amount');
         $totalCategories = Category::where('status',1)->count();
         $totalProducts = Product::where('status',1)->count();
         $totalOrders  = Order::where('payment_status','paid')->count();
-     return view('backend.index',compact('cumulativeSales','totalUsers','lastFiveOrderSales','lastSevenDaysSales','lastFourteenDaysSales','lastSixtyDaysSales','lastNintyDaysSales','totalCategories','totalProducts','totalOrders'));
+        $allCategories = Category::where('status',1)->get();
+     return view('backend.index',compact('cumulativeSales','totalUsers','lastFiveOrderSales','totalStockSold','lastSevenDaysSales','lastThirtyDaysSales','lastFourteenDaysSales','lastSixtyDaysSales','lastNintyDaysSales','totalCategories','totalProducts','totalOrders','allCategories'));
     }
 
     public function profile(){

@@ -204,9 +204,9 @@
                                             <div class="filter-items">
                                                 @foreach ($orientations as $item)
                                                     <div class="filter-item">
-                                                        <div class="custom-control">
-                                                            <input type="radio" class=" customFilterData" id="orientation-{{$item->id}}" data-id="{{$item->id}}" name="customOrientation">
-                                                            <label class="" for="orientation-{{$item->id}}">{{$item->name}}</label>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input customFilterData" id="orientation-{{$item->id}}" data-id="{{$item->id}}" name="customOrientation">
+                                                            <label class="custom-control-label" for="orientation-{{$item->id}}">{{$item->name}}</label>
                                                         </div><!-- End .custom-checkbox -->
                                                     </div><!-- End .filter-item -->
                                                 @endforeach
