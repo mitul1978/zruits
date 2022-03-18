@@ -100,6 +100,9 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::post('/importProducts','ProductController@storeImportProducts');
     Route::post('/importProductImages','ProductController@storeImportProductImages');
     Route::post('/importProductStocks','ProductController@storeImportProductStocks');
+    
+    Route::get('exportProductStocks', 'ProductController@exportStocks');
+    Route::get('exportProductImages', 'ProductController@exportImages');
 
 
     // Ajax for sub category
@@ -143,6 +146,4 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::resource('/subscription','SubscriptionController');    
     //export Newsletter Subscribers
     Route::get('exportSubscribers', 'HomeController@export');
-
-
 });

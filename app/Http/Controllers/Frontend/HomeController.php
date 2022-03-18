@@ -32,6 +32,7 @@ use Spatie\Newsletter\Newsletter;
 use App\Models\SubscribeNewsletter;
 use Illuminate\Support\Facades\Mail;
 use Seshac\Shiprocket\Shiprocket;
+use App\Models\Offer;
 class HomeController extends Controller
 {   
     // public function __construct()
@@ -267,14 +268,16 @@ class HomeController extends Controller
             $slug = decrypt($slug);
             if($slug == 'offer1')
             {
-                $pageType = 'Buy 3 flat at Rs. 6500';
+                $value = Offer::where('offer_type',1)->where('status',1)->first()->offer_value;
+                $pageType = 'Buy 3 flat at Rs. '.$value;
                 $pageValue = '1';
                 $products = Product::withCount('user_wishlist')
                 ->where('status','1')->where('is_giftcard',0)->where('is_offer',1)->whereIn('offer',[1,3])->latest()->paginate(9);
             }
             else if($slug == 'offer2')
             {
-                $pageType = 'Buy 2 and get the 3rd at 20% OFF';
+                $value = Offer::where('offer_type',2)->where('status',1)->first()->offer_value;
+                $pageType = 'Buy 1 and get the 2nd at '.$value.' OFF';
                 $pageValue = '2';
                 $products = Product::withCount('user_wishlist')
                 ->where('status','1')->where('is_giftcard',0)->where('is_offer',1)->whereIn('offer',[2,3])->latest()->paginate(9);
