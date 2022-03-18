@@ -55,7 +55,7 @@
                                     $url = '/images/no-image.jpg';
                                 }
                             ?>
-                            <a href="{{route('product',$product->slug)}}">
+                            <a href="{{route('product',$product->slug). $appendingString}}">
                                 <img src="{{asset($url)}}" alt="{!! $product->meta_description !!}" class="product-image">
                             </a>
 
