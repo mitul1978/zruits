@@ -37,12 +37,12 @@
         <div class="row">
             <div class="col-sm-6 mb-1 mb-sm-0"">
                 <a href="{{url('offers/' . encrypt('offer2'))}}">
-                   <img src="assets/images/home/offer-2.jpeg" alt="">
+                   <img src="assets/images/home/offer-1.png" alt="">
                 </a>
             </div>
             <div class="col-sm-6">
                 <a href="{{url('offers/' . encrypt('offer1'))}}">
-                   <img src="assets/images/home/offer-1.jpeg" alt="">
+                   <img src="assets/images/home/offer-2.png" alt="">
                 </a>
             </div>
         </div>
