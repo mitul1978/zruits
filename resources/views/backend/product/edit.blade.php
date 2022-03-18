@@ -38,8 +38,8 @@
 
           <div class="col-md-4">
             <div class="form-group">
-              <label for="design" class="col-form-label">Design Name <span class="text-danger">*</span></label>
-              <input id="design" type="text" name="design" placeholder="Enter Design"  value="{{old('design') ? old('design') : $product->design}}" class="form-control">
+              <label for="design" class="col-form-label">Design Number <span class="text-danger">*</span></label>
+              <input id="design" type="text" name="design" placeholder="Enter Design Number"  value="{{old('design') ? old('design') : $product->design}}" class="form-control">
               @error('design')
                 <span class="text-danger">{{$message}}</span>
               @enderror
@@ -380,7 +380,7 @@
           <div class="form-group">
             <label for="offer" class="col-form-label">Offer</label>
             <select name="offer" class="form-control">
-                <option value=""> Select Offer if any </option>
+                <option value=""> Select No Offer </option>
                 <option value="1" {{$product->offer == 1 ? 'selected' : ''}}>Buy 3 flat at 6500</option>
                 <option value="2" {{$product->offer == 2 ? 'selected' : ''}}>Buy 1 get 2nd at 20%</option>
                 <option value="3" {{$product->offer == 3 ? 'selected' : ''}}>All</option>
