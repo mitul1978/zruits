@@ -100,7 +100,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::post('/importProducts','ProductController@storeImportProducts');
     Route::post('/importProductImages','ProductController@storeImportProductImages');
     Route::post('/importProductStocks','ProductController@storeImportProductStocks');
-    
+    Route::get('exportMasterProducts', 'ProductController@exportProducts');
     Route::get('exportProductStocks', 'ProductController@exportStocks');
     Route::get('exportProductImages', 'ProductController@exportImages');
 

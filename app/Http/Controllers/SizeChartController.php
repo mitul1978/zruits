@@ -78,10 +78,10 @@ class SizeChartController extends Controller
      * @param  \App\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SizeChart $sizeChart)
+    public function update(Request $request, $id)
     {
         $data = $request->all();
-        $sizeChart=SizeChart::findOrFail($sizeChart->id);   
+        $sizeChart=SizeChart::findOrFail($id);   
 
         if($request->image)
         {
