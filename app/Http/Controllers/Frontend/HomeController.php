@@ -269,7 +269,7 @@ class HomeController extends Controller
             if($slug == 'offer1')
             {
                 $value = Offer::where('offer_type',1)->where('status',1)->first()->offer_value;
-                $pageType = 'Buy 3 flat at Rs. '.$value;
+                $pageType = 'Buy 3 flat at Rs. '. round($value);
                 $pageValue = '1';
                 $products = Product::withCount('user_wishlist')
                 ->where('status','1')->where('is_giftcard',0)->where('is_offer',1)->whereIn('offer',[1,3])->latest()->paginate(9);
@@ -277,7 +277,7 @@ class HomeController extends Controller
             else if($slug == 'offer2')
             {
                 $value = Offer::where('offer_type',2)->where('status',1)->first()->offer_value;
-                $pageType = 'Buy 1 and get the 2nd at '.$value.' OFF';
+                $pageType = 'Buy 1 and get the 2nd at '. round($value).' OFF';
                 $pageValue = '2';
                 $products = Product::withCount('user_wishlist')
                 ->where('status','1')->where('is_giftcard',0)->where('is_offer',1)->whereIn('offer',[2,3])->latest()->paginate(9);

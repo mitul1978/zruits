@@ -27,6 +27,7 @@ use App\Imports\ProductImagesImport;
 use App\Imports\ProductStocksImport;
 use App\Exports\ProductStocksExport;
 use App\Exports\ProductImagesExport;
+use App\Exports\ProductsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use File;
 class ProductController extends Controller
@@ -36,9 +37,27 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products=Product::getAllProduct();
+        $keyword = $request->get('search');
+
+        if (!empty($keyword)) 
+        {
+            $products = Product::where('name', 'LIKE', "%$keyword%")
+                ->orwhere('slug', 'LIKE', "%$keyword%")
+                ->orwhere('description', 'LIKE', "%$keyword%")
+                ->orwhere('additional_information', 'LIKE', "%$keyword%")
+                ->orwhere('price', 'LIKE', "%$keyword%")
+                ->orwhere('design', 'LIKE', "%$keyword%")
+                ->orwhere('hsn', 'LIKE', "%$keyword%")
+                ->latest()->paginate(20);
+        } 
+        else 
+        {
+            $products = Product::latest()->paginate(20);
+        }
+
+        // $products=Product::latest()->paginate(5);
         // return $products;
         return view('backend.product.index')->with('products',$products);
     }
@@ -736,5 +755,9 @@ class ProductController extends Controller
 
     public function exportImages(){
         return Excel::download(new ProductImagesExport, 'ProductImages.xlsx');
+    }
+
+    public function exportProducts(){
+        return Excel::download(new ProductsExport, 'Products.xlsx');
     }
 }

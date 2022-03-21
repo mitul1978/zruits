@@ -9,8 +9,13 @@
          </div>
      </div>
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary float-left">Product Lists</h6>
+      <h6 class="m-0 font-weight-bold text-primary float-left">Product Lists</h6>      
       <a href="{{route('product.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add Product</a>
+      
+    </div>
+    <div class="card-header py-3">
+      
+      <a href="{{route('product.index')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Reset"><i class="fas fa-fresh"></i> Refresh List</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">

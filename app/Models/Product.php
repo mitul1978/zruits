@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Models;
-
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Cart;
+use App\Models\Offer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -31,6 +32,49 @@ class Product extends Model
     
     public function category(){
         return $this->belongsTo('App\Models\Category','category_id');
+    }
+
+    public function pfabric(){
+        return $this->belongsTo('App\Models\Category','fabric');
+    }
+
+    public function poffer()
+    {   
+        return $this->belongsTo('App\Models\Offer','offer');
+    }
+
+    public function getOrientations()
+    { 
+        if(isset($this->orientation))
+        {
+            $ids = unserialize($this->orientation);
+            $orientations =  DB::table('orientations')
+                            ->select(DB::raw("group_concat(orientations.name) as names"))
+                            ->whereIn('id',$ids)
+                            ->get(); 
+            return $orientations[0]->names;
+        }
+        else
+        {
+            return '';
+        }
+    }
+
+    public function getRelatedProducts()
+    {
+        if(isset($this->related_products))
+        {
+            $ids = unserialize($this->related_products);
+            $products =  DB::table('products')
+                            ->select(DB::raw("group_concat(products.name) as names"))
+                            ->whereIn('id',$ids)
+                            ->get(); 
+            return $products[0]->names;
+        }
+        else
+        {
+            return '';
+        }
     }
 
     public function cat_info(){
