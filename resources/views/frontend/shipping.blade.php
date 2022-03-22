@@ -49,7 +49,7 @@
                             <p>&nbsp;</p>
  
                             <p>&nbsp;</p>
-                            <p>*If you don't receive your order in 7-10 Days, please email us with all the details or you may contact us on +91 9876543210 between 10.30 - 06.00 on Monday to Saturday.</p>
+                            <p>*If you don't receive your order in 7-10 Days, please email us with all the details or you may contact us on +91 880-880-4950 between 10.30 - 06.00 on Monday to Saturday.</p>
 
 
 						</div>

@@ -36,7 +36,7 @@
                 							<li>
                 								<i class="icon-phone"></i>
 												<b>Call or Whatsapp on</b> <br>
-												<a href="tel:#">+91 9876543210</a>
+												<a href="tel:#">+91 880-880-4950</a>
                 							</li>
                 							<li>
                 								<i class="icon-envelope"></i>
