@@ -37,7 +37,7 @@
 														<td valign="top" style="padding: 48px 48px 32px;">
 															<div id="body_content_inner" style='color: #636363; font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; font-size: 14px; line-height: 150%; text-align: left;'>
 																<p style="margin: 0 0 16px;">Hi {{isset($user->name) ? $user->name:$user->email}},</p>
-																<p style="margin: 0 0 16px;">Thanks for creating an account on Essay. Your username is {{isset($user->name) ? $user->name:$user->email}}. You can access your account area to view orders, change your password, and more at: https://zehna.com/user</p>
+																<p style="margin: 0 0 16px;">Thanks for creating an account on Zehna. Your username is {{isset($user->name) ? $user->name:$user->email}}. You can access your account area to view orders, change your password, and more at: https://zehna.com/user</p>
 																<p style="margin: 0 0 16px;">We look forward to seeing you soon.</p>	
 															</div>
 														</td>
