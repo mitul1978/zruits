@@ -30,7 +30,7 @@
                 						<ul class="contact-list">
                 							<li>
                 								<i class="icon-map-marker"></i>
-	                							<b>Satthiya Fashions</b><br> 
+	                							<b>Zehna</b><br> 
 												Gala No 201-202 Kanorita Hub, Jogeshwari East, Mumbai-400060, Maharashtra, India
 	                						</li>
                 							<li>
