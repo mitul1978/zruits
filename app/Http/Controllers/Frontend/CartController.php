@@ -57,7 +57,7 @@ class CartController extends Controller
         addToCart($product);
 
         request()->session()->flash('success','Product successfully added to cart');
-        return back();
+        return back(); 
     }
 
 
