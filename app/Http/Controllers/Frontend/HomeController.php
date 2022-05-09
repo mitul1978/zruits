@@ -85,7 +85,7 @@ class HomeController extends Controller
         //         "selling_price" => "900",
         //         "discount"=> "",
         //         "tax" => "",
-        //         "hsn" => 441122 
+        //         "hsn" => 441122   
         //         ]        
         //     ],
         //     "payment_method" => "Prepaid",

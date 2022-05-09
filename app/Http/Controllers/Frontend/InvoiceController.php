@@ -7,7 +7,7 @@ use App\Models\Order;
 class InvoiceController extends Controller
 {
 
-    function invoice($order_id){
+    function invoice($order_id){ 
 
        $order =  Order::with(['order_list','address','state','city','user'])->where('user_id',auth()->user()->id)->findOrFail($order_id);
 

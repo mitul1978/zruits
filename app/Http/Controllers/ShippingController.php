@@ -14,7 +14,7 @@ class ShippingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         $shipping=Shipping::orderBy('id','DESC')->paginate(10);
         return view('backend.shipping.index')->with('shippings',$shipping);
     }
@@ -129,6 +129,6 @@ class ShippingController extends Controller
         else{
             request()->session()->flash('error','Shipping not found');
             return redirect()->back();
-        }
+        } 
     }
 }

@@ -17,7 +17,7 @@ use App\Http\Controllers\Controller;
 use App\Notifications\StatusNotification;
 use App\Http\Controllers\Frontend\RazorpayPaymentController;
 use Notification,Auth,Session;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Mail; 
 class OrdersController extends Controller
 {
     function place_order(Request $request)

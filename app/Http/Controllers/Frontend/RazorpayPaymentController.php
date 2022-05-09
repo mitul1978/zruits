@@ -222,6 +222,7 @@ class RazorpayPaymentController extends Controller
 
               if($flag == 0)
               {
+                    //API data to push it into shiprocket
                     $orderDetails = [
                         "order_id" => $order->order_number,
                         "order_date"  => $order->created_at,
@@ -263,7 +264,7 @@ class RazorpayPaymentController extends Controller
                     ];
             
                     // $orderDetails = json_encode($orderDetails);
-                    $token =  Shiprocket::getToken();
+                    $token =  Shiprocket::getToken(); //create token of shiprocket
                     $response =  Shiprocket::order($token)->create($orderDetails);
                     if($response)
                     {
