@@ -92,7 +92,6 @@
                             <div class="product-price">
                                 <div class="w-100">
                                 <span class="new-price">₹{{round($product->discounted_amt) }}</span>  @if($product->discounted_amt != $product->price) <span class="old-price">₹{{round($product->price)}}</span> @endif </div> 
-                                <small>(MRP incl Taxes)</small>
                             </div><!-- End .product-price -->
                             <div class="atc-container">                                                            
                                 <div class="mb-2">
