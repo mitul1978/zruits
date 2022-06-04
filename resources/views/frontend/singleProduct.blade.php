@@ -81,7 +81,7 @@
                                                    @if($size->stock_qty > 0) 
                                                         <div class="radio has-image">
                                                             <label>
-                                                                <input type="radio" name="size" value="{{@$size->size_id}}" data-id="{{$size->id}}" class="p-cradio changeProductSize sizeOptions{{$product->id}}">
+                                                                <input type="radio" name="size" value="{{@$size->size_id}}" data-id="{{$size->id}}" data-stock="{{@$size->stock_qty}}" class="p-cradio changeProductSize sizeOptions{{$product->id}}">
                                                                 <div class="custom-size"><span>{{@$size->productSize->name}}</span></div>
                                                             </label>
                                                         </div>
