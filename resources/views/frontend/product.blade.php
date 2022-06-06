@@ -282,8 +282,13 @@
            $(document).on('click','.changeProductSize', function()
            {  
                 var id = $(this).data('id');
+                var qty = $(this).data('stock');
                 $('.stockLabel').hide();
                 $('#dispalyAlert'+ id).show();
+                $("#quantity").attr({
+                "max" : qty, 
+                "min" : 1
+                });
            });    
 
            $(document).on('click','#toggle', function()

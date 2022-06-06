@@ -62,6 +62,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('filter-product', 'ProductController@filterProduct');
     Route::post('filter-single-product', 'ProductController@filterSingleProduct');
     Route::post('submit-newsletter', 'HomeController@submitNewsletter');
+    Route::get('/orders-test','HomeController@testOrder');
     // Wishlist
 
     // Route::get('/offers',function(){
