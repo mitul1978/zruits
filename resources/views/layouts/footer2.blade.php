@@ -79,8 +79,15 @@
     </div><!-- End .footer-middle -->
 
     <div class="footer-bottom bg-black">
-        <div class="container flex-column py-4">
-            <p class="footer-copyright text-center text-white fs-12">Copyright © 2022 Zehna. All Rights Reserved.</p><!-- End .footer-copyright -->
+        <div class="container py-4">
+            <div class="col-md-6">
+                <p class="footer-copyright text-white fs-12">Copyright © 2022 <a href="/">Zehna</a>. All Rights Reserved.</p><!-- End .footer-copyright -->
+            </div>
+            <div class="col-md-6">
+                <div class="copyright text-lg-end">
+                    <p class=" text-white fs-12">Revenue Digital Partner <a href="http://www.lynxxdigital.com/" target="_blank"><u>Lynxx Digital</u></a></p>
+                </div>
+            </div>
         </div><!-- End .container -->
     </div><!-- End .footer-bottom -->
 </footer><!-- End .footer -->
