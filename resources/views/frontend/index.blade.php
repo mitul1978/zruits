@@ -35,7 +35,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 mb-1 mb-sm-0"">
+            <div class="col-sm-6 mb-1 mb-sm-0">
                 <a href="{{url('offers/' . encrypt('offer2'))}}">
                    <img src="assets/images/home/offer-1.png" alt="">
                 </a>

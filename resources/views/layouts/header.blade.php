@@ -5,9 +5,9 @@
         <div class="topbar-content">
                     <div class="top-bar-left p-3">                        
                         <ul class="lqd-custom-menu reset-ul inline-nav">
-                            <li><a href="#" target="_self">Great Craftmanship</a></li>
-                            <li><a href="#" target="_self">Curated Designs</a></li>
-                            <li><a href="#" target="_self">Pan India Free Shipping</a></li>
+                            <li><a href="#" target="_self">Delivery All Over Mumbai</a></li>
+                            <li><a href="#" target="_self">Customised Bouquets</a></li>
+                            <li><a href="#" target="_self">Availability of Luxury Flowers</a></li>
                         </ul>
                     </div>
                 </div>
