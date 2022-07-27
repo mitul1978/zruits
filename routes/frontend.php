@@ -30,8 +30,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/privacy-policy','HomeController@privacy');
     Route::get('/cancellation-policy','HomeController@cancellation');
     // Route::get('/payment','HomeController@payment');
-    // Route::get('/violation','HomeController@violation');
-    // Route::get('/the-exactness-of-the-product','HomeController@exactnessOfProduct');
+    Route::get('/product1','HomeController@product1');
+    Route::get('/events-wedding','HomeController@eventsWedding');
     // Route::get('/when-received','HomeController@whenReceived');
     // Route::get('/incorrect-order-or-product-damaged','HomeController@incorrectOrder');
     // Route::get('/discounts-and-vouchers','HomeController@discountAndVouchers');

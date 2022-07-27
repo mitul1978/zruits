@@ -215,8 +215,8 @@ class HomeController extends Controller
         return view('frontend.collaboration');
     }
 
-    public function violation(){
-        return view('frontend.violation');
+    public function eventsWedding(){
+        return view('frontend.events-wedding');
     }
 
     public function exactnessOfProduct(){
@@ -239,6 +239,9 @@ class HomeController extends Controller
 
     public function cancellation(){
         return view('frontend.cancellation');
+    }
+    public function product1(){
+        return view('frontend.product1');
     }
 
     public function payment(){

@@ -30,25 +30,24 @@
         <span class="slider-loader text-white"></span><!-- End .slider-loader -->
     </div><!-- End .intro-slider-container -->
 
-    <div class="mb-3 mb-lg-5"></div><!-- End .mb-3 mb-lg-5 -->
-
+    <div class="mb-1"></div>
 
     <div class="container">
         <div class="row">
             <div class="col-sm-6 mb-1 mb-sm-0">
-                <a href="{{url('offers/' . encrypt('offer2'))}}">
-                   <img src="assets/images/home/offer-1.png" alt="">
+                <a href="#">
+                   <img src="assets/images/home/coupan-1.jpg" alt="">
                 </a>
             </div>
             <div class="col-sm-6">
-                <a href="{{url('offers/' . encrypt('offer1'))}}">
-                   <img src="assets/images/home/offer-2.png" alt="">
+                <a href="#">
+                   <img src="assets/images/home/coupan-2.jpg" alt="">
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="mb-3 mb-lg-5"></div><!-- End .mb-3 mb-lg-5 -->
+    <div class="mb-1"></div>
 
     <div class="container">
         <div class="heading mb-2">
@@ -56,7 +55,7 @@
         </div><!-- End .heading -->
     </div><!-- End .container -->
     <div class="container">
-        <div class="" style="font-size: 14px; font-weight: 600; text-align: center;">
+        <div class="" style="font-size: 14px; font-weight: 500; text-align: center;">
             <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
                 data-owl-options='{
                     "nav": false, 
@@ -201,9 +200,9 @@
     </div><!-- End .container-fluid -->
 
 
-    <div class="mb-3 mb-lg-5"></div><!-- End .mb-3 mb-lg-5 -->
+    <div class="mb-2"></div><!-- End .mb-3 mb-lg-5 -->
 
-    <div class="container">
+ {{--   <div class="container">
         <div class="heading mb-2">
             <h2 class="title">Best Sellers</h2><!-- End .title -->
         </div><!-- End .heading -->
@@ -305,9 +304,9 @@
                 </div><!-- End .owl-carousel -->
             </div><!-- .End .tab-pane -->
         </div><!-- End .tab-content -->
-    </div><!-- End .container-fluid -->
+    </div>--}}
 
-    <div class="mb-5"></div><!-- End .mb-5 -->
+    <!-- <div class="mb-5"></div> -->
     
 
     <div class="icon-boxes-container pb-0">

@@ -100,7 +100,8 @@
 
                     </div><!-- End .product-details-top -->
 
-                    <div class="product-details-tab">
+                
+{{--                    <div class="product-details-tab">
                         <ul class="nav nav-pills justify-content-center" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab" role="tab" aria-controls="product-desc-tab" aria-selected="true">Description</a>
@@ -124,7 +125,7 @@
                             </div><!-- .End .tab-pane -->
                         </div><!-- End .tab-content -->
                     </div><!-- End .product-details-tab -->
-
+--}}
                     <h2 class="title text-center mb-4">You May Also Like</h2><!-- End .title text-center -->
 
                     <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 

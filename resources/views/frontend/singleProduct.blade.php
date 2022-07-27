@@ -57,7 +57,7 @@
                                         $availableColors = $product->sizesstock()->groupBy('color_id')->get();
                                         $availableSizes = $product->sizesstock()->where('color_id',$colorId)->groupBy('size_id')->get();
                                      ?>
-                                    <div class="table-cell radio-cell">
+{{--                                     <div class="table-cell radio-cell">
                                         <div class="label text-underline fw-400 mr-4">Color</div>
                                         <div id="" class="d-flex">
                                             @if(isset($availableColors) && $availableColors->isNotEmpty())
@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="table-cell radio-cell">
+                               <div class="table-cell radio-cell">
                                         <div class="label text-underline fw-400 mr-4">Size</div>
                                         @if(isset($availableSizes) && $availableSizes->isNotEmpty())  
                                             <div id="" class="d-flex">                                           
@@ -137,9 +137,32 @@
                                         @endforeach
                                     @endif                                       
                                    
-
+--}}
                                     <div id="displayProdCount">                           
                                     </div><!-- End .details-filter-row -->
+
+                        <div class="row cform mt-1 col-xl-8">
+                            <div class="col-md-6 text-center px-0">
+                                <div class="mb-0" style="font-weight: 500;">Select Delivery Date</div>
+                                <input type="date" value="2022-06-30">
+                            </div>
+                            <div class="col-md-6 text-center px-0">
+                                <div class="mb-0" style="font-weight: 500;">Select Time</div>
+                                <input type="time" class="pincodebox mb-0" placeholder="10 AM" maxlength="6">
+                                <b class="text-danger small" style="font-size: 10px;font-weight: 500;line-height: 14px;padding-top: 2px;padding-bottom: 2px;">8am - 10pm: ₹100, 10pm to 12am: ₹200.</b>
+                            </div>
+                            <div class="col-md-6 px-0">
+                                <input type="text" class="pincodebox " placeholder="To" maxlength="6">
+                            </div>
+                            <div class="col-md-6 px-0">    
+                                <input type="text" class="pincodebox " placeholder="From" maxlength="6">
+                            </div>
+                            <div class="col-md-12 px-0">
+                                <textarea rows="3" style="height: 80px;" placeholder="Message"></textarea>
+                            </div>
+                        </div>
+
+
                                     @if(isset($availableSizes) && $availableSizes->isNotEmpty())  
                                         <div class="details-filter-row details-row-size">
                                             <label for="quantity">Qty:</label>
@@ -149,9 +172,9 @@
                                         </div><!-- End .details-filter-row -->
                                     @endif    
 
-                                    <div class="details-filter-row details-row-size">
+                                    <!-- <div class="details-filter-row details-row-size">
                                         <label id="availableContsu"></label>                                        
-                                    </div><!-- End .details-filter-row -->
+                                    </div> -->
 
                                     <div class="product-details-action">
                                         @if(isset($availableSizes) && $availableSizes->isNotEmpty())  
@@ -167,6 +190,17 @@
                                         </div><!-- End .details-action-wrapper -->
                                     </div><!-- End .product-details-action -->
 
+
+                                    <div class="product-details-footer">
+                                        <div class="product-desc-content">
+                                            <h3>Description</h3>
+                                            {!! $product->description !!}
+                                        </div>
+                                        <div class="product-desc-content mb-0">
+                                            <h3>Care Instructions</h3>
+                                            {!! $product->additional_information !!}
+                                        </div>
+                                    </div>
                                     <div class="product-details-footer">
                                         <div class="product-cat">
                                             <span>Category:</span>
@@ -178,7 +212,7 @@
                                             <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
                                             <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
                                             <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
-                                            <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                                            <a href="#" class="social-icon" title="Email" target="_blank"><i class="icon-envelope"></i></a>
                                         </div>
                                     </div><!-- End .product-details-footer -->
                                 </div><!-- End .product-details -->

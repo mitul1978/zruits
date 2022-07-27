@@ -25,26 +25,26 @@
                     </button>
 
                     <a href="/" class="logo">
-                        <img src="{{URL::asset('assets/images/logo.png')}}" alt="Molla Logo" width="105" height="25">
+                        <img src="{{URL::asset('assets/images/logo.png')}}" alt="Molla Logo" width="172" height="62">
                     </a>
                 </div>
                 <div class="header-center">
                     <nav class="main-nav">
                         <ul class="menu sf-arrows">
-                            <li>
+                            {{-- <li>
                                 <a href="/products" class="">New Arrivals</a>
-                            </li>
+                            </li> --}}
                             @foreach ($categoriesHeader as $category)
                                 <li>
                                     <a href="{{url('/categories/'.$category->slug)}}" class="">{{$category->title}}</a>
                                 </li>
                             @endforeach
-                            <li>
+                            {{--<li>
                                 <a href="/offers" class="">Offers</a>
                             </li>
                             <li>
                                 <a href="{{url('/giftcard')}}" class="">Gift Card</a>
-                            </li>
+                            </li>--}}
                             {{-- <li>
                                 <a href="{{url('/collaboration')}}" class="">Collaborations</a>
                             </li> --}}

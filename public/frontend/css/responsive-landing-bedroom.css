@@ -1,0 +1,298 @@
+
+  .d-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0px;
+    }
+@media (min-width: 768px){
+    h4.hero-title {
+        font-size: 30px;
+        text-transform: uppercase;
+    }
+  /*  .d-flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0px;
+    }*/
+    h4.hero-subtitle {
+        font-size: 24px;
+        width: 80%;   
+        margin: 0px auto;
+    }
+
+    h4.hero-subtitle {
+        font-size: 24px;
+    }
+    .btn.btn-rounded{
+        border: 2px solid #fff;
+        font-size: 14px;      
+        margin:5px 5px 5px 15px;
+        padding: 10px 30px;
+    }
+     .bedroom-page .btn.btn-rounded{
+        border: 2px solid #c4c4c4;
+     }
+    p{
+        font-size: 14px;
+    }
+    .logo-royale{
+        margin: 35px 0px;
+    }
+
+    body{
+        background-color: #1f2024;
+    }
+    
+
+   
+}
+@media (min-width: 991px){
+ /*bedroom-page page*/
+    body{
+        background-image: url('https://www.royaletouche.com/frontend/images/landing-collection/landing-bedroom/bedroom-center.png');
+    }
+   .bedroom-page .banner-content{
+        text-align: left;
+        align-items: flex-start;
+        padding: 0px 100px;
+        height: 100vh;
+    }
+    .bedroom-page .gen-title{
+        width: 95%;
+        margin: 10px 0px;
+    }
+   .bedroom-page .gen-title span{
+        display: inline-block;
+    }
+    .bedroom-page .d-flex{
+          margin: 10px 15px 10px 0px!important;
+    }
+   .bedroom-page h4.hero-subtitle{
+        width: 100%;
+        font-size: 20px;
+        margin: 10px 0px;
+        position: relative;
+    }
+    .bedroom-page  h4.hero-subtitle:after {
+        position: absolute;
+        height: 2px;
+        width: 35%;
+        background: #fff;
+        content: "";
+        left: 10px;
+        bottom: -10px;
+        /* margin-top: 10px; */
+    }
+    .bedroom-page .light-img{
+        width: 10%;
+    }
+    .bedroom-page p{
+        font-size: 24px;
+       font-family: nexa-Bold!important;
+        color: #fff;
+    }
+
+    .bedroom-page{
+       background-repeat: no-repeat;
+       background-position: right;
+       background-size: 30%;
+        background-position-x: 93%;
+       
+    }
+    .hero-title{
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-family: nexa-Bold!important;
+        letter-spacing: 2px;
+    }
+    .logo-savah{
+        /*width: 80%;*/
+        margin: 10px 0px;
+    }
+    span.custom-circle {
+        display: inline-block;      
+        width: 5px;
+        height: 5px;
+        background: #fff;
+        margin: 5px 10px;
+    }
+}
+@media (min-width: 1279px){
+    .bedroom-page .gen-title{
+        width: 95%;
+        margin: 10px 0px 30px;
+    }
+    .bedroom-page h4.hero-subtitle{
+        width: 100%;
+        margin: 20px 0px;
+    }
+    .bedroom-page .btn.btn-rounded{
+        font-weight: 600;
+    }
+    .bedroom-page{
+        background-size: 40%;
+    }
+}
+@media (min-width: 1441px){
+    h4.hero-title {
+        font-size: 50px;
+        text-transform: uppercase;
+    }
+    h4.hero-subtitle {
+        font-size: 28px;
+    }
+    h4.hero-subtitle {
+        font-size: 30px;
+        width: 60%;  
+    }
+    .btn.btn-rounded{
+        border: 2px solid #fff;
+        font-size: 16px;
+        margin:10px 10px 10px 15px;
+        padding: 15px 40px;
+    }
+    p{
+       font-size: 16px; 
+    }
+    .logo-royale{
+        margin: 80px 0px;
+    }
+      .d-flex {        
+        margin: 40px 0px;
+    }
+
+    .bedroom-page .gen-title{
+        font-size: 36px;
+    }
+    .bedroom-page p{
+        font-size: 18px;
+        font-weight: 600;
+    }
+     .bedroom-page .sp-title{
+        line-height: 17px;
+    }
+    a.explore-link{
+        margin-top: 25px;
+    }
+     .bedroom-page{
+        background-size: 45%;
+    }
+
+
+}
+@media (max-width: 767px){
+ 
+  
+   .section-space{
+    padding:50px 0px;
+   }
+   
+    .title {
+    margin-bottom: 25px;
+    }
+    .banner-content{
+        width: 100%;
+        padding: 20px;
+    }
+    .hero-title {
+        font-size: 12px;
+        font-weight: 100;
+        line-height: 16px;
+        text-transform: uppercase;
+        font-family:nexa-light!important;
+        margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+    margin-top: 15px;
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 100!important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+        color: #fff;
+      font-family:nexa-light!important;
+    }
+    p{
+        font-size: 12px;
+    }
+    .hero-subtitle strong{
+        font-weight:600;
+        color:#fff;
+    }
+   .form-block-landing .form-group{
+    margin-bottom: 10px;
+   }
+   .collection2page .logo-royale{
+        margin: 20px 0px;
+   }
+    .bedroom-page .edit-num{
+      height: 26px;
+        font-size: 10px;
+    }
+    .form-left-block{
+        /*display: none;*/
+    }
+    .bedroom-page h4.hero-subtitle:after{
+        position: absolute;
+        height: 2px;
+        width: 35%;
+        background: #000;
+        content: "";
+        left: 10px;
+        bottom: -10px;
+    }
+    body{
+       
+         background: url('https://www.royaletouche.com/frontend/images/landing-collection/landing-bedroom/bedroom-background.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    img.logo-savah {
+        width: 90px;
+    }
+    .g-img-block {
+        height: 38vh;
+        /*margin: 20px 0px;*/
+        margin: 0px 0px -15%;
+    }
+    .form-left-block.w-45{
+        width: 35%;
+    }
+    .w-55 {
+    width: 65%;
+    }
+}
+
+@media (max-width: 320px){
+       .hero-title {
+        font-size: 10px;
+        font-weight: 100;
+        line-height: 14px;    
+    }  
+    .g-img-block{
+        height: 38vh;
+    }
+    .btn.btn-rounded{
+        font-size: 10px;
+    }
+    img.icons-col{
+        width: 20px;
+        height: 20px;
+    }
+    .hero-subtitle{
+        font-size: 10px;
+    }
+    p{
+        font-size: 10px;
+    }
+    img.logo-savah {
+        width: 65px;
+    }
+    .logo-royale img{
+        width:80px;
+    }
+}

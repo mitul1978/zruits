@@ -21,9 +21,11 @@
                 </div>
                 <div class="col-sm-5 d-flex align-items-center justify-content-sm-end justify-content-center">
                     <div class="social-icons ">
-                        <a href="https://www.facebook.com/profile.php?id=100078794362634" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/Zehna_in/" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
-                        <a href="https://in.pinterest.com/sachhacreation/_saved/" class="social-icon" target="_blank" title="Pintrest"><i class="icon-pinterest-p"></i></a>
+                        <a href="https://www.facebook.com/Bombay17-Florist-106167715366396/" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+                        <a href="https://instagram.com/bombay17florist" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+                        <a href="https://twitter.com/bombay17florist" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+                        <a href="https://pinterest.com/bombay17florist" class="social-icon" target="_blank" title="Pintrest"><i class="icon-pinterest-p"></i></a>
+                        <a href="https://in.linkedin.com/in/rajdeep-suryawanshi-b766a9165" class="social-icon" target="_blank" title="linkedin"><i class="icon-linkedin-in"></i></a>
 
 <!--                      <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a> -->
                     </div>
@@ -35,7 +37,7 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-sm-6 col-md-4">
                     <div class="widget">
                         <h4 class="widget-title">About Us</h4><!-- End .widget-title -->
 
@@ -48,7 +50,7 @@
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
 
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-sm-6 col-md-4">
                     <div class="widget">
                         <h4 class="widget-title">HELP</h4><!-- End .widget-title -->
 
@@ -63,7 +65,7 @@
                     </div><!-- End .widget -->
                 </div><!-- End .col-sm-6 col-lg-3 -->
 
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-sm-6 col-md-4">
                     <div class="widget">
                         <h4 class="widget-title">Account</h4><!-- End .widget-title -->
 
@@ -81,7 +83,7 @@
     <div class="footer-bottom bg-black">
         <div class="container py-4">
             <div class="col-md-6">
-                <p class="footer-copyright text-white fs-12">Copyright © 2022 <a href="/">Zehna</a>. All Rights Reserved.</p><!-- End .footer-copyright -->
+                <p class="footer-copyright text-white fs-12">Copyright © 2022 <a href="/">Bombay17 Florist</a>. All Rights Reserved.</p><!-- End .footer-copyright -->
             </div>
             <div class="col-md-6">
                 <div class="copyright text-lg-end">
@@ -98,42 +100,191 @@
 <!-- Mobile Menu -->
 <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
 
-<div class="mobile-menu-container mobile-menu-light">
+<div class="mobile-menu-container mobile-menu-light m-menu-1">
     <div class="mobile-menu-wrapper">
         <span class="mobile-menu-close"><i class="icon-close"></i></span>
-        
         <form action="/products" method="get" class="mobile-search">
             <label for="mobile-search" class="sr-only">Search</label>
             <input type="search" class="form-control" name="search" id="search" placeholder="Search product ..." required>
             <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
         </form>
-
-        <div class="tab-content">
-            <div class="tab-pane active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
-                <nav class="mobile-nav">
-                    <ul class="mobile-menu"> 
-                        @foreach ($categoriesHeader as $category)
+        
+        
+        <div class="section-item-content nav-sections-item-content" id="store.menu" >
+            <div class="container">
+                <ul class="nav nav-pills justify-content-around w-100" role="tablist">
+                    <li class="nav-item w-50">
+                        <a class="nav-link active" id="trendy-decor-link" data-toggle="tab" href="#trendy-decor-tab" role="tab" aria-controls="trendy-decor-tab" aria-selected="false">Menu</a>
+                    </li>
+                    <li class="nav-item w-50 m-0">
+                        <a class="nav-link" id="trendy-light-link" data-toggle="tab" href="#trendy-light-tab" role="tab" aria-controls="trendy-light-tab" aria-selected="true">Offers</a>
+                    </li>
+                </ul>
+                <div class="tab-content tab-content-carousel">
+                    <div class="tab-pane p-0 fade active show" id="trendy-decor-tab" role="tabpanel" aria-labelledby="trendy-decor-link">
+                        <ul class="gdheadnav menu-content mt-2">
+                            <!-- <li>
+                                <div class="menu-img">
+                                    <img src="https://cdn.shopify.com/s/files/1/0552/1362/1433/products/1_632_1_360x.jpg?v=1624864259" alt="">
+                                </div>
+                                <a href="/products"><span style="font-size: 15px;font-weight: 500;">New Arrivals</span></a>
+                            </li>  -->
+                            @foreach ($categoriesHeader as $category)
                            <li>
-                                <a href="{{url('/categories/'.$category->slug)}}" class="">{{$category->title}}</a>
+                                <div class="menu-img">
+                                    <img src="{{url(@$category->photo)}}" alt="{{$category->slug}}">
+                                </div>
+                                <a href="{{url('/categories/'.$category->slug)}}"><span style="font-size: 15px;font-weight: 500;">{{$category->title}}</span></a>
                            </li>
-                        @endforeach 
-                        <li>
-                            <a href="/products" class="">New Arrivals</a>
-                        </li>  
-                        <li>
-                            <a href="/offers" class="">Offers</a>
-                        </li>
-                        <li>
-                            <a href="{{url('/giftcard')}}" class="">Gift Card</a>
-                        </li>
-                        <li>
-                            <a href="{{url('/collaboration')}}" class="">Collaborations</a>
-                        </li>
+                            @endforeach
+                            <!-- <li>
+                                <div class="menu-img">
+                                    <img src="https://cdn.shopify.com/s/files/1/0552/1362/1433/products/1_111_1_360x.jpg" alt="">
+                                </div>
+                                <a href="/offers" class=""><span style="font-size: 15px;font-weight: 500;">Offers</span></a>
+                            </li> -->
+                            <!--<li>-->
+                            <!--    <div class="menu-img">-->
+                            <!--        <img src="https://www.globaldesi.in/media/wysiwyg/gd-images/mega-mneu/mobile-images/20220131-Global-Desi-SS22-Style-Pegs.jpg" alt="">-->
+                            <!--    </div>-->
+                            <!--    <a href="{{url('/collaboration')}}" class=""><span style="font-size: 15px;font-weight: 500;">Collaborations</span></a>-->
+                            <!--</li>-->
+                            <!-- <li>
+                                <div class="menu-img">
+                                    <img src="/assets/images/gift.jpg" alt="">
+                                </div>
+                                <a href="{{url('/giftcard')}}"><span style="font-size: 15px;font-weight: 500;">Gift Card</span></a>
+                            </li> -->
+                        </ul>
+                    </div>
+                    <div class="tab-pane p-0 fade" id="trendy-light-tab" role="tabpanel" aria-labelledby="trendy-light-link">
+                        <div>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="mobile-menu-tab" role="tabpanel" aria-labelledby="mobile-menu-link">
+                                    <nav class="mobile-nav">
+                                        <ul class="mobile-menu"> 
+                                            <li>
+                                                <a href="{{url('offers/' . encrypt('offer1'))}}" class=""><i class="icon-gift-1 mr-3" style="font-size: 14px;"></i>Buy 3 at flat 6000</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{url('offers/' . encrypt('offer2'))}}" class=""><i class="icon-gift mr-3" style="font-size: 16px;"></i>Buy 1 get 2nd @ 20% off</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{url('/giftcard')}}" class=""><i class="icon-gift mr-3" style="font-size: 16px;"></i>Gift Card</a>
+                                            </li>
+                                        </ul>
+                                        
+                                    </nav>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+
+            <div class="nav-other-links">
+    <ul>
+        <li>
+            @if(is_user_logged_in())
+               <a href="{{route('user-cart')}}">
+            @else
+               <a href="{{route('cart')}}">
+            @endif
+            <i class="icon-shopping-cart"></i><br> Cart</a>
+            </li>
+        <li>
+             @if(@auth()->user())
+                <a href="{{route('user')}}" >
+                    <i class="icon-user"></i><br> My Account</a>
+                </a>                           
+            @else
+                <a href="#signin-modal" data-toggle="modal">
+                    <i class="icon-user"></i><br> My Account</a>
+                </a>                           
+            @endif
+        </li>
+        <li>
+            @if(is_user_logged_in())
+               <a href="{{route('user')}}?tab=wishlist" title="Wishlist"><i class="icon-heart-o"></i><br> Wishlist</a>
+            @else
+               <a href="#signin-modal" data-toggle="modal"><i class="icon-heart-o"></i><br> Wishlist</a>
+            @endif
+        </li>
+        <li><a href="/contact"><i class="icon-question-circle"></i><br> Help </a></li>
+    </ul>
+</div>
+            <div class="currency">
+                <div class="signin-row">
+                	<a href="/user">Signin/Signup</a>
+                </div>
+             <!--   <li id="currency-dropdown" class="inr-nav text-uppercase">-->
+            	<!--	<ul class="top-currency-item text-center currency-new-drop-down">-->
+            	<!--		<li class="active"><a href="?country=IN" value="INR">₹ INR</a></li>-->
+             <!--           <li class=""><a href="?country=SG" value="USD">$ USD</a></li>			-->
+            	<!--	</ul>-->
+            	<!--</li>-->
+                <style>
+                
+                
+                       ul.top-currency-item.text-center.currency-new-drop-down {
+                    margin: 0px;
+                    padding: 0px;
+                }
+                
+                .currency {
+                    width: auto;
+                    display: inline-block;
+                    padding:0px;
+                    position: relative;
+                    background: #fff;
+                    position: absolute;
+                    top: 15px;
+                    left: 15px;
+                    /*border: 1px solid #000;*/
+                }
+                
+                .currency li a {
+                     text-decoration: none;
+                    font-size: 11px;
+                    font-weight: 400;
+                    background: #fff;
+                    color: #000;
+                    line-height: 24px;
+                    display: inline-block;
+                    padding: 0px 0px;
+                    width: 41px;
+                    text-align: center;
+                    vertical-align: top;
+                }
+                .currency li {float: left; text-align: center; list-style: none;margin: 0px;}
+                .currency li.active a{background: #000; color:#fff; line-height: 24px;}
+                
+                .currency:after{display: none;}
+                
+                </style>
+            </div>
+            <div class="topbar-content">
+                <div class="top-bar-left p-3">                        
+                    <ul class="lqd-custom-menu reset-ul inline-nav">
+                        <li><a href="#" target="_self">Great Craftmanship</a></li>
+                        <li><a href="#" target="_self">Curated Designs</a></li>
+                        <li><a href="#" target="_self">Pan India Free Shipping</a></li>
                     </ul>
-                    
-                </nav><!-- End .mobile-nav -->
-            </div><!-- .End .tab-pane -->
-        </div><!-- End .tab-content -->
+                </div>
+            </div>
+            <!--<div class="top-head-nav">-->
+            <!--    <div class="col-12 d-flex flex-row justify-content-center black-row">-->
+            <!--    <div class="ship border-right"><a href="#">FREE SHIPPING ALL OVER<br> INDIA ABOVE INR 1499</a></div>-->
+            <!--    <div class="ship border-right"><a href="#">WORLDWIDE <br>SHIPPING</a></div>-->
+            <!--    <div class="ship"><a href="#">STORE <br>LOCATOR</a></div>-->
+            <!--    </div>-->
+            <!--</div>-->
+        </div>
+
+
+
+
 
     </div><!-- End .mobile-menu-wrapper -->
 </div><!-- End .mobile-menu-container -->
@@ -273,3 +424,33 @@
     </div>
 </div> --}}
 
+
+<div class="block-content  block-text">
+    <div id="whatsapp-chat" class="hide">
+        <div class="header-chat">
+            <div class="head-home"><h3>Hello!</h3>
+                <p>Click one of our representatives below to chat on WhatsApp or send us an email to bombay17florist@gmail.com</p>
+            </div>
+            <div class="get-new hide"><div id="get-label">Support</div><div id="get-nama">Customer Service</div></div>
+        </div>
+        <div class="home-chat">
+            <a class="informasi" href="javascript:void" title="Chat Whatsapp">
+                <div class="info-avatar"><img src="assets/images/icons/favicon.png"></div>
+                <div class="info-chat">
+                    <span class="chat-label">Support</span>
+                    <span class="chat-nama">Customer Service</span>
+                </div><span class="my-number">+91 9619391515</span>
+            </a>
+            <div class="blanter-msg">Call us to <b>+91 9619391515</b> from <i>10:00am to 6:00pm</i></div>
+        </div>
+        <div class="start-chat hide">
+            <div class="first-msg"><span>Hello! What can I do for you?</span></div>
+            <div class="blanter-msg"><textarea id="chat-input" placeholder="Type a message" maxlength="120" row="1"></textarea>
+                <a href="javascript:void;" id="send-it">Send</a>
+            </div>
+        </div>
+        <div id="get-number"></div>
+        <a class="close-chat" href="javascript:void">×</a>
+    </div>
+    <a class="blantershow-chat" href="javascript:void" title="Show Chat"><i class="icon-whatsapp"></i></a>
+</div>

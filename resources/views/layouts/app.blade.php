@@ -6,19 +6,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Zehna</title>
-    <meta name="keywords" content="Zehna">
-    <meta name="description" content="Zehna">
+    <title>Bombay17 Florist</title>
+    <meta name="keywords" content="Bombay17 Florist">
+    <meta name="description" content="Bombay17 Florist">
     <meta name="author" content="Zruits">
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="{{URL::asset('assets/images/icons/apple-touch-icon.png')}}">
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="{{URL::asset('assets/images/icons/apple-touch-icon.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{URL::asset('assets/images/icons/favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{URL::asset('assets/images/icons/favicon-16x16.png')}}">
     <link rel="manifest" href="{{URL::asset('assets/images/icons/site.html')}}">
-    <link rel="mask-icon" href="{{URL::asset('assets/images/icons/safari-pinned-tab.svg')}}" color="#666666">
+    <link rel="mask-icon" href="{{URL::asset('assets/images/icons/safari-pinned-tab.svg')}}" color="#666666"> -->
     <link rel="shortcut icon" href="{{URL::asset('assets/images/icons/favicon.png')}}">
-    <meta name="apple-mobile-web-app-title" content="Zehna">
-    <meta name="application-name" content="Zehna">
+    <meta name="apple-mobile-web-app-title" content="Bombay17 Florist">
+    <meta name="application-name" content="Bombay17 Florist">
     <meta name="msapplication-TileColor" content="#cc9966">
     <meta name="msapplication-config" content="{{URL::asset('assets/images/icons/browserconfig.xml')}}">
     <meta name="theme-color" content="#ffffff">
@@ -34,21 +34,21 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CD7PH98K4J"></script>
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-CD7PH98K4J"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-CD7PH98K4J');
-</script>
+</script> -->
 
 <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-M4DM3XR');</script>
+})(window,document,'script','dataLayer','GTM-M4DM3XR');</script> -->
 <!-- End Google Tag Manager -->
 
     @livewireStyles
@@ -734,6 +734,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
 
         });
+    </script>
+
+    <script type="text/javascript">
+        /* Whatsapp Chat Widget powered by idblanter */
+        $(document).on("click", "#send-it", function () {
+            var a = document.getElementById("chat-input");
+            if ("" != a.value) {
+                var b = $("#get-number").text(),
+                    c = document.getElementById("chat-input").value,
+                    d = "https://web.whatsapp.com/send",
+                    e = b,
+                    f = "&text=" + c;
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) var d = "whatsapp://send";
+                var g = d + "?phone=" + e + f;
+                window.open(g, "_blank");
+            }
+        }),
+            $(document).on("click", ".informasi", function () {
+                (document.getElementById("get-number").innerHTML = $(this).children(".my-number").text()),
+                    $(".start-chat,.get-new").addClass("show").removeClass("hide"),
+                    $(".home-chat,.head-home").addClass("hide").removeClass("show"),
+                    (document.getElementById("get-nama").innerHTML = $(this).children(".info-chat").children(".chat-nama").text()),
+                    (document.getElementById("get-label").innerHTML = $(this).children(".info-chat").children(".chat-label").text());
+            }),
+            $(document).on("click", ".close-chat", function () {
+                $("#whatsapp-chat").addClass("hide").removeClass("show");
+            }),
+            $(document).on("click", ".blantershow-chat", function () {
+                $("#whatsapp-chat").addClass("show").removeClass("hide");
+            });
     </script>
 
 </body>
